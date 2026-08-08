@@ -3,2772 +3,1911 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#f8fbff">
 
-<title>AKSH Mental Wellness — A Safe Space For Every Mind</title>
+<title>AKSH Mental Wellness</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
 
 <style>
 
-/* =========================================================
-   AKSH — PAGE 1
-   Reference-led premium mental wellness experience
-========================================================= */
-
-:root{
-  --ink:#25364c;
-  --ink-soft:#52647a;
-  --muted:#8996a5;
-
-  --sky:#a8d1f3;
-  --sky-soft:#eaf5ff;
-  --sky-pale:#f5faff;
-
-  --purple:#493467;
-  --purple-soft:#f4eff9;
-
-  --gold:#c7a15a;
-
-  --white:#ffffff;
-
-  --radius-xl:34px;
-  --radius-lg:26px;
-  --radius-md:18px;
-
-  --shadow:0 22px 60px rgba(46,75,106,.10);
-}
-
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 html{
-  scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
 
 body{
-  background:#edf3fa;
-  color:var(--ink);
-  font-family:"DM Sans",sans-serif;
-  overflow-x:hidden;
+    font-family:"DM Sans",sans-serif;
+    background:#eef3f8;
+    color:#102744;
+    overflow-x:hidden;
 }
 
-button,
-a{
-  -webkit-tap-highlight-color:transparent;
+/* =========================
+   PAGE 1
+========================= */
+
+.page-one{
+    position:relative;
+    min-height:100svh;
+    width:100%;
+    overflow:hidden;
+    isolation:isolate;
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(241,246,251,.96) 0%,
+            rgba(241,246,251,.82) 23%,
+            rgba(241,246,251,.25) 53%,
+            rgba(10,35,62,.12) 100%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(238,245,252,.25) 0%,
+            rgba(8,30,54,.12) 100%
+        ),
+        url("aksh-page1-bg.jpg");
+
+    background-size:cover;
+    background-position:center center;
+    background-repeat:no-repeat;
 }
 
-button{
-  font-family:inherit;
+/* subtle atmospheric layer */
+
+.page-one::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+
+    background:
+        radial-gradient(
+            circle at 72% 30%,
+            rgba(255,255,255,.42),
+            transparent 30%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.12),
+            rgba(7,30,55,.18)
+        );
 }
 
-a{
-  text-decoration:none;
-  color:inherit;
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    position:absolute;
+    z-index:20;
+
+    top:30px;
+    left:32px;
+    right:32px;
+
+    height:88px;
+
+    display:flex;
+    align-items:center;
+    gap:35px;
+
+    padding:0 24px 0 22px;
+
+    border:1px solid rgba(255,255,255,.48);
+
+    border-radius:20px;
+
+    background:rgba(230,239,248,.38);
+
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    box-shadow:
+        0 12px 35px rgba(26,54,82,.08),
+        inset 0 1px 0 rgba(255,255,255,.5);
 }
 
-
-/* =========================================================
-   PAGE
-========================================================= */
-
-.site{
-  width:min(1380px,calc(100% - 34px));
-  margin:22px auto 0;
-  background:#fff;
-  overflow:hidden;
-  box-shadow:0 0 80px rgba(40,63,88,.08);
-}
-
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-.nav{
-  height:76px;
-  padding:0 30px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  background:#fff;
-}
+/* LOGO */
 
 .brand{
-  display:flex;
-  align-items:center;
-  gap:8px;
+    width:235px;
+    min-width:235px;
 
-  color:#1e2d40;
-  font-size:22px;
-  font-weight:700;
-  letter-spacing:-.055em;
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-.brand img{
-  width:31px;
-  height:31px;
-  object-fit:contain;
+.logo-symbol{
+    width:43px;
+    height:48px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
-.brand-dot{
-  width:7px;
-  height:7px;
-
-  margin-left:-3px;
-
-  border-radius:50%;
-
-  background:#83b9e9;
+.logo-symbol svg{
+    width:42px;
+    height:47px;
 }
 
-.nav-right{
-  display:flex;
-  align-items:center;
-  gap:30px;
+.brand-name{
+    display:flex;
+    flex-direction:column;
+    line-height:1;
 }
 
-.nav-links{
-  display:flex;
-  align-items:center;
-  gap:30px;
-
-  color:#445267;
-
-  font-size:12px;
+.brand-title{
+    font-family:"Playfair Display",serif;
+    font-size:34px;
+    letter-spacing:.02em;
+    color:#102b4a;
 }
 
-.nav-links a{
-  transition:.2s ease;
+.brand-tagline{
+    margin-top:7px;
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:.12em;
+    color:#193451;
+    white-space:nowrap;
 }
 
-.nav-links a:hover{
-  color:#17263a;
+/* NAV */
+
+.main-nav{
+    flex:1;
+    height:100%;
+    display:flex;
+    align-items:center;
+    gap:8px;
 }
 
-.nav-book{
-  padding:10px 21px;
+.main-nav a{
+    position:relative;
 
-  border:1px solid #dce2e8;
-  border-radius:30px;
+    padding:12px 22px;
 
-  background:#fff;
-  color:#263447;
+    border-radius:28px;
 
-  font-size:11px;
-  font-weight:600;
+    color:#142b45;
+    text-decoration:none;
 
-  cursor:pointer;
+    font-size:15px;
+    font-weight:500;
 
-  box-shadow:0 2px 9px rgba(30,45,65,.04);
+    transition:.25s ease;
 }
 
+.main-nav a:hover{
+    background:rgba(255,255,255,.38);
+}
 
-/* =========================================================
+.main-nav a.active{
+    color:#fff;
+    background:#112b4b;
+    box-shadow:0 7px 20px rgba(12,38,68,.18);
+}
+
+/* HELP BUTTON */
+
+.help-button{
+    display:flex;
+    align-items:center;
+    gap:11px;
+
+    padding:13px 20px;
+
+    border-radius:30px;
+
+    border:1px solid rgba(255,255,255,.55);
+
+    background:rgba(244,248,252,.48);
+
+    color:#102744;
+
+    font-size:14px;
+    font-weight:600;
+
+    white-space:nowrap;
+
+    cursor:pointer;
+}
+
+.help-icon{
+    width:20px;
+    height:20px;
+}
+
+/* =========================
    HERO
-========================================================= */
+========================= */
 
 .hero{
-  padding:8px 30px 0;
+    position:relative;
+    z-index:5;
+
+    min-height:100svh;
+
+    padding:
+        175px
+        6.2%
+        120px;
 }
 
-.hero-box{
-  position:relative;
-
-  min-height:570px;
-
-  overflow:hidden;
-
-  border-radius:32px;
-
-  background:
-    linear-gradient(
-      120deg,
-      #a8cdf0 0%,
-      #cfe7fa 49%,
-      #91bde7 100%
-    );
-
-  box-shadow:0 25px 55px rgba(58,91,124,.15);
-}
-
-.hero-glow{
-  position:absolute;
-  inset:0;
-
-  background:
-    radial-gradient(
-      ellipse at 16% 30%,
-      rgba(255,255,255,.92) 0%,
-      rgba(255,255,255,.40) 18%,
-      transparent 43%
-    ),
-    radial-gradient(
-      ellipse at 46% 78%,
-      rgba(255,255,255,.65),
-      transparent 35%
-    ),
-    linear-gradient(
-      180deg,
-      transparent,
-      rgba(255,255,255,.08)
-    );
-}
-
-.cloud{
-  position:absolute;
-
-  border-radius:999px;
-
-  background:rgba(255,255,255,.58);
-
-  filter:blur(17px);
-}
-
-.cloud-a{
-  width:440px;
-  height:105px;
-
-  left:-80px;
-  bottom:30px;
-}
-
-.cloud-b{
-  width:400px;
-  height:110px;
-
-  left:190px;
-  bottom:-10px;
-}
-
-.cloud-c{
-  width:320px;
-  height:80px;
-
-  right:160px;
-  bottom:65px;
-}
-
-.hero-copy{
-  position:relative;
-  z-index:5;
-
-  width:54%;
-
-  padding:62px 50px 60px;
-}
-
-.hero-label{
-  color:#587695;
-
-  font-size:10px;
-  font-weight:700;
-
-  letter-spacing:.20em;
-  text-transform:uppercase;
+.hero-content{
+    width:min(650px,48vw);
 }
 
 .hero-title{
-  margin-top:18px;
+    font-family:"Playfair Display",serif;
 
-  color:#17283e;
+    font-size:clamp(58px,6.3vw,105px);
 
-  font-size:clamp(48px,5.4vw,78px);
-  line-height:.97;
+    line-height:.91;
 
-  letter-spacing:-.058em;
-  font-weight:700;
+    font-weight:500;
+
+    letter-spacing:-.045em;
+
+    color:#102744;
+}
+
+.hero-title em{
+    color:#2775c9;
+    font-style:italic;
+    font-weight:500;
+}
+
+.title-decoration{
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    margin:22px 0 17px;
+}
+
+.title-decoration span{
+    width:150px;
+    height:1px;
+    background:#102744;
+    opacity:.65;
+}
+
+.title-decoration svg{
+    width:31px;
+    height:31px;
+    opacity:.62;
 }
 
 .hero-description{
-  max-width:480px;
+    max-width:410px;
 
-  margin-top:27px;
+    font-size:17px;
+    line-height:1.55;
 
-  color:#41566e;
+    color:#182f49;
 
-  font-size:14px;
-  line-height:1.65;
+    margin-bottom:20px;
 }
 
-.hero-actions{
-  display:flex;
-  align-items:center;
-  gap:20px;
+/* BUTTONS */
 
-  margin-top:29px;
+.hero-buttons{
+    display:flex;
+    align-items:center;
+    gap:16px;
 }
 
-.hero-primary{
-  border:0;
-  border-radius:30px;
+.primary-button,
+.secondary-button{
+    height:52px;
 
-  padding:16px 27px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:13px;
 
-  background:#7da8d7;
-  color:#fff;
+    padding:0 23px;
 
-  font-size:12px;
-  font-weight:600;
+    border-radius:28px;
 
-  cursor:pointer;
+    font-size:14px;
+    font-weight:600;
 
-  box-shadow:0 12px 28px rgba(72,116,159,.22);
-}
-
-.hero-secondary{
-  display:flex;
-  align-items:center;
-  gap:9px;
-
-  border:0;
-  background:transparent;
-
-  color:#3b4d62;
-
-  font-size:12px;
-
-  cursor:pointer;
-}
-
-.hero-secondary span{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  width:31px;
-  height:31px;
-
-  border:1px solid rgba(255,255,255,.75);
-  border-radius:50%;
-
-  background:rgba(255,255,255,.55);
-}
-
-.trust{
-  position:absolute;
-
-  left:50px;
-  bottom:31px;
-
-  z-index:8;
-
-  display:flex;
-  align-items:center;
-  gap:12px;
-
-  padding:8px 16px 8px 9px;
-
-  border-radius:30px;
-
-  background:rgba(255,255,255,.82);
-
-  backdrop-filter:blur(14px);
-
-  color:#405267;
-
-  font-size:9px;
-  font-weight:600;
-}
-
-.trust-faces{
-  display:flex;
-}
-
-.trust-face{
-  width:29px;
-  height:29px;
-
-  margin-right:-7px;
-
-  border:2px solid #fff;
-  border-radius:50%;
-
-  background:
-    linear-gradient(
-      145deg,
-      #637a8e,
-      #233448
-    );
-}
-
-
-/* =========================================================
-   HERO VISUAL
-========================================================= */
-
-.hero-visual{
-  position:absolute;
-  right:0;
-  bottom:0;
-
-  width:56%;
-  height:100%;
-
-  z-index:3;
-}
-
-.person{
-  position:absolute;
-
-  right:5%;
-  bottom:-6%;
-
-  width:430px;
-  height:515px;
-
-  border-radius:220px 220px 40px 40px;
-
-  background:
-    radial-gradient(
-      circle at 50% 17%,
-      #dfb18d 0 10.5%,
-      transparent 11%
-    ),
-    radial-gradient(
-      circle at 49% 12%,
-      #28384b 0 15%,
-      transparent 15.5%
-    ),
-    linear-gradient(
-      145deg,
-      #6f94bb,
-      #315b82
-    );
-
-  transform:rotate(2deg);
-
-  filter:drop-shadow(-28px 25px 30px rgba(47,76,104,.18));
-}
-
-.person::before{
-  content:"";
-
-  position:absolute;
-
-  width:115px;
-  height:210px;
-
-  top:80px;
-  left:73px;
-
-  border-radius:80px;
-
-  background:rgba(255,255,255,.16);
-
-  filter:blur(13px);
-}
-
-
-/* =========================================================
-   FLOATING SESSION CARD
-========================================================= */
-
-.session-card{
-  position:absolute;
-
-  right:30px;
-  top:198px;
-
-  z-index:10;
-
-  width:181px;
-
-  padding:19px 17px;
-
-  border:1px solid rgba(255,255,255,.70);
-  border-radius:20px;
-
-  background:rgba(101,148,198,.56);
-
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-
-  color:#fff;
-
-  box-shadow:0 18px 45px rgba(53,91,129,.16);
-}
-
-.session-small{
-  font-size:8px;
-  opacity:.82;
-}
-
-.session-title{
-  margin-top:13px;
-
-  font-size:14px;
-  font-weight:700;
-}
-
-.session-time{
-  margin-top:2px;
-
-  font-size:19px;
-  font-weight:700;
-}
-
-.session-note{
-  margin-top:3px;
-
-  font-size:8px;
-  opacity:.78;
-}
-
-.session-button{
-  width:100%;
-
-  margin-top:14px;
-
-  padding:10px;
-
-  border:0;
-  border-radius:20px;
-
-  background:#fff;
-  color:#2b3d51;
-
-  font-size:9px;
-  font-weight:700;
-
-  cursor:pointer;
-}
-
-.session-approach{
-  margin-top:15px;
-}
-
-.session-approach-title{
-  font-size:7px;
-  letter-spacing:.14em;
-  opacity:.80;
-}
-
-.session-approach p{
-  margin-top:6px;
-
-  font-size:8px;
-  line-height:1.55;
-
-  opacity:.84;
-}
-
-
-/* =========================================================
-   FEATURE STRIP
-========================================================= */
-
-.features{
-  padding:74px 30px 84px;
-
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-
-  gap:35px;
-}
-
-.feature{
-  display:grid;
-  grid-template-columns:44px 1fr;
-
-  gap:14px;
-}
-
-.feature-icon{
-  width:44px;
-  height:44px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  border-radius:13px;
-
-  background:#eff7fe;
-
-  color:#6799cb;
-
-  font-size:18px;
-}
-
-.feature-title{
-  color:#26364a;
-
-  font-size:13px;
-  font-weight:700;
-}
-
-.feature-text{
-  margin-top:7px;
-
-  color:#7c8895;
-
-  font-size:10px;
-  line-height:1.55;
-}
-
-
-/* =========================================================
-   PERSONALIZED CARE
-========================================================= */
-
-.care{
-  padding:18px 30px 110px;
-
-  display:grid;
-  grid-template-columns:1fr 1fr;
-
-  gap:80px;
-
-  align-items:center;
-}
-
-.section-label{
-  color:#6395c1;
-
-  font-size:9px;
-  font-weight:700;
-
-  letter-spacing:.20em;
-  text-transform:uppercase;
-}
-
-.care-title{
-  margin-top:14px;
-
-  color:#29394e;
-
-  font-size:clamp(40px,4.2vw,60px);
-  line-height:1.03;
-
-  letter-spacing:-.05em;
-  font-weight:700;
-}
-
-.care-description{
-  max-width:500px;
-
-  margin-top:22px;
-
-  color:#697787;
-
-  font-size:14px;
-  line-height:1.7;
-}
-
-.care-list{
-  margin-top:28px;
-
-  display:grid;
-  gap:15px;
-
-  list-style:none;
-}
-
-.care-item{
-  display:flex;
-  align-items:center;
-  gap:12px;
-
-  color:#445366;
-
-  font-size:12px;
-}
-
-.care-check{
-  width:30px;
-  height:30px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  border-radius:9px;
+    text-decoration:none;
 
-  background:#eff7fe;
+    cursor:pointer;
 
-  color:#6398ca;
+    transition:.25s ease;
 }
 
-.care-button{
-  margin-top:29px;
+.primary-button{
+    background:#102d4f;
+    color:white;
 
-  padding:14px 23px;
-
-  border:0;
-  border-radius:28px;
-
-  background:#7ca9d8;
-  color:#fff;
-
-  font-size:10px;
-  font-weight:600;
-
-  cursor:pointer;
+    box-shadow:
+        0 12px 25px rgba(12,42,75,.25);
 }
-
-
-/* =========================================================
-   CARE IMAGE PANEL
-========================================================= */
-
-.care-panel{
-  position:relative;
-
-  height:545px;
-
-  overflow:hidden;
 
-  border-radius:31px;
-
-  background:
-    linear-gradient(
-      180deg,
-      #c6e0f3 0%,
-      #8bb6d7 38%,
-      #527fa4 62%,
-      #315c7c 100%
-    );
-
-  box-shadow:var(--shadow);
+.primary-button:hover{
+    transform:translateY(-2px);
+    box-shadow:
+        0 17px 30px rgba(12,42,75,.32);
 }
-
-.mountain-one{
-  position:absolute;
-
-  left:-10%;
-  right:-10%;
-  bottom:32%;
 
-  height:260px;
-
-  background:
-    linear-gradient(
-      145deg,
-      transparent 0 23%,
-      #668cad 23% 43%,
-      transparent 43% 48%,
-      #466d91 48% 69%,
-      transparent 69%
-    );
+.secondary-button{
+    background:rgba(255,255,255,.73);
+    border:1px solid rgba(255,255,255,.82);
+    color:#142d49;
 }
-
-.mountain-two{
-  position:absolute;
 
-  left:-10%;
-  right:-10%;
-  bottom:29%;
-
-  height:210px;
-
-  background:
-    linear-gradient(
-      30deg,
-      transparent 0 28%,
-      rgba(34,67,94,.60) 28% 48%,
-      transparent 48% 53%,
-      rgba(45,80,107,.65) 53% 70%,
-      transparent 70%
-    );
+.secondary-button:hover{
+    background:#fff;
 }
-
-.water{
-  position:absolute;
 
-  left:0;
-  right:0;
-  bottom:0;
-
-  height:42%;
-
-  background:
-    linear-gradient(
-      180deg,
-      #4e83aa,
-      #2d5877
-    );
+.button-arrow{
+    font-size:20px;
+    line-height:0;
 }
 
-.water-lines{
-  position:absolute;
+/* =========================
+   REVIEW CARD
+========================= */
 
-  left:8%;
-  right:8%;
-  top:16%;
+.review-card{
+    position:absolute;
 
-  height:1px;
+    right:6.2%;
+    top:145px;
 
-  background:rgba(255,255,255,.35);
+    z-index:8;
 
-  box-shadow:
-    0 19px rgba(255,255,255,.14),
-    0 39px rgba(255,255,255,.10),
-    0 61px rgba(255,255,255,.07);
-}
+    display:flex;
+    align-items:center;
 
-.lake-person{
-  position:absolute;
+    padding:10px 18px;
 
-  left:50%;
-  bottom:22%;
+    border-radius:40px;
 
-  width:86px;
-  height:145px;
+    background:rgba(240,247,253,.58);
 
-  transform:translateX(-50%);
+    border:1px solid rgba(255,255,255,.65);
 
-  border-radius:42px 42px 10px 10px;
+    backdrop-filter:blur(17px);
+    -webkit-backdrop-filter:blur(17px);
 
-  background:
-    linear-gradient(
-      90deg,
-      #1d3042,
-      #455b6d
-    );
+    box-shadow:0 10px 28px rgba(17,42,70,.1);
 }
-
-.lake-person::before{
-  content:"";
 
-  position:absolute;
-
-  width:51px;
-  height:51px;
-
-  top:-38px;
-  left:18px;
-
-  border-radius:50%;
-
-  background:#8a6858;
+.avatars{
+    display:flex;
+    margin-right:14px;
 }
-
-.insight{
-  position:absolute;
 
-  left:14%;
-  right:14%;
-  bottom:8%;
+.avatar{
+    width:42px;
+    height:42px;
 
-  padding:22px;
+    border-radius:50%;
 
-  border:1px solid rgba(255,255,255,.35);
-  border-radius:20px;
+    border:3px solid rgba(247,250,252,.9);
 
-  background:rgba(113,151,184,.58);
+    margin-left:-8px;
 
-  backdrop-filter:blur(15px);
-
-  color:#fff;
-}
-
-.insight-label{
-  font-size:7px;
-  letter-spacing:.17em;
+    background:
+        linear-gradient(135deg,#748ca5,#203954);
 }
-
-.insight-title{
-  margin-top:9px;
-
-  font-family:"Playfair Display",serif;
 
-  font-size:19px;
-  line-height:1.2;
-  font-weight:400;
+.avatar:first-child{
+    margin-left:0;
 }
 
-.insight-text{
-  margin-top:9px;
-
-  font-size:8px;
-  opacity:.82;
+.review-divider{
+    width:1px;
+    height:42px;
+    background:rgba(17,43,70,.2);
+    margin-right:18px;
 }
-
-
-/* =========================================================
-   EMOTIONAL CHECK-IN
-   EXACTLY 4 CARDS
-========================================================= */
-
-.emotions{
-  padding:104px 30px 112px;
-
-  text-align:center;
 
-  background:
-    radial-gradient(
-      ellipse at 50% 25%,
-      #fff 0%,
-      #eff8ff 45%,
-      #fafcff 100%
-    );
+.review-stat{
+    display:flex;
+    flex-direction:column;
 }
 
-.emotions-title{
-  color:#43556b;
-
-  font-family:"Playfair Display",serif;
-
-  font-size:clamp(48px,5.5vw,74px);
-  line-height:.98;
-
-  font-weight:500;
-
-  letter-spacing:-.045em;
+.review-number{
+    font-size:17px;
+    font-weight:700;
+    color:#102744;
 }
 
-.emotions-title em{
-  color:#98a6b4;
+.review-label{
+    font-size:12px;
+    color:#41556c;
 }
 
-.emotions-description{
-  max-width:530px;
-
-  margin:21px auto 0;
-
-  color:#8996a4;
-
-  font-size:12px;
-  line-height:1.65;
+.stars{
+    color:#e7ad31;
+    font-size:17px;
+    letter-spacing:1px;
+    margin-left:13px;
 }
-
-
-/* =========================================================
-   FOUR EMOTION CARDS
-========================================================= */
 
-.emotion-grid{
-  width:min(1100px,100%);
-
-  margin:60px auto 0;
-
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-
-  gap:20px;
+.google-text{
+    font-size:12px;
+    color:#516276;
+    margin-left:7px;
 }
-
-.emotion-card{
-  position:relative;
-
-  min-height:225px;
-
-  padding:25px 21px;
-
-  overflow:hidden;
-
-  border:1px solid rgba(150,177,200,.18);
-  border-radius:24px;
-
-  background:rgba(255,255,255,.84);
 
-  text-align:left;
+/* =========================
+   LEFT SERVICES
+========================= */
 
-  cursor:pointer;
+.left-services{
+    position:absolute;
 
-  transition:
-    transform .35s ease,
-    box-shadow .35s ease,
-    background .35s ease;
-}
-
-.emotion-card:hover{
-  transform:translateY(-7px);
+    left:6.2%;
+    bottom:115px;
 
-  box-shadow:
-    0 18px 38px rgba(70,110,145,.13);
-}
+    z-index:10;
 
-.emotion-card.active{
-  background:#8ec5f2;
-  color:#fff;
+    width:252px;
 
-  box-shadow:
-    0 18px 40px rgba(80,143,196,.23);
+    display:flex;
+    flex-direction:column;
+    gap:8px;
 }
-
-.emotion-symbol{
-  width:48px;
-  height:48px;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.service-card{
+    min-height:62px;
 
-  border-radius:50%;
+    display:flex;
+    align-items:center;
+    gap:14px;
 
-  background:#eff7fe;
+    padding:9px 13px;
 
-  color:#6196c8;
+    border-radius:18px;
 
-  font-size:21px;
-}
-
-.emotion-card.active .emotion-symbol{
-  background:rgba(255,255,255,.86);
-}
+    background:rgba(54,75,96,.42);
 
-.emotion-name{
-  margin-top:28px;
+    border:1px solid rgba(255,255,255,.28);
 
-  font-family:"Playfair Display",serif;
-
-  font-size:24px;
-  font-weight:500;
-}
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
 
-.emotion-copy{
-  margin-top:8px;
+    color:#fff;
 
-  color:#8b98a6;
+    transition:.25s ease;
 
-  font-size:10px;
-  line-height:1.55;
+    cursor:pointer;
 }
 
-.emotion-card.active .emotion-copy{
-  color:rgba(255,255,255,.88);
+.service-card:hover{
+    transform:translateX(5px);
+    background:rgba(40,64,87,.59);
 }
 
-.emotion-arrow{
-  position:absolute;
+.service-icon{
+    width:34px;
+    height:34px;
 
-  right:18px;
-  bottom:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-  width:31px;
-  height:31px;
+    border-radius:50%;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  border-radius:50%;
-
-  background:#f2f8fd;
-
-  color:#6d99bf;
-
-  font-size:12px;
-}
-
-.emotion-card.active .emotion-arrow{
-  background:rgba(255,255,255,.86);
+    flex-shrink:0;
 }
-
 
-/* =========================================================
-   WELLNESS JOURNEY
-========================================================= */
-
-.journey{
-  padding:98px 30px 120px;
-
-  background:#fff;
+.service-icon svg{
+    width:28px;
+    height:28px;
+    stroke:white;
 }
-
-.journey-header{
-  display:flex;
 
-  align-items:flex-end;
-  justify-content:space-between;
-
-  gap:30px;
+.service-copy{
+    flex:1;
 }
-
-.journey-title{
-  margin-top:14px;
-
-  color:#3d5067;
-
-  font-family:"Playfair Display",serif;
 
-  font-size:clamp(45px,5vw,69px);
-  line-height:.98;
-
-  font-weight:500;
-
-  letter-spacing:-.045em;
+.service-name{
+    font-size:14px;
+    font-weight:600;
+    line-height:1.1;
 }
 
-.journey-title em{
-  color:#9caab7;
+.service-description{
+    margin-top:4px;
+    font-size:10px;
+    color:rgba(255,255,255,.78);
 }
-
-.help{
-  display:flex;
-  align-items:center;
-
-  gap:10px;
-
-  border:0;
-  background:none;
 
-  color:#435367;
-
-  font-size:11px;
-
-  text-decoration:underline;
-
-  cursor:pointer;
+.service-arrow{
+    font-size:21px;
+    color:#fff;
 }
-
-.help span{
-  display:flex;
-  align-items:center;
-  justify-content:center;
 
-  width:39px;
-  height:39px;
+/* =========================
+   RIGHT NAVIGATION
+========================= */
 
-  border-radius:50%;
+.side-nav{
+    position:absolute;
 
-  background:#9ac8ef;
-  color:#fff;
+    right:3.2%;
+    bottom:115px;
 
-  text-decoration:none;
-}
-
-.journey-cards{
-  margin-top:54px;
+    width:225px;
 
-  display:grid;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
 
-  grid-template-columns:1fr 1.5fr 1fr;
-
-  gap:22px;
+    z-index:10;
 }
-
-.journey-card{
-  position:relative;
-
-  min-height:420px;
 
-  padding:27px;
+.side-nav a{
+    min-height:49px;
 
-  overflow:hidden;
+    display:flex;
+    align-items:center;
 
-  border-radius:27px;
-}
-
-.journey-card.blue{
-  background:#92c5ef;
-  color:#fff;
-}
+    padding:0 16px;
 
-.journey-card.light{
-  background:#edf2f8;
-  color:#304259;
-}
+    gap:13px;
 
-.journey-card.pale{
-  background:#a7d2f3;
-  color:#fff;
-}
+    border-radius:16px;
 
-.journey-icon{
-  width:43px;
-  height:43px;
+    color:#fff;
+    text-decoration:none;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+    background:rgba(35,54,72,.43);
 
-  border-radius:50%;
+    border:1px solid rgba(255,255,255,.25);
 
-  background:rgba(255,255,255,.90);
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
 
-  color:#51657b;
+    font-size:14px;
 
-  font-size:17px;
+    transition:.25s ease;
 }
-
-.journey-card h3{
-  position:relative;
-  z-index:2;
-
-  margin-top:76px;
-
-  max-width:270px;
-
-  font-family:"Playfair Display",serif;
 
-  font-size:29px;
-  line-height:1.04;
-
-  font-weight:500;
+.side-nav a:hover{
+    transform:translateX(-4px);
+    background:rgba(35,54,72,.62);
 }
-
-.journey-card p{
-  position:relative;
-  z-index:2;
-
-  max-width:270px;
-
-  margin-top:17px;
-
-  font-size:10px;
-  line-height:1.65;
 
-  opacity:.84;
+.side-nav-icon{
+    width:22px;
+    height:22px;
 }
-
-.journey-photo{
-  position:absolute;
-
-  right:18px;
-  top:28px;
-
-  width:54%;
-  height:170px;
-
-  overflow:hidden;
-
-  border-radius:20px;
 
-  background:
-    linear-gradient(
-      180deg,
-      #cbe6f7,
-      #79acd0
-    );
+.side-nav-arrow{
+    margin-left:auto;
+    font-size:21px;
 }
 
-.journey-photo::after{
-  content:"";
+/* =========================
+   NEWSLETTER
+========================= */
 
-  position:absolute;
+.newsletter{
+    position:absolute;
 
-  left:-10%;
-  right:-10%;
-  bottom:-5%;
+    left:50%;
+    transform:translateX(-50%);
 
-  height:55%;
+    bottom:62px;
 
-  background:
-    linear-gradient(
-      155deg,
-      transparent 0 25%,
-      #547e9e 25% 43%,
-      transparent 43% 49%,
-      #345d7b 49% 72%,
-      transparent 72%
-    );
-}
-
-.journey-middle h3{
-  margin-top:235px;
-}
-
+    width:min(710px,52vw);
 
-/* =========================================================
-   FOUNDER
-========================================================= */
+    min-height:82px;
 
-.founder{
-  padding:105px 30px;
+    display:flex;
+    align-items:center;
 
-  background:#faf8fc;
-}
+    padding:11px 20px;
 
-.founder-inner{
-  max-width:1120px;
+    border-radius:25px;
 
-  margin:auto;
+    background:rgba(35,54,73,.63);
 
-  display:grid;
+    border:1px solid rgba(255,255,255,.26);
 
-  grid-template-columns:.85fr 1.15fr;
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
 
-  gap:75px;
+    z-index:12;
 
-  align-items:center;
+    box-shadow:0 12px 35px rgba(8,26,46,.18);
 }
-
-.founder-image{
-  position:relative;
 
-  min-height:590px;
+.mail-circle{
+    width:52px;
+    height:52px;
 
-  overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-  border-radius:34px;
-
-  background:#eee;
-
-  box-shadow:var(--shadow);
-}
+    flex-shrink:0;
 
-.founder-image img{
-  width:100%;
-  height:100%;
+    border-radius:50%;
 
-  display:block;
+    background:#102e53;
 
-  object-fit:cover;
-  object-position:center top;
+    margin-right:17px;
 }
 
-.founder-kicker{
-  color:#b08b48;
-
-  font-size:9px;
-  font-weight:700;
-
-  letter-spacing:.24em;
-  text-transform:uppercase;
+.mail-circle svg{
+    width:27px;
+    height:27px;
+    stroke:white;
 }
-
-.founder-name{
-  margin-top:15px;
-
-  color:#493467;
 
-  font-family:"Playfair Display",serif;
-
-  font-size:clamp(45px,5vw,66px);
-
-  line-height:.94;
-
-  font-weight:500;
+.newsletter-copy{
+    flex:1;
 }
-
-.founder-role{
-  margin-top:19px;
-
-  color:#59436e;
 
-  font-size:14px;
-  font-weight:600;
+.newsletter-title{
+    color:#fff;
+    font-size:15px;
+    font-weight:600;
 }
 
-.gold-line{
-  width:70px;
-  height:2px;
-
-  margin-top:25px;
-
-  background:var(--gold);
+.newsletter-text{
+    color:rgba(255,255,255,.76);
+    font-size:11px;
+    line-height:1.4;
+    margin-top:3px;
 }
-
-.founder-quote{
-  margin-top:34px;
-
-  color:#4d3964;
 
-  font-family:"Playfair Display",serif;
+.newsletter-form{
+    display:flex;
 
-  font-size:27px;
-  line-height:1.25;
+    width:335px;
+    height:43px;
 
-  font-style:italic;
-}
-
-.founder-description{
-  max-width:510px;
+    border-radius:15px;
 
-  margin-top:25px;
+    overflow:hidden;
 
-  color:#6c7783;
-
-  font-size:13px;
-  line-height:1.75;
+    background:#fff;
 }
-
-
-/* =========================================================
-   CTA
-========================================================= */
 
-.cta{
-  padding:105px 30px;
+.newsletter-form input{
+    flex:1;
 
-  text-align:center;
+    min-width:0;
 
-  background:
-    linear-gradient(
-      135deg,
-      #f7fbff,
-      #eaf5fd
-    );
-}
+    border:0;
+    outline:0;
 
-.cta-kicker{
-  color:#6395c1;
+    padding:0 16px;
 
-  font-size:9px;
-  font-weight:700;
+    font-family:inherit;
+    font-size:11px;
 
-  letter-spacing:.20em;
+    color:#263d56;
 }
-
-.cta-title{
-  margin-top:15px;
-
-  color:#3b4e65;
-
-  font-family:"Playfair Display",serif;
-
-  font-size:clamp(43px,5vw,65px);
-  line-height:1;
 
-  font-weight:500;
+.newsletter-form input::placeholder{
+    color:#9ba8b6;
 }
 
-.cta-text{
-  max-width:550px;
+.newsletter-form button{
+    width:108px;
 
-  margin:21px auto 0;
+    border:0;
 
-  color:#7d8996;
+    background:#102e53;
 
-  font-size:12px;
-  line-height:1.7;
-}
-
-.cta-button{
-  margin-top:30px;
+    color:#fff;
 
-  padding:16px 29px;
+    font-family:inherit;
 
-  border:0;
-  border-radius:30px;
+    font-size:11px;
+    font-weight:600;
 
-  background:#7ea9d8;
-  color:#fff;
-
-  font-size:11px;
-  font-weight:600;
-
-  cursor:pointer;
+    cursor:pointer;
 }
-
 
-/* =========================================================
+/* =========================
    FOOTER
-========================================================= */
+========================= */
 
 .footer{
-  padding:43px 30px;
+    position:absolute;
 
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+    z-index:15;
 
-  background:#202f43;
+    bottom:0;
+    left:3.7%;
+    right:3.7%;
 
-  color:#fff;
-}
+    height:55px;
 
-.footer-logo{
-  font-size:19px;
-  font-weight:700;
-  letter-spacing:-.04em;
-}
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-.footer-tagline{
-  margin-top:6px;
+    border-top:1px solid rgba(255,255,255,.35);
 
-  color:#afbdcb;
-
-  font-size:8px;
-  letter-spacing:.15em;
-}
-
-.footer-links{
-  display:flex;
-  gap:24px;
-
-  color:#c8d1dc;
-
-  font-size:9px;
-}
-
-
-/* =========================================================
-   FLOATING WHATSAPP
-========================================================= */
-
-.whatsapp{
-  position:fixed;
-
-  right:21px;
-  bottom:21px;
-
-  z-index:100;
-
-  width:54px;
-  height:54px;
-
-  border:0;
-  border-radius:50%;
-
-  background:#183d35;
-  color:#fff;
-
-  font-size:19px;
-
-  cursor:pointer;
-
-  box-shadow:
-    0 15px 35px rgba(20,45,40,.22);
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:1050px){
-
-  .nav-links{
-    gap:17px;
-  }
-
-  .hero-copy{
-    width:60%;
-  }
-
-  .features{
-    gap:22px;
-  }
-
-  .care{
-    gap:45px;
-  }
-
-  .emotion-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .journey-cards{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .journey-card:nth-child(3){
-    grid-column:1 / -1;
-  }
-
-  .founder-inner{
-    gap:45px;
-  }
-
-}
-
-
-@media(max-width:720px){
-
-  body{
-    background:#fff;
-  }
-
-  .site{
-    width:100%;
-    margin:0;
-  }
-
-
-  /* NAV */
-
-  .nav{
-    height:68px;
-
-    padding:0 18px;
-  }
-
-  .nav-right{
-    gap:0;
-  }
-
-  .nav-links a{
-    display:none;
-  }
-
-  .nav-book{
-    padding:9px 15px;
-  }
-
-
-  /* HERO */
-
-  .hero{
-    padding:8px 12px 0;
-  }
-
-  .hero-box{
-    min-height:690px;
-
-    border-radius:26px;
-  }
-
-  .hero-copy{
-    width:100%;
-
-    padding:43px 27px;
-  }
-
-  .hero-title{
-    font-size:48px;
-  }
-
-  .hero-description{
-    max-width:350px;
+    color:rgba(255,255,255,.82);
 
     font-size:12px;
-  }
-
-  .hero-visual{
-    width:100%;
-
-    opacity:.48;
-  }
-
-  .person{
-    right:-90px;
-
-    width:350px;
-    height:440px;
-  }
-
-  .session-card{
-    right:18px;
-    top:auto;
-    bottom:25px;
-  }
-
-  .trust{
-    left:18px;
-    bottom:28px;
-
-    max-width:195px;
-  }
-
-
-  /* FEATURES */
-
-  .features{
-    padding:56px 22px;
-
-    grid-template-columns:1fr;
-
-    gap:27px;
-  }
-
-
-  /* CARE */
-
-  .care{
-    padding:35px 22px 75px;
-
-    grid-template-columns:1fr;
-  }
-
-  .care-title{
-    font-size:46px;
-  }
-
-  .care-panel{
-    height:430px;
-  }
-
-
-  /* EMOTIONS */
-
-  .emotions{
-    padding:75px 17px 80px;
-  }
-
-  .emotions-title{
-    font-size:48px;
-  }
-
-  .emotion-grid{
-    grid-template-columns:1fr 1fr;
-
-    gap:12px;
-
-    margin-top:45px;
-  }
-
-  .emotion-card{
-    min-height:190px;
-
-    padding:19px;
-  }
-
-  .emotion-name{
-    margin-top:20px;
-
-    font-size:21px;
-  }
-
-
-  /* JOURNEY */
-
-  .journey{
-    padding:76px 20px 90px;
-  }
-
-  .journey-header{
-    display:block;
-  }
-
-  .journey-title{
-    font-size:47px;
-  }
-
-  .help{
-    margin-top:25px;
-  }
-
-  .journey-cards{
-    grid-template-columns:1fr;
-
-    gap:15px;
-  }
-
-  .journey-card:nth-child(3){
-    grid-column:auto;
-  }
-
-  .journey-card{
-    min-height:340px;
-  }
-
-
-  /* FOUNDER */
-
-  .founder{
-    padding:75px 20px;
-  }
-
-  .founder-inner{
-    grid-template-columns:1fr;
-
-    gap:45px;
-  }
-
-  .founder-image{
-    min-height:500px;
-  }
-
-  .founder-name{
-    font-size:51px;
-  }
-
-
-  /* CTA */
-
-  .cta{
-    padding:78px 22px;
-  }
-
-
-  /* FOOTER */
-
-  .footer{
-    display:block;
-
-    text-align:center;
-  }
-
-  .footer-links{
-    margin-top:24px;
-
-    justify-content:center;
-  }
-
 }
 
+.socials{
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
 
-/* =========================================================
-   SMALL PHONES
-========================================================= */
+.social-link{
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    color:#fff;
+    text-decoration:none;
+
+    transition:.2s ease;
+}
+
+.social-link:hover{
+    opacity:.7;
+}
+
+.social-link svg{
+    width:20px;
+    height:20px;
+}
+
+.copyright{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+
+    white-space:nowrap;
+}
+
+.legal{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.legal a{
+    color:#fff;
+    text-decoration:none;
+}
+
+.legal span{
+    opacity:.55;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1200px){
+
+    .header{
+        left:20px;
+        right:20px;
+    }
+
+    .brand{
+        min-width:200px;
+        width:200px;
+    }
+
+    .brand-title{
+        font-size:29px;
+    }
+
+    .main-nav a{
+        padding:11px 14px;
+        font-size:13px;
+    }
+
+    .hero{
+        padding-left:5%;
+    }
+
+    .hero-content{
+        width:53vw;
+    }
+
+    .left-services{
+        left:5%;
+    }
+
+    .side-nav{
+        right:2%;
+    }
+
+    .newsletter{
+        width:56vw;
+    }
+}
+
+@media(max-width:900px){
+
+    .page-one{
+        min-height:100svh;
+
+        background-position:
+            60% center;
+    }
+
+    .header{
+        position:absolute;
+
+        top:15px;
+        left:15px;
+        right:15px;
+
+        height:70px;
+
+        padding:0 14px;
+
+        border-radius:16px;
+    }
+
+    .brand{
+        min-width:auto;
+        width:auto;
+    }
+
+    .brand-title{
+        font-size:25px;
+    }
+
+    .brand-tagline{
+        font-size:7px;
+    }
+
+    .logo-symbol{
+        width:34px;
+        height:38px;
+    }
+
+    .logo-symbol svg{
+        width:34px;
+        height:38px;
+    }
+
+    .main-nav{
+        display:none;
+    }
+
+    .help-button{
+        margin-left:auto;
+        padding:11px 14px;
+        font-size:12px;
+    }
+
+    .hero{
+        min-height:100svh;
+        padding:130px 28px 350px;
+    }
+
+    .hero-content{
+        width:min(650px,100%);
+    }
+
+    .hero-title{
+        font-size:clamp(50px,10vw,78px);
+    }
+
+    .review-card{
+        top:95px;
+        right:20px;
+        transform:scale(.85);
+        transform-origin:right top;
+    }
+
+    .left-services{
+        left:20px;
+        bottom:110px;
+        width:calc(50% - 28px);
+    }
+
+    .side-nav{
+        right:20px;
+        bottom:110px;
+        width:calc(50% - 28px);
+    }
+
+    .newsletter{
+        bottom:53px;
+        width:calc(100% - 40px);
+        max-width:700px;
+    }
+
+    .footer{
+        left:20px;
+        right:20px;
+    }
+
+    .copyright{
+        display:none;
+    }
+}
+
+@media(max-width:620px){
+
+    .page-one{
+        min-height:100svh;
+
+        background-position:
+            64% center;
+    }
+
+    .header{
+        height:63px;
+    }
+
+    .brand-title{
+        font-size:22px;
+    }
+
+    .brand-tagline{
+        display:none;
+    }
+
+    .help-button{
+        font-size:11px;
+        padding:9px 12px;
+    }
+
+    .hero{
+        padding:
+            115px
+            20px
+            480px;
+    }
+
+    .hero-title{
+        font-size:48px;
+        line-height:.94;
+    }
+
+    .title-decoration{
+        margin:16px 0 13px;
+    }
+
+    .title-decoration span{
+        width:90px;
+    }
+
+    .hero-description{
+        font-size:14px;
+        max-width:310px;
+    }
+
+    .hero-buttons{
+        flex-wrap:wrap;
+    }
+
+    .primary-button,
+    .secondary-button{
+        height:46px;
+        padding:0 17px;
+        font-size:12px;
+    }
+
+    .review-card{
+        top:85px;
+        right:10px;
+        transform:scale(.67);
+    }
+
+    .left-services{
+        left:15px;
+        bottom:110px;
+        width:calc(50% - 22px);
+        gap:5px;
+    }
+
+    .side-nav{
+        right:15px;
+        bottom:110px;
+        width:calc(50% - 22px);
+        gap:5px;
+    }
+
+    .service-card{
+        min-height:54px;
+        padding:7px 8px;
+        gap:7px;
+        border-radius:13px;
+    }
+
+    .service-icon{
+        width:26px;
+        height:26px;
+    }
+
+    .service-icon svg{
+        width:22px;
+        height:22px;
+    }
+
+    .service-name{
+        font-size:10px;
+    }
+
+    .service-description{
+        font-size:7px;
+        margin-top:2px;
+    }
+
+    .service-arrow{
+        display:none;
+    }
+
+    .side-nav a{
+        min-height:43px;
+        padding:0 10px;
+        border-radius:12px;
+        font-size:10px;
+        gap:7px;
+    }
+
+    .side-nav-icon{
+        width:17px;
+        height:17px;
+    }
+
+    .side-nav-arrow{
+        font-size:17px;
+    }
+
+    .newsletter{
+        bottom:52px;
+        width:calc(100% - 30px);
+        min-height:72px;
+        padding:9px;
+        border-radius:18px;
+    }
+
+    .mail-circle{
+        width:39px;
+        height:39px;
+        margin-right:8px;
+    }
+
+    .mail-circle svg{
+        width:19px;
+        height:19px;
+    }
+
+    .newsletter-title{
+        font-size:10px;
+    }
+
+    .newsletter-text{
+        font-size:7px;
+    }
+
+    .newsletter-form{
+        width:42%;
+        height:36px;
+    }
+
+    .newsletter-form input{
+        width:0;
+        padding:0 8px;
+        font-size:8px;
+    }
+
+    .newsletter-form button{
+        width:62px;
+        font-size:8px;
+    }
+
+    .footer{
+        height:48px;
+        left:15px;
+        right:15px;
+        font-size:8px;
+    }
+
+    .socials{
+        gap:8px;
+    }
+
+    .social-link{
+        gap:3px;
+    }
+
+    .social-link svg{
+        width:15px;
+        height:15px;
+    }
+
+    .legal{
+        gap:8px;
+    }
+}
 
 @media(max-width:430px){
 
-  .hero-title{
-    font-size:43px;
-  }
+    .hero-title{
+        font-size:42px;
+    }
 
-  .hero-actions{
-    gap:12px;
-  }
+    .hero-description{
+        font-size:13px;
+    }
 
-  .hero-primary{
-    padding:14px 19px;
-  }
+    .left-services,
+    .side-nav{
+        width:calc(50% - 20px);
+    }
 
-  .emotion-grid{
-    grid-template-columns:1fr;
-  }
+    .service-description{
+        display:none;
+    }
 
-  .emotion-card{
-    min-height:150px;
-  }
+    .newsletter-form{
+        width:39%;
+    }
 
-  .emotion-name{
-    margin-top:16px;
-  }
+    .newsletter-form button{
+        width:55px;
+    }
 
+    .legal{
+        display:none;
+    }
+
+    .socials{
+        width:100%;
+        justify-content:center;
+    }
 }
 
 </style>
 </head>
 
-
 <body>
 
-<div class="site">
+<main class="page-one" id="home">
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+    <a href="#home" class="brand">
+
+        <div class="logo-symbol">
+
+            <svg viewBox="0 0 100 110" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+
+                <path
+                    d="M50 91
+                       C47 75 47 62 50 49
+                       M50 61
+                       C38 52 29 40 30 25
+                       C43 29 52 40 50 54
+                       M50 61
+                       C62 52 71 40 70 25
+                       C57 29 48 40 50 54
+                       M50 74
+                       C37 68 24 58 22 44
+                       C36 45 48 54 50 66
+                       M50 74
+                       C63 68 76 58 78 44
+                       C64 45 52 54 50 66
+                       M50 88
+                       C36 85 24 77 20 65
+                       C34 66 46 73 50 81
+                       M50 88
+                       C64 85 76 77 80 65
+                       C66 66 54 73 50 81"
+                    stroke="#102b4a"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+
+            </svg>
+
+        </div>
+
+        <div class="brand-name">
+            <div class="brand-title">AKSH</div>
+            <div class="brand-tagline">
+                A SAFE SPACE FOR EVERY MIND
+            </div>
+        </div>
+
+    </a>
 
 
-<!-- =====================================================
-     NAVIGATION
-===================================================== -->
+    <nav class="main-nav">
 
-<nav class="nav">
+        <a href="#home" class="active">Home</a>
 
-  <a href="index.html" class="brand">
+        <a href="#services">Services</a>
 
-    <img
-      src="aksh-icon.PNG"
-      alt="AKSH">
+        <a href="#specialists">Specialists</a>
 
-    <span>AKSH</span>
+        <a href="#resources">Resources</a>
 
-    <span class="brand-dot"></span>
+        <a href="#about">About Us</a>
 
-  </a>
+    </nav>
 
 
-  <div class="nav-right">
+    <button class="help-button">
 
-    <div class="nav-links">
+        <svg class="help-icon"
+             viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="1.6">
 
-      <a href="index.html">Home</a>
+            <circle cx="12" cy="8" r="3.5"/>
 
-      <a href="#services">Services</a>
+            <path d="M5 20c0-3.8 2.9-6 7-6s7 2.2 7 6"/>
 
-      <a href="#about">About</a>
+        </svg>
 
-      <a href="#journey">Resources</a>
+        Get Help Now
 
-      <a href="#contact">Contact</a>
-
-    </div>
-
-
-    <button
-      class="nav-book"
-      onclick="bookSession()">
-
-      Book a Session
+        <span style="font-size:20px;">›</span>
 
     </button>
 
-  </div>
-
-</nav>
+</header>
 
 
-
-<!-- =====================================================
+<!-- =========================
      HERO
-===================================================== -->
+========================= -->
 
 <section class="hero">
 
-  <div class="hero-box">
+    <div class="hero-content">
 
-    <div class="hero-glow"></div>
-
-    <div class="cloud cloud-a"></div>
-    <div class="cloud cloud-b"></div>
-    <div class="cloud cloud-c"></div>
-
-
-    <div class="hero-copy">
-
-      <div class="hero-label">
-        AKSH MENTAL WELLNESS
-      </div>
+        <h1 class="hero-title">
+            A Safe Space<br>
+            for <em>Every</em> Mind
+        </h1>
 
 
-      <h1 class="hero-title">
+        <div class="title-decoration">
 
-        Empowering<br>
-        Minds. Enriching<br>
-        Lives.
+            <span></span>
 
-      </h1>
+            <svg viewBox="0 0 100 100"
+                 fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
 
+                <path
+                    d="M50 82
+                       C47 66 48 55 50 44
+                       M50 55
+                       C37 49 29 39 30 27
+                       C41 30 49 39 50 50
+                       M50 55
+                       C63 49 71 39 70 27
+                       C59 30 51 39 50 50
+                       M50 68
+                       C39 63 29 55 26 45
+                       C38 47 47 53 50 62
+                       M50 68
+                       C61 63 71 55 74 45
+                       C62 47 53 53 50 62"
+                    stroke="#102744"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
 
-      <p class="hero-description">
+            </svg>
 
-        Compassionate psychological support,
-        personalized guidance, and a safe space
-        for your mental wellness journey.
-
-      </p>
-
-
-      <div class="hero-actions">
-
-        <button
-          class="hero-primary"
-          onclick="bookSession()">
-
-          Book Your Session →
-
-        </button>
-
-
-        <button
-          class="hero-secondary"
-          onclick="scrollToSection('about')">
-
-          Learn More
-
-          <span>→</span>
-
-        </button>
-
-      </div>
-
-
-      <div class="trust">
-
-        <div class="trust-faces">
-
-          <span class="trust-face"></span>
-          <span class="trust-face"></span>
-          <span class="trust-face"></span>
+            <span></span>
 
         </div>
 
-        <span>
-          A safe space for every mind
-        </span>
 
-      </div>
-
-    </div>
-
-
-    <div class="hero-visual">
-
-      <div class="person"></div>
-
-    </div>
-
-
-    <!-- FLOATING CARD -->
-
-    <div class="session-card">
-
-      <div class="session-small">
-        NEXT AVAILABLE
-      </div>
-
-      <div class="session-title">
-        By Appointment
-      </div>
-
-      <div class="session-time">
-        40 MIN
-      </div>
-
-      <div class="session-note">
-        Professional consultation
-      </div>
-
-
-      <button
-        class="session-button"
-        onclick="bookSession()">
-
-        Book Now
-
-      </button>
-
-
-      <div class="session-approach">
-
-        <div class="session-approach-title">
-          OUR APPROACH
-        </div>
-
-        <p>
-          ✓ Empathetic support<br>
-          ✓ Evidence-based care<br>
-          ✓ Confidential space<br>
-          ✓ Personal growth
+        <p class="hero-description">
+            Compassionate care. Professional support.<br>
+            Better mental wellness for a better you.
         </p>
 
-      </div>
+
+        <div class="hero-buttons">
+
+            <a href="#contact" class="primary-button">
+
+                <svg width="20"
+                     height="20"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.7">
+
+                    <rect x="3" y="5" width="18" height="16" rx="2"/>
+                    <path d="M7 3v4M17 3v4M3 10h18"/>
+
+                </svg>
+
+                Book a Consultation
+
+                <span class="button-arrow">›</span>
+
+            </a>
+
+
+            <a href="#services" class="secondary-button">
+
+                <svg width="20"
+                     height="20"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.6">
+
+                    <rect x="3" y="4" width="18" height="15" rx="4"/>
+                    <path d="M8 19l-1 3 4-3"/>
+                    <circle cx="9" cy="11" r="1"/>
+                    <circle cx="12" cy="11" r="1"/>
+                    <circle cx="15" cy="11" r="1"/>
+
+                </svg>
+
+                Explore Our Services
+
+                <span class="button-arrow">›</span>
+
+            </a>
+
+        </div>
 
     </div>
 
-  </div>
+
+    <!-- =========================
+         REVIEW
+    ========================= -->
+
+    <div class="review-card">
+
+        <div class="avatars">
+
+            <div class="avatar"></div>
+            <div class="avatar"></div>
+            <div class="avatar"></div>
+            <div class="avatar"></div>
+
+        </div>
+
+
+        <div class="review-divider"></div>
+
+
+        <div class="review-stat">
+
+            <span class="review-number">
+                1.3K+
+            </span>
+
+            <span class="review-label">
+                Happy Clients
+            </span>
+
+        </div>
+
+
+        <div class="review-divider"
+             style="margin-left:18px;"></div>
+
+
+        <div class="review-stat">
+
+            <span class="review-number">
+                5.0
+            </span>
+
+            <span class="review-label">
+                Google Reviews
+            </span>
+
+        </div>
+
+
+        <div class="stars">
+            ★★★★★
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         LEFT SERVICE CARDS
+    ========================= -->
+
+    <div class="left-services" id="services">
+
+
+        <div class="service-card">
+
+            <div class="service-icon">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke-width="1.5">
+
+                    <circle cx="12" cy="7" r="3"/>
+                    <path d="M5 20c0-4 2.7-6.5 7-6.5s7 2.5 7 6.5"/>
+
+                </svg>
+
+            </div>
+
+            <div class="service-copy">
+
+                <div class="service-name">
+                    Individual Counselling
+                </div>
+
+                <div class="service-description">
+                    Personalized care for you
+                </div>
+
+            </div>
+
+            <div class="service-arrow">›</div>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <div class="service-icon">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke-width="1.5">
+
+                    <circle cx="9" cy="8" r="3"/>
+                    <path d="M3.5 19c.5-3.3 2.3-5 5.5-5s5 1.7 5.5 5"/>
+                    <path d="M16 6.5c2.3.2 4 1.6 4.5 4"/>
+                    <path d="M16 14c2.3.3 3.7 1.8 4 4"/>
+
+                </svg>
+
+            </div>
+
+            <div class="service-copy">
+
+                <div class="service-name">
+                    Child Psychology
+                </div>
+
+                <div class="service-description">
+                    Support for young minds
+                </div>
+
+            </div>
+
+            <div class="service-arrow">›</div>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <div class="service-icon">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke-width="1.5">
+
+                    <path d="M12 20s-7-4.5-9-9c-1.4-3.5 1-6 4-6 2 0 4 1.5 5 3 1-1.5 3-3 5-3 3 0 5.4 2.5 4 6-2 4.5-9 9-9 9z"/>
+
+                </svg>
+
+            </div>
+
+            <div class="service-copy">
+
+                <div class="service-name">
+                    Relationship Support
+                </div>
+
+                <div class="service-description">
+                    Stronger connections
+                </div>
+
+            </div>
+
+            <div class="service-arrow">›</div>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <div class="service-icon">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke-width="1.5">
+
+                    <path d="M9 4c-2 0-3 1.5-3 3.5S7 11 5.5 12 4 14.5 4 16s1 3 3 3"/>
+                    <path d="M15 4c2 0 3 1.5 3 3.5S17 11 18.5 12 20 14.5 20 16s-1 3-3 3"/>
+                    <path d="M9 8h6M8 12h8M9 16h6"/>
+
+                </svg>
+
+            </div>
+
+            <div class="service-copy">
+
+                <div class="service-name">
+                    Stress & Anxiety
+                </div>
+
+                <div class="service-description">
+                    Tools to manage better
+                </div>
+
+            </div>
+
+            <div class="service-arrow">›</div>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <div class="service-icon">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke-width="1.5">
+
+                    <path d="M12 3C9 7 5 8 5 13a7 7 0 0014 0c0-5-4-6-7-10z"/>
+                    <path d="M8 16c1 1.5 2.5 2.3 4 2.3s3-.8 4-2.3"/>
+
+                </svg>
+
+            </div>
+
+            <div class="service-copy">
+
+                <div class="service-name">
+                    Emotional Wellness
+                </div>
+
+                <div class="service-description">
+                    Nurturing inner balance
+                </div>
+
+            </div>
+
+            <div class="service-arrow">›</div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         RIGHT SIDE NAV
+    ========================= -->
+
+    <nav class="side-nav">
+
+        <a href="#home">
+
+            <svg class="side-nav-icon"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="1.6">
+
+                <path d="M3 11l9-8 9 8"/>
+                <path d="M5 10v10h14V10"/>
+                <path d="M9 20v-6h6v6"/>
+
+            </svg>
+
+            <span>Home</span>
+
+            <span class="side-nav-arrow">›</span>
+
+        </a>
+
+
+        <a href="#services">
+
+            <svg class="side-nav-icon"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="1.5">
+
+                <rect x="4" y="4" width="6" height="6" rx="1"/>
+                <rect x="14" y="4" width="6" height="6" rx="1"/>
+                <rect x="4" y="14" width="6" height="6" rx="1"/>
+                <rect x="14" y="14" width="6" height="6" rx="1"/>
+
+            </svg>
+
+            <span>Services</span>
+
+            <span class="side-nav-arrow">›</span>
+
+        </a>
+
+
+        <a href="#about">
+
+            <svg class="side-nav-icon"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="1.6">
+
+                <circle cx="12" cy="7" r="3.5"/>
+                <path d="M5 20c0-3.7 2.8-6 7-6s7 2.3 7 6"/>
+
+            </svg>
+
+            <span>About Us</span>
+
+            <span class="side-nav-arrow">›</span>
+
+        </a>
+
+
+        <a href="#resources">
+
+            <svg class="side-nav-icon"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="1.5">
+
+                <path d="M4 5.5A2.5 2.5 0 016.5 3H20v16H6.5A2.5 2.5 0 014 16.5z"/>
+                <path d="M4 5.5v11"/>
+                <path d="M8 7h8M8 10h8M8 13h6"/>
+
+            </svg>
+
+            <span>Resources</span>
+
+            <span class="side-nav-arrow">›</span>
+
+        </a>
+
+
+        <a href="#contact">
+
+            <svg class="side-nav-icon"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="1.5">
+
+                <path d="M6.5 4.5l3 2-2 3.5c1.2 2.5 2.5 3.8 5 5l3.5-2 2 3c-1 2-2.2 3-4 3C9 19 5 15 4 9.5c-.3-1.8.5-3.7 2.5-5z"/>
+
+            </svg>
+
+            <span>Contact Us</span>
+
+            <span class="side-nav-arrow">›</span>
+
+        </a>
+
+    </nav>
+
+
+    <!-- =========================
+         NEWSLETTER
+    ========================= -->
+
+    <div class="newsletter">
+
+        <div class="mail-circle">
+
+            <svg viewBox="0 0 24 24"
+                 fill="none"
+                 stroke-width="1.5">
+
+                <rect x="3" y="5" width="18" height="14" rx="2"/>
+                <path d="M4 7l8 6 8-6"/>
+
+            </svg>
+
+        </div>
+
+
+        <div class="newsletter-copy">
+
+            <div class="newsletter-title">
+                Stay Connected with AKSH
+            </div>
+
+            <div class="newsletter-text">
+                Wellness insights, tips, and updates<br>
+                delivered to your inbox.
+            </div>
+
+        </div>
+
+
+        <form class="newsletter-form"
+              onsubmit="event.preventDefault();">
+
+            <input
+                type="email"
+                placeholder="Enter your email"
+                aria-label="Email"
+            >
+
+            <button type="submit">
+                Subscribe
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer class="footer">
+
+        <div class="socials">
+
+            <a href="#" class="social-link">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.7">
+
+                    <rect x="3" y="3" width="18" height="18" rx="5"/>
+                    <circle cx="12" cy="12" r="4"/>
+                    <circle cx="17.5" cy="6.5" r="1"/>
+
+                </svg>
+
+                Instagram
+
+            </a>
+
+
+            <a href="#" class="social-link">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.7">
+
+                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                    <path d="M7 10v7M7 7v.01M11 17v-4a3 3 0 016 0v4M11 10v7"/>
+
+                </svg>
+
+                LinkedIn
+
+            </a>
+
+
+            <a href="#" class="social-link">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.7">
+
+                    <rect x="3" y="5" width="18" height="14" rx="4"/>
+                    <path d="M10 9l5 3-5 3z"/>
+
+                </svg>
+
+                YouTube
+
+            </a>
+
+        </div>
+
+
+        <div class="copyright">
+            © 2026 AKSH Mental Wellness. All rights reserved.
+        </div>
+
+
+        <div class="legal">
+
+            <a href="#">
+                Privacy Policy
+            </a>
+
+            <span>|</span>
+
+            <a href="#">
+                Terms & Conditions
+            </a>
+
+        </div>
+
+    </footer>
 
 </section>
-
-
-
-<!-- =====================================================
-     FOUR FEATURE POINTS
-===================================================== -->
-
-<section class="features">
-
-  <div class="feature">
-
-    <div class="feature-icon">✧</div>
-
-    <div>
-
-      <div class="feature-title">
-        Psychological Support
-      </div>
-
-      <div class="feature-text">
-        Professional support designed
-        around individual needs.
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="feature">
-
-    <div class="feature-icon">♙</div>
-
-    <div>
-
-      <div class="feature-title">
-        Expert Guidance
-      </div>
-
-      <div class="feature-text">
-        Compassionate and professional
-        psychological guidance.
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="feature">
-
-    <div class="feature-icon">▥</div>
-
-    <div>
-
-      <div class="feature-title">
-        Track Your Growth
-      </div>
-
-      <div class="feature-text">
-        Understand emotions and build
-        healthier patterns.
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="feature">
-
-    <div class="feature-icon">♧</div>
-
-    <div>
-
-      <div class="feature-title">
-        Private & Secure
-      </div>
-
-      <div class="feature-text">
-        A confidential environment where
-        your wellbeing comes first.
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     PERSONALIZED CARE
-===================================================== -->
-
-<section
-  class="care"
-  id="about">
-
-
-  <div>
-
-    <div class="section-label">
-      HOW WE HELP
-    </div>
-
-
-    <h2 class="care-title">
-
-      Personalized Care<br>
-      for Every Mind
-
-    </h2>
-
-
-    <p class="care-description">
-
-      We combine professional psychology,
-      compassionate human connection, and
-      evidence-based support to create a
-      meaningful mental wellness experience.
-
-    </p>
-
-
-    <ul class="care-list">
-
-      <li class="care-item">
-
-        <span class="care-check">✓</span>
-
-        Individual counselling
-
-      </li>
-
-
-      <li class="care-item">
-
-        <span class="care-check">✓</span>
-
-        Child & adolescent support
-
-      </li>
-
-
-      <li class="care-item">
-
-        <span class="care-check">✓</span>
-
-        Relationship support
-
-      </li>
-
-
-      <li class="care-item">
-
-        <span class="care-check">✓</span>
-
-        Psychological assessments
-
-      </li>
-
-    </ul>
-
-
-    <button
-      class="care-button"
-      onclick="scrollToSection('services')">
-
-      Explore Services →
-
-    </button>
-
-  </div>
-
-
-  <div class="care-panel">
-
-    <div class="mountain-one"></div>
-    <div class="mountain-two"></div>
-
-
-    <div class="water">
-
-      <div class="water-lines"></div>
-
-    </div>
-
-
-    <div class="lake-person"></div>
-
-
-    <div class="insight">
-
-      <div class="insight-label">
-        DAILY INSIGHT
-      </div>
-
-      <div class="insight-title">
-        “Small steps today create
-        a stronger mind tomorrow.”
-      </div>
-
-      <div class="insight-text">
-        Take a deep breath and be kind to yourself.
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     HOW ARE YOU FEELING TODAY?
-     EXACTLY FOUR EMOTION CARDS
-===================================================== -->
-
-<section class="emotions">
-
-  <div class="section-label">
-    CHECK IN WITH YOURSELF
-  </div>
-
-
-  <h2 class="emotions-title">
-
-    How Are You<br>
-    Feeling <em>Today?</em>
-
-  </h2>
-
-
-  <p class="emotions-description">
-
-    Take a moment to notice what you are
-    feeling. There is no right or wrong answer.
-
-  </p>
-
-
-  <div class="emotion-grid">
-
-
-    <!-- CARD 1 -->
-
-    <article
-      class="emotion-card active"
-      onclick="selectEmotion(this)">
-
-      <div class="emotion-symbol">
-        ☺
-      </div>
-
-      <h3 class="emotion-name">
-        Happy
-      </h3>
-
-      <p class="emotion-copy">
-        Celebrate the moments that
-        bring lightness and connection.
-      </p>
-
-      <span class="emotion-arrow">
-        →
-      </span>
-
-    </article>
-
-
-    <!-- CARD 2 -->
-
-    <article
-      class="emotion-card"
-      onclick="selectEmotion(this)">
-
-      <div class="emotion-symbol">
-        ◡
-      </div>
-
-      <h3 class="emotion-name">
-        Calm
-      </h3>
-
-      <p class="emotion-copy">
-        Give yourself space to breathe,
-        slow down, and simply be.
-      </p>
-
-      <span class="emotion-arrow">
-        →
-      </span>
-
-    </article>
-
-
-    <!-- CARD 3 -->
-
-    <article
-      class="emotion-card"
-      onclick="selectEmotion(this)">
-
-      <div class="emotion-symbol">
-        ♡
-      </div>
-
-      <h3 class="emotion-name">
-        Overwhelmed
-      </h3>
-
-      <p class="emotion-copy">
-        You don't have to carry everything
-        by yourself.
-      </p>
-
-      <span class="emotion-arrow">
-        →
-      </span>
-
-    </article>
-
-
-    <!-- CARD 4 -->
-
-    <article
-      class="emotion-card"
-      onclick="selectEmotion(this)">
-
-      <div class="emotion-symbol">
-        ↓
-      </div>
-
-      <h3 class="emotion-name">
-        Low
-      </h3>
-
-      <p class="emotion-copy">
-        Your feelings deserve a safe
-        place to be heard.
-      </p>
-
-      <span class="emotion-arrow">
-        →
-      </span>
-
-    </article>
-
-  </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     WELLNESS JOURNEY
-===================================================== -->
-
-<section
-  class="journey"
-  id="services">
-
-
-  <div class="journey-header">
-
-    <div>
-
-      <div class="section-label">
-        YOUR WELLNESS JOURNEY
-      </div>
-
-
-      <h2 class="journey-title">
-
-        Everything You Need For<br>
-        Your Wellness <em>Journey</em>
-
-      </h2>
-
-    </div>
-
-
-    <button
-      class="help"
-      onclick="bookSession()">
-
-      Get Help Now
-
-      <span>→</span>
-
-    </button>
-
-  </div>
-
-
-  <div class="journey-cards">
-
-
-    <!-- CARD 1 -->
-
-    <article class="journey-card blue">
-
-      <div class="journey-icon">
-        ♧
-      </div>
-
-
-      <h3>
-        Find Your<br>
-        Safe Space
-      </h3>
-
-
-      <p>
-        Individual counselling designed
-        around your emotions, experiences,
-        wellbeing, and personal growth.
-      </p>
-
-    </article>
-
-
-    <!-- CARD 2 -->
-
-    <article class="journey-card light journey-middle">
-
-      <div class="journey-icon">
-        ♡
-      </div>
-
-
-      <div class="journey-photo"></div>
-
-
-      <h3>
-        Child & Adolescent<br>
-        Support
-      </h3>
-
-
-      <p>
-        A supportive environment for
-        emotional, behavioural, academic,
-        and developmental wellbeing.
-      </p>
-
-    </article>
-
-
-    <!-- CARD 3 -->
-
-    <article class="journey-card pale">
-
-      <div class="journey-icon">
-        ♥
-      </div>
-
-
-      <h3>
-        Understand<br>
-        Your Mind
-      </h3>
-
-
-      <p>
-        Psychological assessments and
-        professional guidance that help
-        create clarity and understanding.
-      </p>
-
-    </article>
-
-  </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     FOUNDER
-===================================================== -->
-
-<section class="founder">
-
-  <div class="founder-inner">
-
-
-    <div class="founder-image">
-
-      <img
-        src="meghana.kaverappa.PNG"
-        alt="Meghana Kaverappa — Founder and Chief Psychologist">
-
-    </div>
-
-
-    <div>
-
-      <div class="founder-kicker">
-        FOUNDER & CHIEF PSYCHOLOGIST
-      </div>
-
-
-      <h2 class="founder-name">
-
-        Meghana<br>
-        Kaverappa
-
-      </h2>
-
-
-      <div class="founder-role">
-        Founder & Chief Psychologist
-      </div>
-
-
-      <div class="gold-line"></div>
-
-
-      <div class="founder-quote">
-
-        “Every mind deserves to be
-        heard, understood, and supported.”
-
-      </div>
-
-
-      <p class="founder-description">
-
-        AKSH Mental Wellness was created
-        around one simple belief: every person
-        deserves a safe space for their mind.
-
-        <br><br>
-
-        Through compassionate psychological
-        support, professional guidance,
-        confidentiality, and meaningful
-        human connection, AKSH aims to make
-        mental wellness feel approachable,
-        personal, and safe.
-
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     FINAL CTA
-===================================================== -->
-
-<section
-  class="cta"
-  id="contact">
-
-  <div class="cta-kicker">
-    BEGIN YOUR JOURNEY
-  </div>
-
-
-  <h2 class="cta-title">
-
-    You don't have to<br>
-    figure it out alone.
-
-  </h2>
-
-
-  <p class="cta-text">
-
-    Whenever you're ready, AKSH is here
-    to provide a safe, professional, and
-    compassionate space for your journey.
-
-  </p>
-
-
-  <button
-    class="cta-button"
-    onclick="bookSession()">
-
-    Book a Session →
-
-  </button>
-
-</section>
-
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer class="footer">
-
-  <div>
-
-    <div class="footer-logo">
-      AKSH
-    </div>
-
-    <div class="footer-tagline">
-      A SAFE SPACE FOR EVERY MIND
-    </div>
-
-  </div>
-
-
-  <div class="footer-links">
-
-    <a href="#" onclick="return false">
-      Instagram
-    </a>
-
-    <a href="#" onclick="return false">
-      LinkedIn
-    </a>
-
-    <a href="#" onclick="return false">
-      YouTube
-    </a>
-
-  </div>
-
-</footer>
-
-</div>
-
-
-
-<!-- =====================================================
-     WHATSAPP
-===================================================== -->
-
-<button
-  class="whatsapp"
-  aria-label="WhatsApp"
-  onclick="openWhatsApp()">
-
-  ◔
-
-</button>
-
 
 
 <script>
 
-/* =========================================================
-   NAVIGATION
-========================================================= */
+/* ==========================================
+   SMALL INTERACTIONS
+========================================== */
 
-function scrollToSection(id){
+document.querySelectorAll(".service-card").forEach(card => {
 
-  const element = document.getElementById(id);
+    card.addEventListener("click", () => {
 
-  if(element){
+        card.style.transform = "translateX(5px)";
 
-    element.scrollIntoView({
-      behavior:"smooth",
-      block:"start"
+        setTimeout(() => {
+            card.style.transform = "";
+        }, 220);
+
     });
 
-  }
-
-}
+});
 
 
-/* =========================================================
-   BOOKING
-========================================================= */
+/* Smooth navigation */
 
-function bookSession(){
+document.querySelectorAll('a[href^="#"]').forEach(link => {
 
-  /*
-    Keep this safe for now.
-    When the real booking page/WhatsApp number is ready,
-    change only this function.
-  */
+    link.addEventListener("click", function(e){
 
-  if(typeof window.openBooking === "function"){
+        const target = document.querySelector(
+            this.getAttribute("href")
+        );
 
-    window.openBooking();
+        if(target){
 
-  }else{
+            e.preventDefault();
 
-    alert("AKSH booking will be available soon.");
+            target.scrollIntoView({
+                behavior:"smooth"
+            });
 
-  }
+        }
 
-}
+    });
 
-
-/* =========================================================
-   FOUR EMOTION CARDS
-========================================================= */
-
-function selectEmotion(card){
-
-  const cards =
-    document.querySelectorAll(".emotion-card");
-
-  cards.forEach(function(item){
-
-    item.classList.remove("active");
-
-  });
-
-  card.classList.add("active");
-
-}
-
-
-/* =========================================================
-   WHATSAPP
-========================================================= */
-
-function openWhatsApp(){
-
-  /*
-    Replace the empty number when the official
-    AKSH WhatsApp number is ready.
-
-    Example:
-    https://wa.me/919XXXXXXXXX
-  */
-
-  const whatsappNumber = "";
-
-  if(whatsappNumber){
-
-    window.open(
-      "https://wa.me/" + whatsappNumber,
-      "_blank"
-    );
-
-  }else{
-
-    alert("AKSH WhatsApp will be available soon.");
-
-  }
-
-}
+});
 
 </script>
 
