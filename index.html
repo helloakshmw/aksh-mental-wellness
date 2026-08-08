@@ -341,6 +341,22 @@ const files = {
   night2: "aksh-night.2.mov"
 };
 
+let opening = false;
+
+function goToPage1(){
+
+  if(opening) return;
+
+  opening = true;
+
+  fade.classList.add("on");
+
+  setTimeout(()=>{
+    window.location.href = "page1.html";
+  },800);
+
+}
+
 function updateClock(){
 
   const now = new Date();
@@ -492,19 +508,14 @@ sound.addEventListener("click",()=>{
 
 });
 
-journey.addEventListener("click",()=>{
-
-  fade.classList.add("on");
-
-  setTimeout(()=>{
-    window.location.href = "page1.html";
-  },800);
-
-});
+journey.addEventListener("click",goToPage1);
 
 updateClock();
 
 setInterval(updateClock,15000);
+
+/* AUTOMATIC PAGE 0 → PAGE 1 */
+setTimeout(goToPage1,4000);
 
 </script>
 
