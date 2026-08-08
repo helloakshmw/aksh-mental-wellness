@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-<title>AKSH — Your Mind Matters</title>
+<title>AKSH — Mental Wellness</title>
 
 <style>
 
@@ -20,84 +20,69 @@ html{
 
 body{
   background:#f7f5f2;
-  color:#211d25;
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "SF Pro Display",
-    "Helvetica Neue",
-    Arial,
-    sans-serif;
+  color:#241d29;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",
+  "Helvetica Neue",Arial,sans-serif;
   overflow-x:hidden;
 }
 
 :root{
-  --purple:#6d527f;
-  --deep:#241d29;
-  --soft:#eee8ef;
+  --ink:#241d29;
+  --purple:#70567f;
+  --muted:#756c79;
   --cream:#f7f5f2;
-  --gold:#c6a76a;
-  --white:#ffffff;
+  --soft:#eee8ef;
+  --gold:#c9ad76;
+  --white:#fff;
 }
 
-#page{
-  min-height:100vh;
+.page{
   position:relative;
   overflow:hidden;
 }
 
-/* ATMOSPHERE */
-
-.bg-glow{
+.glow{
   position:absolute;
-  width:70vw;
-  height:70vw;
-  max-width:900px;
-  max-height:900px;
+  width:700px;
+  height:700px;
   border-radius:50%;
-  background:
-    radial-gradient(
-      circle,
-      rgba(183,153,201,.20),
-      rgba(183,153,201,0) 70%
-    );
-  top:-25vw;
-  right:-20vw;
   pointer-events:none;
+  filter:blur(2px);
 }
 
-.bg-glow-two{
-  position:absolute;
-  width:65vw;
-  height:65vw;
-  max-width:800px;
-  max-height:800px;
-  border-radius:50%;
-  background:
-    radial-gradient(
-      circle,
-      rgba(218,194,154,.13),
-      rgba(218,194,154,0) 70%
-    );
-  bottom:-30vw;
-  left:-25vw;
-  pointer-events:none;
+.glow.one{
+  top:-380px;
+  right:-250px;
+  background:radial-gradient(
+    circle,
+    rgba(175,145,193,.25),
+    transparent 68%
+  );
 }
 
-/* NAVIGATION */
+.glow.two{
+  top:650px;
+  left:-400px;
+  background:radial-gradient(
+    circle,
+    rgba(210,184,139,.16),
+    transparent 68%
+  );
+}
+
+/* NAV */
 
 .nav{
   position:relative;
-  z-index:10;
+  z-index:20;
 
-  width:100%;
-  padding:
-    28px
-    clamp(22px,5vw,70px);
+  height:88px;
 
   display:flex;
   align-items:center;
   justify-content:space-between;
+
+  padding:0 clamp(20px,5vw,70px);
 }
 
 .brand{
@@ -107,610 +92,744 @@ body{
 }
 
 .brand img{
-  width:42px;
-  height:42px;
+  width:40px;
+  height:40px;
   object-fit:contain;
 }
 
-.brand-name{
-  font-size:14px;
-  letter-spacing:.26em;
+.brand span{
+  font-size:12px;
+  letter-spacing:.3em;
   font-weight:500;
 }
 
-.nav-right{
+.navlinks{
   display:flex;
   align-items:center;
-  gap:18px;
+  gap:30px;
 }
 
-.nav-link{
+.navlinks button{
   border:0;
-  background:transparent;
-  color:#211d25;
-  font-size:11px;
-  letter-spacing:.12em;
+  background:none;
+  color:var(--ink);
+  font-size:10px;
+  letter-spacing:.14em;
   cursor:pointer;
 }
 
-.whatsapp{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  background:#211d25;
-  color:white;
-
-  font-size:17px;
-
-  box-shadow:
-    0 10px 30px rgba(33,29,37,.15);
+.book{
+  padding:12px 21px!important;
+  border-radius:999px!important;
+  background:var(--ink)!important;
+  color:white!important;
 }
 
 /* HERO */
 
 .hero{
-  position:relative;
-  z-index:2;
-
-  min-height:
-    calc(100vh - 95px);
+  min-height:calc(100vh - 88px);
 
   display:flex;
-  flex-direction:column;
   align-items:center;
-  justify-content:center;
-
-  text-align:center;
 
   padding:
-    50px
-    24px
-    100px;
+    80px
+    clamp(22px,7vw,110px)
+    120px;
+
+  position:relative;
+}
+
+.hero-content{
+  width:min(1100px,100%);
+  margin:auto;
 }
 
 .eyebrow{
   font-size:10px;
-  letter-spacing:.28em;
-  text-transform:uppercase;
-  color:#88758f;
-  margin-bottom:22px;
+  letter-spacing:.32em;
+  color:#927e9b;
+  margin-bottom:25px;
 }
 
 .hero h1{
-  max-width:950px;
+  max-width:1050px;
 
-  font-size:
-    clamp(44px,8vw,96px);
+  font-size:clamp(52px,8.7vw,112px);
 
-  line-height:.96;
+  line-height:.94;
+
+  letter-spacing:-.065em;
 
   font-weight:300;
-
-  letter-spacing:-.055em;
-
-  color:#241d29;
 }
 
 .hero h1 span{
-  font-weight:500;
-  color:#6d527f;
+  color:var(--purple);
+  font-weight:400;
 }
 
-.hero-sub{
-  max-width:590px;
+.hero-bottom{
+  margin-top:48px;
 
-  margin-top:28px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
 
-  font-size:
-    clamp(15px,2vw,19px);
+  gap:50px;
+}
 
-  line-height:1.75;
+.hero-description{
+  max-width:570px;
 
+  font-size:16px;
+  line-height:1.8;
   font-weight:300;
-
-  color:#665e68;
+  color:var(--muted);
 }
 
-/* EMOTION SECTION */
+.hero-cta{
+  flex-shrink:0;
 
-.emotion-section{
-  position:relative;
-  z-index:3;
+  display:inline-flex;
+  align-items:center;
+  gap:15px;
 
+  padding:16px 24px;
+
+  border-radius:999px;
+
+  background:var(--ink);
+  color:white;
+
+  text-decoration:none;
+
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+
+  box-shadow:0 20px 50px rgba(36,29,41,.15);
+
+  transition:.4s ease;
+}
+
+.hero-cta:hover{
+  transform:translateY(-4px);
+  box-shadow:0 25px 65px rgba(36,29,41,.22);
+}
+
+/* INTRO */
+
+.intro{
   padding:
-    65px
-    clamp(20px,5vw,70px)
-    120px;
+    120px
+    clamp(22px,8vw,130px);
 
-  background:
-    linear-gradient(
-      180deg,
-      rgba(247,245,242,0),
-      rgba(239,233,241,.65)
-    );
+  background:#eee8ef;
+
+  position:relative;
 }
 
-.question{
-  text-align:center;
-
-  font-size:
-    clamp(28px,4vw,48px);
-
-  line-height:1.1;
-
-  font-weight:300;
-
-  letter-spacing:-.03em;
-
-  color:#241d29;
-
-  margin-bottom:16px;
-}
-
-.question-small{
-  text-align:center;
-
-  font-size:13px;
-
-  color:#817984;
-
-  font-weight:300;
-
-  margin-bottom:45px;
-}
-
-.cards{
-  max-width:1300px;
+.intro-inner{
+  max-width:1250px;
   margin:auto;
 
   display:grid;
+  grid-template-columns:1fr 1.5fr;
+  gap:90px;
+}
 
-  grid-template-columns:
-    repeat(4,1fr);
+.section-label{
+  font-size:10px;
+  letter-spacing:.25em;
+  color:#897891;
+  text-transform:uppercase;
+}
 
-  gap:16px;
+.intro h2{
+  margin-top:20px;
+
+  font-size:clamp(34px,5vw,62px);
+  line-height:1.05;
+  font-weight:300;
+  letter-spacing:-.045em;
+}
+
+.intro-text{
+  font-size:19px;
+  line-height:1.8;
+  font-weight:300;
+  color:#625966;
+}
+
+.intro-text strong{
+  color:var(--ink);
+  font-weight:500;
+}
+
+/* EMOTIONS */
+
+.emotions{
+  padding:
+    130px
+    clamp(18px,5vw,70px)
+    150px;
+
+  position:relative;
+}
+
+.emotion-heading{
+  max-width:1250px;
+  margin:0 auto 55px;
+}
+
+.emotion-heading h2{
+  font-size:clamp(40px,6vw,76px);
+  font-weight:300;
+  letter-spacing:-.055em;
+  line-height:.98;
+}
+
+.emotion-heading p{
+  margin-top:18px;
+  font-size:14px;
+  color:var(--muted);
+}
+
+.cards{
+  max-width:1250px;
+  margin:auto;
+
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
 }
 
 .card{
+  min-height:360px;
+
   position:relative;
 
-  min-height:330px;
+  padding:30px;
 
-  padding:32px;
-
-  border-radius:30px;
+  border-radius:32px;
 
   overflow:hidden;
 
+  border:1px solid rgba(60,45,65,.08);
+
+  background:rgba(255,255,255,.7);
+
+  box-shadow:0 25px 70px rgba(40,30,45,.06);
+
   cursor:pointer;
 
-  border:1px solid rgba(75,58,82,.08);
-
-  background:
-    rgba(255,255,255,.62);
-
-  box-shadow:
-    0 25px 70px rgba(47,38,52,.07);
-
   transition:
-    transform .6s cubic-bezier(.2,.8,.2,1),
-    box-shadow .6s ease,
-    background .6s ease;
+    transform .55s cubic-bezier(.2,.8,.2,1),
+    box-shadow .55s ease;
 }
 
 .card:hover{
-  transform:
-    translateY(-12px);
-
-  box-shadow:
-    0 35px 90px rgba(47,38,52,.15);
+  transform:translateY(-12px);
+  box-shadow:0 35px 90px rgba(40,30,45,.13);
 }
 
-.card::before{
+.card::after{
   content:"";
 
   position:absolute;
 
-  width:220px;
-  height:220px;
+  width:240px;
+  height:240px;
 
   border-radius:50%;
 
-  top:-80px;
-  right:-70px;
+  right:-110px;
+  top:-100px;
 
-  opacity:.55;
-
-  transition:
-    transform .8s ease,
-    opacity .8s ease;
+  transition:.8s ease;
 }
 
-.card:hover::before{
+.card:hover::after{
   transform:scale(1.5);
-  opacity:.9;
 }
 
-.card:nth-child(1)::before{
-  background:
-    radial-gradient(
-      circle,
-      rgba(117,145,177,.35),
-      transparent 70%
-    );
+.card:nth-child(1)::after{
+  background:radial-gradient(
+    circle,
+    rgba(116,148,184,.34),
+    transparent 68%
+  );
 }
 
-.card:nth-child(2)::before{
-  background:
-    radial-gradient(
-      circle,
-      rgba(204,158,115,.35),
-      transparent 70%
-    );
+.card:nth-child(2)::after{
+  background:radial-gradient(
+    circle,
+    rgba(205,157,115,.34),
+    transparent 68%
+  );
 }
 
-.card:nth-child(3)::before{
-  background:
-    radial-gradient(
-      circle,
-      rgba(126,158,137,.35),
-      transparent 70%
-    );
+.card:nth-child(3)::after{
+  background:radial-gradient(
+    circle,
+    rgba(119,157,136,.34),
+    transparent 68%
+  );
 }
 
-.card:nth-child(4)::before{
-  background:
-    radial-gradient(
-      circle,
-      rgba(166,139,188,.35),
-      transparent 70%
-    );
+.card:nth-child(4)::after{
+  background:radial-gradient(
+    circle,
+    rgba(163,135,186,.34),
+    transparent 68%
+  );
 }
 
 .card-number{
   position:relative;
   z-index:2;
 
-  font-size:10px;
+  font-size:9px;
+  letter-spacing:.2em;
 
-  letter-spacing:.18em;
-
-  color:#978d9a;
-
-  margin-bottom:80px;
+  color:#a096a2;
 }
 
-.card-icon{
+.card-symbol{
   position:relative;
   z-index:2;
 
-  width:62px;
-  height:62px;
+  margin-top:85px;
+
+  width:60px;
+  height:60px;
 
   border-radius:50%;
+
+  background:rgba(255,255,255,.75);
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  background:
-    rgba(255,255,255,.66);
+  font-size:23px;
 
-  font-size:25px;
+  box-shadow:0 12px 30px rgba(0,0,0,.06);
 
-  margin-bottom:26px;
-
-  box-shadow:
-    0 10px 30px rgba(0,0,0,.06);
-
-  transition:
-    transform .6s ease;
+  transition:.55s ease;
 }
 
-.card:hover .card-icon{
-  transform:
-    rotate(-8deg)
-    scale(1.12);
+.card:hover .card-symbol{
+  transform:rotate(-10deg) scale(1.12);
 }
 
 .card h3{
   position:relative;
   z-index:2;
 
-  font-size:23px;
+  margin-top:25px;
 
+  font-size:22px;
   font-weight:400;
-
-  letter-spacing:-.02em;
-
-  margin-bottom:12px;
+  letter-spacing:-.025em;
 }
 
 .card p{
   position:relative;
   z-index:2;
 
-  font-size:13px;
+  margin-top:10px;
 
-  line-height:1.65;
+  max-width:235px;
 
-  color:#766e79;
+  font-size:12px;
+  line-height:1.7;
 
-  max-width:230px;
+  color:#766d79;
 }
 
-.card-arrow{
+.card-action{
   position:absolute;
-
-  right:27px;
-  bottom:27px;
+  right:25px;
+  bottom:25px;
 
   width:38px;
   height:38px;
 
   border-radius:50%;
 
-  background:
-    rgba(255,255,255,.72);
+  background:white;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  font-size:16px;
+  font-size:15px;
 
-  transition:
-    transform .5s ease;
+  transition:.4s ease;
 }
 
-.card:hover .card-arrow{
-  transform:
-    translate(4px,-4px);
+.card:hover .card-action{
+  transform:translate(4px,-4px);
 }
 
-/* SMALL TRUST STRIP */
+/* FOUNDER */
 
-.trust{
+.founder{
   padding:
-    0
-    24px
-    110px;
+    130px
+    clamp(22px,8vw,120px);
 
-  text-align:center;
-}
-
-.trust-line{
-  width:min(800px,90%);
-  height:1px;
-
-  margin:auto auto 40px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(109,82,127,.25),
-      transparent
-    );
-}
-
-.trust p{
-  font-size:11px;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-  color:#9a909c;
-}
-
-/* FLOATING AI */
-
-.ai{
-  position:fixed;
-
-  right:22px;
-  bottom:22px;
-
-  z-index:50;
-
-  display:flex;
-  align-items:center;
-  gap:10px;
-
-  padding:8px 10px 8px 8px;
-
-  border-radius:999px;
-
-  background:
-    rgba(36,29,41,.94);
-
-  color:white;
-
-  box-shadow:
-    0 18px 55px rgba(36,29,41,.25);
-
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
-
-  cursor:pointer;
-}
-
-.ai-orb{
-  width:43px;
-  height:43px;
-
-  border-radius:50%;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  background:
-    radial-gradient(
-      circle at 35% 30%,
-      #d8c6e2,
-      #72577f 55%,
-      #302638
-    );
-
-  font-size:17px;
-
-  box-shadow:
-    0 0 30px rgba(190,156,210,.28);
-
-  animation:
-    aiPulse 3s ease-in-out infinite;
-}
-
-@keyframes aiPulse{
-
-  0%,100%{
-    box-shadow:
-      0 0 25px rgba(190,156,210,.22);
-  }
-
-  50%{
-    box-shadow:
-      0 0 45px rgba(190,156,210,.48);
-  }
-
-}
-
-.ai-text{
-  padding-right:9px;
-
-  font-size:10px;
-
-  letter-spacing:.12em;
-
-  text-transform:uppercase;
-}
-
-/* MODAL */
-
-.modal{
-  position:fixed;
-  inset:0;
-
-  z-index:100;
-
-  display:none;
-
-  align-items:center;
-  justify-content:center;
-
-  padding:20px;
-
-  background:
-    rgba(20,16,24,.42);
-
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
-}
-
-.modal.active{
-  display:flex;
-}
-
-.modal-box{
-  width:min(540px,100%);
-
-  border-radius:34px;
-
-  padding:42px 30px 30px;
-
-  background:
-    rgba(255,255,255,.94);
-
-  box-shadow:
-    0 40px 120px rgba(0,0,0,.22);
-
-  text-align:center;
-
-  animation:
-    modalIn .5s ease both;
-}
-
-@keyframes modalIn{
-
-  from{
-    opacity:0;
-    transform:
-      translateY(25px)
-      scale(.96);
-  }
-
-  to{
-    opacity:1;
-    transform:
-      translateY(0)
-      scale(1);
-  }
-
-}
-
-.modal-icon{
-  font-size:38px;
-  margin-bottom:18px;
-}
-
-.modal-box h2{
-  font-size:32px;
-  font-weight:400;
-  letter-spacing:-.035em;
-  margin-bottom:13px;
-}
-
-.modal-box p{
-  font-size:14px;
-  line-height:1.7;
-  color:#746b77;
-  margin-bottom:28px;
-}
-
-.modal-actions{
-  display:flex;
-  gap:10px;
-}
-
-.modal-btn{
-  flex:1;
-
-  border:0;
-
-  border-radius:999px;
-
-  padding:15px;
-
-  font-size:11px;
-
-  letter-spacing:.12em;
-
-  text-transform:uppercase;
-
-  cursor:pointer;
-}
-
-.primary{
   background:#241d29;
   color:white;
 }
 
-.secondary{
-  background:#eee9ef;
-  color:#241d29;
+.founder-inner{
+  max-width:1250px;
+  margin:auto;
+
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:100px;
+
+  align-items:center;
 }
 
-/* RESPONSIVE */
+.founder-photo{
+  width:100%;
+  max-width:500px;
+
+  aspect-ratio:4/5;
+
+  border-radius:35px;
+
+  overflow:hidden;
+
+  background:#302738;
+
+  box-shadow:0 35px 100px rgba(0,0,0,.28);
+}
+
+.founder-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.founder-copy .section-label{
+  color:#c9ad76;
+}
+
+.founder-copy h2{
+  margin-top:20px;
+
+  font-size:clamp(42px,5vw,70px);
+
+  font-weight:300;
+
+  letter-spacing:-.05em;
+
+  line-height:1;
+}
+
+.founder-copy h2 span{
+  display:block;
+  color:#cdb8d7;
+}
+
+.founder-copy p{
+  max-width:600px;
+
+  margin-top:30px;
+
+  font-size:15px;
+  line-height:1.9;
+
+  color:#c9c1cc;
+
+  font-weight:300;
+}
+
+.founder-name{
+  margin-top:38px;
+
+  font-size:12px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+
+  color:white;
+}
+
+.founder-role{
+  margin-top:8px;
+
+  font-size:11px;
+
+  color:#bdaac5;
+}
+
+/* SERVICES */
+
+.services{
+  padding:
+    130px
+    clamp(22px,8vw,120px);
+
+  background:#f7f5f2;
+}
+
+.services-inner{
+  max-width:1250px;
+  margin:auto;
+}
+
+.services-title{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:30px;
+
+  margin-bottom:55px;
+}
+
+.services-title h2{
+  font-size:clamp(42px,6vw,78px);
+  font-weight:300;
+  letter-spacing:-.055em;
+}
+
+.services-title p{
+  max-width:330px;
+  font-size:13px;
+  line-height:1.7;
+  color:var(--muted);
+}
+
+.service-list{
+  border-top:1px solid rgba(36,29,41,.13);
+}
+
+.service{
+  display:grid;
+  grid-template-columns:70px 1fr 40px;
+  align-items:center;
+
+  padding:28px 0;
+
+  border-bottom:1px solid rgba(36,29,41,.13);
+
+  transition:.35s ease;
+}
+
+.service:hover{
+  padding-left:15px;
+  padding-right:15px;
+  background:rgba(238,232,239,.45);
+}
+
+.service-number{
+  font-size:10px;
+  color:#9b909e;
+  letter-spacing:.15em;
+}
+
+.service h3{
+  font-size:19px;
+  font-weight:400;
+}
+
+.service-arrow{
+  text-align:right;
+  font-size:18px;
+}
+
+/* FINAL */
+
+.final{
+  min-height:75vh;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  padding:100px 25px;
+
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(177,147,194,.2),
+      transparent 45%
+    ),
+    #eee8ef;
+}
+
+.final-inner{
+  max-width:850px;
+}
+
+.final .section-label{
+  margin-bottom:25px;
+}
+
+.final h2{
+  font-size:clamp(45px,7vw,88px);
+  font-weight:300;
+  letter-spacing:-.06em;
+  line-height:.98;
+}
+
+.final h2 span{
+  color:var(--purple);
+}
+
+.final p{
+  margin:30px auto 38px;
+
+  max-width:570px;
+
+  font-size:15px;
+  line-height:1.8;
+
+  color:var(--muted);
+}
+
+.final-button{
+  display:inline-flex;
+
+  padding:17px 30px;
+
+  border-radius:999px;
+
+  background:var(--ink);
+  color:white;
+
+  text-decoration:none;
+
+  font-size:10px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+
+  box-shadow:0 20px 50px rgba(36,29,41,.15);
+}
+
+/* FOOTER */
+
+.footer{
+  padding:55px 25px;
+
+  background:#241d29;
+  color:white;
+
+  text-align:center;
+}
+
+.footer-brand{
+  font-size:13px;
+  letter-spacing:.35em;
+}
+
+.footer-tag{
+  margin-top:13px;
+
+  font-size:10px;
+
+  color:#bcb1c1;
+}
+
+.footer-social{
+  margin-top:30px;
+
+  display:flex;
+  justify-content:center;
+  gap:25px;
+}
+
+.footer-social a{
+  color:#d7ceda;
+  text-decoration:none;
+
+  font-size:10px;
+  letter-spacing:.12em;
+}
+
+/* AI */
+
+.ai{
+  position:fixed;
+
+  right:20px;
+  bottom:20px;
+
+  z-index:100;
+
+  width:58px;
+  height:58px;
+
+  border-radius:50%;
+
+  border:1px solid rgba(255,255,255,.18);
+
+  background:#241d29;
+  color:white;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:18px;
+
+  box-shadow:0 20px 55px rgba(36,29,41,.25);
+
+  cursor:pointer;
+
+  animation:pulse 3s infinite;
+}
+
+@keyframes pulse{
+
+  0%,100%{
+    box-shadow:0 15px 45px rgba(36,29,41,.25);
+  }
+
+  50%{
+    box-shadow:0 15px 60px rgba(112,86,127,.42);
+  }
+
+}
+
+/* MOBILE */
 
 @media(max-width:900px){
 
+  .navlinks{
+    gap:12px;
+  }
+
+  .navlinks button:not(.book){
+    display:none;
+  }
+
+  .hero-bottom{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .intro-inner,
+  .founder-inner{
+    grid-template-columns:1fr;
+    gap:50px;
+  }
+
   .cards{
-    grid-template-columns:
-      repeat(2,1fr);
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .founder-photo{
+    max-width:100%;
   }
 
 }
@@ -718,78 +837,109 @@ body{
 @media(max-width:600px){
 
   .nav{
-    padding:
-      20px
-      18px;
+    height:76px;
   }
 
   .brand img{
-    width:36px;
-    height:36px;
+    width:35px;
+    height:35px;
   }
 
-  .brand-name{
-    font-size:11px;
+  .brand span{
+    font-size:10px;
   }
 
-  .nav-link{
-    display:none;
+  .book{
+    padding:10px 15px!important;
+    font-size:9px!important;
   }
 
   .hero{
-    min-height:72vh;
-    padding:
-      45px
-      20px
-      70px;
+    min-height:calc(100vh - 76px);
+    padding:55px 20px 90px;
   }
 
   .hero h1{
-    font-size:49px;
+    font-size:51px;
   }
 
-  .hero-sub{
+  .hero-description{
     font-size:14px;
-    line-height:1.7;
   }
 
-  .emotion-section{
-    padding:
-      55px
-      16px
-      90px;
+  .hero-cta{
+    width:100%;
+    justify-content:center;
   }
 
-  .question{
-    font-size:32px;
+  .intro{
+    padding:85px 22px;
+  }
+
+  .intro-text{
+    font-size:16px;
+  }
+
+  .emotions{
+    padding:90px 16px;
+  }
+
+  .emotion-heading{
+    margin-bottom:35px;
   }
 
   .cards{
     grid-template-columns:1fr;
-    gap:12px;
   }
 
   .card{
-    min-height:250px;
-    padding:27px;
+    min-height:290px;
   }
 
-  .card-number{
-    margin-bottom:45px;
+  .card-symbol{
+    margin-top:55px;
   }
 
-  .ai{
-    right:15px;
-    bottom:15px;
+  .founder{
+    padding:90px 22px;
   }
 
-  .ai-text{
-    display:none;
+  .founder-inner{
+    gap:45px;
   }
 
-  .ai-orb{
-    width:48px;
-    height:48px;
+  .founder-photo{
+    aspect-ratio:1/1.15;
+  }
+
+  .services{
+    padding:90px 22px;
+  }
+
+  .services-title{
+    display:block;
+  }
+
+  .services-title p{
+    margin-top:20px;
+  }
+
+  .service{
+    grid-template-columns:45px 1fr 25px;
+    padding:22px 0;
+  }
+
+  .service h3{
+    font-size:15px;
+  }
+
+  .final{
+    min-height:65vh;
+    padding:90px 22px;
+  }
+
+  .final h2{
+    font-size:48px;
   }
 
 }
@@ -799,372 +949,541 @@ body{
 
 <body>
 
-<div id="page">
+<div class="page">
 
-  <div class="bg-glow"></div>
-  <div class="bg-glow-two"></div>
+<div class="glow one"></div>
+<div class="glow two"></div>
 
-  <nav class="nav">
 
-    <div class="brand">
+<!-- NAVIGATION -->
 
-      <img
-        src="aksh-icon.PNG"
-        alt="AKSH">
+<nav class="nav">
 
-      <div class="brand-name">
-        AKSH
-      </div>
+  <div class="brand">
 
+    <img
+      src="aksh-icon.PNG"
+      alt="AKSH">
+
+    <span>AKSH</span>
+
+  </div>
+
+  <div class="navlinks">
+
+    <button onclick="scrollToSection('services')">
+      SERVICES
+    </button>
+
+    <button onclick="scrollToSection('founder')">
+      FOUNDER
+    </button>
+
+    <button class="book" onclick="bookSession()">
+      BOOK A SESSION
+    </button>
+
+  </div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div class="eyebrow">
+      AKSH MENTAL WELLNESS
     </div>
 
-    <div class="nav-right">
+    <h1>
+      A place to
+      <span>feel heard.</span>
+    </h1>
 
-      <button
-        class="nav-link"
-        onclick="window.scrollTo({
-          top:document.body.scrollHeight,
-          behavior:'smooth'
-        })">
-        CONTACT
-      </button>
+    <div class="hero-bottom">
 
-      <button
-        class="whatsapp"
-        onclick="openWhatsApp()">
-        ◔
-      </button>
-
-    </div>
-
-  </nav>
-
-  <main>
-
-    <section class="hero">
-
-      <div class="eyebrow">
-        AKSH MENTAL WELLNESS
-      </div>
-
-      <h1>
-        You don't have to
-        <span>carry it alone.</span>
-      </h1>
-
-      <p class="hero-sub">
-        A quiet place to pause, understand what you're feeling,
-        and take your next step — at your own pace.
+      <p class="hero-description">
+        Professional psychological support, emotional guidance,
+        and a safe space to understand yourself — with empathy,
+        confidentiality, and care.
       </p>
 
-    </section>
+      <a
+        href="#emotions"
+        class="hero-cta">
+        Find Your Space →
+      </a>
 
-    <section class="emotion-section">
+    </div>
 
-      <h2 class="question">
-        How are you feeling today?
+  </div>
+
+</section>
+
+
+<!-- INTRO -->
+
+<section class="intro">
+
+  <div class="intro-inner">
+
+    <div>
+
+      <div class="section-label">
+        THE AKSH APPROACH
+      </div>
+
+      <h2>
+        You don't have to
+        figure everything
+        out alone.
       </h2>
 
-      <p class="question-small">
-        There is no right answer. Start wherever feels right.
-      </p>
+    </div>
 
-      <div class="cards">
-
-        <article
-          class="card"
-          onclick="openEmotion(
-            'anxious',
-            'You are safe here.',
-            'Take a moment. You do not need to solve everything right now.'
-          )">
-
-          <div class="card-number">
-            01 / RIGHT NOW
-          </div>
-
-          <div class="card-icon">
-            ◌
-          </div>
-
-          <h3>
-            Anxious
-          </h3>
-
-          <p>
-            Your mind feels restless, worried,
-            or unable to slow down.
-          </p>
-
-          <div class="card-arrow">
-            →
-          </div>
-
-        </article>
-
-
-        <article
-          class="card"
-          onclick="openEmotion(
-            'overwhelmed',
-            'One thing at a time.',
-            'You do not have to carry everything at once. Let us make some space.'
-          )">
-
-          <div class="card-number">
-            02 / RIGHT NOW
-          </div>
-
-          <div class="card-icon">
-            ∿
-          </div>
-
-          <h3>
-            Overwhelmed
-          </h3>
-
-          <p>
-            Everything feels like too much
-            and you need a little breathing room.
-          </p>
-
-          <div class="card-arrow">
-            →
-          </div>
-
-        </article>
-
-
-        <article
-          class="card"
-          onclick="openEmotion(
-            'talk',
-            'You can talk here.',
-            'Sometimes being heard without judgement is the first step.'
-          )">
-
-          <div class="card-number">
-            03 / RIGHT NOW
-          </div>
-
-          <div class="card-icon">
-            ♡
-          </div>
-
-          <h3>
-            Need someone to talk
-          </h3>
-
-          <p>
-            You simply want someone to listen,
-            understand, and be present.
-          </p>
-
-          <div class="card-arrow">
-            →
-          </div>
-
-        </article>
-
-
-        <article
-          class="card"
-          onclick="openEmotion(
-            'exploring',
-            'Welcome to AKSH.',
-            'You can simply explore. There is no pressure and no expectation.'
-          )">
-
-          <div class="card-number">
-            04 / RIGHT NOW
-          </div>
-
-          <div class="card-icon">
-            ✦
-          </div>
-
-          <h3>
-            Just exploring
-          </h3>
-
-          <p>
-            You are curious about your mind,
-            emotions, or your own growth.
-          </p>
-
-          <div class="card-arrow">
-            →
-          </div>
-
-        </article>
-
-      </div>
-
-    </section>
-
-    <section class="trust">
-
-      <div class="trust-line"></div>
+    <div class="intro-text">
 
       <p>
-        Professional • Compassionate • Confidential
+        AKSH is built around a simple belief:
+        <strong>every mind deserves a safe space.</strong>
       </p>
 
-    </section>
+      <br>
 
-  </main>
+      <p>
+        Our approach brings together professional
+        psychological support, emotional guidance,
+        and mental wellness education in an environment
+        designed to feel human, respectful, and confidential.
+      </p>
 
+      <br>
 
-  <button
-    class="ai"
-    onclick="openAI()">
+      <p>
+        Whether you are facing a difficult moment,
+        navigating a relationship, supporting a child,
+        or simply trying to understand yourself better,
+        you can begin where you are.
+      </p>
 
-    <div class="ai-orb">
-      ✦
     </div>
 
-    <div class="ai-text">
-      AKSH AI
+  </div>
+
+</section>
+
+
+<!-- EMOTIONS -->
+
+<section class="emotions" id="emotions">
+
+  <div class="emotion-heading">
+
+    <div class="section-label">
+      START WHERE YOU ARE
     </div>
 
-  </button>
+    <h2>
+      How are you feeling today?
+    </h2>
+
+    <p>
+      There is no right answer. Choose what feels closest.
+    </p>
+
+  </div>
 
 
-  <div
-    class="modal"
-    id="modal"
-    onclick="closeOutside(event)">
+  <div class="cards">
 
-    <div class="modal-box">
 
-      <div
-        class="modal-icon"
-        id="modalIcon">
+    <article
+      class="card"
+      onclick="emotion('Anxious')">
+
+      <div class="card-number">
+        01 / RIGHT NOW
+      </div>
+
+      <div class="card-symbol">
+        ◌
+      </div>
+
+      <h3>
+        Anxious
+      </h3>
+
+      <p>
+        When your thoughts feel restless,
+        worried, or difficult to quiet.
+      </p>
+
+      <div class="card-action">
+        →
+      </div>
+
+    </article>
+
+
+    <article
+      class="card"
+      onclick="emotion('Overwhelmed')">
+
+      <div class="card-number">
+        02 / RIGHT NOW
+      </div>
+
+      <div class="card-symbol">
+        ∿
+      </div>
+
+      <h3>
+        Overwhelmed
+      </h3>
+
+      <p>
+        When everything feels like too much
+        and you need some breathing space.
+      </p>
+
+      <div class="card-action">
+        →
+      </div>
+
+    </article>
+
+
+    <article
+      class="card"
+      onclick="emotion('Need someone to talk')">
+
+      <div class="card-number">
+        03 / RIGHT NOW
+      </div>
+
+      <div class="card-symbol">
+        ♡
+      </div>
+
+      <h3>
+        Need someone to talk
+      </h3>
+
+      <p>
+        When being heard, understood,
+        and supported is what you need.
+      </p>
+
+      <div class="card-action">
+        →
+      </div>
+
+    </article>
+
+
+    <article
+      class="card"
+      onclick="emotion('Just exploring')">
+
+      <div class="card-number">
+        04 / RIGHT NOW
+      </div>
+
+      <div class="card-symbol">
         ✦
       </div>
 
-      <h2 id="modalTitle">
-        You are safe here.
-      </h2>
+      <h3>
+        Just exploring
+      </h3>
 
-      <p id="modalText">
-        Take a moment.
+      <p>
+        When you are curious about your mind,
+        emotions, wellbeing, or personal growth.
       </p>
 
-      <div class="modal-actions">
+      <div class="card-action">
+        →
+      </div>
 
-        <button
-          class="modal-btn secondary"
-          onclick="closeModal()">
-          Stay Here
-        </button>
+    </article>
 
-        <button
-          class="modal-btn primary"
-          onclick="bookSession()">
-          Book A Session
-        </button>
+  </div>
 
+</section>
+
+
+<!-- FOUNDER -->
+
+<section class="founder" id="founder">
+
+  <div class="founder-inner">
+
+    <div class="founder-photo">
+
+      <img
+        src="founder.jpg"
+        alt="Meghana K — Founder and Chief Psychologist"
+        onerror="this.style.display='none'">
+
+    </div>
+
+    <div class="founder-copy">
+
+      <div class="section-label">
+        THE PERSON BEHIND AKSH
+      </div>
+
+      <h2>
+        Psychology with
+        <span>a human touch.</span>
+      </h2>
+
+      <p>
+        AKSH was founded by Meghana K, whose work brings together
+        psychological knowledge, counselling experience,
+        education, and a deep commitment to helping people feel
+        heard and supported.
+      </p>
+
+      <p>
+        Her professional experience includes psychology education,
+        school counselling, clinical psychology training,
+        psychological assessment, child and adolescent support,
+        and counselling-focused work.
+      </p>
+
+      <div class="founder-name">
+        Meghana K
+      </div>
+
+      <div class="founder-role">
+        Founder & Chief Psychologist
       </div>
 
     </div>
 
   </div>
 
+</section>
+
+
+<!-- SERVICES -->
+
+<section class="services" id="services">
+
+  <div class="services-inner">
+
+    <div class="services-title">
+
+      <div>
+
+        <div class="section-label">
+          HOW AKSH CAN SUPPORT YOU
+        </div>
+
+        <h2>
+          Your journey.
+          <br>
+          Your pace.
+        </h2>
+
+      </div>
+
+      <p>
+        Professional support designed around
+        different stages, relationships, challenges,
+        and goals.
+      </p>
+
+    </div>
+
+
+    <div class="service-list">
+
+      <div class="service">
+        <div class="service-number">01</div>
+        <h3>Individual Counselling</h3>
+        <div class="service-arrow">→</div>
+      </div>
+
+      <div class="service">
+        <div class="service-number">02</div>
+        <h3>Child Psychology Support</h3>
+        <div class="service-arrow">→</div>
+      </div>
+
+      <div class="service">
+        <div class="service-number">03</div>
+        <h3>Adolescent Mental Health Guidance</h3>
+        <div class="service-arrow">→</div>
+      </div>
+
+      <div class="service">
+        <div class="service-number">04</div>
+        <h3>Relationship & Couples Counselling</h3>
+        <div class="service-arrow">→</div>
+      </div>
+
+      <div class="service">
+        <div class="service-number">05</div>
+        <h3>Stress & Anxiety Management</h3>
+        <div class="service-arrow">→</div>
+      </div>
+
+      <div class="service">
+        <div class="service-number">06</div>
+        <h3>Emotional Wellness & Personal Growth</h3>
+        <div class="service-arrow">→</div>
+      </div>
+
+      <div class="service">
+        <div class="service-number">07</div>
+        <h3>Career & Academic Counselling</h3>
+        <div class="service-arrow">→</div>
+      </div>
+
+      <div class="service">
+        <div class="service-number">08</div>
+        <h3>Mental Wellness Workshops</h3>
+        <div class="service-arrow">→</div>
+      </div>
+
+      <div class="service">
+        <div class="service-number">09</div>
+        <h3>School & Corporate Wellness Programs</h3>
+        <div class="service-arrow">→</div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FINAL CTA -->
+
+<section class="final">
+
+  <div class="final-inner">
+
+    <div class="section-label">
+      WHEN YOU'RE READY
+    </div>
+
+    <h2>
+      Begin your journey
+      <span>with AKSH.</span>
+    </h2>
+
+    <p>
+      You don't need to have everything figured out
+      before reaching out. Sometimes the first step
+      is simply having a safe place to begin.
+    </p>
+
+    <button
+      class="final-button"
+      onclick="bookSession()">
+      Book A Session
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+  <div class="footer-brand">
+    AKSH
+  </div>
+
+  <div class="footer-tag">
+    A Safe Space For Every Mind
+  </div>
+
+  <div class="footer-social">
+
+    <a href="#" onclick="return false">
+      INSTAGRAM
+    </a>
+
+    <a href="#" onclick="return false">
+      LINKEDIN
+    </a>
+
+    <a href="#" onclick="return false">
+      YOUTUBE
+    </a>
+
+  </div>
+
+</footer>
+
+
+<!-- AI -->
+
+<button
+  class="ai"
+  onclick="openAI()"
+  aria-label="AKSH AI">
+  ✦
+</button>
+
 
 <script>
 
-const modal =
-document.getElementById("modal");
+function scrollToSection(id){
 
-const modalTitle =
-document.getElementById("modalTitle");
+  document.getElementById(id)
+    .scrollIntoView({
+      behavior:"smooth"
+    });
 
-const modalText =
-document.getElementById("modalText");
-
-const modalIcon =
-document.getElementById("modalIcon");
+}
 
 
-function openEmotion(
-  type,
-  title,
-  text
-){
+function emotion(type){
 
-  const icons = {
+  const messages = {
 
-    anxious:"◌",
+    "Anxious":
+      "Take a breath. You don't have to solve everything right now. AKSH is here when you're ready.",
 
-    overwhelmed:"∿",
+    "Overwhelmed":
+      "One thing at a time. Give yourself permission to pause and make some space.",
 
-    talk:"♡",
+    "Need someone to talk":
+      "You deserve a space where you can speak openly and be heard without judgement.",
 
-    exploring:"✦"
+    "Just exploring":
+      "You can explore without pressure. Understanding yourself is already a meaningful beginning."
 
   };
 
-  modalIcon.textContent =
-    icons[type] || "✦";
-
-  modalTitle.textContent =
-    title;
-
-  modalText.textContent =
-    text;
-
-  modal.classList.add("active");
-
-}
-
-
-function closeModal(){
-
-  modal.classList.remove("active");
-
-}
-
-
-function closeOutside(event){
-
-  if(event.target === modal){
-
-    closeModal();
-
-  }
+  alert(messages[type]);
 
 }
 
 
 function bookSession(){
 
-  window.location.href =
-    "booking.html";
+  window.location.href="booking.html";
 
 }
 
 
 function openAI(){
 
-  modalIcon.textContent = "✦";
-
-  modalTitle.textContent =
-    "AKSH AI";
-
-  modalText.textContent =
-    "I'm here to listen. You can talk to me, ask a question, or tell me what is on your mind.";
-
-  modal.classList.add("active");
-
-}
-
-
-function openWhatsApp(){
-
-  window.open(
-    "https://wa.me/",
-    "_blank"
+  alert(
+    "AKSH AI is coming into the experience soon — a place to talk, ask, explore, and connect with AKSH."
   );
 
 }
