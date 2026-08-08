@@ -2,1184 +2,796 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-<title>AKSH Mental Wellness</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+<title>AKSH — Your Mind Matters</title>
 
 <style>
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 html{
-    scroll-behavior:smooth;
+  scroll-behavior:smooth;
 }
 
 body{
-    font-family:"DM Sans",sans-serif;
-    background:#eef3f8;
-    color:#102744;
-    overflow-x:hidden;
+  background:#f7f5f2;
+  color:#211d25;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  overflow-x:hidden;
 }
 
-/* =========================
-   PAGE 1
-========================= */
-
-.page-one{
-    position:relative;
-    min-height:100svh;
-    width:100%;
-    overflow:hidden;
-    isolation:isolate;
-    background-image:
-        linear-gradient(
-            90deg,
-            rgba(241,246,251,.96) 0%,
-            rgba(241,246,251,.82) 23%,
-            rgba(241,246,251,.25) 53%,
-            rgba(10,35,62,.12) 100%
-        ),
-        linear-gradient(
-            180deg,
-            rgba(238,245,252,.25) 0%,
-            rgba(8,30,54,.12) 100%
-        ),
-        url("aksh-page1-bg.jpg");
-
-    background-size:cover;
-    background-position:center center;
-    background-repeat:no-repeat;
+:root{
+  --purple:#6d527f;
+  --deep:#241d29;
+  --soft:#eee8ef;
+  --cream:#f7f5f2;
+  --gold:#c6a76a;
+  --white:#ffffff;
 }
 
-/* subtle atmospheric layer */
-
-.page-one::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    pointer-events:none;
-    z-index:-1;
-
-    background:
-        radial-gradient(
-            circle at 72% 30%,
-            rgba(255,255,255,.42),
-            transparent 30%
-        ),
-        linear-gradient(
-            180deg,
-            rgba(255,255,255,.12),
-            rgba(7,30,55,.18)
-        );
+#page{
+  min-height:100vh;
+  position:relative;
+  overflow:hidden;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* ATMOSPHERE */
 
-.header{
-    position:absolute;
-    z-index:20;
-
-    top:30px;
-    left:32px;
-    right:32px;
-
-    height:88px;
-
-    display:flex;
-    align-items:center;
-    gap:35px;
-
-    padding:0 24px 0 22px;
-
-    border:1px solid rgba(255,255,255,.48);
-
-    border-radius:20px;
-
-    background:rgba(230,239,248,.38);
-
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
-
-    box-shadow:
-        0 12px 35px rgba(26,54,82,.08),
-        inset 0 1px 0 rgba(255,255,255,.5);
+.bg-glow{
+  position:absolute;
+  width:70vw;
+  height:70vw;
+  max-width:900px;
+  max-height:900px;
+  border-radius:50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(183,153,201,.20),
+      rgba(183,153,201,0) 70%
+    );
+  top:-25vw;
+  right:-20vw;
+  pointer-events:none;
 }
 
-/* LOGO */
+.bg-glow-two{
+  position:absolute;
+  width:65vw;
+  height:65vw;
+  max-width:800px;
+  max-height:800px;
+  border-radius:50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(218,194,154,.13),
+      rgba(218,194,154,0) 70%
+    );
+  bottom:-30vw;
+  left:-25vw;
+  pointer-events:none;
+}
+
+/* NAVIGATION */
+
+.nav{
+  position:relative;
+  z-index:10;
+
+  width:100%;
+  padding:
+    28px
+    clamp(22px,5vw,70px);
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
 
 .brand{
-    width:235px;
-    min-width:235px;
-
-    display:flex;
-    align-items:center;
-    gap:12px;
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
-.logo-symbol{
-    width:43px;
-    height:48px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.logo-symbol svg{
-    width:42px;
-    height:47px;
+.brand img{
+  width:42px;
+  height:42px;
+  object-fit:contain;
 }
 
 .brand-name{
-    display:flex;
-    flex-direction:column;
-    line-height:1;
+  font-size:14px;
+  letter-spacing:.26em;
+  font-weight:500;
 }
 
-.brand-title{
-    font-family:"Playfair Display",serif;
-    font-size:34px;
-    letter-spacing:.02em;
-    color:#102b4a;
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:18px;
 }
 
-.brand-tagline{
-    margin-top:7px;
-    font-size:10px;
-    font-weight:600;
-    letter-spacing:.12em;
-    color:#193451;
-    white-space:nowrap;
+.nav-link{
+  border:0;
+  background:transparent;
+  color:#211d25;
+  font-size:11px;
+  letter-spacing:.12em;
+  cursor:pointer;
 }
 
-/* NAV */
+.whatsapp{
+  width:42px;
+  height:42px;
+  border-radius:50%;
 
-.main-nav{
-    flex:1;
-    height:100%;
-    display:flex;
-    align-items:center;
-    gap:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:#211d25;
+  color:white;
+
+  font-size:17px;
+
+  box-shadow:
+    0 10px 30px rgba(33,29,37,.15);
 }
 
-.main-nav a{
-    position:relative;
-
-    padding:12px 22px;
-
-    border-radius:28px;
-
-    color:#142b45;
-    text-decoration:none;
-
-    font-size:15px;
-    font-weight:500;
-
-    transition:.25s ease;
-}
-
-.main-nav a:hover{
-    background:rgba(255,255,255,.38);
-}
-
-.main-nav a.active{
-    color:#fff;
-    background:#112b4b;
-    box-shadow:0 7px 20px rgba(12,38,68,.18);
-}
-
-/* HELP BUTTON */
-
-.help-button{
-    display:flex;
-    align-items:center;
-    gap:11px;
-
-    padding:13px 20px;
-
-    border-radius:30px;
-
-    border:1px solid rgba(255,255,255,.55);
-
-    background:rgba(244,248,252,.48);
-
-    color:#102744;
-
-    font-size:14px;
-    font-weight:600;
-
-    white-space:nowrap;
-
-    cursor:pointer;
-}
-
-.help-icon{
-    width:20px;
-    height:20px;
-}
-
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero{
-    position:relative;
-    z-index:5;
+  position:relative;
+  z-index:2;
 
-    min-height:100svh;
+  min-height:
+    calc(100vh - 95px);
 
-    padding:
-        175px
-        6.2%
-        120px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  padding:
+    50px
+    24px
+    100px;
 }
 
-.hero-content{
-    width:min(650px,48vw);
+.eyebrow{
+  font-size:10px;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:#88758f;
+  margin-bottom:22px;
 }
 
-.hero-title{
-    font-family:"Playfair Display",serif;
+.hero h1{
+  max-width:950px;
 
-    font-size:clamp(58px,6.3vw,105px);
+  font-size:
+    clamp(44px,8vw,96px);
 
-    line-height:.91;
+  line-height:.96;
 
-    font-weight:500;
+  font-weight:300;
 
-    letter-spacing:-.045em;
+  letter-spacing:-.055em;
 
-    color:#102744;
+  color:#241d29;
 }
 
-.hero-title em{
-    color:#2775c9;
-    font-style:italic;
-    font-weight:500;
+.hero h1 span{
+  font-weight:500;
+  color:#6d527f;
 }
 
-.title-decoration{
-    display:flex;
-    align-items:center;
-    gap:14px;
+.hero-sub{
+  max-width:590px;
 
-    margin:22px 0 17px;
+  margin-top:28px;
+
+  font-size:
+    clamp(15px,2vw,19px);
+
+  line-height:1.75;
+
+  font-weight:300;
+
+  color:#665e68;
 }
 
-.title-decoration span{
-    width:150px;
-    height:1px;
-    background:#102744;
-    opacity:.65;
+/* EMOTION SECTION */
+
+.emotion-section{
+  position:relative;
+  z-index:3;
+
+  padding:
+    65px
+    clamp(20px,5vw,70px)
+    120px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(247,245,242,0),
+      rgba(239,233,241,.65)
+    );
 }
 
-.title-decoration svg{
-    width:31px;
-    height:31px;
-    opacity:.62;
+.question{
+  text-align:center;
+
+  font-size:
+    clamp(28px,4vw,48px);
+
+  line-height:1.1;
+
+  font-weight:300;
+
+  letter-spacing:-.03em;
+
+  color:#241d29;
+
+  margin-bottom:16px;
 }
 
-.hero-description{
-    max-width:410px;
+.question-small{
+  text-align:center;
 
-    font-size:17px;
-    line-height:1.55;
+  font-size:13px;
 
-    color:#182f49;
+  color:#817984;
 
-    margin-bottom:20px;
+  font-weight:300;
+
+  margin-bottom:45px;
 }
 
-/* BUTTONS */
+.cards{
+  max-width:1300px;
+  margin:auto;
 
-.hero-buttons{
-    display:flex;
-    align-items:center;
-    gap:16px;
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:16px;
 }
 
-.primary-button,
-.secondary-button{
-    height:52px;
+.card{
+  position:relative;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:13px;
+  min-height:330px;
 
-    padding:0 23px;
+  padding:32px;
 
-    border-radius:28px;
+  border-radius:30px;
 
-    font-size:14px;
-    font-weight:600;
+  overflow:hidden;
 
-    text-decoration:none;
+  cursor:pointer;
 
-    cursor:pointer;
+  border:1px solid rgba(75,58,82,.08);
 
-    transition:.25s ease;
+  background:
+    rgba(255,255,255,.62);
+
+  box-shadow:
+    0 25px 70px rgba(47,38,52,.07);
+
+  transition:
+    transform .6s cubic-bezier(.2,.8,.2,1),
+    box-shadow .6s ease,
+    background .6s ease;
 }
 
-.primary-button{
-    background:#102d4f;
-    color:white;
+.card:hover{
+  transform:
+    translateY(-12px);
 
+  box-shadow:
+    0 35px 90px rgba(47,38,52,.15);
+}
+
+.card::before{
+  content:"";
+
+  position:absolute;
+
+  width:220px;
+  height:220px;
+
+  border-radius:50%;
+
+  top:-80px;
+  right:-70px;
+
+  opacity:.55;
+
+  transition:
+    transform .8s ease,
+    opacity .8s ease;
+}
+
+.card:hover::before{
+  transform:scale(1.5);
+  opacity:.9;
+}
+
+.card:nth-child(1)::before{
+  background:
+    radial-gradient(
+      circle,
+      rgba(117,145,177,.35),
+      transparent 70%
+    );
+}
+
+.card:nth-child(2)::before{
+  background:
+    radial-gradient(
+      circle,
+      rgba(204,158,115,.35),
+      transparent 70%
+    );
+}
+
+.card:nth-child(3)::before{
+  background:
+    radial-gradient(
+      circle,
+      rgba(126,158,137,.35),
+      transparent 70%
+    );
+}
+
+.card:nth-child(4)::before{
+  background:
+    radial-gradient(
+      circle,
+      rgba(166,139,188,.35),
+      transparent 70%
+    );
+}
+
+.card-number{
+  position:relative;
+  z-index:2;
+
+  font-size:10px;
+
+  letter-spacing:.18em;
+
+  color:#978d9a;
+
+  margin-bottom:80px;
+}
+
+.card-icon{
+  position:relative;
+  z-index:2;
+
+  width:62px;
+  height:62px;
+
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    rgba(255,255,255,.66);
+
+  font-size:25px;
+
+  margin-bottom:26px;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.06);
+
+  transition:
+    transform .6s ease;
+}
+
+.card:hover .card-icon{
+  transform:
+    rotate(-8deg)
+    scale(1.12);
+}
+
+.card h3{
+  position:relative;
+  z-index:2;
+
+  font-size:23px;
+
+  font-weight:400;
+
+  letter-spacing:-.02em;
+
+  margin-bottom:12px;
+}
+
+.card p{
+  position:relative;
+  z-index:2;
+
+  font-size:13px;
+
+  line-height:1.65;
+
+  color:#766e79;
+
+  max-width:230px;
+}
+
+.card-arrow{
+  position:absolute;
+
+  right:27px;
+  bottom:27px;
+
+  width:38px;
+  height:38px;
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.72);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:16px;
+
+  transition:
+    transform .5s ease;
+}
+
+.card:hover .card-arrow{
+  transform:
+    translate(4px,-4px);
+}
+
+/* SMALL TRUST STRIP */
+
+.trust{
+  padding:
+    0
+    24px
+    110px;
+
+  text-align:center;
+}
+
+.trust-line{
+  width:min(800px,90%);
+  height:1px;
+
+  margin:auto auto 40px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(109,82,127,.25),
+      transparent
+    );
+}
+
+.trust p{
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:#9a909c;
+}
+
+/* FLOATING AI */
+
+.ai{
+  position:fixed;
+
+  right:22px;
+  bottom:22px;
+
+  z-index:50;
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  padding:8px 10px 8px 8px;
+
+  border-radius:999px;
+
+  background:
+    rgba(36,29,41,.94);
+
+  color:white;
+
+  box-shadow:
+    0 18px 55px rgba(36,29,41,.25);
+
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+
+  cursor:pointer;
+}
+
+.ai-orb{
+  width:43px;
+  height:43px;
+
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #d8c6e2,
+      #72577f 55%,
+      #302638
+    );
+
+  font-size:17px;
+
+  box-shadow:
+    0 0 30px rgba(190,156,210,.28);
+
+  animation:
+    aiPulse 3s ease-in-out infinite;
+}
+
+@keyframes aiPulse{
+
+  0%,100%{
     box-shadow:
-        0 12px 25px rgba(12,42,75,.25);
-}
+      0 0 25px rgba(190,156,210,.22);
+  }
 
-.primary-button:hover{
-    transform:translateY(-2px);
+  50%{
     box-shadow:
-        0 17px 30px rgba(12,42,75,.32);
+      0 0 45px rgba(190,156,210,.48);
+  }
+
 }
 
-.secondary-button{
-    background:rgba(255,255,255,.73);
-    border:1px solid rgba(255,255,255,.82);
-    color:#142d49;
+.ai-text{
+  padding-right:9px;
+
+  font-size:10px;
+
+  letter-spacing:.12em;
+
+  text-transform:uppercase;
 }
 
-.secondary-button:hover{
-    background:#fff;
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+
+  z-index:100;
+
+  display:none;
+
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+
+  background:
+    rgba(20,16,24,.42);
+
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
 }
 
-.button-arrow{
-    font-size:20px;
-    line-height:0;
+.modal.active{
+  display:flex;
 }
 
-/* =========================
-   REVIEW CARD
-========================= */
+.modal-box{
+  width:min(540px,100%);
 
-.review-card{
-    position:absolute;
+  border-radius:34px;
 
-    right:6.2%;
-    top:145px;
+  padding:42px 30px 30px;
 
-    z-index:8;
+  background:
+    rgba(255,255,255,.94);
 
-    display:flex;
-    align-items:center;
+  box-shadow:
+    0 40px 120px rgba(0,0,0,.22);
 
-    padding:10px 18px;
+  text-align:center;
 
-    border-radius:40px;
-
-    background:rgba(240,247,253,.58);
-
-    border:1px solid rgba(255,255,255,.65);
-
-    backdrop-filter:blur(17px);
-    -webkit-backdrop-filter:blur(17px);
-
-    box-shadow:0 10px 28px rgba(17,42,70,.1);
+  animation:
+    modalIn .5s ease both;
 }
 
-.avatars{
-    display:flex;
-    margin-right:14px;
+@keyframes modalIn{
+
+  from{
+    opacity:0;
+    transform:
+      translateY(25px)
+      scale(.96);
+  }
+
+  to{
+    opacity:1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
 }
 
-.avatar{
-    width:42px;
-    height:42px;
-
-    border-radius:50%;
-
-    border:3px solid rgba(247,250,252,.9);
-
-    margin-left:-8px;
-
-    background:
-        linear-gradient(135deg,#748ca5,#203954);
+.modal-icon{
+  font-size:38px;
+  margin-bottom:18px;
 }
 
-.avatar:first-child{
-    margin-left:0;
+.modal-box h2{
+  font-size:32px;
+  font-weight:400;
+  letter-spacing:-.035em;
+  margin-bottom:13px;
 }
 
-.review-divider{
-    width:1px;
-    height:42px;
-    background:rgba(17,43,70,.2);
-    margin-right:18px;
+.modal-box p{
+  font-size:14px;
+  line-height:1.7;
+  color:#746b77;
+  margin-bottom:28px;
 }
 
-.review-stat{
-    display:flex;
-    flex-direction:column;
+.modal-actions{
+  display:flex;
+  gap:10px;
 }
 
-.review-number{
-    font-size:17px;
-    font-weight:700;
-    color:#102744;
+.modal-btn{
+  flex:1;
+
+  border:0;
+
+  border-radius:999px;
+
+  padding:15px;
+
+  font-size:11px;
+
+  letter-spacing:.12em;
+
+  text-transform:uppercase;
+
+  cursor:pointer;
 }
 
-.review-label{
-    font-size:12px;
-    color:#41556c;
+.primary{
+  background:#241d29;
+  color:white;
 }
 
-.stars{
-    color:#e7ad31;
-    font-size:17px;
-    letter-spacing:1px;
-    margin-left:13px;
+.secondary{
+  background:#eee9ef;
+  color:#241d29;
 }
 
-.google-text{
-    font-size:12px;
-    color:#516276;
-    margin-left:7px;
-}
-
-/* =========================
-   LEFT SERVICES
-========================= */
-
-.left-services{
-    position:absolute;
-
-    left:6.2%;
-    bottom:115px;
-
-    z-index:10;
-
-    width:252px;
-
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-}
-
-.service-card{
-    min-height:62px;
-
-    display:flex;
-    align-items:center;
-    gap:14px;
-
-    padding:9px 13px;
-
-    border-radius:18px;
-
-    background:rgba(54,75,96,.42);
-
-    border:1px solid rgba(255,255,255,.28);
-
-    backdrop-filter:blur(15px);
-    -webkit-backdrop-filter:blur(15px);
-
-    color:#fff;
-
-    transition:.25s ease;
-
-    cursor:pointer;
-}
-
-.service-card:hover{
-    transform:translateX(5px);
-    background:rgba(40,64,87,.59);
-}
-
-.service-icon{
-    width:34px;
-    height:34px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:50%;
-
-    flex-shrink:0;
-}
-
-.service-icon svg{
-    width:28px;
-    height:28px;
-    stroke:white;
-}
-
-.service-copy{
-    flex:1;
-}
-
-.service-name{
-    font-size:14px;
-    font-weight:600;
-    line-height:1.1;
-}
-
-.service-description{
-    margin-top:4px;
-    font-size:10px;
-    color:rgba(255,255,255,.78);
-}
-
-.service-arrow{
-    font-size:21px;
-    color:#fff;
-}
-
-/* =========================
-   RIGHT NAVIGATION
-========================= */
-
-.side-nav{
-    position:absolute;
-
-    right:3.2%;
-    bottom:115px;
-
-    width:225px;
-
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-
-    z-index:10;
-}
-
-.side-nav a{
-    min-height:49px;
-
-    display:flex;
-    align-items:center;
-
-    padding:0 16px;
-
-    gap:13px;
-
-    border-radius:16px;
-
-    color:#fff;
-    text-decoration:none;
-
-    background:rgba(35,54,72,.43);
-
-    border:1px solid rgba(255,255,255,.25);
-
-    backdrop-filter:blur(15px);
-    -webkit-backdrop-filter:blur(15px);
-
-    font-size:14px;
-
-    transition:.25s ease;
-}
-
-.side-nav a:hover{
-    transform:translateX(-4px);
-    background:rgba(35,54,72,.62);
-}
-
-.side-nav-icon{
-    width:22px;
-    height:22px;
-}
-
-.side-nav-arrow{
-    margin-left:auto;
-    font-size:21px;
-}
-
-/* =========================
-   NEWSLETTER
-========================= */
-
-.newsletter{
-    position:absolute;
-
-    left:50%;
-    transform:translateX(-50%);
-
-    bottom:62px;
-
-    width:min(710px,52vw);
-
-    min-height:82px;
-
-    display:flex;
-    align-items:center;
-
-    padding:11px 20px;
-
-    border-radius:25px;
-
-    background:rgba(35,54,73,.63);
-
-    border:1px solid rgba(255,255,255,.26);
-
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
-
-    z-index:12;
-
-    box-shadow:0 12px 35px rgba(8,26,46,.18);
-}
-
-.mail-circle{
-    width:52px;
-    height:52px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    flex-shrink:0;
-
-    border-radius:50%;
-
-    background:#102e53;
-
-    margin-right:17px;
-}
-
-.mail-circle svg{
-    width:27px;
-    height:27px;
-    stroke:white;
-}
-
-.newsletter-copy{
-    flex:1;
-}
-
-.newsletter-title{
-    color:#fff;
-    font-size:15px;
-    font-weight:600;
-}
-
-.newsletter-text{
-    color:rgba(255,255,255,.76);
-    font-size:11px;
-    line-height:1.4;
-    margin-top:3px;
-}
-
-.newsletter-form{
-    display:flex;
-
-    width:335px;
-    height:43px;
-
-    border-radius:15px;
-
-    overflow:hidden;
-
-    background:#fff;
-}
-
-.newsletter-form input{
-    flex:1;
-
-    min-width:0;
-
-    border:0;
-    outline:0;
-
-    padding:0 16px;
-
-    font-family:inherit;
-    font-size:11px;
-
-    color:#263d56;
-}
-
-.newsletter-form input::placeholder{
-    color:#9ba8b6;
-}
-
-.newsletter-form button{
-    width:108px;
-
-    border:0;
-
-    background:#102e53;
-
-    color:#fff;
-
-    font-family:inherit;
-
-    font-size:11px;
-    font-weight:600;
-
-    cursor:pointer;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-.footer{
-    position:absolute;
-
-    z-index:15;
-
-    bottom:0;
-    left:3.7%;
-    right:3.7%;
-
-    height:55px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    border-top:1px solid rgba(255,255,255,.35);
-
-    color:rgba(255,255,255,.82);
-
-    font-size:12px;
-}
-
-.socials{
-    display:flex;
-    align-items:center;
-    gap:25px;
-}
-
-.social-link{
-    display:flex;
-    align-items:center;
-    gap:7px;
-
-    color:#fff;
-    text-decoration:none;
-
-    transition:.2s ease;
-}
-
-.social-link:hover{
-    opacity:.7;
-}
-
-.social-link svg{
-    width:20px;
-    height:20px;
-}
-
-.copyright{
-    position:absolute;
-    left:50%;
-    transform:translateX(-50%);
-
-    white-space:nowrap;
-}
-
-.legal{
-    display:flex;
-    align-items:center;
-    gap:20px;
-}
-
-.legal a{
-    color:#fff;
-    text-decoration:none;
-}
-
-.legal span{
-    opacity:.55;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width:1200px){
-
-    .header{
-        left:20px;
-        right:20px;
-    }
-
-    .brand{
-        min-width:200px;
-        width:200px;
-    }
-
-    .brand-title{
-        font-size:29px;
-    }
-
-    .main-nav a{
-        padding:11px 14px;
-        font-size:13px;
-    }
-
-    .hero{
-        padding-left:5%;
-    }
-
-    .hero-content{
-        width:53vw;
-    }
-
-    .left-services{
-        left:5%;
-    }
-
-    .side-nav{
-        right:2%;
-    }
-
-    .newsletter{
-        width:56vw;
-    }
-}
+/* RESPONSIVE */
 
 @media(max-width:900px){
 
-    .page-one{
-        min-height:100svh;
+  .cards{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
 
-        background-position:
-            60% center;
-    }
-
-    .header{
-        position:absolute;
-
-        top:15px;
-        left:15px;
-        right:15px;
-
-        height:70px;
-
-        padding:0 14px;
-
-        border-radius:16px;
-    }
-
-    .brand{
-        min-width:auto;
-        width:auto;
-    }
-
-    .brand-title{
-        font-size:25px;
-    }
-
-    .brand-tagline{
-        font-size:7px;
-    }
-
-    .logo-symbol{
-        width:34px;
-        height:38px;
-    }
-
-    .logo-symbol svg{
-        width:34px;
-        height:38px;
-    }
-
-    .main-nav{
-        display:none;
-    }
-
-    .help-button{
-        margin-left:auto;
-        padding:11px 14px;
-        font-size:12px;
-    }
-
-    .hero{
-        min-height:100svh;
-        padding:130px 28px 350px;
-    }
-
-    .hero-content{
-        width:min(650px,100%);
-    }
-
-    .hero-title{
-        font-size:clamp(50px,10vw,78px);
-    }
-
-    .review-card{
-        top:95px;
-        right:20px;
-        transform:scale(.85);
-        transform-origin:right top;
-    }
-
-    .left-services{
-        left:20px;
-        bottom:110px;
-        width:calc(50% - 28px);
-    }
-
-    .side-nav{
-        right:20px;
-        bottom:110px;
-        width:calc(50% - 28px);
-    }
-
-    .newsletter{
-        bottom:53px;
-        width:calc(100% - 40px);
-        max-width:700px;
-    }
-
-    .footer{
-        left:20px;
-        right:20px;
-    }
-
-    .copyright{
-        display:none;
-    }
 }
 
-@media(max-width:620px){
+@media(max-width:600px){
 
-    .page-one{
-        min-height:100svh;
+  .nav{
+    padding:
+      20px
+      18px;
+  }
 
-        background-position:
-            64% center;
-    }
+  .brand img{
+    width:36px;
+    height:36px;
+  }
 
-    .header{
-        height:63px;
-    }
+  .brand-name{
+    font-size:11px;
+  }
 
-    .brand-title{
-        font-size:22px;
-    }
+  .nav-link{
+    display:none;
+  }
 
-    .brand-tagline{
-        display:none;
-    }
+  .hero{
+    min-height:72vh;
+    padding:
+      45px
+      20px
+      70px;
+  }
 
-    .help-button{
-        font-size:11px;
-        padding:9px 12px;
-    }
+  .hero h1{
+    font-size:49px;
+  }
 
-    .hero{
-        padding:
-            115px
-            20px
-            480px;
-    }
+  .hero-sub{
+    font-size:14px;
+    line-height:1.7;
+  }
 
-    .hero-title{
-        font-size:48px;
-        line-height:.94;
-    }
+  .emotion-section{
+    padding:
+      55px
+      16px
+      90px;
+  }
 
-    .title-decoration{
-        margin:16px 0 13px;
-    }
+  .question{
+    font-size:32px;
+  }
 
-    .title-decoration span{
-        width:90px;
-    }
+  .cards{
+    grid-template-columns:1fr;
+    gap:12px;
+  }
 
-    .hero-description{
-        font-size:14px;
-        max-width:310px;
-    }
+  .card{
+    min-height:250px;
+    padding:27px;
+  }
 
-    .hero-buttons{
-        flex-wrap:wrap;
-    }
+  .card-number{
+    margin-bottom:45px;
+  }
 
-    .primary-button,
-    .secondary-button{
-        height:46px;
-        padding:0 17px;
-        font-size:12px;
-    }
+  .ai{
+    right:15px;
+    bottom:15px;
+  }
 
-    .review-card{
-        top:85px;
-        right:10px;
-        transform:scale(.67);
-    }
+  .ai-text{
+    display:none;
+  }
 
-    .left-services{
-        left:15px;
-        bottom:110px;
-        width:calc(50% - 22px);
-        gap:5px;
-    }
+  .ai-orb{
+    width:48px;
+    height:48px;
+  }
 
-    .side-nav{
-        right:15px;
-        bottom:110px;
-        width:calc(50% - 22px);
-        gap:5px;
-    }
-
-    .service-card{
-        min-height:54px;
-        padding:7px 8px;
-        gap:7px;
-        border-radius:13px;
-    }
-
-    .service-icon{
-        width:26px;
-        height:26px;
-    }
-
-    .service-icon svg{
-        width:22px;
-        height:22px;
-    }
-
-    .service-name{
-        font-size:10px;
-    }
-
-    .service-description{
-        font-size:7px;
-        margin-top:2px;
-    }
-
-    .service-arrow{
-        display:none;
-    }
-
-    .side-nav a{
-        min-height:43px;
-        padding:0 10px;
-        border-radius:12px;
-        font-size:10px;
-        gap:7px;
-    }
-
-    .side-nav-icon{
-        width:17px;
-        height:17px;
-    }
-
-    .side-nav-arrow{
-        font-size:17px;
-    }
-
-    .newsletter{
-        bottom:52px;
-        width:calc(100% - 30px);
-        min-height:72px;
-        padding:9px;
-        border-radius:18px;
-    }
-
-    .mail-circle{
-        width:39px;
-        height:39px;
-        margin-right:8px;
-    }
-
-    .mail-circle svg{
-        width:19px;
-        height:19px;
-    }
-
-    .newsletter-title{
-        font-size:10px;
-    }
-
-    .newsletter-text{
-        font-size:7px;
-    }
-
-    .newsletter-form{
-        width:42%;
-        height:36px;
-    }
-
-    .newsletter-form input{
-        width:0;
-        padding:0 8px;
-        font-size:8px;
-    }
-
-    .newsletter-form button{
-        width:62px;
-        font-size:8px;
-    }
-
-    .footer{
-        height:48px;
-        left:15px;
-        right:15px;
-        font-size:8px;
-    }
-
-    .socials{
-        gap:8px;
-    }
-
-    .social-link{
-        gap:3px;
-    }
-
-    .social-link svg{
-        width:15px;
-        height:15px;
-    }
-
-    .legal{
-        gap:8px;
-    }
-}
-
-@media(max-width:430px){
-
-    .hero-title{
-        font-size:42px;
-    }
-
-    .hero-description{
-        font-size:13px;
-    }
-
-    .left-services,
-    .side-nav{
-        width:calc(50% - 20px);
-    }
-
-    .service-description{
-        display:none;
-    }
-
-    .newsletter-form{
-        width:39%;
-    }
-
-    .newsletter-form button{
-        width:55px;
-    }
-
-    .legal{
-        display:none;
-    }
-
-    .socials{
-        width:100%;
-        justify-content:center;
-    }
 }
 
 </style>
@@ -1187,729 +799,379 @@ body{
 
 <body>
 
-<main class="page-one" id="home">
+<div id="page">
 
-<!-- =========================
-     HEADER
-========================= -->
+  <div class="bg-glow"></div>
+  <div class="bg-glow-two"></div>
 
-<header class="header">
+  <nav class="nav">
 
-    <a href="#home" class="brand">
+    <div class="brand">
 
-        <div class="logo-symbol">
+      <img
+        src="aksh-icon.PNG"
+        alt="AKSH">
 
-            <svg viewBox="0 0 100 110" fill="none"
-                 xmlns="http://www.w3.org/2000/svg">
-
-                <path
-                    d="M50 91
-                       C47 75 47 62 50 49
-                       M50 61
-                       C38 52 29 40 30 25
-                       C43 29 52 40 50 54
-                       M50 61
-                       C62 52 71 40 70 25
-                       C57 29 48 40 50 54
-                       M50 74
-                       C37 68 24 58 22 44
-                       C36 45 48 54 50 66
-                       M50 74
-                       C63 68 76 58 78 44
-                       C64 45 52 54 50 66
-                       M50 88
-                       C36 85 24 77 20 65
-                       C34 66 46 73 50 81
-                       M50 88
-                       C64 85 76 77 80 65
-                       C66 66 54 73 50 81"
-                    stroke="#102b4a"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-
-            </svg>
-
-        </div>
-
-        <div class="brand-name">
-            <div class="brand-title">AKSH</div>
-            <div class="brand-tagline">
-                A SAFE SPACE FOR EVERY MIND
-            </div>
-        </div>
-
-    </a>
-
-
-    <nav class="main-nav">
-
-        <a href="#home" class="active">Home</a>
-
-        <a href="#services">Services</a>
-
-        <a href="#specialists">Specialists</a>
-
-        <a href="#resources">Resources</a>
-
-        <a href="#about">About Us</a>
-
-    </nav>
-
-
-    <button class="help-button">
-
-        <svg class="help-icon"
-             viewBox="0 0 24 24"
-             fill="none"
-             stroke="currentColor"
-             stroke-width="1.6">
-
-            <circle cx="12" cy="8" r="3.5"/>
-
-            <path d="M5 20c0-3.8 2.9-6 7-6s7 2.2 7 6"/>
-
-        </svg>
-
-        Get Help Now
-
-        <span style="font-size:20px;">›</span>
-
-    </button>
-
-</header>
-
-
-<!-- =========================
-     HERO
-========================= -->
-
-<section class="hero">
-
-    <div class="hero-content">
-
-        <h1 class="hero-title">
-            A Safe Space<br>
-            for <em>Every</em> Mind
-        </h1>
-
-
-        <div class="title-decoration">
-
-            <span></span>
-
-            <svg viewBox="0 0 100 100"
-                 fill="none"
-                 xmlns="http://www.w3.org/2000/svg">
-
-                <path
-                    d="M50 82
-                       C47 66 48 55 50 44
-                       M50 55
-                       C37 49 29 39 30 27
-                       C41 30 49 39 50 50
-                       M50 55
-                       C63 49 71 39 70 27
-                       C59 30 51 39 50 50
-                       M50 68
-                       C39 63 29 55 26 45
-                       C38 47 47 53 50 62
-                       M50 68
-                       C61 63 71 55 74 45
-                       C62 47 53 53 50 62"
-                    stroke="#102744"
-                    stroke-width="4"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-
-            </svg>
-
-            <span></span>
-
-        </div>
-
-
-        <p class="hero-description">
-            Compassionate care. Professional support.<br>
-            Better mental wellness for a better you.
-        </p>
-
-
-        <div class="hero-buttons">
-
-            <a href="#contact" class="primary-button">
-
-                <svg width="20"
-                     height="20"
-                     viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="currentColor"
-                     stroke-width="1.7">
-
-                    <rect x="3" y="5" width="18" height="16" rx="2"/>
-                    <path d="M7 3v4M17 3v4M3 10h18"/>
-
-                </svg>
-
-                Book a Consultation
-
-                <span class="button-arrow">›</span>
-
-            </a>
-
-
-            <a href="#services" class="secondary-button">
-
-                <svg width="20"
-                     height="20"
-                     viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="currentColor"
-                     stroke-width="1.6">
-
-                    <rect x="3" y="4" width="18" height="15" rx="4"/>
-                    <path d="M8 19l-1 3 4-3"/>
-                    <circle cx="9" cy="11" r="1"/>
-                    <circle cx="12" cy="11" r="1"/>
-                    <circle cx="15" cy="11" r="1"/>
-
-                </svg>
-
-                Explore Our Services
-
-                <span class="button-arrow">›</span>
-
-            </a>
-
-        </div>
+      <div class="brand-name">
+        AKSH
+      </div>
 
     </div>
 
+    <div class="nav-right">
 
-    <!-- =========================
-         REVIEW
-    ========================= -->
+      <button
+        class="nav-link"
+        onclick="window.scrollTo({
+          top:document.body.scrollHeight,
+          behavior:'smooth'
+        })">
+        CONTACT
+      </button>
 
-    <div class="review-card">
-
-        <div class="avatars">
-
-            <div class="avatar"></div>
-            <div class="avatar"></div>
-            <div class="avatar"></div>
-            <div class="avatar"></div>
-
-        </div>
-
-
-        <div class="review-divider"></div>
-
-
-        <div class="review-stat">
-
-            <span class="review-number">
-                1.3K+
-            </span>
-
-            <span class="review-label">
-                Happy Clients
-            </span>
-
-        </div>
-
-
-        <div class="review-divider"
-             style="margin-left:18px;"></div>
-
-
-        <div class="review-stat">
-
-            <span class="review-number">
-                5.0
-            </span>
-
-            <span class="review-label">
-                Google Reviews
-            </span>
-
-        </div>
-
-
-        <div class="stars">
-            ★★★★★
-        </div>
+      <button
+        class="whatsapp"
+        onclick="openWhatsApp()">
+        ◔
+      </button>
 
     </div>
 
+  </nav>
 
-    <!-- =========================
-         LEFT SERVICE CARDS
-    ========================= -->
+  <main>
 
-    <div class="left-services" id="services">
+    <section class="hero">
 
+      <div class="eyebrow">
+        AKSH MENTAL WELLNESS
+      </div>
 
-        <div class="service-card">
+      <h1>
+        You don't have to
+        <span>carry it alone.</span>
+      </h1>
 
-            <div class="service-icon">
+      <p class="hero-sub">
+        A quiet place to pause, understand what you're feeling,
+        and take your next step — at your own pace.
+      </p>
 
-                <svg viewBox="0 0 24 24"
-                     fill="none"
-                     stroke-width="1.5">
+    </section>
 
-                    <circle cx="12" cy="7" r="3"/>
-                    <path d="M5 20c0-4 2.7-6.5 7-6.5s7 2.5 7 6.5"/>
+    <section class="emotion-section">
 
-                </svg>
+      <h2 class="question">
+        How are you feeling today?
+      </h2>
 
-            </div>
+      <p class="question-small">
+        There is no right answer. Start wherever feels right.
+      </p>
 
-            <div class="service-copy">
+      <div class="cards">
 
-                <div class="service-name">
-                    Individual Counselling
-                </div>
+        <article
+          class="card"
+          onclick="openEmotion(
+            'anxious',
+            'You are safe here.',
+            'Take a moment. You do not need to solve everything right now.'
+          )">
 
-                <div class="service-description">
-                    Personalized care for you
-                </div>
+          <div class="card-number">
+            01 / RIGHT NOW
+          </div>
 
-            </div>
+          <div class="card-icon">
+            ◌
+          </div>
 
-            <div class="service-arrow">›</div>
+          <h3>
+            Anxious
+          </h3>
 
-        </div>
+          <p>
+            Your mind feels restless, worried,
+            or unable to slow down.
+          </p>
 
+          <div class="card-arrow">
+            →
+          </div>
 
-        <div class="service-card">
+        </article>
 
-            <div class="service-icon">
 
-                <svg viewBox="0 0 24 24"
-                     fill="none"
-                     stroke-width="1.5">
+        <article
+          class="card"
+          onclick="openEmotion(
+            'overwhelmed',
+            'One thing at a time.',
+            'You do not have to carry everything at once. Let us make some space.'
+          )">
 
-                    <circle cx="9" cy="8" r="3"/>
-                    <path d="M3.5 19c.5-3.3 2.3-5 5.5-5s5 1.7 5.5 5"/>
-                    <path d="M16 6.5c2.3.2 4 1.6 4.5 4"/>
-                    <path d="M16 14c2.3.3 3.7 1.8 4 4"/>
+          <div class="card-number">
+            02 / RIGHT NOW
+          </div>
 
-                </svg>
+          <div class="card-icon">
+            ∿
+          </div>
 
-            </div>
+          <h3>
+            Overwhelmed
+          </h3>
 
-            <div class="service-copy">
+          <p>
+            Everything feels like too much
+            and you need a little breathing room.
+          </p>
 
-                <div class="service-name">
-                    Child Psychology
-                </div>
+          <div class="card-arrow">
+            →
+          </div>
 
-                <div class="service-description">
-                    Support for young minds
-                </div>
+        </article>
 
-            </div>
 
-            <div class="service-arrow">›</div>
+        <article
+          class="card"
+          onclick="openEmotion(
+            'talk',
+            'You can talk here.',
+            'Sometimes being heard without judgement is the first step.'
+          )">
 
-        </div>
+          <div class="card-number">
+            03 / RIGHT NOW
+          </div>
 
+          <div class="card-icon">
+            ♡
+          </div>
 
-        <div class="service-card">
+          <h3>
+            Need someone to talk
+          </h3>
 
-            <div class="service-icon">
+          <p>
+            You simply want someone to listen,
+            understand, and be present.
+          </p>
 
-                <svg viewBox="0 0 24 24"
-                     fill="none"
-                     stroke-width="1.5">
+          <div class="card-arrow">
+            →
+          </div>
 
-                    <path d="M12 20s-7-4.5-9-9c-1.4-3.5 1-6 4-6 2 0 4 1.5 5 3 1-1.5 3-3 5-3 3 0 5.4 2.5 4 6-2 4.5-9 9-9 9z"/>
+        </article>
 
-                </svg>
 
-            </div>
+        <article
+          class="card"
+          onclick="openEmotion(
+            'exploring',
+            'Welcome to AKSH.',
+            'You can simply explore. There is no pressure and no expectation.'
+          )">
 
-            <div class="service-copy">
+          <div class="card-number">
+            04 / RIGHT NOW
+          </div>
 
-                <div class="service-name">
-                    Relationship Support
-                </div>
+          <div class="card-icon">
+            ✦
+          </div>
 
-                <div class="service-description">
-                    Stronger connections
-                </div>
+          <h3>
+            Just exploring
+          </h3>
 
-            </div>
+          <p>
+            You are curious about your mind,
+            emotions, or your own growth.
+          </p>
 
-            <div class="service-arrow">›</div>
+          <div class="card-arrow">
+            →
+          </div>
 
-        </div>
+        </article>
 
+      </div>
 
-        <div class="service-card">
+    </section>
 
-            <div class="service-icon">
+    <section class="trust">
 
-                <svg viewBox="0 0 24 24"
-                     fill="none"
-                     stroke-width="1.5">
+      <div class="trust-line"></div>
 
-                    <path d="M9 4c-2 0-3 1.5-3 3.5S7 11 5.5 12 4 14.5 4 16s1 3 3 3"/>
-                    <path d="M15 4c2 0 3 1.5 3 3.5S17 11 18.5 12 20 14.5 20 16s-1 3-3 3"/>
-                    <path d="M9 8h6M8 12h8M9 16h6"/>
+      <p>
+        Professional • Compassionate • Confidential
+      </p>
 
-                </svg>
+    </section>
 
-            </div>
+  </main>
 
-            <div class="service-copy">
 
-                <div class="service-name">
-                    Stress & Anxiety
-                </div>
+  <button
+    class="ai"
+    onclick="openAI()">
 
-                <div class="service-description">
-                    Tools to manage better
-                </div>
+    <div class="ai-orb">
+      ✦
+    </div>
 
-            </div>
+    <div class="ai-text">
+      AKSH AI
+    </div>
 
-            <div class="service-arrow">›</div>
+  </button>
 
-        </div>
 
+  <div
+    class="modal"
+    id="modal"
+    onclick="closeOutside(event)">
 
-        <div class="service-card">
+    <div class="modal-box">
 
-            <div class="service-icon">
+      <div
+        class="modal-icon"
+        id="modalIcon">
+        ✦
+      </div>
 
-                <svg viewBox="0 0 24 24"
-                     fill="none"
-                     stroke-width="1.5">
+      <h2 id="modalTitle">
+        You are safe here.
+      </h2>
 
-                    <path d="M12 3C9 7 5 8 5 13a7 7 0 0014 0c0-5-4-6-7-10z"/>
-                    <path d="M8 16c1 1.5 2.5 2.3 4 2.3s3-.8 4-2.3"/>
+      <p id="modalText">
+        Take a moment.
+      </p>
 
-                </svg>
+      <div class="modal-actions">
 
-            </div>
+        <button
+          class="modal-btn secondary"
+          onclick="closeModal()">
+          Stay Here
+        </button>
 
-            <div class="service-copy">
+        <button
+          class="modal-btn primary"
+          onclick="bookSession()">
+          Book A Session
+        </button>
 
-                <div class="service-name">
-                    Emotional Wellness
-                </div>
-
-                <div class="service-description">
-                    Nurturing inner balance
-                </div>
-
-            </div>
-
-            <div class="service-arrow">›</div>
-
-        </div>
+      </div>
 
     </div>
 
-
-    <!-- =========================
-         RIGHT SIDE NAV
-    ========================= -->
-
-    <nav class="side-nav">
-
-        <a href="#home">
-
-            <svg class="side-nav-icon"
-                 viewBox="0 0 24 24"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="1.6">
-
-                <path d="M3 11l9-8 9 8"/>
-                <path d="M5 10v10h14V10"/>
-                <path d="M9 20v-6h6v6"/>
-
-            </svg>
-
-            <span>Home</span>
-
-            <span class="side-nav-arrow">›</span>
-
-        </a>
-
-
-        <a href="#services">
-
-            <svg class="side-nav-icon"
-                 viewBox="0 0 24 24"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="1.5">
-
-                <rect x="4" y="4" width="6" height="6" rx="1"/>
-                <rect x="14" y="4" width="6" height="6" rx="1"/>
-                <rect x="4" y="14" width="6" height="6" rx="1"/>
-                <rect x="14" y="14" width="6" height="6" rx="1"/>
-
-            </svg>
-
-            <span>Services</span>
-
-            <span class="side-nav-arrow">›</span>
-
-        </a>
-
-
-        <a href="#about">
-
-            <svg class="side-nav-icon"
-                 viewBox="0 0 24 24"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="1.6">
-
-                <circle cx="12" cy="7" r="3.5"/>
-                <path d="M5 20c0-3.7 2.8-6 7-6s7 2.3 7 6"/>
-
-            </svg>
-
-            <span>About Us</span>
-
-            <span class="side-nav-arrow">›</span>
-
-        </a>
-
-
-        <a href="#resources">
-
-            <svg class="side-nav-icon"
-                 viewBox="0 0 24 24"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="1.5">
-
-                <path d="M4 5.5A2.5 2.5 0 016.5 3H20v16H6.5A2.5 2.5 0 014 16.5z"/>
-                <path d="M4 5.5v11"/>
-                <path d="M8 7h8M8 10h8M8 13h6"/>
-
-            </svg>
-
-            <span>Resources</span>
-
-            <span class="side-nav-arrow">›</span>
-
-        </a>
-
-
-        <a href="#contact">
-
-            <svg class="side-nav-icon"
-                 viewBox="0 0 24 24"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="1.5">
-
-                <path d="M6.5 4.5l3 2-2 3.5c1.2 2.5 2.5 3.8 5 5l3.5-2 2 3c-1 2-2.2 3-4 3C9 19 5 15 4 9.5c-.3-1.8.5-3.7 2.5-5z"/>
-
-            </svg>
-
-            <span>Contact Us</span>
-
-            <span class="side-nav-arrow">›</span>
-
-        </a>
-
-    </nav>
-
-
-    <!-- =========================
-         NEWSLETTER
-    ========================= -->
-
-    <div class="newsletter">
-
-        <div class="mail-circle">
-
-            <svg viewBox="0 0 24 24"
-                 fill="none"
-                 stroke-width="1.5">
-
-                <rect x="3" y="5" width="18" height="14" rx="2"/>
-                <path d="M4 7l8 6 8-6"/>
-
-            </svg>
-
-        </div>
-
-
-        <div class="newsletter-copy">
-
-            <div class="newsletter-title">
-                Stay Connected with AKSH
-            </div>
-
-            <div class="newsletter-text">
-                Wellness insights, tips, and updates<br>
-                delivered to your inbox.
-            </div>
-
-        </div>
-
-
-        <form class="newsletter-form"
-              onsubmit="event.preventDefault();">
-
-            <input
-                type="email"
-                placeholder="Enter your email"
-                aria-label="Email"
-            >
-
-            <button type="submit">
-                Subscribe
-            </button>
-
-        </form>
-
-    </div>
-
-
-    <!-- =========================
-         FOOTER
-    ========================= -->
-
-    <footer class="footer">
-
-        <div class="socials">
-
-            <a href="#" class="social-link">
-
-                <svg viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="currentColor"
-                     stroke-width="1.7">
-
-                    <rect x="3" y="3" width="18" height="18" rx="5"/>
-                    <circle cx="12" cy="12" r="4"/>
-                    <circle cx="17.5" cy="6.5" r="1"/>
-
-                </svg>
-
-                Instagram
-
-            </a>
-
-
-            <a href="#" class="social-link">
-
-                <svg viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="currentColor"
-                     stroke-width="1.7">
-
-                    <rect x="3" y="3" width="18" height="18" rx="2"/>
-                    <path d="M7 10v7M7 7v.01M11 17v-4a3 3 0 016 0v4M11 10v7"/>
-
-                </svg>
-
-                LinkedIn
-
-            </a>
-
-
-            <a href="#" class="social-link">
-
-                <svg viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="currentColor"
-                     stroke-width="1.7">
-
-                    <rect x="3" y="5" width="18" height="14" rx="4"/>
-                    <path d="M10 9l5 3-5 3z"/>
-
-                </svg>
-
-                YouTube
-
-            </a>
-
-        </div>
-
-
-        <div class="copyright">
-            © 2026 AKSH Mental Wellness. All rights reserved.
-        </div>
-
-
-        <div class="legal">
-
-            <a href="#">
-                Privacy Policy
-            </a>
-
-            <span>|</span>
-
-            <a href="#">
-                Terms & Conditions
-            </a>
-
-        </div>
-
-    </footer>
-
-</section>
+  </div>
 
 
 <script>
 
-/* ==========================================
-   SMALL INTERACTIONS
-========================================== */
+const modal =
+document.getElementById("modal");
 
-document.querySelectorAll(".service-card").forEach(card => {
+const modalTitle =
+document.getElementById("modalTitle");
 
-    card.addEventListener("click", () => {
+const modalText =
+document.getElementById("modalText");
 
-        card.style.transform = "translateX(5px)";
-
-        setTimeout(() => {
-            card.style.transform = "";
-        }, 220);
-
-    });
-
-});
+const modalIcon =
+document.getElementById("modalIcon");
 
 
-/* Smooth navigation */
+function openEmotion(
+  type,
+  title,
+  text
+){
 
-document.querySelectorAll('a[href^="#"]').forEach(link => {
+  const icons = {
 
-    link.addEventListener("click", function(e){
+    anxious:"◌",
 
-        const target = document.querySelector(
-            this.getAttribute("href")
-        );
+    overwhelmed:"∿",
 
-        if(target){
+    talk:"♡",
 
-            e.preventDefault();
+    exploring:"✦"
 
-            target.scrollIntoView({
-                behavior:"smooth"
-            });
+  };
 
-        }
+  modalIcon.textContent =
+    icons[type] || "✦";
 
-    });
+  modalTitle.textContent =
+    title;
 
-});
+  modalText.textContent =
+    text;
+
+  modal.classList.add("active");
+
+}
+
+
+function closeModal(){
+
+  modal.classList.remove("active");
+
+}
+
+
+function closeOutside(event){
+
+  if(event.target === modal){
+
+    closeModal();
+
+  }
+
+}
+
+
+function bookSession(){
+
+  window.location.href =
+    "booking.html";
+
+}
+
+
+function openAI(){
+
+  modalIcon.textContent = "✦";
+
+  modalTitle.textContent =
+    "AKSH AI";
+
+  modalText.textContent =
+    "I'm here to listen. You can talk to me, ask a question, or tell me what is on your mind.";
+
+  modal.classList.add("active");
+
+}
+
+
+function openWhatsApp(){
+
+  window.open(
+    "https://wa.me/",
+    "_blank"
+  );
+
+}
 
 </script>
+
+</div>
 
 </body>
 </html>
