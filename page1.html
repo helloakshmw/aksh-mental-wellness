@@ -4,943 +4,1320 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-<title>AKSH — Mental Wellness</title>
+<title>AKSH Mental Wellness</title>
 
 <style>
 
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 html{
-  scroll-behavior:smooth;
+scroll-behavior:smooth;
 }
 
 body{
-  background:#f7f5f2;
-  color:#241d29;
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",
-  "Helvetica Neue",Arial,sans-serif;
-  overflow-x:hidden;
+background:#f7f8f5;
+color:#182b2b;
+font-family:
+-apple-system,
+BlinkMacSystemFont,
+"SF Pro Display",
+"Helvetica Neue",
+Arial,
+sans-serif;
+overflow-x:hidden;
 }
 
 :root{
-  --ink:#241d29;
-  --purple:#70567f;
-  --muted:#756c79;
-  --cream:#f7f5f2;
-  --soft:#eee8ef;
-  --gold:#c9ad76;
-  --white:#fff;
+--green:#173c35;
+--green2:#2f6658;
+--lightgreen:#edf5ef;
+--gold:#c6a15b;
+--gold2:#dfc78d;
+--navy:#142b32;
+--cream:#f7f8f5;
+--text:#1b292b;
+--muted:#697576;
+--white:#ffffff;
 }
 
-.page{
-  position:relative;
-  overflow:hidden;
-}
-
-.glow{
-  position:absolute;
-  width:700px;
-  height:700px;
-  border-radius:50%;
-  pointer-events:none;
-  filter:blur(2px);
-}
-
-.glow.one{
-  top:-380px;
-  right:-250px;
-  background:radial-gradient(
-    circle,
-    rgba(175,145,193,.25),
-    transparent 68%
-  );
-}
-
-.glow.two{
-  top:650px;
-  left:-400px;
-  background:radial-gradient(
-    circle,
-    rgba(210,184,139,.16),
-    transparent 68%
-  );
-}
-
-/* NAV */
+/* =========================
+   NAVIGATION
+========================= */
 
 .nav{
-  position:relative;
-  z-index:20;
+height:78px;
+padding:0 clamp(20px,4vw,65px);
 
-  height:88px;
+display:flex;
+align-items:center;
+justify-content:space-between;
 
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+background:rgba(247,248,245,.94);
 
-  padding:0 clamp(20px,5vw,70px);
+position:sticky;
+top:0;
+z-index:100;
+
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+
+border-bottom:1px solid rgba(23,60,53,.07);
 }
 
-.brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
+.logo{
+display:flex;
+align-items:center;
+gap:12px;
 }
 
-.brand img{
-  width:40px;
-  height:40px;
-  object-fit:contain;
+.logo img{
+width:40px;
+height:40px;
+object-fit:contain;
 }
 
-.brand span{
-  font-size:12px;
-  letter-spacing:.3em;
-  font-weight:500;
+.logo-text{
+font-size:13px;
+font-weight:600;
+letter-spacing:.28em;
+color:var(--green);
 }
 
-.navlinks{
-  display:flex;
-  align-items:center;
-  gap:30px;
+.nav-right{
+display:flex;
+align-items:center;
+gap:25px;
 }
 
-.navlinks button{
-  border:0;
-  background:none;
-  color:var(--ink);
-  font-size:10px;
-  letter-spacing:.14em;
-  cursor:pointer;
+.nav-right button{
+border:0;
+background:none;
+font-size:9px;
+letter-spacing:.15em;
+color:var(--green);
+cursor:pointer;
 }
 
-.book{
-  padding:12px 21px!important;
-  border-radius:999px!important;
-  background:var(--ink)!important;
-  color:white!important;
+.nav-book{
+background:var(--green)!important;
+color:white!important;
+padding:12px 20px;
+border-radius:30px;
 }
 
-/* HERO */
+/* =========================
+   MAIN REFERENCE SECTION
+========================= */
 
-.hero{
-  min-height:calc(100vh - 88px);
+.about{
+min-height:calc(100vh - 78px);
 
-  display:flex;
-  align-items:center;
+display:grid;
+grid-template-columns:48% 52%;
 
-  padding:
-    80px
-    clamp(22px,7vw,110px)
-    120px;
+background:#fff;
 
-  position:relative;
+position:relative;
+overflow:hidden;
 }
 
-.hero-content{
-  width:min(1100px,100%);
-  margin:auto;
+/* LEFT PHOTO SIDE */
+
+.visual{
+position:relative;
+min-height:720px;
+overflow:hidden;
+
+background:
+linear-gradient(
+135deg,
+#b9c9c0,
+#758d82
+);
 }
 
-.eyebrow{
-  font-size:10px;
-  letter-spacing:.32em;
-  color:#927e9b;
-  margin-bottom:25px;
+.visual::after{
+content:"";
+
+position:absolute;
+inset:0;
+
+background:
+linear-gradient(
+90deg,
+rgba(11,39,34,.08),
+rgba(11,39,34,.05)
+);
+
+pointer-events:none;
 }
 
-.hero h1{
-  max-width:1050px;
+/*
+PHOTO AREA
 
-  font-size:clamp(52px,8.7vw,112px);
+The exact reference composition uses a
+counselling scene. If the final scene image
+is uploaded later, it can sit here.
+*/
 
-  line-height:.94;
+.scene{
+position:absolute;
+inset:0;
 
-  letter-spacing:-.065em;
-
-  font-weight:300;
+background:
+radial-gradient(
+circle at 30% 25%,
+rgba(255,255,255,.4),
+transparent 30%
+),
+linear-gradient(
+135deg,
+#d8dfd8,
+#aabdb1 45%,
+#6d857b
+);
 }
 
-.hero h1 span{
-  color:var(--purple);
-  font-weight:400;
+.scene::before{
+content:"";
+
+position:absolute;
+
+width:75%;
+height:65%;
+
+left:10%;
+top:15%;
+
+border-radius:40px 40px 100px 40px;
+
+background:
+linear-gradient(
+145deg,
+rgba(255,255,255,.38),
+rgba(255,255,255,.05)
+);
+
+box-shadow:
+0 40px 100px rgba(15,48,41,.16);
+
+transform:rotate(-2deg);
 }
 
-.hero-bottom{
-  margin-top:48px;
+/* Decorative abstract furniture/people shapes */
 
-  display:flex;
-  align-items:flex-end;
-  justify-content:space-between;
+.scene-person{
+position:absolute;
 
-  gap:50px;
+width:190px;
+height:310px;
+
+left:27%;
+bottom:15%;
+
+border-radius:100px 100px 35px 35px;
+
+background:
+linear-gradient(
+160deg,
+#f1d1b8,
+#d79e7b
+);
+
+box-shadow:
+25px 20px 80px rgba(31,52,47,.15);
 }
 
-.hero-description{
-  max-width:570px;
+.scene-person::before{
+content:"";
 
-  font-size:16px;
-  line-height:1.8;
-  font-weight:300;
-  color:var(--muted);
+position:absolute;
+
+width:115px;
+height:115px;
+
+border-radius:50%;
+
+left:37px;
+top:-65px;
+
+background:#b96e52;
 }
 
-.hero-cta{
-  flex-shrink:0;
+.scene-student{
+position:absolute;
 
-  display:inline-flex;
-  align-items:center;
-  gap:15px;
+width:150px;
+height:250px;
 
-  padding:16px 24px;
+right:17%;
+bottom:10%;
 
-  border-radius:999px;
+border-radius:80px 80px 20px 20px;
 
-  background:var(--ink);
-  color:white;
+background:
+linear-gradient(
+160deg,
+#263d49,
+#152a35
+);
 
-  text-decoration:none;
-
-  font-size:10px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-
-  box-shadow:0 20px 50px rgba(36,29,41,.15);
-
-  transition:.4s ease;
+box-shadow:
+-20px 25px 80px rgba(15,34,40,.22);
 }
 
-.hero-cta:hover{
-  transform:translateY(-4px);
-  box-shadow:0 25px 65px rgba(36,29,41,.22);
+.scene-student::before{
+content:"";
+
+position:absolute;
+
+width:82px;
+height:82px;
+
+border-radius:50%;
+
+left:34px;
+top:-48px;
+
+background:#b97b5c;
 }
 
-/* INTRO */
+.scene-table{
+position:absolute;
 
-.intro{
-  padding:
-    120px
-    clamp(22px,8vw,130px);
+width:260px;
+height:100px;
 
-  background:#eee8ef;
+right:2%;
+bottom:4%;
 
-  position:relative;
+border-radius:50%;
+
+background:#f0eee6;
+
+box-shadow:
+0 30px 60px rgba(30,48,44,.2);
 }
 
-.intro-inner{
-  max-width:1250px;
-  margin:auto;
+/* GOLD CURVED BORDER */
 
-  display:grid;
-  grid-template-columns:1fr 1.5fr;
-  gap:90px;
+.visual::before{
+content:"";
+
+position:absolute;
+
+right:-95px;
+top:-10%;
+height:120%;
+width:190px;
+
+border-left:3px solid var(--gold);
+
+border-radius:50%;
+
+z-index:4;
+
+transform:rotate(4deg);
 }
 
-.section-label{
-  font-size:10px;
-  letter-spacing:.25em;
-  color:#897891;
-  text-transform:uppercase;
+/* BRAND ON PHOTO */
+
+.photo-brand{
+position:absolute;
+
+top:35px;
+left:42px;
+
+z-index:10;
+
+color:white;
+
+text-shadow:
+0 3px 20px rgba(0,0,0,.28);
 }
 
-.intro h2{
-  margin-top:20px;
-
-  font-size:clamp(34px,5vw,62px);
-  line-height:1.05;
-  font-weight:300;
-  letter-spacing:-.045em;
+.photo-brand-name{
+font-size:28px;
+letter-spacing:.32em;
+font-weight:600;
 }
 
-.intro-text{
-  font-size:19px;
-  line-height:1.8;
-  font-weight:300;
-  color:#625966;
+.photo-brand-sub{
+font-size:9px;
+letter-spacing:.3em;
+margin-top:5px;
 }
 
-.intro-text strong{
-  color:var(--ink);
-  font-weight:500;
-}
-
-/* EMOTIONS */
-
-.emotions{
-  padding:
-    130px
-    clamp(18px,5vw,70px)
-    150px;
-
-  position:relative;
-}
-
-.emotion-heading{
-  max-width:1250px;
-  margin:0 auto 55px;
-}
-
-.emotion-heading h2{
-  font-size:clamp(40px,6vw,76px);
-  font-weight:300;
-  letter-spacing:-.055em;
-  line-height:.98;
-}
-
-.emotion-heading p{
-  margin-top:18px;
-  font-size:14px;
-  color:var(--muted);
-}
-
-.cards{
-  max-width:1250px;
-  margin:auto;
-
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:14px;
-}
-
-.card{
-  min-height:360px;
-
-  position:relative;
-
-  padding:30px;
-
-  border-radius:32px;
-
-  overflow:hidden;
-
-  border:1px solid rgba(60,45,65,.08);
-
-  background:rgba(255,255,255,.7);
-
-  box-shadow:0 25px 70px rgba(40,30,45,.06);
-
-  cursor:pointer;
-
-  transition:
-    transform .55s cubic-bezier(.2,.8,.2,1),
-    box-shadow .55s ease;
-}
-
-.card:hover{
-  transform:translateY(-12px);
-  box-shadow:0 35px 90px rgba(40,30,45,.13);
-}
-
-.card::after{
-  content:"";
-
-  position:absolute;
-
-  width:240px;
-  height:240px;
-
-  border-radius:50%;
-
-  right:-110px;
-  top:-100px;
-
-  transition:.8s ease;
-}
-
-.card:hover::after{
-  transform:scale(1.5);
-}
-
-.card:nth-child(1)::after{
-  background:radial-gradient(
-    circle,
-    rgba(116,148,184,.34),
-    transparent 68%
-  );
-}
-
-.card:nth-child(2)::after{
-  background:radial-gradient(
-    circle,
-    rgba(205,157,115,.34),
-    transparent 68%
-  );
-}
-
-.card:nth-child(3)::after{
-  background:radial-gradient(
-    circle,
-    rgba(119,157,136,.34),
-    transparent 68%
-  );
-}
-
-.card:nth-child(4)::after{
-  background:radial-gradient(
-    circle,
-    rgba(163,135,186,.34),
-    transparent 68%
-  );
-}
-
-.card-number{
-  position:relative;
-  z-index:2;
-
-  font-size:9px;
-  letter-spacing:.2em;
-
-  color:#a096a2;
-}
-
-.card-symbol{
-  position:relative;
-  z-index:2;
-
-  margin-top:85px;
-
-  width:60px;
-  height:60px;
-
-  border-radius:50%;
-
-  background:rgba(255,255,255,.75);
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  font-size:23px;
-
-  box-shadow:0 12px 30px rgba(0,0,0,.06);
-
-  transition:.55s ease;
-}
-
-.card:hover .card-symbol{
-  transform:rotate(-10deg) scale(1.12);
-}
-
-.card h3{
-  position:relative;
-  z-index:2;
-
-  margin-top:25px;
-
-  font-size:22px;
-  font-weight:400;
-  letter-spacing:-.025em;
-}
-
-.card p{
-  position:relative;
-  z-index:2;
-
-  margin-top:10px;
-
-  max-width:235px;
-
-  font-size:12px;
-  line-height:1.7;
-
-  color:#766d79;
-}
-
-.card-action{
-  position:absolute;
-  right:25px;
-  bottom:25px;
-
-  width:38px;
-  height:38px;
-
-  border-radius:50%;
-
-  background:white;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  font-size:15px;
-
-  transition:.4s ease;
-}
-
-.card:hover .card-action{
-  transform:translate(4px,-4px);
+.photo-brand-tag{
+font-size:8px;
+letter-spacing:.14em;
+margin-top:9px;
 }
 
 /* FOUNDER */
 
 .founder{
-  padding:
-    130px
-    clamp(22px,8vw,120px);
+position:absolute;
 
-  background:#241d29;
-  color:white;
-}
+left:42px;
+bottom:40px;
 
-.founder-inner{
-  max-width:1250px;
-  margin:auto;
+z-index:10;
 
-  display:grid;
-  grid-template-columns:.9fr 1.1fr;
-  gap:100px;
+display:flex;
+align-items:center;
+gap:15px;
 
-  align-items:center;
+background:rgba(255,255,255,.9);
+
+padding:10px 18px 10px 10px;
+
+border-radius:60px;
+
+box-shadow:
+0 18px 50px rgba(22,48,42,.16);
+
+backdrop-filter:blur(15px);
 }
 
 .founder-photo{
-  width:100%;
-  max-width:500px;
+width:62px;
+height:62px;
 
-  aspect-ratio:4/5;
+border-radius:50%;
 
-  border-radius:35px;
+border:2px solid var(--gold);
 
-  overflow:hidden;
+overflow:hidden;
 
-  background:#302738;
+background:
+linear-gradient(
+145deg,
+#e8d3c7,
+#c59b86
+);
 
-  box-shadow:0 35px 100px rgba(0,0,0,.28);
+display:flex;
+align-items:center;
+justify-content:center;
 }
 
 .founder-photo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+width:100%;
+height:100%;
+object-fit:cover;
 }
 
-.founder-copy .section-label{
-  color:#c9ad76;
-}
-
-.founder-copy h2{
-  margin-top:20px;
-
-  font-size:clamp(42px,5vw,70px);
-
-  font-weight:300;
-
-  letter-spacing:-.05em;
-
-  line-height:1;
-}
-
-.founder-copy h2 span{
-  display:block;
-  color:#cdb8d7;
-}
-
-.founder-copy p{
-  max-width:600px;
-
-  margin-top:30px;
-
-  font-size:15px;
-  line-height:1.9;
-
-  color:#c9c1cc;
-
-  font-weight:300;
+.founder-initial{
+font-size:22px;
+font-weight:500;
+color:var(--green);
 }
 
 .founder-name{
-  margin-top:38px;
-
-  font-size:12px;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-
-  color:white;
+font-size:13px;
+font-weight:600;
+color:#172b2c;
 }
 
 .founder-role{
-  margin-top:8px;
-
-  font-size:11px;
-
-  color:#bdaac5;
+font-size:9px;
+color:#647170;
+margin-top:4px;
 }
 
-/* SERVICES */
-
-.services{
-  padding:
-    130px
-    clamp(22px,8vw,120px);
-
-  background:#f7f5f2;
+.founder-brand{
+font-size:8px;
+color:var(--green2);
+margin-top:3px;
 }
 
-.services-inner{
-  max-width:1250px;
-  margin:auto;
+/* =========================
+   RIGHT PANEL
+========================= */
+
+.content{
+padding:
+clamp(45px,6vw,80px)
+clamp(35px,6vw,90px)
+70px
+clamp(35px,6vw,90px);
+
+position:relative;
+
+background:#fff;
 }
 
-.services-title{
-  display:flex;
-  align-items:flex-end;
-  justify-content:space-between;
-  gap:30px;
+.dots{
+position:absolute;
 
-  margin-bottom:55px;
+right:45px;
+top:38px;
+
+width:60px;
+height:60px;
+
+background-image:
+radial-gradient(
+var(--gold) 1.5px,
+transparent 1.5px
+);
+
+background-size:12px 12px;
+
+opacity:.55;
 }
 
-.services-title h2{
-  font-size:clamp(42px,6vw,78px);
-  font-weight:300;
-  letter-spacing:-.055em;
+.label{
+font-size:9px;
+letter-spacing:.25em;
+color:var(--green2);
+font-weight:600;
+text-transform:uppercase;
 }
 
-.services-title p{
-  max-width:330px;
-  font-size:13px;
-  line-height:1.7;
-  color:var(--muted);
+.content h1{
+font-size:
+clamp(48px,6vw,78px);
+
+line-height:.95;
+
+letter-spacing:-.055em;
+
+font-weight:600;
+
+color:#162a2d;
+
+margin-top:17px;
 }
 
-.service-list{
-  border-top:1px solid rgba(36,29,41,.13);
+.gold-line{
+width:55px;
+height:3px;
+
+background:var(--gold);
+
+margin-top:22px;
+margin-bottom:23px;
 }
 
-.service{
-  display:grid;
-  grid-template-columns:70px 1fr 40px;
-  align-items:center;
+.lead{
+font-size:14px;
+line-height:1.75;
 
-  padding:28px 0;
+max-width:610px;
 
-  border-bottom:1px solid rgba(36,29,41,.13);
-
-  transition:.35s ease;
+color:#687576;
 }
 
-.service:hover{
-  padding-left:15px;
-  padding-right:15px;
-  background:rgba(238,232,239,.45);
+/* =========================
+   REFERENCE INFO CARDS
+========================= */
+
+.info-grid{
+display:grid;
+
+grid-template-columns:
+repeat(2,1fr);
+
+gap:13px;
+
+margin-top:38px;
 }
 
-.service-number{
-  font-size:10px;
-  color:#9b909e;
-  letter-spacing:.15em;
+.info-card{
+padding:20px;
+
+border-radius:19px;
+
+background:#fff;
+
+border:1px solid rgba(24,43,43,.06);
+
+box-shadow:
+0 14px 38px rgba(21,44,39,.07);
+
+position:relative;
+
+transition:
+transform .4s ease,
+box-shadow .4s ease;
 }
 
-.service h3{
-  font-size:19px;
-  font-weight:400;
+.info-card:hover{
+transform:translateY(-5px);
+
+box-shadow:
+0 22px 55px rgba(21,44,39,.13);
 }
 
-.service-arrow{
-  text-align:right;
-  font-size:18px;
+.info-top{
+display:flex;
+align-items:center;
+gap:12px;
 }
 
-/* FINAL */
+.info-icon{
+width:40px;
+height:40px;
 
-.final{
-  min-height:75vh;
+border-radius:50%;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+background:var(--lightgreen);
 
-  text-align:center;
+display:flex;
+align-items:center;
+justify-content:center;
 
-  padding:100px 25px;
+color:var(--green2);
 
-  background:
-    radial-gradient(
-      circle at 50% 20%,
-      rgba(177,147,194,.2),
-      transparent 45%
-    ),
-    #eee8ef;
+font-size:17px;
 }
 
-.final-inner{
-  max-width:850px;
+.info-title{
+font-size:15px;
+font-weight:600;
+color:#1c2b2c;
 }
 
-.final .section-label{
-  margin-bottom:25px;
+.info-gold{
+width:28px;
+height:2px;
+
+background:var(--gold);
+
+margin-top:11px;
 }
 
-.final h2{
-  font-size:clamp(45px,7vw,88px);
-  font-weight:300;
-  letter-spacing:-.06em;
-  line-height:.98;
+.info-card p{
+font-size:11px;
+line-height:1.65;
+
+color:#717b7b;
+
+margin-top:12px;
 }
 
-.final h2 span{
-  color:var(--purple);
+.info-card ul{
+list-style:none;
+margin-top:11px;
 }
 
-.final p{
-  margin:30px auto 38px;
-
-  max-width:570px;
-
-  font-size:15px;
-  line-height:1.8;
-
-  color:var(--muted);
+.info-card li{
+font-size:10px;
+line-height:1.8;
+color:#596565;
 }
 
-.final-button{
-  display:inline-flex;
+.info-card li::before{
+content:"";
+display:inline-block;
 
-  padding:17px 30px;
+width:5px;
+height:5px;
 
-  border-radius:999px;
+border-radius:50%;
 
-  background:var(--ink);
-  color:white;
+background:var(--green2);
 
-  text-decoration:none;
+margin-right:7px;
 
-  font-size:10px;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-
-  box-shadow:0 20px 50px rgba(36,29,41,.15);
+vertical-align:middle;
 }
 
-/* FOOTER */
+/* =========================
+   EMOTION SECTION
+========================= */
+
+.emotions{
+padding:
+100px
+clamp(20px,5vw,75px)
+110px;
+
+background:
+linear-gradient(
+180deg,
+#f4f7f3,
+#eef3ee
+);
+
+position:relative;
+}
+
+.emotion-head{
+max-width:1250px;
+margin:auto;
+
+display:flex;
+align-items:flex-end;
+justify-content:space-between;
+
+gap:40px;
+}
+
+.emotion-label{
+font-size:9px;
+letter-spacing:.25em;
+color:var(--green2);
+font-weight:600;
+}
+
+.emotion-head h2{
+font-size:
+clamp(40px,6vw,72px);
+
+line-height:.98;
+
+font-weight:500;
+
+letter-spacing:-.055em;
+
+margin-top:14px;
+
+color:#17302e;
+}
+
+.emotion-description{
+max-width:330px;
+
+font-size:12px;
+line-height:1.7;
+
+color:#687674;
+}
+
+.emotion-grid{
+max-width:1250px;
+
+margin:48px auto 0;
+
+display:grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+gap:15px;
+}
+
+.emotion-card{
+position:relative;
+
+min-height:300px;
+
+padding:25px;
+
+border-radius:26px;
+
+overflow:hidden;
+
+background:#fff;
+
+border:1px solid rgba(23,60,53,.07);
+
+box-shadow:
+0 20px 55px rgba(24,56,48,.07);
+
+cursor:pointer;
+
+transition:
+transform .55s cubic-bezier(.2,.8,.2,1),
+box-shadow .55s ease;
+}
+
+.emotion-card:hover{
+transform:
+translateY(-10px);
+
+box-shadow:
+0 30px 75px rgba(24,56,48,.14);
+}
+
+.emotion-card::after{
+content:"";
+
+position:absolute;
+
+width:190px;
+height:190px;
+
+border-radius:50%;
+
+right:-90px;
+top:-80px;
+
+opacity:.5;
+
+transition:.7s ease;
+}
+
+.emotion-card:hover::after{
+transform:scale(1.45);
+}
+
+.emotion-card:nth-child(1)::after{
+background:
+radial-gradient(
+circle,
+rgba(125,157,181,.35),
+transparent 70%
+);
+}
+
+.emotion-card:nth-child(2)::after{
+background:
+radial-gradient(
+circle,
+rgba(211,168,121,.35),
+transparent 70%
+);
+}
+
+.emotion-card:nth-child(3)::after{
+background:
+radial-gradient(
+circle,
+rgba(123,162,139,.35),
+transparent 70%
+);
+}
+
+.emotion-card:nth-child(4)::after{
+background:
+radial-gradient(
+circle,
+rgba(164,139,187,.35),
+transparent 70%
+);
+}
+
+.emotion-number{
+font-size:9px;
+letter-spacing:.18em;
+color:#9aa5a2;
+position:relative;
+z-index:2;
+}
+
+.emotion-icon{
+position:relative;
+z-index:2;
+
+width:55px;
+height:55px;
+
+margin-top:65px;
+
+border-radius:50%;
+
+background:#eef5ef;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:23px;
+
+color:var(--green2);
+
+transition:.5s ease;
+}
+
+.emotion-card:hover .emotion-icon{
+transform:
+rotate(-10deg)
+scale(1.12);
+}
+
+.emotion-card h3{
+position:relative;
+z-index:2;
+
+font-size:19px;
+font-weight:500;
+
+margin-top:22px;
+
+letter-spacing:-.02em;
+}
+
+.emotion-card p{
+position:relative;
+z-index:2;
+
+font-size:11px;
+line-height:1.65;
+
+color:#737f7d;
+
+margin-top:9px;
+
+max-width:230px;
+}
+
+.emotion-arrow{
+position:absolute;
+
+right:20px;
+bottom:20px;
+
+width:35px;
+height:35px;
+
+border-radius:50%;
+
+background:#f0f5f1;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+color:var(--green);
+
+transition:.4s ease;
+}
+
+.emotion-card:hover .emotion-arrow{
+transform:
+translate(3px,-3px);
+}
+
+/* =========================
+   BOTTOM STATEMENT
+========================= */
+
+.statement{
+max-width:1250px;
+
+margin:0 auto;
+
+padding:
+0
+clamp(20px,5vw,75px)
+100px;
+}
+
+.statement-box{
+min-height:260px;
+
+border-radius:30px;
+
+background:
+linear-gradient(
+135deg,
+#173c35,
+#245348
+);
+
+position:relative;
+
+overflow:hidden;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+text-align:center;
+
+padding:50px 30px;
+
+box-shadow:
+0 30px 90px rgba(19,58,50,.18);
+}
+
+.statement-box::before{
+content:"";
+
+position:absolute;
+
+width:250px;
+height:250px;
+
+border-radius:50%;
+
+border:1px solid rgba(223,199,141,.5);
+
+left:-100px;
+top:-80px;
+}
+
+.statement-box::after{
+content:"";
+
+position:absolute;
+
+width:300px;
+height:300px;
+
+border-radius:50%;
+
+border:1px solid rgba(223,199,141,.35);
+
+right:-120px;
+bottom:-160px;
+}
+
+.statement-inner{
+position:relative;
+z-index:2;
+
+max-width:850px;
+}
+
+.statement-icon{
+font-size:26px;
+color:var(--gold2);
+
+margin-bottom:18px;
+}
+
+.statement h2{
+font-size:
+clamp(27px,4vw,48px);
+
+line-height:1.1;
+
+font-weight:400;
+
+letter-spacing:-.035em;
+
+color:white;
+}
+
+.statement p{
+margin-top:17px;
+
+font-size:11px;
+letter-spacing:.12em;
+
+color:#bdd0c8;
+}
+
+/* =========================
+   FOOTER
+========================= */
 
 .footer{
-  padding:55px 25px;
+background:#112d2a;
 
-  background:#241d29;
-  color:white;
+padding:50px 25px;
 
-  text-align:center;
+text-align:center;
+
+color:white;
 }
 
-.footer-brand{
-  font-size:13px;
-  letter-spacing:.35em;
+.footer-logo{
+font-size:14px;
+letter-spacing:.35em;
 }
 
 .footer-tag{
-  margin-top:13px;
-
-  font-size:10px;
-
-  color:#bcb1c1;
+font-size:9px;
+letter-spacing:.12em;
+color:#aebfba;
+margin-top:10px;
 }
 
-.footer-social{
-  margin-top:30px;
-
-  display:flex;
-  justify-content:center;
-  gap:25px;
+.footer-links{
+display:flex;
+justify-content:center;
+gap:25px;
+margin-top:25px;
 }
 
-.footer-social a{
-  color:#d7ceda;
-  text-decoration:none;
-
-  font-size:10px;
-  letter-spacing:.12em;
+.footer-links a{
+color:#d7e0dc;
+text-decoration:none;
+font-size:9px;
+letter-spacing:.13em;
 }
 
-/* AI */
+/* =========================
+   WHATSAPP
+========================= */
 
-.ai{
-  position:fixed;
+.whatsapp{
+position:fixed;
 
-  right:20px;
-  bottom:20px;
+right:20px;
+bottom:20px;
 
-  z-index:100;
+z-index:150;
 
-  width:58px;
-  height:58px;
+width:55px;
+height:55px;
 
-  border-radius:50%;
+border-radius:50%;
 
-  border:1px solid rgba(255,255,255,.18);
+border:0;
 
-  background:#241d29;
-  color:white;
+background:#173c35;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+color:white;
 
-  font-size:18px;
+font-size:20px;
 
-  box-shadow:0 20px 55px rgba(36,29,41,.25);
+box-shadow:
+0 18px 55px rgba(15,49,43,.28);
 
-  cursor:pointer;
-
-  animation:pulse 3s infinite;
+cursor:pointer;
 }
 
-@keyframes pulse{
+/* =========================
+   EMOTION MODAL
+========================= */
 
-  0%,100%{
-    box-shadow:0 15px 45px rgba(36,29,41,.25);
-  }
+.modal{
+position:fixed;
 
-  50%{
-    box-shadow:0 15px 60px rgba(112,86,127,.42);
-  }
+inset:0;
+
+z-index:300;
+
+display:none;
+
+align-items:center;
+justify-content:center;
+
+padding:20px;
+
+background:rgba(10,31,28,.45);
+
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+}
+
+.modal.open{
+display:flex;
+}
+
+.modal-box{
+width:min(480px,100%);
+
+background:white;
+
+border-radius:30px;
+
+padding:38px;
+
+text-align:center;
+
+box-shadow:
+0 40px 120px rgba(0,0,0,.25);
+
+animation:modalIn .45s ease;
+}
+
+@keyframes modalIn{
+
+from{
+opacity:0;
+transform:translateY(20px) scale(.96);
+}
+
+to{
+opacity:1;
+transform:none;
+}
 
 }
 
-/* MOBILE */
+.modal-symbol{
+font-size:34px;
+color:var(--green2);
+}
 
-@media(max-width:900px){
+.modal-box h3{
+font-size:28px;
+font-weight:500;
+margin-top:15px;
+}
 
-  .navlinks{
-    gap:12px;
-  }
+.modal-box p{
+font-size:13px;
+line-height:1.75;
+color:#6d7977;
+margin-top:12px;
+}
 
-  .navlinks button:not(.book){
-    display:none;
-  }
+.modal-buttons{
+display:flex;
+gap:10px;
+margin-top:25px;
+}
 
-  .hero-bottom{
-    align-items:flex-start;
-    flex-direction:column;
-  }
+.modal-buttons button{
+flex:1;
+border:0;
+padding:14px;
+border-radius:30px;
+font-size:9px;
+letter-spacing:.12em;
+text-transform:uppercase;
+cursor:pointer;
+}
 
-  .intro-inner,
-  .founder-inner{
-    grid-template-columns:1fr;
-    gap:50px;
-  }
+.close{
+background:#edf2ee;
+color:var(--green);
+}
 
-  .cards{
-    grid-template-columns:repeat(2,1fr);
-  }
+.book-modal{
+background:var(--green);
+color:white;
+}
 
-  .founder-photo{
-    max-width:100%;
-  }
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1000px){
+
+.about{
+grid-template-columns:1fr;
+}
+
+.visual{
+min-height:580px;
+}
+
+.content{
+padding:65px 35px 80px;
+}
+
+.emotion-grid{
+grid-template-columns:
+repeat(2,1fr);
+}
 
 }
 
 @media(max-width:600px){
 
-  .nav{
-    height:76px;
-  }
+.nav{
+height:70px;
+padding:0 18px;
+}
 
-  .brand img{
-    width:35px;
-    height:35px;
-  }
+.logo img{
+width:34px;
+height:34px;
+}
 
-  .brand span{
-    font-size:10px;
-  }
+.logo-text{
+font-size:10px;
+}
 
-  .book{
-    padding:10px 15px!important;
-    font-size:9px!important;
-  }
+.nav-right button:not(.nav-book){
+display:none;
+}
 
-  .hero{
-    min-height:calc(100vh - 76px);
-    padding:55px 20px 90px;
-  }
+.nav-book{
+padding:10px 14px;
+font-size:8px;
+}
 
-  .hero h1{
-    font-size:51px;
-  }
+.visual{
+min-height:520px;
+}
 
-  .hero-description{
-    font-size:14px;
-  }
+.visual::before{
+right:-125px;
+}
 
-  .hero-cta{
-    width:100%;
-    justify-content:center;
-  }
+.photo-brand{
+left:22px;
+top:25px;
+}
 
-  .intro{
-    padding:85px 22px;
-  }
+.photo-brand-name{
+font-size:22px;
+}
 
-  .intro-text{
-    font-size:16px;
-  }
+.founder{
+left:18px;
+bottom:20px;
+right:18px;
+}
 
-  .emotions{
-    padding:90px 16px;
-  }
+.content{
+padding:
+55px
+20px
+65px;
+}
 
-  .emotion-heading{
-    margin-bottom:35px;
-  }
+.dots{
+right:20px;
+top:25px;
+}
 
-  .cards{
-    grid-template-columns:1fr;
-  }
+.content h1{
+font-size:50px;
+}
 
-  .card{
-    min-height:290px;
-  }
+.info-grid{
+grid-template-columns:1fr;
+}
 
-  .card-symbol{
-    margin-top:55px;
-  }
+.emotions{
+padding:
+80px
+16px
+90px;
+}
 
-  .founder{
-    padding:90px 22px;
-  }
+.emotion-head{
+display:block;
+}
 
-  .founder-inner{
-    gap:45px;
-  }
+.emotion-description{
+margin-top:20px;
+}
 
-  .founder-photo{
-    aspect-ratio:1/1.15;
-  }
+.emotion-grid{
+grid-template-columns:
+repeat(2,1fr);
 
-  .services{
-    padding:90px 22px;
-  }
+gap:10px;
+}
 
-  .services-title{
-    display:block;
-  }
+.emotion-card{
+min-height:265px;
+padding:19px;
+}
 
-  .services-title p{
-    margin-top:20px;
-  }
+.emotion-icon{
+margin-top:45px;
+}
 
-  .service{
-    grid-template-columns:45px 1fr 25px;
-    padding:22px 0;
-  }
+.emotion-card h3{
+font-size:15px;
+}
 
-  .service h3{
-    font-size:15px;
-  }
+.emotion-card p{
+font-size:10px;
+}
 
-  .final{
-    min-height:65vh;
-    padding:90px 22px;
-  }
+.statement{
+padding:
+0
+16px
+80px;
+}
 
-  .final h2{
-    font-size:48px;
-  }
+.statement-box{
+padding:45px 20px;
+}
+
+.footer-links{
+flex-wrap:wrap;
+}
 
 }
 
@@ -949,129 +1326,246 @@ body{
 
 <body>
 
-<div class="page">
 
-<div class="glow one"></div>
-<div class="glow two"></div>
-
-
-<!-- NAVIGATION -->
+<!-- NAV -->
 
 <nav class="nav">
 
-  <div class="brand">
+<div class="logo">
 
-    <img
-      src="aksh-icon.PNG"
-      alt="AKSH">
+<img src="aksh-icon.PNG" alt="AKSH">
 
-    <span>AKSH</span>
+<div class="logo-text">
+AKSH
+</div>
 
-  </div>
+</div>
 
-  <div class="navlinks">
+<div class="nav-right">
 
-    <button onclick="scrollToSection('services')">
-      SERVICES
-    </button>
+<button onclick="goTo('emotions')">
+HOW ARE YOU FEELING
+</button>
 
-    <button onclick="scrollToSection('founder')">
-      FOUNDER
-    </button>
+<button onclick="goTo('about')">
+ABOUT AKSH
+</button>
 
-    <button class="book" onclick="bookSession()">
-      BOOK A SESSION
-    </button>
+<button class="nav-book" onclick="bookSession()">
+BOOK A SESSION
+</button>
 
-  </div>
+</div>
 
 </nav>
 
 
-<!-- HERO -->
+<!-- REFERENCE STYLE ABOUT SECTION -->
 
-<section class="hero">
-
-  <div class="hero-content">
-
-    <div class="eyebrow">
-      AKSH MENTAL WELLNESS
-    </div>
-
-    <h1>
-      A place to
-      <span>feel heard.</span>
-    </h1>
-
-    <div class="hero-bottom">
-
-      <p class="hero-description">
-        Professional psychological support, emotional guidance,
-        and a safe space to understand yourself — with empathy,
-        confidentiality, and care.
-      </p>
-
-      <a
-        href="#emotions"
-        class="hero-cta">
-        Find Your Space →
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
+<section class="about" id="about">
 
 
-<!-- INTRO -->
+<!-- LEFT VISUAL -->
 
-<section class="intro">
+<div class="visual">
 
-  <div class="intro-inner">
+<div class="scene">
 
-    <div>
+<div class="scene-person"></div>
 
-      <div class="section-label">
-        THE AKSH APPROACH
-      </div>
+<div class="scene-student"></div>
 
-      <h2>
-        You don't have to
-        figure everything
-        out alone.
-      </h2>
+<div class="scene-table"></div>
 
-    </div>
+</div>
 
-    <div class="intro-text">
 
-      <p>
-        AKSH is built around a simple belief:
-        <strong>every mind deserves a safe space.</strong>
-      </p>
+<div class="photo-brand">
 
-      <br>
+<div class="photo-brand-name">
+AKSH
+</div>
 
-      <p>
-        Our approach brings together professional
-        psychological support, emotional guidance,
-        and mental wellness education in an environment
-        designed to feel human, respectful, and confidential.
-      </p>
+<div class="photo-brand-sub">
+MENTAL WELLNESS
+</div>
 
-      <br>
+<div class="photo-brand-tag">
+A SAFE SPACE FOR EVERY MIND
+</div>
 
-      <p>
-        Whether you are facing a difficult moment,
-        navigating a relationship, supporting a child,
-        or simply trying to understand yourself better,
-        you can begin where you are.
-      </p>
+</div>
 
-    </div>
 
-  </div>
+<!-- FOUNDER -->
+
+<div class="founder">
+
+<div class="founder-photo">
+
+<div class="founder-initial">
+MK
+</div>
+
+</div>
+
+<div>
+
+<div class="founder-name">
+Meghana Kaverappa
+</div>
+
+<div class="founder-role">
+Founder & Chief Psychologist
+</div>
+
+<div class="founder-brand">
+AKSH Mental Wellness
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- RIGHT CONTENT -->
+
+<div class="content">
+
+<div class="dots"></div>
+
+<div class="label">
+WELCOME TO AKSH
+</div>
+
+<h1>
+About AKSH
+</h1>
+
+<div class="gold-line"></div>
+
+<p class="lead">
+Creating emotionally healthy, resilient, and future-ready
+individuals and communities through professional
+psychological support, emotional guidance, and mental
+wellness education.
+</p>
+
+
+<div class="info-grid">
+
+
+<div class="info-card">
+
+<div class="info-top">
+
+<div class="info-icon">
+♧
+</div>
+
+<div class="info-title">
+Who We Are
+</div>
+
+</div>
+
+<div class="info-gold"></div>
+
+<p>
+AKSH is a professional mental wellness initiative
+dedicated to providing ethical psychological support,
+emotional guidance, and wellness education in a safe
+and compassionate environment.
+</p>
+
+</div>
+
+
+<div class="info-card">
+
+<div class="info-top">
+
+<div class="info-icon">
+↗
+</div>
+
+<div class="info-title">
+Our Mission
+</div>
+
+</div>
+
+<div class="info-gold"></div>
+
+<p>
+To create a highly trusted mental wellness space
+where every individual feels heard, understood,
+supported, and genuinely cared for.
+</p>
+
+</div>
+
+
+<div class="info-card">
+
+<div class="info-top">
+
+<div class="info-icon">
+◉
+</div>
+
+<div class="info-title">
+Our Vision
+</div>
+
+</div>
+
+<div class="info-gold"></div>
+
+<p>
+To build one of India's most trusted and respected
+mental wellness organizations while making professional
+support more accessible.
+</p>
+
+</div>
+
+
+<div class="info-card">
+
+<div class="info-top">
+
+<div class="info-icon">
+♡
+</div>
+
+<div class="info-title">
+Our Core Values
+</div>
+
+</div>
+
+<div class="info-gold"></div>
+
+<ul>
+
+<li>Empathy</li>
+<li>Trust</li>
+<li>Confidentiality</li>
+<li>Respect</li>
+<li>Growth</li>
+<li>Professionalism</li>
+
+</ul>
+
+</div>
+
+
+</div>
+
+</div>
 
 </section>
 
@@ -1080,319 +1574,198 @@ body{
 
 <section class="emotions" id="emotions">
 
-  <div class="emotion-heading">
+<div class="emotion-head">
 
-    <div class="section-label">
-      START WHERE YOU ARE
-    </div>
+<div>
 
-    <h2>
-      How are you feeling today?
-    </h2>
+<div class="emotion-label">
+START WHERE YOU ARE
+</div>
 
-    <p>
-      There is no right answer. Choose what feels closest.
-    </p>
+<h2>
+How are you feeling today?
+</h2>
 
-  </div>
+</div>
 
+<p class="emotion-description">
+There is no right answer.
+Choose what feels closest to what
+you are experiencing right now.
+</p>
 
-  <div class="cards">
-
-
-    <article
-      class="card"
-      onclick="emotion('Anxious')">
-
-      <div class="card-number">
-        01 / RIGHT NOW
-      </div>
-
-      <div class="card-symbol">
-        ◌
-      </div>
-
-      <h3>
-        Anxious
-      </h3>
-
-      <p>
-        When your thoughts feel restless,
-        worried, or difficult to quiet.
-      </p>
-
-      <div class="card-action">
-        →
-      </div>
-
-    </article>
+</div>
 
 
-    <article
-      class="card"
-      onclick="emotion('Overwhelmed')">
-
-      <div class="card-number">
-        02 / RIGHT NOW
-      </div>
-
-      <div class="card-symbol">
-        ∿
-      </div>
-
-      <h3>
-        Overwhelmed
-      </h3>
-
-      <p>
-        When everything feels like too much
-        and you need some breathing space.
-      </p>
-
-      <div class="card-action">
-        →
-      </div>
-
-    </article>
+<div class="emotion-grid">
 
 
-    <article
-      class="card"
-      onclick="emotion('Need someone to talk')">
+<!-- 01 -->
 
-      <div class="card-number">
-        03 / RIGHT NOW
-      </div>
+<article
+class="emotion-card"
+onclick="openEmotion(
+'Anxious',
+'◌',
+'If your thoughts feel restless or worried, you do not have to handle everything at once. Take one small breath and begin here.'
+)">
 
-      <div class="card-symbol">
-        ♡
-      </div>
+<div class="emotion-number">
+01 / RIGHT NOW
+</div>
 
-      <h3>
-        Need someone to talk
-      </h3>
+<div class="emotion-icon">
+◌
+</div>
 
-      <p>
-        When being heard, understood,
-        and supported is what you need.
-      </p>
+<h3>
+Anxious
+</h3>
 
-      <div class="card-action">
-        →
-      </div>
+<p>
+When your mind feels restless,
+worried, or difficult to slow down.
+</p>
 
-    </article>
+<div class="emotion-arrow">
+→
+</div>
 
-
-    <article
-      class="card"
-      onclick="emotion('Just exploring')">
-
-      <div class="card-number">
-        04 / RIGHT NOW
-      </div>
-
-      <div class="card-symbol">
-        ✦
-      </div>
-
-      <h3>
-        Just exploring
-      </h3>
-
-      <p>
-        When you are curious about your mind,
-        emotions, wellbeing, or personal growth.
-      </p>
-
-      <div class="card-action">
-        →
-      </div>
-
-    </article>
-
-  </div>
-
-</section>
+</article>
 
 
-<!-- FOUNDER -->
+<!-- 02 -->
 
-<section class="founder" id="founder">
+<article
+class="emotion-card"
+onclick="openEmotion(
+'Overwhelmed',
+'∿',
+'You do not need to carry everything at the same time. This can be a place to pause and make some breathing space.'
+)">
 
-  <div class="founder-inner">
+<div class="emotion-number">
+02 / RIGHT NOW
+</div>
 
-    <div class="founder-photo">
+<div class="emotion-icon">
+∿
+</div>
 
-      <img
-        src="founder.jpg"
-        alt="Meghana K — Founder and Chief Psychologist"
-        onerror="this.style.display='none'">
+<h3>
+Overwhelmed
+</h3>
 
-    </div>
+<p>
+When everything feels like too much
+and you need some breathing space.
+</p>
 
-    <div class="founder-copy">
+<div class="emotion-arrow">
+→
+</div>
 
-      <div class="section-label">
-        THE PERSON BEHIND AKSH
-      </div>
+</article>
 
-      <h2>
-        Psychology with
-        <span>a human touch.</span>
-      </h2>
 
-      <p>
-        AKSH was founded by Meghana K, whose work brings together
-        psychological knowledge, counselling experience,
-        education, and a deep commitment to helping people feel
-        heard and supported.
-      </p>
+<!-- 03 -->
 
-      <p>
-        Her professional experience includes psychology education,
-        school counselling, clinical psychology training,
-        psychological assessment, child and adolescent support,
-        and counselling-focused work.
-      </p>
+<article
+class="emotion-card"
+onclick="openEmotion(
+'Need Someone To Talk',
+'♡',
+'Sometimes being heard without judgement is the first step. You can begin by simply telling us what is on your mind.'
+)">
 
-      <div class="founder-name">
-        Meghana K
-      </div>
+<div class="emotion-number">
+03 / RIGHT NOW
+</div>
 
-      <div class="founder-role">
-        Founder & Chief Psychologist
-      </div>
+<div class="emotion-icon">
+♡
+</div>
 
-    </div>
+<h3>
+Need someone to talk
+</h3>
 
-  </div>
+<p>
+When being heard, understood,
+and supported is what you need.
+</p>
+
+<div class="emotion-arrow">
+→
+</div>
+
+</article>
+
+
+<!-- 04 -->
+
+<article
+class="emotion-card"
+onclick="openEmotion(
+'Just Exploring',
+'✦',
+'You do not need a problem to explore your mind. Curiosity, self-understanding, and growth are meaningful reasons to begin.'
+)">
+
+<div class="emotion-number">
+04 / RIGHT NOW
+</div>
+
+<div class="emotion-icon">
+✦
+</div>
+
+<h3>
+Just exploring
+</h3>
+
+<p>
+When you are curious about your mind,
+wellbeing, emotions, or personal growth.
+</p>
+
+<div class="emotion-arrow">
+→
+</div>
+
+</article>
+
+
+</div>
 
 </section>
 
 
-<!-- SERVICES -->
+<!-- BOTTOM STATEMENT -->
 
-<section class="services" id="services">
+<section class="statement">
 
-  <div class="services-inner">
+<div class="statement-box">
 
-    <div class="services-title">
+<div class="statement-inner">
 
-      <div>
+<div class="statement-icon">
+✦
+</div>
 
-        <div class="section-label">
-          HOW AKSH CAN SUPPORT YOU
-        </div>
+<h2>
+At AKSH, we believe that when emotional
+wellbeing becomes a priority, meaningful
+growth becomes possible.
+</h2>
 
-        <h2>
-          Your journey.
-          <br>
-          Your pace.
-        </h2>
+<p>
+A SAFE SPACE FOR EVERY MIND
+</p>
 
-      </div>
+</div>
 
-      <p>
-        Professional support designed around
-        different stages, relationships, challenges,
-        and goals.
-      </p>
-
-    </div>
-
-
-    <div class="service-list">
-
-      <div class="service">
-        <div class="service-number">01</div>
-        <h3>Individual Counselling</h3>
-        <div class="service-arrow">→</div>
-      </div>
-
-      <div class="service">
-        <div class="service-number">02</div>
-        <h3>Child Psychology Support</h3>
-        <div class="service-arrow">→</div>
-      </div>
-
-      <div class="service">
-        <div class="service-number">03</div>
-        <h3>Adolescent Mental Health Guidance</h3>
-        <div class="service-arrow">→</div>
-      </div>
-
-      <div class="service">
-        <div class="service-number">04</div>
-        <h3>Relationship & Couples Counselling</h3>
-        <div class="service-arrow">→</div>
-      </div>
-
-      <div class="service">
-        <div class="service-number">05</div>
-        <h3>Stress & Anxiety Management</h3>
-        <div class="service-arrow">→</div>
-      </div>
-
-      <div class="service">
-        <div class="service-number">06</div>
-        <h3>Emotional Wellness & Personal Growth</h3>
-        <div class="service-arrow">→</div>
-      </div>
-
-      <div class="service">
-        <div class="service-number">07</div>
-        <h3>Career & Academic Counselling</h3>
-        <div class="service-arrow">→</div>
-      </div>
-
-      <div class="service">
-        <div class="service-number">08</div>
-        <h3>Mental Wellness Workshops</h3>
-        <div class="service-arrow">→</div>
-      </div>
-
-      <div class="service">
-        <div class="service-number">09</div>
-        <h3>School & Corporate Wellness Programs</h3>
-        <div class="service-arrow">→</div>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- FINAL CTA -->
-
-<section class="final">
-
-  <div class="final-inner">
-
-    <div class="section-label">
-      WHEN YOU'RE READY
-    </div>
-
-    <h2>
-      Begin your journey
-      <span>with AKSH.</span>
-    </h2>
-
-    <p>
-      You don't need to have everything figured out
-      before reaching out. Sometimes the first step
-      is simply having a safe place to begin.
-    </p>
-
-    <button
-      class="final-button"
-      onclick="bookSession()">
-      Book A Session
-    </button>
-
-  </div>
+</div>
 
 </section>
 
@@ -1401,96 +1774,149 @@ body{
 
 <footer class="footer">
 
-  <div class="footer-brand">
-    AKSH
-  </div>
+<div class="footer-logo">
+AKSH
+</div>
 
-  <div class="footer-tag">
-    A Safe Space For Every Mind
-  </div>
+<div class="footer-tag">
+A SAFE SPACE FOR EVERY MIND
+</div>
 
-  <div class="footer-social">
+<div class="footer-links">
 
-    <a href="#" onclick="return false">
-      INSTAGRAM
-    </a>
+<a href="#" onclick="return false">
+INSTAGRAM
+</a>
 
-    <a href="#" onclick="return false">
-      LINKEDIN
-    </a>
+<a href="#" onclick="return false">
+LINKEDIN
+</a>
 
-    <a href="#" onclick="return false">
-      YOUTUBE
-    </a>
+<a href="#" onclick="return false">
+YOUTUBE
+</a>
 
-  </div>
+</div>
 
 </footer>
 
 
-<!-- AI -->
+<!-- WHATSAPP -->
 
 <button
-  class="ai"
-  onclick="openAI()"
-  aria-label="AKSH AI">
-  ✦
+class="whatsapp"
+onclick="openWhatsApp()"
+aria-label="WhatsApp">
+◔
 </button>
+
+
+<!-- MODAL -->
+
+<div
+class="modal"
+id="modal"
+onclick="closeOutside(event)">
+
+<div class="modal-box">
+
+<div
+class="modal-symbol"
+id="modalSymbol">
+✦
+</div>
+
+<h3 id="modalTitle">
+AKSH
+</h3>
+
+<p id="modalText">
+</p>
+
+<div class="modal-buttons">
+
+<button
+class="close"
+onclick="closeModal()">
+STAY HERE
+</button>
+
+<button
+class="book-modal"
+onclick="bookSession()">
+BOOK A SESSION
+</button>
+
+</div>
+
+</div>
+
+</div>
 
 
 <script>
 
-function scrollToSection(id){
+function goTo(id){
 
-  document.getElementById(id)
-    .scrollIntoView({
-      behavior:"smooth"
-    });
+document.getElementById(id)
+.scrollIntoView({
+behavior:"smooth"
+});
 
 }
 
 
-function emotion(type){
+function openEmotion(title,symbol,text){
 
-  const messages = {
+document.getElementById("modalTitle")
+.textContent=title;
 
-    "Anxious":
-      "Take a breath. You don't have to solve everything right now. AKSH is here when you're ready.",
+document.getElementById("modalSymbol")
+.textContent=symbol;
 
-    "Overwhelmed":
-      "One thing at a time. Give yourself permission to pause and make some space.",
+document.getElementById("modalText")
+.textContent=text;
 
-    "Need someone to talk":
-      "You deserve a space where you can speak openly and be heard without judgement.",
+document.getElementById("modal")
+.classList.add("open");
 
-    "Just exploring":
-      "You can explore without pressure. Understanding yourself is already a meaningful beginning."
+}
 
-  };
 
-  alert(messages[type]);
+function closeModal(){
+
+document.getElementById("modal")
+.classList.remove("open");
+
+}
+
+
+function closeOutside(event){
+
+if(event.target.id==="modal"){
+closeModal();
+}
 
 }
 
 
 function bookSession(){
 
-  window.location.href="booking.html";
+window.location.href="booking.html";
 
 }
 
 
-function openAI(){
+function openWhatsApp(){
 
-  alert(
-    "AKSH AI is coming into the experience soon — a place to talk, ask, explore, and connect with AKSH."
-  );
+window.open(
+"https://wa.me/",
+"_blank"
+);
 
 }
 
 </script>
-
-</div>
 
 </body>
 </html>
