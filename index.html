@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
 <title>AKSH — A Safe Space For Every Mind</title>
 
 <style>
@@ -35,26 +36,22 @@ html,body{
   height:100%;
   object-fit:cover;
   opacity:0;
-  transform:scale(1.04);
-  transition:opacity 1.8s ease,transform 8s ease;
+  transition:opacity 1.5s ease;
 }
 
 #video.show{
   opacity:1;
-  transform:scale(1);
 }
 
 .overlay{
   position:absolute;
   inset:0;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(0,0,0,.20) 0%,
-      rgba(0,0,0,.02) 35%,
-      rgba(0,0,0,.12) 65%,
-      rgba(0,0,0,.42) 100%
-    );
+  background:linear-gradient(
+    180deg,
+    rgba(0,0,0,.20),
+    rgba(0,0,0,.02) 40%,
+    rgba(0,0,0,.42)
+  );
   pointer-events:none;
 }
 
@@ -63,11 +60,11 @@ html,body{
   top:7%;
   left:50%;
   transform:translateX(-50%);
+  z-index:5;
   display:flex;
   flex-direction:column;
   align-items:center;
   text-align:center;
-  z-index:5;
 }
 
 #icon{
@@ -79,22 +76,18 @@ html,body{
 }
 
 #watermark{
+  color:rgba(255,255,255,.72);
   font-size:15px;
   letter-spacing:.48em;
   margin-left:.48em;
-  font-weight:400;
-  color:rgba(255,255,255,.72);
-  text-shadow:0 3px 18px rgba(0,0,0,.35);
 }
 
 #tagline{
   margin-top:9px;
+  color:rgba(255,255,255,.9);
   font-size:11px;
   letter-spacing:.11em;
-  font-weight:300;
-  color:rgba(255,255,255,.90);
   white-space:nowrap;
-  text-shadow:0 3px 18px rgba(0,0,0,.4);
 }
 
 #date{
@@ -102,10 +95,9 @@ html,body{
   top:5.5%;
   left:5%;
   z-index:5;
+  color:rgba(255,255,255,.82);
   font-size:10px;
   letter-spacing:.14em;
-  color:rgba(255,255,255,.82);
-  text-shadow:0 3px 15px rgba(0,0,0,.4);
 }
 
 #day{
@@ -113,10 +105,9 @@ html,body{
   top:5.5%;
   right:5%;
   z-index:5;
+  color:rgba(255,255,255,.82);
   font-size:10px;
   letter-spacing:.14em;
-  color:rgba(255,255,255,.82);
-  text-shadow:0 3px 15px rgba(0,0,0,.4);
 }
 
 .center{
@@ -130,25 +121,11 @@ html,body{
 }
 
 #greeting{
+  color:white;
   font-size:clamp(38px,8vw,82px);
   font-weight:300;
   letter-spacing:-.035em;
-  color:white;
-  text-shadow:
-    0 5px 35px rgba(0,0,0,.42),
-    0 1px 2px rgba(0,0,0,.25);
-  animation:fadeUp 1.8s ease both;
-}
-
-@keyframes fadeUp{
-  from{
-    opacity:0;
-    transform:translateY(18px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+  text-shadow:0 5px 35px rgba(0,0,0,.42);
 }
 
 #journey{
@@ -158,8 +135,8 @@ html,body{
   transform:translateX(-50%);
   z-index:6;
 
-  padding:15px 30px;
   min-width:205px;
+  padding:15px 30px;
 
   border:1px solid rgba(255,255,255,.48);
   border-radius:999px;
@@ -168,22 +145,11 @@ html,body{
   color:white;
 
   font-size:10px;
-  font-weight:400;
   letter-spacing:.19em;
   text-transform:uppercase;
 
   backdrop-filter:blur(20px);
   -webkit-backdrop-filter:blur(20px);
-
-  box-shadow:
-    0 15px 45px rgba(0,0,0,.22),
-    inset 0 1px 0 rgba(255,255,255,.18);
-
-  transition:.35s ease;
-}
-
-#journey:active{
-  transform:translateX(-50%) scale(.96);
 }
 
 #sound{
@@ -216,9 +182,9 @@ html,body{
   inset:0;
   background:#050609;
   opacity:0;
-  pointer-events:none;
   z-index:20;
-  transition:opacity .8s ease;
+  pointer-events:none;
+  transition:opacity .7s ease;
 }
 
 #fade.on{
@@ -242,21 +208,11 @@ html,body{
 
   #tagline{
     font-size:9px;
-    letter-spacing:.08em;
   }
 
-  #date,
-  #day{
+  #date,#day{
     top:4.5%;
     font-size:8px;
-  }
-
-  #date{
-    left:5%;
-  }
-
-  #day{
-    right:5%;
   }
 
   #greeting{
@@ -266,12 +222,6 @@ html,body{
   #journey{
     bottom:10%;
     min-width:190px;
-    padding:14px 24px;
-  }
-
-  #sound{
-    right:5%;
-    bottom:4.5%;
   }
 }
 </style>
@@ -284,6 +234,7 @@ html,body{
   <video
     id="video"
     autoplay
+    muted
     playsinline
     webkit-playsinline
     preload="auto">
@@ -304,9 +255,13 @@ html,body{
     <div id="greeting"></div>
   </div>
 
-  <button id="journey">Begin Your Journey</button>
+  <button id="journey">
+    Begin Your Journey
+  </button>
 
-  <button id="sound">🔊</button>
+  <button id="sound">
+    🔊
+  </button>
 
   <div id="fade"></div>
 
@@ -323,199 +278,157 @@ const journey = document.getElementById("journey");
 const fade = document.getElementById("fade");
 
 const files = {
-  morning1: "aksh-morning.1.mov",
-  morning2: "aksh-morning.2.mov",
-  morning3: "aksh-morning.3.mov",
-  morning4: "aksh-morning.4.mov",
+  morning1:"aksh-morning.1.mov",
+  morning2:"aksh-morning.2.mov",
+  morning3:"aksh-morning.3.mov",
+  morning4:"aksh-morning.4.mov",
 
-  afternoon1: "aksh-afternoon.1.mov",
-  afternoon2: "aksh-afternoon.2.mov",
-  afternoon3: "aksh-afternoon.3.mov",
-  afternoon4: "aksh-afternoon.4.mov",
+  afternoon1:"aksh-afternoon.1.mov",
+  afternoon2:"aksh-afternoon.2.mov",
+  afternoon3:"aksh-afternoon.3.mov",
+  afternoon4:"aksh-afternoon.4.mov",
 
-  evening1: "aksh-evening.1.mov",
-  evening2: "aksh-evening.2.mov",
-  evening3: "aksh-morning.4.mov",
+  evening1:"aksh-evening.1.mov",
+  evening2:"aksh-evening.2.mov",
+  evening3:"aksh-morning.4.mov",
 
-  night1: "aksh-night.1.mov",
-  night2: "aksh-night.2.mov"
+  night1:"aksh-night.1.mov",
+  night2:"aksh-night.2.mov"
 };
 
-let opening = false;
+const now = new Date();
 
-function goToPage1(){
+const total =
+  now.getHours() * 60 +
+  now.getMinutes();
 
-  if(opening) return;
+let message;
+let selected;
 
-  opening = true;
+if(total >= 300 && total < 360){
+  message="Good Morning";
+  selected=files.morning1;
+}
+else if(total >= 360 && total < 480){
+  message="Good Morning";
+  selected=files.morning2;
+}
+else if(total >= 480 && total < 600){
+  message="Good Morning";
+  selected=files.morning3;
+}
+else if(total >= 600 && total < 720){
+  message="Good Morning";
+  selected=files.morning4;
+}
+else if(total >= 720 && total < 780){
+  message="Good Afternoon";
+  selected=files.afternoon1;
+}
+else if(total >= 780 && total < 870){
+  message="Good Afternoon";
+  selected=files.afternoon2;
+}
+else if(total >= 870 && total < 960){
+  message="Good Afternoon";
+  selected=files.afternoon3;
+}
+else if(total >= 960 && total < 1020){
+  message="Good Afternoon";
+  selected=files.afternoon4;
+}
+else if(total >= 1020 && total < 1065){
+  message="Good Evening";
+  selected=files.evening1;
+}
+else if(total >= 1065 && total < 1140){
+  message="Good Evening";
+  selected=files.evening2;
+}
+else if(total >= 1140 && total < 1200){
+  message="Good Evening";
+  selected=files.evening3;
+}
+else if(total >= 1200){
+  message="Good Night";
+  selected=files.night1;
+}
+else{
+  message="Good Night";
+  selected=files.night2;
+}
+
+greeting.textContent = message;
+
+dateBox.textContent =
+  now.toLocaleDateString("en-IN",{
+    day:"2-digit",
+    month:"short",
+    year:"numeric"
+  }).toUpperCase();
+
+dayBox.textContent =
+  now.toLocaleDateString("en-IN",{
+    weekday:"long"
+  }).toUpperCase();
+
+video.src = selected;
+
+video.play().catch(()=>{});
+
+video.addEventListener("canplay",()=>{
+  video.classList.add("show");
+  video.play().catch(()=>{});
+},{once:true});
+
+
+function openPage1(){
 
   fade.classList.add("on");
 
   setTimeout(()=>{
-    window.location.href = "page1.html";
-  },800);
+    window.location.replace("page1.html");
+  },700);
 
 }
 
-function updateClock(){
 
-  const now = new Date();
+/* BUTTON — IMMEDIATE */
+journey.addEventListener("click",openPage1);
 
-  const h = now.getHours();
-  const m = now.getMinutes();
 
-  const total = h * 60 + m;
+/* AUTOMATIC — EXACTLY 4 SECONDS */
+setTimeout(openPage1,4000);
 
-  let message = "";
-  let selected = "";
 
-  if(total >= 300 && total < 360){
+/*
+  SOUND CONTROL
 
-    message = "Good Morning";
-    selected = files.morning1;
-
-  }else if(total >= 360 && total < 480){
-
-    message = "Good Morning";
-    selected = files.morning2;
-
-  }else if(total >= 480 && total < 600){
-
-    message = "Good Morning";
-    selected = files.morning3;
-
-  }else if(total >= 600 && total < 720){
-
-    message = "Good Morning";
-    selected = files.morning4;
-
-  }else if(total >= 720 && total < 780){
-
-    message = "Good Afternoon";
-    selected = files.afternoon1;
-
-  }else if(total >= 780 && total < 870){
-
-    message = "Good Afternoon";
-    selected = files.afternoon2;
-
-  }else if(total >= 870 && total < 960){
-
-    message = "Good Afternoon";
-    selected = files.afternoon3;
-
-  }else if(total >= 960 && total < 1020){
-
-    message = "Good Afternoon";
-    selected = files.afternoon4;
-
-  }else if(total >= 1020 && total < 1065){
-
-    message = "Good Evening";
-    selected = files.evening1;
-
-  }else if(total >= 1065 && total < 1140){
-
-    message = "Good Evening";
-    selected = files.evening2;
-
-  }else if(total >= 1140 && total < 1200){
-
-    message = "Good Evening";
-    selected = files.evening3;
-
-  }else if(total >= 1200){
-
-    message = "Good Night";
-    selected = files.night1;
-
-  }else{
-
-    message = "Good Night";
-    selected = files.night2;
-
-  }
-
-  greeting.textContent = message;
-
-  dateBox.textContent =
-    now.toLocaleDateString(
-      "en-IN",
-      {
-        day:"2-digit",
-        month:"short",
-        year:"numeric"
-      }
-    ).toUpperCase();
-
-  dayBox.textContent =
-    now.toLocaleDateString(
-      "en-IN",
-      {
-        weekday:"long"
-      }
-    ).toUpperCase();
-
-  if(
-    !video.src ||
-    !video.src.endsWith(selected)
-  ){
-
-    video.classList.remove("show");
-
-    video.src = selected;
-    video.load();
-
-    video.muted = false;
-    video.volume = 1;
-
-    video.play()
-      .then(()=>{
-        sound.textContent = "🔊";
-      })
-      .catch(()=>{
-        video.muted = true;
-        video.play().catch(()=>{});
-        sound.textContent = "🔊";
-      });
-
-    video.addEventListener(
-      "canplay",
-      ()=>{
-        video.classList.add("show");
-      },
-      {once:true}
-    );
-  }
-}
+  iPhone/Safari may block automatic
+  audible autoplay. The video itself
+  therefore starts muted so it can autoplay.
+  Tapping the sound button enables sound.
+*/
 
 sound.addEventListener("click",()=>{
 
+  video.muted = !video.muted;
+
   if(video.muted){
 
-    video.muted = false;
-    video.volume = 1;
-    sound.textContent = "🔊";
-
-    video.play().catch(()=>{});
+    sound.textContent="🔇";
 
   }else{
 
-    video.muted = true;
-    sound.textContent = "🔇";
+    sound.textContent="🔊";
+
+    video.volume=1;
+
+    video.play().catch(()=>{});
 
   }
 
 });
-
-journey.addEventListener("click",goToPage1);
-
-updateClock();
-
-setInterval(updateClock,15000);
-
-/* AUTOMATIC PAGE 0 → PAGE 1 */
-setTimeout(goToPage1,4000);
 
 </script>
 
