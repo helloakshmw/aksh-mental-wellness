@@ -4,9 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#08090d">
+
 <title>AKSH — A Safe Space For Every Mind</title>
 
 <style>
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -22,7 +24,7 @@ html,body{
 }
 
 body{
-  color:#fff;
+  color:white;
 }
 
 #experience{
@@ -40,7 +42,9 @@ body{
   object-fit:cover;
   opacity:0;
   transform:scale(1.035);
-  transition:opacity 1.8s ease,transform 8s ease;
+  transition:
+    opacity 1.8s ease,
+    transform 8s ease;
 }
 
 #backgroundVideo.visible{
@@ -59,9 +63,9 @@ body{
     ),
     linear-gradient(
       180deg,
-      rgba(0,0,0,.12) 0%,
-      rgba(0,0,0,.04) 40%,
-      rgba(0,0,0,.28) 72%,
+      rgba(0,0,0,.08) 0%,
+      rgba(0,0,0,.02) 40%,
+      rgba(0,0,0,.25) 72%,
       rgba(0,0,0,.72) 100%
     );
   pointer-events:none;
@@ -70,222 +74,280 @@ body{
 #grain{
   position:absolute;
   inset:-50%;
-  opacity:.045;
+  opacity:.035;
   pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
   animation:grainMove .25s steps(2) infinite;
 }
 
 @keyframes grainMove{
-  0%{transform:translate(0,0)}
-  25%{transform:translate(2%,-1%)}
-  50%{transform:translate(-1%,2%)}
-  75%{transform:translate(1%,1%)}
-  100%{transform:translate(-2%,-1%)}
+
+0%{
+transform:translate(0,0);
+}
+
+25%{
+transform:translate(2%,-1%);
+}
+
+50%{
+transform:translate(-1%,2%);
+}
+
+75%{
+transform:translate(1%,1%);
+}
+
+100%{
+transform:translate(-2%,-1%);
+}
+
 }
 
 #interface{
   position:absolute;
   inset:0;
-  z-index:5;
+
   display:flex;
   flex-direction:column;
+
   align-items:center;
   justify-content:center;
+
   text-align:center;
+
   padding:
     max(28px,env(safe-area-inset-top))
     24px
     max(32px,env(safe-area-inset-bottom))
     24px;
+
+  z-index:5;
 }
 
-#mark{
-  width:58px;
-  height:58px;
-  border:1px solid rgba(255,255,255,.58);
-  border-radius:20px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom:30px;
-  background:rgba(255,255,255,.075);
-  backdrop-filter:blur(22px);
-  -webkit-backdrop-filter:blur(22px);
-  box-shadow:
-    0 18px 60px rgba(0,0,0,.2),
-    inset 0 1px 0 rgba(255,255,255,.25);
-  animation:floatMark 5s ease-in-out infinite;
+#akshIcon{
+  width:92px;
+  height:92px;
+
+  object-fit:contain;
+
+  margin-bottom:24px;
+
+  filter:
+    drop-shadow(0 15px 40px rgba(0,0,0,.35));
+
+  animation:iconFloat 5s ease-in-out infinite;
 }
 
-#markCore{
-  width:22px;
-  height:22px;
-  border:1px solid rgba(255,255,255,.92);
-  border-radius:50%;
-  position:relative;
+@keyframes iconFloat{
+
+0%,100%{
+transform:translateY(0);
 }
 
-#markCore:after{
-  content:"";
-  position:absolute;
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:#fff;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  box-shadow:0 0 18px rgba(255,255,255,.75);
+50%{
+transform:translateY(-6px);
 }
 
-@keyframes floatMark{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-7px)}
 }
 
-#time{
-  position:absolute;
-  top:7%;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:9px;
-  letter-spacing:.38em;
-  text-transform:uppercase;
-  color:rgba(255,255,255,.62);
-}
+#akshName{
+  font-size:clamp(28px,5vw,48px);
 
-#greeting{
-  font-size:clamp(42px,8vw,86px);
-  line-height:.98;
-  font-weight:400;
-  letter-spacing:-.055em;
+  font-weight:500;
+
+  letter-spacing:.18em;
+
+  margin-left:.18em;
+
+  margin-bottom:18px;
+
   text-shadow:
-    0 8px 35px rgba(0,0,0,.3),
-    0 1px 1px rgba(0,0,0,.25);
-  margin-bottom:22px;
-}
-
-#message{
-  max-width:620px;
-  font-size:clamp(15px,2vw,19px);
-  line-height:1.65;
-  font-weight:300;
-  color:rgba(255,255,255,.9);
-  text-shadow:0 4px 22px rgba(0,0,0,.45);
+    0 6px 30px rgba(0,0,0,.35);
 }
 
 #tagline{
-  position:absolute;
-  bottom:24%;
-  left:50%;
-  transform:translateX(-50%);
-  white-space:nowrap;
-  font-size:clamp(9px,1.4vw,14px);
-  letter-spacing:.3em;
-  text-transform:uppercase;
-  color:rgba(255,255,255,.84);
+
+  font-size:clamp(13px,2vw,18px);
+
+  font-weight:300;
+
+  letter-spacing:.08em;
+
+  color:rgba(255,255,255,.9);
+
+  text-shadow:
+    0 4px 22px rgba(0,0,0,.45);
+
 }
 
 #journey{
+
   position:absolute;
+
   bottom:9%;
+
   left:50%;
+
   transform:translateX(-50%);
+
   min-width:205px;
+
   padding:15px 27px;
+
   border-radius:999px;
+
   border:1px solid rgba(255,255,255,.45);
-  background:rgba(255,255,255,.1);
-  color:#fff;
+
+  background:rgba(255,255,255,.10);
+
+  color:white;
+
   font-size:11px;
+
   letter-spacing:.18em;
+
   text-transform:uppercase;
+
   backdrop-filter:blur(22px);
+
   -webkit-backdrop-filter:blur(22px);
+
   box-shadow:
     0 15px 50px rgba(0,0,0,.22),
-    inset 0 1px 0 rgba(255,255,255,.2);
+    inset 0 1px 0 rgba(255,255,255,.20);
+
   cursor:pointer;
+
   transition:
     transform .35s ease,
     background .35s ease,
     border-color .35s ease;
+
+}
+
+#journey:hover{
+
+  background:rgba(255,255,255,.17);
+
+  border-color:rgba(255,255,255,.75);
+
 }
 
 #journey:active{
-  transform:translateX(-50%) scale(.96);
+
+  transform:
+    translateX(-50%)
+    scale(.96);
+
 }
 
 #sound{
+
   position:absolute;
+
   right:22px;
+
   bottom:24px;
+
   width:44px;
+
   height:44px;
+
   border-radius:50%;
-  border:1px solid rgba(255,255,255,.3);
-  background:rgba(0,0,0,.14);
-  color:#fff;
+
+  border:1px solid rgba(255,255,255,.32);
+
+  background:rgba(0,0,0,.16);
+
+  color:white;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
   backdrop-filter:blur(18px);
+
   -webkit-backdrop-filter:blur(18px);
+
   z-index:10;
+
   cursor:pointer;
+
+  font-size:16px;
+
 }
 
-#status{
+#transition{
+
   position:absolute;
-  left:50%;
-  bottom:3.5%;
-  transform:translateX(-50%);
-  font-size:8px;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  color:rgba(255,255,255,.45);
+
+  inset:0;
+
+  background:#08090d;
+
+  z-index:20;
+
   opacity:0;
-  transition:opacity .5s ease;
+
+  pointer-events:none;
+
+  transition:opacity 1s ease;
+
 }
 
-#status.show{
+#transition.active{
+
   opacity:1;
+
 }
 
 @media(max-width:600px){
 
-  #mark{
-    width:52px;
-    height:52px;
-    border-radius:18px;
-    margin-bottom:26px;
+  #akshIcon{
+
+    width:78px;
+
+    height:78px;
+
+    margin-bottom:21px;
+
   }
 
-  #greeting{
-    font-size:48px;
-  }
+  #akshName{
 
-  #message{
-    max-width:330px;
-    font-size:15px;
+    font-size:30px;
+
+    margin-bottom:15px;
+
   }
 
   #tagline{
-    bottom:23%;
-    font-size:8px;
-    letter-spacing:.24em;
+
+    max-width:320px;
+
+    font-size:13px;
+
+    line-height:1.6;
+
   }
 
   #journey{
+
     bottom:9%;
+
     min-width:184px;
+
     padding:14px 22px;
+
     font-size:10px;
+
   }
 
-  #time{
-    top:6%;
-    font-size:7px;
-  }
 }
+
 </style>
 </head>
 
@@ -296,26 +358,25 @@ body{
   <video
     id="backgroundVideo"
     autoplay
-    muted
     playsinline
     webkit-playsinline
     preload="auto">
   </video>
 
   <div id="atmosphere"></div>
+
   <div id="grain"></div>
 
   <div id="interface">
 
-    <div id="time"></div>
+    <img
+      id="akshIcon"
+      src="aksh-icon.PNG"
+      alt="AKSH">
 
-    <div id="mark">
-      <div id="markCore"></div>
+    <div id="akshName">
+      AKSH
     </div>
-
-    <h1 id="greeting"></h1>
-
-    <p id="message"></p>
 
     <div id="tagline">
       A Safe Space For Every Mind
@@ -327,49 +388,52 @@ body{
 
   </div>
 
-  <button id="sound">♫</button>
+  <button id="sound">
+    🔊
+  </button>
 
-  <div id="status">
-    Preparing your journey
-  </div>
+  <div id="transition"></div>
 
 </div>
 
 <script>
 
-const video = document.getElementById("backgroundVideo");
-const greeting = document.getElementById("greeting");
-const message = document.getElementById("message");
-const time = document.getElementById("time");
-const journey = document.getElementById("journey");
-const sound = document.getElementById("sound");
-const statusText = document.getElementById("status");
+const video =
+document.getElementById("backgroundVideo");
 
-let activeVideo = "";
-let audioEnabled = false;
+const sound =
+document.getElementById("sound");
+
+const journey =
+document.getElementById("journey");
+
+const transition =
+document.getElementById("transition");
+
+let audioOn = true;
 
 const videos = {
 
-  morning1:"aksh-morning.1.mov",
-  morning2:"aksh-morning.2.mov",
-  morning3:"aksh-morning.3.mov",
-  morning4:"aksh-morning.4.mov",
+morning1:"aksh-morning.1.mov",
+morning2:"aksh-morning.2.mov",
+morning3:"aksh-morning.3.mov",
+morning4:"aksh-morning.4.mov",
 
-  afternoon1:"aksh-afternoon.1.mov",
-  afternoon2:"aksh-afternoon.2.mov",
-  afternoon3:"aksh-afternoon.3.mov",
-  afternoon4:"aksh-afternoon.4.mov",
+afternoon1:"aksh-afternoon.1.mov",
+afternoon2:"aksh-afternoon.2.mov",
+afternoon3:"aksh-afternoon.3.mov",
+afternoon4:"aksh-afternoon.4.mov",
 
-  evening1:"aksh-evening.1.mov",
-  evening2:"aksh-evening.2.mov",
-  evening3:"aksh-morning.4.mov",
+evening1:"aksh-evening.1.mov",
+evening2:"aksh-evening.2.mov",
+evening3:"aksh-morning.4.mov",
 
-  night1:"aksh-night.1.mov",
-  night2:"aksh-night.2.mov"
+night1:"aksh-night.1.mov",
+night2:"aksh-night.2.mov"
 
 };
 
-function experienceForNow(){
+function getVideo(){
 
   const now = new Date();
 
@@ -377,233 +441,169 @@ function experienceForNow(){
     now.getHours() * 60 +
     now.getMinutes();
 
-  if(minutes >= 300 && minutes < 360){
+  if(minutes >= 300 && minutes < 360)
+    return videos.morning1;
 
-    return {
-      title:"Good Morning",
-      text:"Take a breath. The day is beginning, and you don't have to rush.",
-      file:videos.morning1,
-      label:"05:00 — 06:00"
-    };
+  if(minutes >= 360 && minutes < 480)
+    return videos.morning2;
 
-  }
+  if(minutes >= 480 && minutes < 600)
+    return videos.morning3;
 
-  if(minutes >= 360 && minutes < 480){
+  if(minutes >= 600 && minutes < 720)
+    return videos.morning4;
 
-    return {
-      title:"Good Morning",
-      text:"A quiet moment for you. Let the morning arrive gently.",
-      file:videos.morning2,
-      label:"06:00 — 08:00"
-    };
+  if(minutes >= 720 && minutes < 780)
+    return videos.afternoon1;
 
-  }
+  if(minutes >= 780 && minutes < 870)
+    return videos.afternoon2;
 
-  if(minutes >= 480 && minutes < 600){
+  if(minutes >= 870 && minutes < 960)
+    return videos.afternoon3;
 
-    return {
-      title:"Good Morning",
-      text:"Slow down for a moment. You deserve a little peace today.",
-      file:videos.morning3,
-      label:"08:00 — 10:00"
-    };
+  if(minutes >= 960 && minutes < 1020)
+    return videos.afternoon4;
 
-  }
+  if(minutes >= 1020 && minutes < 1065)
+    return videos.evening1;
 
-  if(minutes >= 600 && minutes < 720){
+  if(minutes >= 1065 && minutes < 1140)
+    return videos.evening2;
 
-    return {
-      title:"Good Morning",
-      text:"Before the day gets louder, give yourself a quiet moment.",
-      file:videos.morning4,
-      label:"10:00 — 11:59"
-    };
+  if(minutes >= 1140 && minutes < 1200)
+    return videos.evening3;
 
-  }
+  if(minutes >= 1200)
+    return videos.night1;
 
-  if(minutes >= 720 && minutes < 780){
-
-    return {
-      title:"Good Afternoon",
-      text:"Pause for a moment. You are allowed to take care of yourself.",
-      file:videos.afternoon1,
-      label:"12:00 — 01:00"
-    };
-
-  }
-
-  if(minutes >= 780 && minutes < 870){
-
-    return {
-      title:"Good Afternoon",
-      text:"Let the noise soften. Stay here for a moment.",
-      file:videos.afternoon2,
-      label:"01:00 — 02:30"
-    };
-
-  }
-
-  if(minutes >= 870 && minutes < 960){
-
-    return {
-      title:"Good Afternoon",
-      text:"A little stillness can change the way a day feels.",
-      file:videos.afternoon3,
-      label:"02:30 — 04:00"
-    };
-
-  }
-
-  if(minutes >= 960 && minutes < 1020){
-
-    return {
-      title:"Good Afternoon ",
-      text:"Whatever today has brought you, you don't have to carry it alone.",
-      file:videos.afternoon4,
-      label:"04:00 — 04:59"
-    };
-
-  }
-
-  if(minutes >= 1020 && minutes < 1065){
-
-    return {
-      title:"Good Evening ",
-      text:"The day is slowing down. Let yourself slow down with it.",
-      file:videos.evening1,
-      label:"05:00 — 05:45"
-    };
-
-  }
-
-  if(minutes >= 1065 && minutes < 1140){
-
-    return {
-      title:"Good Evening ",
-      text:"Some journeys are easier when you don't have to walk them alone.",
-      file:videos.evening2,
-      label:"05:45 — 07:00"
-    };
-
-  }
-
-  if(minutes >= 1140 && minutes < 1200){
-
-    return {
-      title:"Good Evening ",
-      text:"Take one last quiet breath before the evening becomes night.",
-      file:videos.evening3,
-      label:"07:00 — 07:59"
-    };
-
-  }
-
-  if(minutes >= 1200){
-
-    return {
-      title:"Good Night ",
-      text:"The world can wait. For now, give your mind somewhere peaceful to rest.",
-      file:videos.night1,
-      label:"08:00 PM — 11:59 PM"
-    };
-
-  }
-
-  return {
-    title:"Good Night ",
-    text:"It's quiet now. Breathe slowly. You are safe to pause here.",
-    file:videos.night2,
-    label:"12:00 AM — 04:59 AM"
-  };
+  return videos.night2;
 
 }
 
-function loadExperience(){
+function startVideo(){
 
-  const data = experienceForNow();
+  const selected =
+    getVideo();
 
-  greeting.textContent = data.title;
-  message.textContent = data.text;
-  time.textContent = data.label;
-
-  if(activeVideo === data.file){
-    return;
-  }
-
-  activeVideo = data.file;
-
-  video.classList.remove("visible");
-
-  video.src = data.file;
+  video.src = selected;
 
   video.load();
 
+  video.muted = false;
+
+  video.volume = 1;
+
+  video.play()
+    .then(()=>{
+
+      sound.textContent = "🔊";
+
+    })
+    .catch(()=>{
+
+      /*
+      iPhone/Chrome may block
+      audible autoplay.
+      The experience stays ready
+      to play sound immediately
+      when the browser permits it.
+      */
+
+      video.muted = true;
+
+      video.play().catch(()=>{});
+
+      sound.textContent = "🔊";
+
+    });
+
   video.addEventListener(
     "canplay",
-    function show(){
+    ()=>{
 
       video.classList.add("visible");
 
-      video.removeEventListener(
-        "canplay",
-        show
-      );
-
-    }
+    },
+    {once:true}
   );
-
-  video.play().catch(()=>{});
 
 }
 
-sound.addEventListener("click",function(){
+sound.addEventListener(
+  "click",
+  ()=>{
 
-  audioEnabled = !audioEnabled;
+    audioOn = !audioOn;
 
-  if(audioEnabled){
+    if(audioOn){
 
-    video.muted = false;
-    video.volume = .75;
+      video.muted = false;
 
-    video.play().catch(()=>{});
+      video.volume = 1;
 
-    sound.textContent = "🔊";
+      video.play().catch(()=>{});
 
-  }else{
+      sound.textContent = "🔊";
 
-    video.muted = true;
+    }else{
 
-    sound.textContent = "♫";
+      video.muted = true;
 
-  }
+      sound.textContent = "🔇";
 
-});
-
-journey.addEventListener("click",function(){
-
-  statusText.classList.add("show");
-
-  setTimeout(function(){
-
-    statusText.classList.remove("show");
-
-  },1800);
-
-});
-
-loadExperience();
-
-setInterval(function(){
-
-  const current = experienceForNow();
-
-  if(current.file !== activeVideo){
-
-    loadExperience();
+    }
 
   }
+);
 
-},15000);
+journey.addEventListener(
+  "click",
+  ()=>{
+
+    transition.classList.add("active");
+
+    setTimeout(
+      ()=>{
+
+        window.location.href =
+          "page1.html";
+
+      },
+      700
+    );
+
+  }
+);
+
+startVideo();
+
+setInterval(
+  ()=>{
+
+    const current =
+      getVideo();
+
+    if(
+      video.src &&
+      !video.src.endsWith(current)
+    ){
+
+      video.classList.remove("visible");
+
+      video.src = current;
+
+      video.load();
+
+      video.muted = !audioOn;
+
+      video.play().catch(()=>{});
+
+    }
+
+  },
+  15000
+);
 
 </script>
 
