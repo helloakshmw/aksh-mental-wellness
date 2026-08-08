@@ -3,607 +3,508 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#08090d">
-
 <title>AKSH — A Safe Space For Every Mind</title>
 
 <style>
-
 *{
-  box-sizing:border-box;
   margin:0;
   padding:0;
+  box-sizing:border-box;
 }
 
 html,body{
   width:100%;
   height:100%;
   overflow:hidden;
-  background:#08090d;
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,sans-serif;
+  background:#050609;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",
+  "Helvetica Neue",Arial,sans-serif;
 }
 
-body{
-  color:white;
-}
-
-#experience{
+#page{
   position:fixed;
   inset:0;
   overflow:hidden;
-  background:#08090d;
+  background:#050609;
 }
 
-#backgroundVideo{
+#video{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
   opacity:0;
-  transform:scale(1.035);
-  transition:
-    opacity 1.8s ease,
-    transform 8s ease;
+  transform:scale(1.04);
+  transition:opacity 1.8s ease,transform 8s ease;
 }
 
-#backgroundVideo.visible{
+#video.show{
   opacity:1;
   transform:scale(1);
 }
 
-#atmosphere{
+.overlay{
   position:absolute;
   inset:0;
   background:
-    radial-gradient(
-      circle at 50% 40%,
-      rgba(255,255,255,.12),
-      transparent 42%
-    ),
     linear-gradient(
       180deg,
-      rgba(0,0,0,.08) 0%,
-      rgba(0,0,0,.02) 40%,
-      rgba(0,0,0,.25) 72%,
-      rgba(0,0,0,.72) 100%
+      rgba(0,0,0,.20) 0%,
+      rgba(0,0,0,.02) 35%,
+      rgba(0,0,0,.12) 65%,
+      rgba(0,0,0,.42) 100%
     );
   pointer-events:none;
 }
 
-#grain{
+.top{
   position:absolute;
-  inset:-50%;
-  opacity:.035;
-  pointer-events:none;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
-  animation:grainMove .25s steps(2) infinite;
-}
-
-@keyframes grainMove{
-
-0%{
-transform:translate(0,0);
-}
-
-25%{
-transform:translate(2%,-1%);
-}
-
-50%{
-transform:translate(-1%,2%);
-}
-
-75%{
-transform:translate(1%,1%);
-}
-
-100%{
-transform:translate(-2%,-1%);
-}
-
-}
-
-#interface{
-  position:absolute;
-  inset:0;
-
+  top:7%;
+  left:50%;
+  transform:translateX(-50%);
   display:flex;
   flex-direction:column;
-
   align-items:center;
-  justify-content:center;
-
   text-align:center;
-
-  padding:
-    max(28px,env(safe-area-inset-top))
-    24px
-    max(32px,env(safe-area-inset-bottom))
-    24px;
-
   z-index:5;
 }
 
-#akshIcon{
-  width:92px;
-  height:92px;
-
+#icon{
+  width:76px;
+  height:76px;
   object-fit:contain;
-
-  margin-bottom:24px;
-
-  filter:
-    drop-shadow(0 15px 40px rgba(0,0,0,.35));
-
-  animation:iconFloat 5s ease-in-out infinite;
+  margin-bottom:15px;
+  filter:drop-shadow(0 12px 30px rgba(0,0,0,.3));
 }
 
-@keyframes iconFloat{
-
-0%,100%{
-transform:translateY(0);
-}
-
-50%{
-transform:translateY(-6px);
-}
-
-}
-
-#akshName{
-  font-size:clamp(28px,5vw,48px);
-
-  font-weight:500;
-
-  letter-spacing:.18em;
-
-  margin-left:.18em;
-
-  margin-bottom:18px;
-
-  text-shadow:
-    0 6px 30px rgba(0,0,0,.35);
+#watermark{
+  font-size:15px;
+  letter-spacing:.48em;
+  margin-left:.48em;
+  font-weight:400;
+  color:rgba(255,255,255,.72);
+  text-shadow:0 3px 18px rgba(0,0,0,.35);
 }
 
 #tagline{
-
-  font-size:clamp(13px,2vw,18px);
-
+  margin-top:9px;
+  font-size:11px;
+  letter-spacing:.11em;
   font-weight:300;
+  color:rgba(255,255,255,.90);
+  white-space:nowrap;
+  text-shadow:0 3px 18px rgba(0,0,0,.4);
+}
 
-  letter-spacing:.08em;
+#date{
+  position:absolute;
+  top:5.5%;
+  left:5%;
+  z-index:5;
+  font-size:10px;
+  letter-spacing:.14em;
+  color:rgba(255,255,255,.82);
+  text-shadow:0 3px 15px rgba(0,0,0,.4);
+}
 
-  color:rgba(255,255,255,.9);
+#day{
+  position:absolute;
+  top:5.5%;
+  right:5%;
+  z-index:5;
+  font-size:10px;
+  letter-spacing:.14em;
+  color:rgba(255,255,255,.82);
+  text-shadow:0 3px 15px rgba(0,0,0,.4);
+}
 
+.center{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:4;
+  pointer-events:none;
+}
+
+#greeting{
+  font-size:clamp(38px,8vw,82px);
+  font-weight:300;
+  letter-spacing:-.035em;
+  color:white;
   text-shadow:
-    0 4px 22px rgba(0,0,0,.45);
+    0 5px 35px rgba(0,0,0,.42),
+    0 1px 2px rgba(0,0,0,.25);
+  animation:fadeUp 1.8s ease both;
+}
 
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(18px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 #journey{
-
   position:absolute;
-
-  bottom:9%;
-
   left:50%;
-
+  bottom:10%;
   transform:translateX(-50%);
+  z-index:6;
 
+  padding:15px 30px;
   min-width:205px;
 
-  padding:15px 27px;
-
+  border:1px solid rgba(255,255,255,.48);
   border-radius:999px;
 
-  border:1px solid rgba(255,255,255,.45);
-
   background:rgba(255,255,255,.10);
-
   color:white;
 
-  font-size:11px;
-
-  letter-spacing:.18em;
-
+  font-size:10px;
+  font-weight:400;
+  letter-spacing:.19em;
   text-transform:uppercase;
 
-  backdrop-filter:blur(22px);
-
-  -webkit-backdrop-filter:blur(22px);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
 
   box-shadow:
-    0 15px 50px rgba(0,0,0,.22),
-    inset 0 1px 0 rgba(255,255,255,.20);
+    0 15px 45px rgba(0,0,0,.22),
+    inset 0 1px 0 rgba(255,255,255,.18);
 
-  cursor:pointer;
-
-  transition:
-    transform .35s ease,
-    background .35s ease,
-    border-color .35s ease;
-
-}
-
-#journey:hover{
-
-  background:rgba(255,255,255,.17);
-
-  border-color:rgba(255,255,255,.75);
-
+  transition:.35s ease;
 }
 
 #journey:active{
-
-  transform:
-    translateX(-50%)
-    scale(.96);
-
+  transform:translateX(-50%) scale(.96);
 }
 
 #sound{
-
   position:absolute;
+  right:5%;
+  bottom:5.5%;
+  z-index:8;
 
-  right:22px;
-
-  bottom:24px;
-
-  width:44px;
-
-  height:44px;
+  width:43px;
+  height:43px;
 
   border-radius:50%;
-
-  border:1px solid rgba(255,255,255,.32);
+  border:1px solid rgba(255,255,255,.35);
 
   background:rgba(0,0,0,.16);
-
   color:white;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  backdrop-filter:blur(18px);
-
-  -webkit-backdrop-filter:blur(18px);
-
-  z-index:10;
-
-  cursor:pointer;
 
   font-size:16px;
 
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
 }
 
-#transition{
-
+#fade{
   position:absolute;
-
   inset:0;
-
-  background:#08090d;
-
-  z-index:20;
-
+  background:#050609;
   opacity:0;
-
   pointer-events:none;
-
-  transition:opacity 1s ease;
-
+  z-index:20;
+  transition:opacity .8s ease;
 }
 
-#transition.active{
-
+#fade.on{
   opacity:1;
-
 }
 
 @media(max-width:600px){
 
-  #akshIcon{
-
-    width:78px;
-
-    height:78px;
-
-    margin-bottom:21px;
-
+  .top{
+    top:8%;
   }
 
-  #akshName{
+  #icon{
+    width:68px;
+    height:68px;
+  }
 
-    font-size:30px;
-
-    margin-bottom:15px;
-
+  #watermark{
+    font-size:14px;
   }
 
   #tagline{
+    font-size:9px;
+    letter-spacing:.08em;
+  }
 
-    max-width:320px;
+  #date,
+  #day{
+    top:4.5%;
+    font-size:8px;
+  }
 
-    font-size:13px;
+  #date{
+    left:5%;
+  }
 
-    line-height:1.6;
+  #day{
+    right:5%;
+  }
 
+  #greeting{
+    font-size:42px;
   }
 
   #journey{
-
-    bottom:9%;
-
-    min-width:184px;
-
-    padding:14px 22px;
-
-    font-size:10px;
-
+    bottom:10%;
+    min-width:190px;
+    padding:14px 24px;
   }
 
+  #sound{
+    right:5%;
+    bottom:4.5%;
+  }
 }
-
 </style>
 </head>
 
 <body>
 
-<div id="experience">
+<div id="page">
 
   <video
-    id="backgroundVideo"
+    id="video"
     autoplay
     playsinline
     webkit-playsinline
     preload="auto">
   </video>
 
-  <div id="atmosphere"></div>
+  <div class="overlay"></div>
 
-  <div id="grain"></div>
+  <div id="date"></div>
+  <div id="day"></div>
 
-  <div id="interface">
-
-    <img
-      id="akshIcon"
-      src="aksh-icon.PNG"
-      alt="AKSH">
-
-    <div id="akshName">
-      AKSH
-    </div>
-
-    <div id="tagline">
-      A Safe Space For Every Mind
-    </div>
-
-    <button id="journey">
-      Begin Your Journey
-    </button>
-
+  <div class="top">
+    <img id="icon" src="aksh-icon.PNG" alt="AKSH">
+    <div id="watermark">AKSH</div>
+    <div id="tagline">A Safe Space For Every Mind</div>
   </div>
 
-  <button id="sound">
-    🔊
-  </button>
+  <div class="center">
+    <div id="greeting"></div>
+  </div>
 
-  <div id="transition"></div>
+  <button id="journey">Begin Your Journey</button>
+
+  <button id="sound">🔊</button>
+
+  <div id="fade"></div>
 
 </div>
 
 <script>
 
-const video =
-document.getElementById("backgroundVideo");
+const video = document.getElementById("video");
+const greeting = document.getElementById("greeting");
+const dateBox = document.getElementById("date");
+const dayBox = document.getElementById("day");
+const sound = document.getElementById("sound");
+const journey = document.getElementById("journey");
+const fade = document.getElementById("fade");
 
-const sound =
-document.getElementById("sound");
+const files = {
+  morning1: "aksh-morning.1.mov",
+  morning2: "aksh-morning.2.mov",
+  morning3: "aksh-morning.3.mov",
+  morning4: "aksh-morning.4.mov",
 
-const journey =
-document.getElementById("journey");
+  afternoon1: "aksh-afternoon.1.mov",
+  afternoon2: "aksh-afternoon.2.mov",
+  afternoon3: "aksh-afternoon.3.mov",
+  afternoon4: "aksh-afternoon.4.mov",
 
-const transition =
-document.getElementById("transition");
+  evening1: "aksh-evening.1.mov",
+  evening2: "aksh-evening.2.mov",
+  evening3: "aksh-morning.4.mov",
 
-let audioOn = true;
-
-const videos = {
-
-morning1:"aksh-morning.1.mov",
-morning2:"aksh-morning.2.mov",
-morning3:"aksh-morning.3.mov",
-morning4:"aksh-morning.4.mov",
-
-afternoon1:"aksh-afternoon.1.mov",
-afternoon2:"aksh-afternoon.2.mov",
-afternoon3:"aksh-afternoon.3.mov",
-afternoon4:"aksh-afternoon.4.mov",
-
-evening1:"aksh-evening.1.mov",
-evening2:"aksh-evening.2.mov",
-evening3:"aksh-morning.4.mov",
-
-night1:"aksh-night.1.mov",
-night2:"aksh-night.2.mov"
-
+  night1: "aksh-night.1.mov",
+  night2: "aksh-night.2.mov"
 };
 
-function getVideo(){
+function updateClock(){
 
   const now = new Date();
 
-  const minutes =
-    now.getHours() * 60 +
-    now.getMinutes();
+  const h = now.getHours();
+  const m = now.getMinutes();
 
-  if(minutes >= 300 && minutes < 360)
-    return videos.morning1;
+  const total = h * 60 + m;
 
-  if(minutes >= 360 && minutes < 480)
-    return videos.morning2;
+  let message = "";
+  let selected = "";
 
-  if(minutes >= 480 && minutes < 600)
-    return videos.morning3;
+  if(total >= 300 && total < 360){
 
-  if(minutes >= 600 && minutes < 720)
-    return videos.morning4;
+    message = "Good Morning";
+    selected = files.morning1;
 
-  if(minutes >= 720 && minutes < 780)
-    return videos.afternoon1;
+  }else if(total >= 360 && total < 480){
 
-  if(minutes >= 780 && minutes < 870)
-    return videos.afternoon2;
+    message = "Good Morning";
+    selected = files.morning2;
 
-  if(minutes >= 870 && minutes < 960)
-    return videos.afternoon3;
+  }else if(total >= 480 && total < 600){
 
-  if(minutes >= 960 && minutes < 1020)
-    return videos.afternoon4;
+    message = "Good Morning";
+    selected = files.morning3;
 
-  if(minutes >= 1020 && minutes < 1065)
-    return videos.evening1;
+  }else if(total >= 600 && total < 720){
 
-  if(minutes >= 1065 && minutes < 1140)
-    return videos.evening2;
+    message = "Good Morning";
+    selected = files.morning4;
 
-  if(minutes >= 1140 && minutes < 1200)
-    return videos.evening3;
+  }else if(total >= 720 && total < 780){
 
-  if(minutes >= 1200)
-    return videos.night1;
+    message = "Good Afternoon";
+    selected = files.afternoon1;
 
-  return videos.night2;
+  }else if(total >= 780 && total < 870){
 
-}
+    message = "Good Afternoon";
+    selected = files.afternoon2;
 
-function startVideo(){
+  }else if(total >= 870 && total < 960){
 
-  const selected =
-    getVideo();
+    message = "Good Afternoon";
+    selected = files.afternoon3;
 
-  video.src = selected;
+  }else if(total >= 960 && total < 1020){
 
-  video.load();
+    message = "Good Afternoon";
+    selected = files.afternoon4;
 
-  video.muted = false;
+  }else if(total >= 1020 && total < 1065){
 
-  video.volume = 1;
+    message = "Good Evening";
+    selected = files.evening1;
 
-  video.play()
-    .then(()=>{
+  }else if(total >= 1065 && total < 1140){
 
-      sound.textContent = "🔊";
+    message = "Good Evening";
+    selected = files.evening2;
 
-    })
-    .catch(()=>{
+  }else if(total >= 1140 && total < 1200){
 
-      /*
-      iPhone/Chrome may block
-      audible autoplay.
-      The experience stays ready
-      to play sound immediately
-      when the browser permits it.
-      */
+    message = "Good Evening";
+    selected = files.evening3;
 
-      video.muted = true;
+  }else if(total >= 1200){
 
-      video.play().catch(()=>{});
+    message = "Good Night";
+    selected = files.night1;
 
-      sound.textContent = "🔊";
+  }else{
 
-    });
-
-  video.addEventListener(
-    "canplay",
-    ()=>{
-
-      video.classList.add("visible");
-
-    },
-    {once:true}
-  );
-
-}
-
-sound.addEventListener(
-  "click",
-  ()=>{
-
-    audioOn = !audioOn;
-
-    if(audioOn){
-
-      video.muted = false;
-
-      video.volume = 1;
-
-      video.play().catch(()=>{});
-
-      sound.textContent = "🔊";
-
-    }else{
-
-      video.muted = true;
-
-      sound.textContent = "🔇";
-
-    }
+    message = "Good Night";
+    selected = files.night2;
 
   }
-);
 
-journey.addEventListener(
-  "click",
-  ()=>{
+  greeting.textContent = message;
 
-    transition.classList.add("active");
+  dateBox.textContent =
+    now.toLocaleDateString(
+      "en-IN",
+      {
+        day:"2-digit",
+        month:"short",
+        year:"numeric"
+      }
+    ).toUpperCase();
 
-    setTimeout(
+  dayBox.textContent =
+    now.toLocaleDateString(
+      "en-IN",
+      {
+        weekday:"long"
+      }
+    ).toUpperCase();
+
+  if(
+    !video.src ||
+    !video.src.endsWith(selected)
+  ){
+
+    video.classList.remove("show");
+
+    video.src = selected;
+    video.load();
+
+    video.muted = false;
+    video.volume = 1;
+
+    video.play()
+      .then(()=>{
+        sound.textContent = "🔊";
+      })
+      .catch(()=>{
+        video.muted = true;
+        video.play().catch(()=>{});
+        sound.textContent = "🔊";
+      });
+
+    video.addEventListener(
+      "canplay",
       ()=>{
-
-        window.location.href =
-          "page1.html";
-
+        video.classList.add("show");
       },
-      700
+      {once:true}
     );
+  }
+}
+
+sound.addEventListener("click",()=>{
+
+  if(video.muted){
+
+    video.muted = false;
+    video.volume = 1;
+    sound.textContent = "🔊";
+
+    video.play().catch(()=>{});
+
+  }else{
+
+    video.muted = true;
+    sound.textContent = "🔇";
 
   }
-);
 
-startVideo();
+});
 
-setInterval(
-  ()=>{
+journey.addEventListener("click",()=>{
 
-    const current =
-      getVideo();
+  fade.classList.add("on");
 
-    if(
-      video.src &&
-      !video.src.endsWith(current)
-    ){
+  setTimeout(()=>{
+    window.location.href = "page1.html";
+  },800);
 
-      video.classList.remove("visible");
+});
 
-      video.src = current;
+updateClock();
 
-      video.load();
-
-      video.muted = !audioOn;
-
-      video.play().catch(()=>{});
-
-    }
-
-  },
-  15000
-);
+setInterval(updateClock,15000);
 
 </script>
 
