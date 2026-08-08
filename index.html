@@ -3,303 +3,288 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#111018">
+<meta name="theme-color" content="#08090d">
 <title>AKSH — A Safe Space For Every Mind</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-
-html,body{
-width:100%;
-height:100%;
-overflow:hidden;
-font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,sans-serif;
-background:#09090d;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-body{color:#fff}
+html,body{
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#08090d;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,sans-serif;
+}
+
+body{
+  color:#fff;
+}
 
 #experience{
-position:fixed;
-inset:0;
-width:100%;
-height:100%;
-overflow:hidden;
-background:#09090d;
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  background:#08090d;
 }
 
 #backgroundVideo{
-position:absolute;
-inset:0;
-width:100%;
-height:100%;
-object-fit:cover;
-transform:scale(1.03);
-filter:saturate(.92) contrast(.96);
-opacity:0;
-transition:opacity 1.2s ease;
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  transform:scale(1.035);
+  transition:opacity 1.8s ease,transform 8s ease;
 }
 
-#backgroundVideo.visible{opacity:1}
-
-#cinematicOverlay{
-position:absolute;
-inset:0;
-background:
-linear-gradient(
-180deg,
-rgba(5,5,10,.25) 0%,
-rgba(5,5,10,.04) 38%,
-rgba(5,5,10,.22) 70%,
-rgba(5,5,10,.72) 100%
-);
-pointer-events:none;
+#backgroundVideo.visible{
+  opacity:1;
+  transform:scale(1);
 }
 
-#softGlow{
-position:absolute;
-width:55vw;
-height:55vw;
-max-width:700px;
-max-height:700px;
-left:50%;
-top:45%;
-transform:translate(-50%,-50%);
-border-radius:50%;
-background:rgba(255,255,255,.08);
-filter:blur(90px);
-pointer-events:none;
-opacity:.65;
+#atmosphere{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(255,255,255,.12),
+      transparent 42%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,.12) 0%,
+      rgba(0,0,0,.04) 40%,
+      rgba(0,0,0,.28) 72%,
+      rgba(0,0,0,.72) 100%
+    );
+  pointer-events:none;
 }
 
-#content{
-position:absolute;
-inset:0;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-text-align:center;
-padding:max(28px,env(safe-area-inset-top))
-24px
-max(42px,env(safe-area-inset-bottom))
-24px;
-z-index:5;
+#grain{
+  position:absolute;
+  inset:-50%;
+  opacity:.045;
+  pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+  animation:grainMove .25s steps(2) infinite;
 }
 
-#brandMark{
-width:58px;
-height:58px;
-border:1px solid rgba(255,255,255,.58);
-border-radius:19px;
-display:flex;
-align-items:center;
-justify-content:center;
-margin-bottom:30px;
-background:rgba(255,255,255,.07);
-backdrop-filter:blur(18px);
--webkit-backdrop-filter:blur(18px);
-box-shadow:
-0 12px 50px rgba(0,0,0,.18),
-inset 0 1px 0 rgba(255,255,255,.2);
-animation:markFloat 5s ease-in-out infinite;
+@keyframes grainMove{
+  0%{transform:translate(0,0)}
+  25%{transform:translate(2%,-1%)}
+  50%{transform:translate(-1%,2%)}
+  75%{transform:translate(1%,1%)}
+  100%{transform:translate(-2%,-1%)}
 }
 
-#brandMark span{
-width:21px;
-height:21px;
-border:1px solid rgba(255,255,255,.9);
-border-radius:50%;
-position:relative;
+#interface{
+  position:absolute;
+  inset:0;
+  z-index:5;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:
+    max(28px,env(safe-area-inset-top))
+    24px
+    max(32px,env(safe-area-inset-bottom))
+    24px;
 }
 
-#brandMark span:after{
-content:"";
-position:absolute;
-width:7px;
-height:7px;
-border-radius:50%;
-background:rgba(255,255,255,.92);
-left:50%;
-top:50%;
-transform:translate(-50%,-50%);
+#mark{
+  width:58px;
+  height:58px;
+  border:1px solid rgba(255,255,255,.58);
+  border-radius:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:30px;
+  background:rgba(255,255,255,.075);
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+  box-shadow:
+    0 18px 60px rgba(0,0,0,.2),
+    inset 0 1px 0 rgba(255,255,255,.25);
+  animation:floatMark 5s ease-in-out infinite;
+}
+
+#markCore{
+  width:22px;
+  height:22px;
+  border:1px solid rgba(255,255,255,.92);
+  border-radius:50%;
+  position:relative;
+}
+
+#markCore:after{
+  content:"";
+  position:absolute;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#fff;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  box-shadow:0 0 18px rgba(255,255,255,.75);
+}
+
+@keyframes floatMark{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-7px)}
+}
+
+#time{
+  position:absolute;
+  top:7%;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:9px;
+  letter-spacing:.38em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.62);
 }
 
 #greeting{
-font-size:clamp(38px,8vw,82px);
-line-height:1;
-font-weight:400;
-letter-spacing:-.045em;
-text-shadow:0 8px 35px rgba(0,0,0,.3);
-margin-bottom:22px;
+  font-size:clamp(42px,8vw,86px);
+  line-height:.98;
+  font-weight:400;
+  letter-spacing:-.055em;
+  text-shadow:
+    0 8px 35px rgba(0,0,0,.3),
+    0 1px 1px rgba(0,0,0,.25);
+  margin-bottom:22px;
 }
 
 #message{
-max-width:620px;
-font-size:clamp(15px,2vw,19px);
-line-height:1.65;
-font-weight:300;
-letter-spacing:.01em;
-color:rgba(255,255,255,.88);
-text-shadow:0 4px 20px rgba(0,0,0,.4);
+  max-width:620px;
+  font-size:clamp(15px,2vw,19px);
+  line-height:1.65;
+  font-weight:300;
+  color:rgba(255,255,255,.9);
+  text-shadow:0 4px 22px rgba(0,0,0,.45);
 }
 
 #tagline{
-position:absolute;
-left:50%;
-bottom:25%;
-transform:translateX(-50%);
-white-space:nowrap;
-font-size:clamp(11px,1.5vw,15px);
-letter-spacing:.28em;
-text-transform:uppercase;
-color:rgba(255,255,255,.86);
-font-weight:400;
+  position:absolute;
+  bottom:24%;
+  left:50%;
+  transform:translateX(-50%);
+  white-space:nowrap;
+  font-size:clamp(9px,1.4vw,14px);
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.84);
 }
 
 #journey{
-position:absolute;
-left:50%;
-bottom:10%;
-transform:translateX(-50%);
-border:1px solid rgba(255,255,255,.48);
-background:rgba(255,255,255,.09);
-color:#fff;
-padding:15px 25px;
-min-width:190px;
-border-radius:999px;
-font-size:13px;
-letter-spacing:.16em;
-text-transform:uppercase;
-cursor:pointer;
-backdrop-filter:blur(20px);
--webkit-backdrop-filter:blur(20px);
-box-shadow:
-0 12px 45px rgba(0,0,0,.2),
-inset 0 1px 0 rgba(255,255,255,.18);
-transition:
-transform .35s ease,
-background .35s ease,
-border-color .35s ease;
+  position:absolute;
+  bottom:9%;
+  left:50%;
+  transform:translateX(-50%);
+  min-width:205px;
+  padding:15px 27px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.45);
+  background:rgba(255,255,255,.1);
+  color:#fff;
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+  box-shadow:
+    0 15px 50px rgba(0,0,0,.22),
+    inset 0 1px 0 rgba(255,255,255,.2);
+  cursor:pointer;
+  transition:
+    transform .35s ease,
+    background .35s ease,
+    border-color .35s ease;
 }
 
 #journey:active{
-transform:translateX(-50%) scale(.96);
+  transform:translateX(-50%) scale(.96);
 }
 
-#journey:hover{
-background:rgba(255,255,255,.17);
-border-color:rgba(255,255,255,.75);
+#sound{
+  position:absolute;
+  right:22px;
+  bottom:24px;
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.3);
+  background:rgba(0,0,0,.14);
+  color:#fff;
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  z-index:10;
+  cursor:pointer;
 }
 
-#timeIndicator{
-position:absolute;
-top:7%;
-left:50%;
-transform:translateX(-50%);
-font-size:10px;
-letter-spacing:.35em;
-text-transform:uppercase;
-color:rgba(255,255,255,.6);
+#status{
+  position:absolute;
+  left:50%;
+  bottom:3.5%;
+  transform:translateX(-50%);
+  font-size:8px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.45);
+  opacity:0;
+  transition:opacity .5s ease;
 }
 
-#soundButton{
-position:absolute;
-right:22px;
-bottom:25px;
-width:44px;
-height:44px;
-border:1px solid rgba(255,255,255,.32);
-border-radius:50%;
-background:rgba(0,0,0,.15);
-color:white;
-display:flex;
-align-items:center;
-justify-content:center;
-backdrop-filter:blur(15px);
--webkit-backdrop-filter:blur(15px);
-cursor:pointer;
-z-index:10;
-font-size:15px;
-}
-
-#transition{
-position:absolute;
-inset:0;
-background:#08080c;
-z-index:20;
-opacity:1;
-pointer-events:none;
-transition:opacity 1.4s ease;
-}
-
-#transition.hide{opacity:0}
-
-.fadeOut{
-animation:contentOut 1s ease forwards;
-}
-
-@keyframes contentOut{
-to{
-opacity:0;
-transform:translateY(-10px);
-}
-}
-
-@keyframes markFloat{
-0%,100%{transform:translateY(0)}
-50%{transform:translateY(-7px)}
+#status.show{
+  opacity:1;
 }
 
 @media(max-width:600px){
 
-#brandMark{
-width:52px;
-height:52px;
-border-radius:17px;
-margin-bottom:25px;
-}
+  #mark{
+    width:52px;
+    height:52px;
+    border-radius:18px;
+    margin-bottom:26px;
+  }
 
-#greeting{
-font-size:48px;
-}
+  #greeting{
+    font-size:48px;
+  }
 
-#message{
-max-width:330px;
-font-size:15px;
-line-height:1.6;
-}
+  #message{
+    max-width:330px;
+    font-size:15px;
+  }
 
-#tagline{
-bottom:23%;
-font-size:9px;
-letter-spacing:.23em;
-}
+  #tagline{
+    bottom:23%;
+    font-size:8px;
+    letter-spacing:.24em;
+  }
 
-#journey{
-bottom:9%;
-min-width:180px;
-padding:14px 21px;
-font-size:11px;
-}
+  #journey{
+    bottom:9%;
+    min-width:184px;
+    padding:14px 22px;
+    font-size:10px;
+  }
 
-#timeIndicator{
-top:6%;
-font-size:8px;
-letter-spacing:.28em;
-}
-}
-
-@media(min-width:900px){
-
-#content{
-padding-left:60px;
-padding-right:60px;
-}
-
-#journey:hover{
-transform:translateX(-50%) translateY(-3px);
-}
+  #time{
+    top:6%;
+    font-size:7px;
+  }
 }
 </style>
 </head>
@@ -308,364 +293,317 @@ transform:translateX(-50%) translateY(-3px);
 
 <div id="experience">
 
-<video
-id="backgroundVideo"
-autoplay
-muted
-playsinline
-preload="auto">
-</video>
+  <video
+    id="backgroundVideo"
+    autoplay
+    muted
+    playsinline
+    webkit-playsinline
+    preload="auto">
+  </video>
 
-<div id="cinematicOverlay"></div>
-<div id="softGlow"></div>
+  <div id="atmosphere"></div>
+  <div id="grain"></div>
 
-<div id="content">
+  <div id="interface">
 
-<div id="timeIndicator"></div>
+    <div id="time"></div>
 
-<div id="brandMark">
-<span></span>
-</div>
+    <div id="mark">
+      <div id="markCore"></div>
+    </div>
 
-<h1 id="greeting"></h1>
+    <h1 id="greeting"></h1>
 
-<p id="message"></p>
+    <p id="message"></p>
 
-<div id="tagline">
-A Safe Space For Every Mind
-</div>
+    <div id="tagline">
+      A Safe Space For Every Mind
+    </div>
 
-<button id="journey">
-Begin Your Journey
-</button>
+    <button id="journey">
+      Begin Your Journey
+    </button>
 
-</div>
+  </div>
 
-<button id="soundButton" aria-label="Sound">
-♫
-</button>
+  <button id="sound">♫</button>
 
-<div id="transition"></div>
+  <div id="status">
+    Preparing your journey
+  </div>
 
 </div>
 
 <script>
 
-const video=document.getElementById("backgroundVideo");
-const greeting=document.getElementById("greeting");
-const message=document.getElementById("message");
-const timeIndicator=document.getElementById("timeIndicator");
-const journey=document.getElementById("journey");
-const soundButton=document.getElementById("soundButton");
-const transition=document.getElementById("transition");
-const content=document.getElementById("content");
+const video = document.getElementById("backgroundVideo");
+const greeting = document.getElementById("greeting");
+const message = document.getElementById("message");
+const time = document.getElementById("time");
+const journey = document.getElementById("journey");
+const sound = document.getElementById("sound");
+const statusText = document.getElementById("status");
 
-let currentVideo="";
-let soundOn=false;
+let activeVideo = "";
+let audioEnabled = false;
 
-const videos={
+const videos = {
 
-morning1:"aksh-morning.1.mov",
-morning2:"aksh-morning.2.mov",
-morning3:"aksh-morning.3.mov",
-morning4:"aksh-morning.4.mov",
+  morning1:"aksh-morning.1.mov",
+  morning2:"aksh-morning.2.mov",
+  morning3:"aksh-morning.3.mov",
+  morning4:"aksh-morning.4.mov",
 
-afternoon1:"aksh-afternoon.1.mov",
-afternoon2:"aksh-afternoon.2.mov",
-afternoon3:"aksh-afternoon.3.mov",
-afternoon4:"aksh-afternoon.4.mov",
+  afternoon1:"aksh-afternoon.1.mov",
+  afternoon2:"aksh-afternoon.2.mov",
+  afternoon3:"aksh-afternoon.3.mov",
+  afternoon4:"aksh-afternoon.4.mov",
 
-evening1:"aksh-evening.1.mov",
-evening2:"aksh-evening.2.mov",
-evening3:"aksh-morning.4.mov",
+  evening1:"aksh-evening.1.mov",
+  evening2:"aksh-evening.2.mov",
+  evening3:"aksh-morning.4.mov",
 
-night1:"aksh-night.1.mov",
-night2:"aksh-night.2.mov"
+  night1:"aksh-night.1.mov",
+  night2:"aksh-night.2.mov"
 
 };
 
-function getExperience(){
+function experienceForNow(){
 
-const now=new Date();
+  const now = new Date();
 
-const hour=now.getHours();
-const minute=now.getMinutes();
+  const minutes =
+    now.getHours() * 60 +
+    now.getMinutes();
 
-const totalMinutes=hour*60+minute;
+  if(minutes >= 300 && minutes < 360){
 
-if(totalMinutes>=300 && totalMinutes<360){
+    return {
+      title:"Good Morning 🌅",
+      text:"Take a breath. The day is beginning, and you don't have to rush.",
+      file:videos.morning1,
+      label:"05:00 — 06:00"
+    };
 
-return{
-greeting:"Good Morning",
-emoji:"🌅",
-message:"Take a breath. The day is beginning, and you don't have to rush.",
-video:videos.morning1,
-period:"05:00 — 06:00"
-};
+  }
 
-}
+  if(minutes >= 360 && minutes < 480){
 
-if(totalMinutes>=360 && totalMinutes<480){
+    return {
+      title:"Good Morning 🌅",
+      text:"A quiet moment for you. Let the morning arrive gently.",
+      file:videos.morning2,
+      label:"06:00 — 08:00"
+    };
 
-return{
-greeting:"Good Morning",
-emoji:"🌅",
-message:"A quiet moment for you. Let the morning arrive gently.",
-video:videos.morning2,
-period:"06:00 — 08:00"
-};
+  }
 
-}
+  if(minutes >= 480 && minutes < 600){
 
-if(totalMinutes>=480 && totalMinutes<600){
+    return {
+      title:"Good Morning 🌅",
+      text:"Slow down for a moment. You deserve a little peace today.",
+      file:videos.morning3,
+      label:"08:00 — 10:00"
+    };
 
-return{
-greeting:"Good Morning",
-emoji:"🌅",
-message:"Slow down for a moment. You deserve a little peace today.",
-video:videos.morning3,
-period:"08:00 — 10:00"
-};
+  }
 
-}
+  if(minutes >= 600 && minutes < 720){
 
-if(totalMinutes>=600 && totalMinutes<720){
+    return {
+      title:"Good Morning 🌅",
+      text:"Before the day gets louder, give yourself a quiet moment.",
+      file:videos.morning4,
+      label:"10:00 — 11:59"
+    };
 
-return{
-greeting:"Good Morning",
-emoji:"🌅",
-message:"Before the day gets louder, give yourself a quiet moment.",
-video:videos.morning4,
-period:"10:00 — 11:59"
-};
+  }
 
-}
+  if(minutes >= 720 && minutes < 780){
 
-if(totalMinutes>=720 && totalMinutes<780){
+    return {
+      title:"Good Afternoon ☀️",
+      text:"Pause for a moment. You are allowed to take care of yourself.",
+      file:videos.afternoon1,
+      label:"12:00 — 01:00"
+    };
 
-return{
-greeting:"Good Afternoon",
-emoji:"☀️",
-message:"Pause for a moment. You are allowed to take care of yourself.",
-video:videos.afternoon1,
-period:"12:00 — 01:00"
-};
+  }
 
-}
+  if(minutes >= 780 && minutes < 870){
 
-if(totalMinutes>=780 && totalMinutes<870){
+    return {
+      title:"Good Afternoon ☀️",
+      text:"Let the noise soften. Stay here for a moment.",
+      file:videos.afternoon2,
+      label:"01:00 — 02:30"
+    };
 
-return{
-greeting:"Good Afternoon",
-emoji:"☀️",
-message:"Let the noise soften. Stay here for a moment.",
-video:videos.afternoon2,
-period:"01:00 — 02:30"
-};
+  }
 
-}
+  if(minutes >= 870 && minutes < 960){
 
-if(totalMinutes>=870 && totalMinutes<960){
+    return {
+      title:"Good Afternoon ☀️",
+      text:"A little stillness can change the way a day feels.",
+      file:videos.afternoon3,
+      label:"02:30 — 04:00"
+    };
 
-return{
-greeting:"Good Afternoon",
-emoji:"☀️",
-message:"A little stillness can change the way a day feels.",
-video:videos.afternoon3,
-period:"02:30 — 04:00"
-};
+  }
 
-}
+  if(minutes >= 960 && minutes < 1020){
 
-if(totalMinutes>=960 && totalMinutes<1020){
+    return {
+      title:"Good Afternoon ☀️",
+      text:"Whatever today has brought you, you don't have to carry it alone.",
+      file:videos.afternoon4,
+      label:"04:00 — 04:59"
+    };
 
-return{
-greeting:"Good Afternoon",
-emoji:"☀️",
-message:"Whatever today has brought you, you don't have to carry it alone.",
-video:videos.afternoon4,
-period:"04:00 — 04:59"
-};
+  }
 
-}
+  if(minutes >= 1020 && minutes < 1065){
 
-if(totalMinutes>=1020 && totalMinutes<1065){
+    return {
+      title:"Good Evening 🌆",
+      text:"The day is slowing down. Let yourself slow down with it.",
+      file:videos.evening1,
+      label:"05:00 — 05:45"
+    };
 
-return{
-greeting:"Good Evening",
-emoji:"🌆",
-message:"The day is slowing down. Let yourself slow down with it.",
-video:videos.evening1,
-period:"05:00 — 05:45"
-};
+  }
 
-}
+  if(minutes >= 1065 && minutes < 1140){
 
-if(totalMinutes>=1065 && totalMinutes<1140){
+    return {
+      title:"Good Evening 🌆",
+      text:"Some journeys are easier when you don't have to walk them alone.",
+      file:videos.evening2,
+      label:"05:45 — 07:00"
+    };
 
-return{
-greeting:"Good Evening",
-emoji:"🌆",
-message:"Some journeys are easier when you don't have to walk them alone.",
-video:videos.evening2,
-period:"05:45 — 07:00"
-};
+  }
 
-}
+  if(minutes >= 1140 && minutes < 1200){
 
-if(totalMinutes>=1140 && totalMinutes<1200){
+    return {
+      title:"Good Evening 🌆",
+      text:"Take one last quiet breath before the evening becomes night.",
+      file:videos.evening3,
+      label:"07:00 — 07:59"
+    };
 
-return{
-greeting:"Good Evening",
-emoji:"🌆",
-message:"Take one last quiet breath before the evening becomes night.",
-video:videos.evening3,
-period:"07:00 — 07:59"
-};
+  }
 
-}
+  if(minutes >= 1200){
 
-if(totalMinutes>=1200){
+    return {
+      title:"Good Night 🌙",
+      text:"The world can wait. For now, give your mind somewhere peaceful to rest.",
+      file:videos.night1,
+      label:"08:00 PM — 11:59 PM"
+    };
 
-return{
-greeting:"Good Night",
-emoji:"🌙",
-message:"The world can wait. For now, give your mind somewhere peaceful to rest.",
-video:videos.night1,
-period:"08:00 PM — 11:59 PM"
-};
+  }
 
-}
-
-return{
-greeting:"Good Night",
-emoji:"🌙",
-message:"It's quiet now. Breathe slowly. You are safe to pause here.",
-video:videos.night2,
-period:"12:00 AM — 04:59 AM"
-};
+  return {
+    title:"Good Night 🌙",
+    text:"It's quiet now. Breathe slowly. You are safe to pause here.",
+    file:videos.night2,
+    label:"12:00 AM — 04:59 AM"
+  };
 
 }
 
 function loadExperience(){
 
-const data=getExperience();
+  const data = experienceForNow();
 
-greeting.textContent=data.greeting+" "+data.emoji;
+  greeting.textContent = data.title;
+  message.textContent = data.text;
+  time.textContent = data.label;
 
-message.textContent=data.message;
+  if(activeVideo === data.file){
+    return;
+  }
 
-timeIndicator.textContent=data.period;
+  activeVideo = data.file;
 
-if(currentVideo!==data.video){
+  video.classList.remove("visible");
 
-currentVideo=data.video;
+  video.src = data.file;
 
-video.classList.remove("visible");
+  video.load();
 
-video.src=data.video;
+  video.addEventListener(
+    "canplay",
+    function show(){
 
-video.load();
+      video.classList.add("visible");
 
-video.addEventListener(
-"canplay",
-function showVideo(){
+      video.removeEventListener(
+        "canplay",
+        show
+      );
 
-video.classList.add("visible");
+    }
+  );
 
-video.removeEventListener(
-"canplay",
-showVideo
-);
+  video.play().catch(()=>{});
+
+}
+
+sound.addEventListener("click",function(){
+
+  audioEnabled = !audioEnabled;
+
+  if(audioEnabled){
+
+    video.muted = false;
+    video.volume = .75;
+
+    video.play().catch(()=>{});
+
+    sound.textContent = "🔊";
+
+  }else{
+
+    video.muted = true;
+
+    sound.textContent = "♫";
+
+  }
 
 });
 
-video.play().catch(()=>{});
+journey.addEventListener("click",function(){
 
-}
+  statusText.classList.add("show");
 
-}
+  setTimeout(function(){
 
-function beginJourney(){
+    statusText.classList.remove("show");
 
-if(soundOn){
-
-video.muted=false;
-
-video.volume=.75;
-
-video.play().catch(()=>{});
-
-}
-
-content.classList.add("fadeOut");
-
-setTimeout(()=>{
-
-transition.classList.remove("hide");
-
-setTimeout(()=>{
-
-window.location.href="page1.html";
-
-},700);
-
-},500);
-
-}
-
-soundButton.addEventListener("click",()=>{
-
-soundOn=!soundOn;
-
-if(soundOn){
-
-video.muted=false;
-
-video.volume=.75;
-
-video.play().catch(()=>{});
-
-soundButton.textContent="🔊";
-
-}else{
-
-video.muted=true;
-
-soundButton.textContent="♫";
-
-}
+  },1800);
 
 });
 
-journey.addEventListener(
-"click",
-beginJourney
-);
-
 loadExperience();
 
-setInterval(()=>{
+setInterval(function(){
 
-const experience=getExperience();
+  const current = experienceForNow();
 
-if(experience.video!==currentVideo){
+  if(current.file !== activeVideo){
 
-loadExperience();
+    loadExperience();
 
-}
+  }
 
 },15000);
-
-setTimeout(()=>{
-
-if(!document.hidden){
-
-beginJourney();
-
-}
-
-},4000);
 
 </script>
 
