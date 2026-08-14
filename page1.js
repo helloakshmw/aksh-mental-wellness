@@ -1,59 +1,302 @@
-/* =========================================================
+/* ============================================================
    AKSH PAGE 1
-   Cinematic atmosphere + navigation + emotions
-========================================================= */
+   CINEMATIC EXPERIENCE ENGINE
+============================================================ */
 
-document.addEventListener("DOMContentLoaded", () => {
+(() => {
 
-  const page = document.getElementById("akshPage");
-
-  const menuButton = document.getElementById("menuButton");
-  const mobileMenu = document.getElementById("mobileMenu");
-
-  const dailyGreeting = document.getElementById("dailyGreeting");
-  const dailyDate = document.getElementById("dailyDate");
-  const dailyQuote = document.getElementById("dailyQuote");
-
-  const emotionTrack = document.getElementById("emotionTrack");
-  const emotionPrev = document.getElementById("emotionPrev");
-  const emotionNext = document.getElementById("emotionNext");
-  const trackProgress = document.getElementById("trackProgress");
-
-  const emotionWorld = document.getElementById("emotionWorld");
-  const worldClose = document.getElementById("worldClose");
-  const worldBack = document.getElementById("worldBack");
-
-  const worldEyebrow = document.getElementById("worldEyebrow");
-  const worldTitle = document.getElementById("worldTitle");
-  const worldDescription = document.getElementById("worldDescription");
-
-  const currentYear = document.getElementById("currentYear");
+  "use strict";
 
 
-  /* =========================================================
+  /* ==========================================================
+     ELEMENTS
+  ========================================================== */
+
+  const world =
+    document.getElementById("world");
+
+  const worldVideo =
+    document.getElementById("worldVideo");
+
+  const timeTitle =
+    document.getElementById("timeTitle");
+
+  const heroQuote =
+    document.getElementById("heroQuote");
+
+  const heroDescription =
+    document.getElementById("heroDescription");
+
+  const noteGreeting =
+    document.getElementById("noteGreeting");
+
+  const dailyNoteText =
+    document.getElementById("dailyNoteText");
+
+  const currentDate =
+    document.getElementById("currentDate");
+
+  const currentDay =
+    document.getElementById("currentDay");
+
+  const emotionRail =
+    document.getElementById("emotionRail");
+
+  const emotionWorld =
+    document.getElementById("emotionWorld");
+
+  const emotionClose =
+    document.getElementById("emotionClose");
+
+  const emotionWorldKicker =
+    document.getElementById("emotionWorldKicker");
+
+  const emotionWorldTitle =
+    document.getElementById("emotionWorldTitle");
+
+  const emotionWorldText =
+    document.getElementById("emotionWorldText");
+
+  const worksModal =
+    document.getElementById("worksModal");
+
+  const listenButton =
+    document.getElementById("listenButton");
+
+  const modalClose =
+    document.getElementById("modalClose");
+
+  const heartButton =
+    document.getElementById("heartButton");
+
+  const menuButton =
+    document.getElementById("menuButton");
+
+  const mobileMenu =
+    document.getElementById("mobileMenu");
+
+
+  /* ==========================================================
+     TIME CONFIGURATION
+
+     Existing AKSH cinematic videos are used here.
+  ========================================================== */
+
+  const scenes = {
+
+    morning: {
+      label: "GOOD MORNING",
+
+      greeting: "Good morning",
+
+      description:
+        "Begin gently. There is nothing you need to rush into.",
+
+      quotes: [
+        "You deserve a morning that begins gently.",
+        "Let today arrive without asking too much of you.",
+        "There is still room for something beautiful today.",
+        "Start softly. You do not have to hurry."
+      ],
+
+      notes: [
+        "A quiet beginning can change the whole rhythm of a day.",
+        "Take one breath before you take on the world.",
+        "You are allowed to begin slowly.",
+        "Let the morning meet you exactly where you are."
+      ],
+
+      videos: [
+        "aksh-morning.1.mov",
+        "aksh-morning.2.mov",
+        "aksh-morning.3.mov",
+        "aksh-morning.4.mov"
+      ]
+    },
+
+
+    afternoon: {
+      label: "GOOD AFTERNOON",
+
+      greeting: "Good afternoon",
+
+      description:
+        "Pause in the middle of the day. Notice what your mind needs.",
+
+      quotes: [
+        "Your wellbeing belongs in the middle of your day too.",
+        "You are allowed to pause before continuing.",
+        "A slower moment can change the rest of your day.",
+        "Come back to yourself, even in the middle of everything."
+      ],
+
+      notes: [
+        "You don't need to solve everything at once.",
+        "Pause. Breathe. Continue when you are ready.",
+        "Your mind deserves a little space today.",
+        "Let this moment belong to you."
+      ],
+
+      videos: [
+        "aksh-afternoon.1.mov",
+        "aksh-afternoon.2.mov",
+        "aksh-afternoon.3.mov",
+        "aksh-afternoon.4.mov"
+      ]
+    },
+
+
+    evening: {
+      label: "GOOD EVENING",
+
+      greeting: "Good evening",
+
+      description:
+        "The day can soften now. Let yourself come back home to yourself.",
+
+      quotes: [
+        "Let the evening hold what the day could not.",
+        "You made it here. Take a moment to breathe.",
+        "Not every feeling needs an answer tonight.",
+        "Let the noise of the day become quiet."
+      ],
+
+      notes: [
+        "You don't have to carry today's weight into tonight.",
+        "Some things can wait until tomorrow.",
+        "The evening is allowed to be gentle.",
+        "Give yourself permission to exhale."
+      ],
+
+      videos: [
+        "aksh-evening.1.mov",
+        "aksh-evening.2.mov",
+        "aksh-evening.3.mov"
+      ]
+    },
+
+
+    night: {
+      label: "GOOD NIGHT",
+
+      greeting: "Good night",
+
+      description:
+        "The world can wait. Tonight, make some space for rest.",
+
+      quotes: [
+        "You have done enough for today. Let yourself rest.",
+        "The night does not ask you to be anything.",
+        "Some answers become clearer after a little rest.",
+        "Close the day gently. Tomorrow can begin later."
+      ],
+
+      notes: [
+        "Rest is not something you have to earn.",
+        "Let today end without judging yourself.",
+        "You can put some things down tonight.",
+        "Tomorrow does not need to be solved right now."
+      ],
+
+      videos: [
+        "aksh-night.1.mov",
+        "aksh-night.2.mov"
+      ]
+    }
+
+  };
+
+
+  /* ==========================================================
+     EMOTION CONTENT
+  ========================================================== */
+
+  const emotions = {
+
+    anxious: {
+      kicker: "WHEN YOUR MIND WON'T SLOW DOWN",
+
+      title:
+        "Let's make some room for your mind.",
+
+      text:
+        "You do not need to fight every thought. Start with one breath, one moment, and one small place to begin."
+    },
+
+    overwhelmed: {
+      kicker: "WHEN EVERYTHING FEELS LIKE TOO MUCH",
+
+      title:
+        "You don't have to carry everything at once.",
+
+      text:
+        "Let's separate what is happening from what your mind is carrying. One piece at a time is enough."
+    },
+
+    talk: {
+      kicker: "WHEN YOU NEED SOMEONE TO LISTEN",
+
+      title:
+        "You don't have to hold it alone.",
+
+      text:
+        "Sometimes the first step is simply being heard. You can begin here, and choose what happens next."
+    },
+
+    exploring: {
+      kicker: "WHEN YOU WANT TO UNDERSTAND YOURSELF",
+
+      title:
+        "Curiosity can be a beautiful beginning.",
+
+      text:
+        "You don't need to arrive with a problem. Explore your thoughts, emotions and patterns at your own pace."
+    }
+
+  };
+
+
+  /* ==========================================================
      DATE
-  ========================================================= */
+  ========================================================== */
 
-  const now = new Date();
+  function updateDate() {
 
-  const day = String(now.getDate()).padStart(2, "0");
-  const month = String(now.getMonth() + 1).padStart(2, "0");
-  const year = now.getFullYear();
+    const now =
+      new Date();
 
-  const formattedDate = `${day}.${month}.${year}`;
+    const day =
+      String(now.getDate())
+        .padStart(2, "0");
 
-  dailyDate.textContent = formattedDate;
+    const month =
+      String(now.getMonth() + 1)
+        .padStart(2, "0");
 
-  if (currentYear) {
-    currentYear.textContent = year;
+    const year =
+      now.getFullYear();
+
+    currentDate.textContent =
+      `${day}.${month}.${year}`;
+
+    currentDay.textContent =
+      now.toLocaleDateString(
+        "en-IN",
+        {
+          weekday: "long"
+        }
+      );
   }
 
 
-  /* =========================================================
-     TIME OF DAY
-  ========================================================= */
+  /* ==========================================================
+     TIME PERIOD
+  ========================================================== */
 
-  function getTimePeriod(hour) {
+  function getPeriod() {
+
+    const hour =
+      new Date().getHours();
 
     if (hour >= 5 && hour < 12) {
       return "morning";
@@ -71,303 +314,353 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  function getGreeting(period) {
+  /* ==========================================================
+     DAILY DETERMINISTIC QUOTE
 
-    const greetings = {
-      morning: "GOOD MORNING",
-      afternoon: "GOOD AFTERNOON",
-      evening: "GOOD EVENING",
-      night: "GOOD NIGHT"
-    };
+     Same visitor/day gets a stable quote.
+     Tomorrow changes automatically.
+  ========================================================== */
 
-    return greetings[period];
+  function dailyIndex(length, offset = 0) {
+
+    const now =
+      new Date();
+
+    const dayNumber =
+      Math.floor(
+        Date.UTC(
+          now.getFullYear(),
+          now.getMonth(),
+          now.getDate()
+        ) / 86400000
+      );
+
+    return (
+      Math.abs(dayNumber + offset) %
+      length
+    );
   }
 
 
-  const period = getTimePeriod(now.getHours());
+  /* ==========================================================
+     VIDEO SELECTION
+  ========================================================== */
 
-  page.classList.add(period);
+  function videoIndex(period) {
 
-  dailyGreeting.textContent = getGreeting(period);
+    const now =
+      new Date();
 
+    const hour =
+      now.getHours();
 
-  /* =========================================================
-     DAILY QUOTES
-  ========================================================= */
+    const minute =
+      now.getMinutes();
 
-  const quotes = {
-
-    morning: [
-      "You do not have to have everything figured out today.",
-      "A new morning can begin with one quiet breath.",
-      "Give yourself permission to begin slowly.",
-      "There is still room for something good today.",
-      "You are allowed to take this morning at your own pace."
-    ],
-
-    afternoon: [
-      "Your wellbeing belongs in the middle of your day too.",
-      "Pause for a moment. Notice where you are.",
-      "You can continue without carrying everything at once.",
-      "A small pause can change the rest of your day.",
-      "Take a breath. You are still allowed to slow down."
-    ],
-
-    evening: [
-      "Let the day become quieter around you.",
-      "You made it through another day. Be gentle with yourself.",
-      "Some moments are meant to be felt, not solved.",
-      "Let yourself arrive softly at the end of today.",
-      "You don't have to carry today into tomorrow."
-    ],
-
-    night: [
-      "The world can wait. You are allowed to rest.",
-      "Let your mind become quiet, one thought at a time.",
-      "Tonight, choose gentleness over perfection.",
-      "Rest is not something you need to earn.",
-      "Tomorrow does not need to be solved tonight."
-    ]
-
-  };
+    const totalMinutes =
+      hour * 60 + minute;
 
 
-  /* =========================================================
-     DIFFERENT QUOTE FOR VISITORS
-  ========================================================= */
+    if (period === "morning") {
 
-  function getVisitorQuote() {
+      if (totalMinutes < 360) {
+        return 0;
+      }
 
-    const pool = quotes[period];
+      if (totalMinutes < 480) {
+        return 1;
+      }
 
-    const storageKey = `akshQuote_${formattedDate}`;
+      if (totalMinutes < 600) {
+        return 2;
+      }
 
-    let usedQuotes = [];
-
-    try {
-      usedQuotes = JSON.parse(
-        localStorage.getItem(storageKey) || "[]"
-      );
-    } catch {
-      usedQuotes = [];
+      return 3;
     }
 
-    let available = pool.filter(
-      quote => !usedQuotes.includes(quote)
+
+    if (period === "afternoon") {
+
+      if (totalMinutes < 780) {
+        return 0;
+      }
+
+      if (totalMinutes < 870) {
+        return 1;
+      }
+
+      if (totalMinutes < 960) {
+        return 2;
+      }
+
+      return 3;
+    }
+
+
+    if (period === "evening") {
+
+      if (totalMinutes < 1065) {
+        return 0;
+      }
+
+      if (totalMinutes < 1140) {
+        return 1;
+      }
+
+      return 2;
+    }
+
+
+    if (period === "night") {
+
+      if (totalMinutes < 1440) {
+        return 0;
+      }
+
+      return 1;
+    }
+
+    return 0;
+  }
+
+
+  /* ==========================================================
+     APPLY WORLD
+  ========================================================== */
+
+  let activePeriod = null;
+
+
+  function applyPeriod(force = false) {
+
+    const period =
+      getPeriod();
+
+    if (
+      !force &&
+      period === activePeriod
+    ) {
+      return;
+    }
+
+    activePeriod =
+      period;
+
+    const scene =
+      scenes[period];
+
+    world.classList.remove(
+      "morning",
+      "afternoon",
+      "evening",
+      "night"
     );
 
-    if (!available.length) {
-      usedQuotes = [];
-      available = [...pool];
-    }
+    world.classList.add(period);
 
-    const selected =
-      available[
-        Math.floor(Math.random() * available.length)
+
+    timeTitle.textContent =
+      scene.label;
+
+
+    heroDescription.textContent =
+      scene.description;
+
+
+    heroQuote.style.opacity = "0";
+    heroQuote.style.transform =
+      "translateY(10px)";
+
+
+    setTimeout(() => {
+
+      heroQuote.textContent =
+        scene.quotes[
+          dailyIndex(
+            scene.quotes.length
+          )
+        ];
+
+      heroQuote.style.opacity = "1";
+      heroQuote.style.transform =
+        "translateY(0)";
+
+    }, 220);
+
+
+    noteGreeting.textContent =
+      scene.greeting;
+
+
+    dailyNoteText.textContent =
+      scene.notes[
+        dailyIndex(
+          scene.notes.length,
+          13
+        )
       ];
 
-    usedQuotes.push(selected);
 
-    try {
-      localStorage.setItem(
-        storageKey,
-        JSON.stringify(usedQuotes)
-      );
-    } catch {}
-
-    return selected;
+    loadSceneVideo(
+      scene,
+      videoIndex(period)
+    );
   }
 
 
-  dailyQuote.textContent = getVisitorQuote();
+  /* ==========================================================
+     LOAD SCENE VIDEO
+  ========================================================== */
+
+  let currentVideoIndex = -1;
 
 
-  /* =========================================================
-     MOBILE MENU
-  ========================================================= */
+  function loadSceneVideo(scene, index) {
 
-  function closeMenu() {
-
-    mobileMenu.classList.remove("open");
-
-    menuButton.classList.remove("active");
-
-    menuButton.setAttribute(
-      "aria-expanded",
-      "false"
-    );
-
-    document.body.style.overflow = "";
-
-  }
-
-
-  menuButton.addEventListener("click", () => {
-
-    const open =
-      mobileMenu.classList.toggle("open");
-
-    menuButton.classList.toggle(
-      "active",
-      open
-    );
-
-    menuButton.setAttribute(
-      "aria-expanded",
-      String(open)
-    );
-
-    document.body.style.overflow =
-      open ? "hidden" : "";
-
-  });
-
-
-  mobileMenu
-    .querySelectorAll("a")
-    .forEach(link => {
-
-      link.addEventListener(
-        "click",
-        closeMenu
-      );
-
-    });
-
-
-  /* =========================================================
-     EMOTION SIDEWAYS SCROLL
-  ========================================================= */
-
-  const cards =
-    [...document.querySelectorAll(".emotion-card")];
-
-  function updateProgress() {
-
-    if (!emotionTrack || !trackProgress) {
+    if (!scene.videos.length) {
       return;
     }
 
-    const maxScroll =
-      emotionTrack.scrollWidth -
-      emotionTrack.clientWidth;
+    index =
+      Math.max(
+        0,
+        Math.min(
+          index,
+          scene.videos.length - 1
+        )
+      );
 
-    if (maxScroll <= 0) {
-      trackProgress.style.width = "100%";
+
+    if (
+      currentVideoIndex === index &&
+      worldVideo.dataset.period === activePeriod
+    ) {
       return;
     }
 
-    const percentage =
-      emotionTrack.scrollLeft /
-      maxScroll;
+    currentVideoIndex =
+      index;
 
-    trackProgress.style.width =
-      `${Math.max(25, percentage * 100)}%`;
+    worldVideo.classList.add(
+      "is-changing"
+    );
 
+
+    const source =
+      scene.videos[index];
+
+
+    setTimeout(() => {
+
+      worldVideo.src =
+        source;
+
+      worldVideo.dataset.period =
+        activePeriod;
+
+
+      const playPromise =
+        worldVideo.play();
+
+
+      if (
+        playPromise &&
+        typeof playPromise.catch === "function"
+      ) {
+
+        playPromise.catch(() => {
+          /*
+            Browser may require a user gesture
+            before media playback.
+          */
+        });
+
+      }
+
+
+      setTimeout(() => {
+
+        worldVideo.classList.remove(
+          "is-changing"
+        );
+
+      }, 400);
+
+    }, 180);
   }
 
 
-  emotionTrack.addEventListener(
-    "scroll",
-    updateProgress,
-    { passive: true }
+  /* ==========================================================
+     HANDLE VIDEO LOOP
+
+     Videos are used as cinematic ambience.
+     When one ends, move through the period's scenes.
+  ========================================================== */
+
+  worldVideo.addEventListener(
+    "ended",
+    () => {
+
+      const scene =
+        scenes[activePeriod];
+
+      if (!scene) {
+        return;
+      }
+
+      let next =
+        currentVideoIndex + 1;
+
+      if (
+        next >= scene.videos.length
+      ) {
+        next = 0;
+      }
+
+      loadSceneVideo(
+        scene,
+        next
+      );
+    }
   );
 
 
-  emotionNext.addEventListener("click", () => {
+  /* ==========================================================
+     VIDEO ERROR FALLBACK
+  ========================================================== */
 
-    emotionTrack.scrollBy({
-      left:
-        emotionTrack.clientWidth * .78,
-      behavior: "smooth"
-    });
+  worldVideo.addEventListener(
+    "error",
+    () => {
 
-  });
-
-
-  emotionPrev.addEventListener("click", () => {
-
-    emotionTrack.scrollBy({
-      left:
-        -emotionTrack.clientWidth * .78,
-      behavior: "smooth"
-    });
-
-  });
-
-
-  updateProgress();
-
-
-  /* =========================================================
-     EMOTION WORLDS
-  ========================================================= */
-
-  const worlds = {
-
-    anxious: {
-
-      eyebrow: "A QUIETER SPACE",
-
-      title: "Let's slow this down.",
-
-      description:
-        "You don't have to fight every thought right now. Stay here for a moment, breathe, and give yourself permission to feel a little lighter."
-
-    },
-
-    overwhelmed: {
-
-      eyebrow: "ONE THING AT A TIME",
-
-      title: "You can put some of it down.",
-
-      description:
-        "Everything does not need your attention at the same time. Let's create some space between you and everything that feels too much."
-
-    },
-
-    talk: {
-
-      eyebrow: "YOU DON'T HAVE TO HOLD IT ALONE",
-
-      title: "Someone can listen.",
-
-      description:
-        "You don't need the perfect words. You can begin exactly where you are and take the next step towards professional support."
-
-    },
-
-    explore: {
-
-      eyebrow: "WELCOME TO AKSH",
-
-      title: "Take your time.",
-
-      description:
-        "Explore the spaces, resources and support available at AKSH. There is no pressure to decide anything today."
+      worldVideo.style.background =
+        "#050505";
 
     }
+  );
 
-  };
 
+  /* ==========================================================
+     EMOTION WORLD
+  ========================================================== */
 
-  function openWorld(type) {
+  function openEmotion(key) {
 
-    const world = worlds[type];
+    const data =
+      emotions[key];
 
-    if (!world) {
+    if (!data) {
       return;
     }
 
-    worldEyebrow.textContent =
-      world.eyebrow;
+    emotionWorldKicker.textContent =
+      data.kicker;
 
-    worldTitle.textContent =
-      world.title;
+    emotionWorldTitle.textContent =
+      data.title;
 
-    worldDescription.textContent =
-      world.description;
+    emotionWorldText.textContent =
+      data.text;
 
     emotionWorld.classList.add("open");
 
@@ -378,13 +671,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.body.style.overflow =
       "hidden";
-
   }
 
 
-  function closeWorld() {
+  function closeEmotion() {
 
-    emotionWorld.classList.remove("open");
+    emotionWorld.classList.remove(
+      "open"
+    );
 
     emotionWorld.setAttribute(
       "aria-hidden",
@@ -393,33 +687,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.body.style.overflow =
       "";
-
   }
 
 
-  cards.forEach(card => {
+  document
+    .querySelectorAll(".emotion")
+    .forEach(button => {
 
-    card.addEventListener("click", () => {
+      button.addEventListener(
+        "click",
+        () => {
 
-      const emotion =
-        card.dataset.emotion;
+          openEmotion(
+            button.dataset.emotion
+          );
 
-      openWorld(emotion);
+        }
+      );
 
     });
 
-  });
 
-
-  worldClose.addEventListener(
+  emotionClose.addEventListener(
     "click",
-    closeWorld
-  );
-
-
-  worldBack.addEventListener(
-    "click",
-    closeWorld
+    closeEmotion
   );
 
 
@@ -430,65 +721,220 @@ document.addEventListener("DOMContentLoaded", () => {
       if (
         event.target === emotionWorld
       ) {
-        closeWorld();
+        closeEmotion();
       }
 
     }
   );
 
 
-  document.addEventListener(
-    "keydown",
+  /* ==========================================================
+     HORIZONTAL DRAG
+  ========================================================== */
+
+  let dragging = false;
+  let dragStartX = 0;
+  let dragScrollLeft = 0;
+
+
+  emotionRail.addEventListener(
+    "pointerdown",
+    event => {
+
+      dragging = true;
+
+      dragStartX =
+        event.clientX;
+
+      dragScrollLeft =
+        emotionRail.scrollLeft;
+
+      emotionRail.setPointerCapture(
+        event.pointerId
+      );
+
+    }
+  );
+
+
+  emotionRail.addEventListener(
+    "pointermove",
+    event => {
+
+      if (!dragging) {
+        return;
+      }
+
+      const distance =
+        event.clientX - dragStartX;
+
+      emotionRail.scrollLeft =
+        dragScrollLeft - distance;
+
+    }
+  );
+
+
+  emotionRail.addEventListener(
+    "pointerup",
+    () => {
+      dragging = false;
+    }
+  );
+
+
+  emotionRail.addEventListener(
+    "pointercancel",
+    () => {
+      dragging = false;
+    }
+  );
+
+
+  /* ==========================================================
+     HOW AKSH WORKS
+  ========================================================== */
+
+  listenButton.addEventListener(
+    "click",
+    () => {
+
+      worksModal.classList.add(
+        "open"
+      );
+
+      worksModal.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+      document.body.style.overflow =
+        "hidden";
+
+    }
+  );
+
+
+  function closeWorks() {
+
+    worksModal.classList.remove(
+      "open"
+    );
+
+    worksModal.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+    document.body.style.overflow =
+      "";
+  }
+
+
+  modalClose.addEventListener(
+    "click",
+    closeWorks
+  );
+
+
+  worksModal.addEventListener(
+    "click",
     event => {
 
       if (
-        event.key === "Escape" &&
-        emotionWorld.classList.contains("open")
+        event.target === worksModal
       ) {
-        closeWorld();
+        closeWorks();
       }
 
     }
   );
 
 
-  /* =========================================================
-     SMOOTH INTERNAL NAVIGATION
-  ========================================================= */
+  /* ==========================================================
+     HEART
+  ========================================================== */
+
+  heartButton.addEventListener(
+    "click",
+    () => {
+
+      heartButton.classList.toggle(
+        "saved"
+      );
+
+      heartButton.textContent =
+        heartButton.classList.contains(
+          "saved"
+        )
+          ? "♥"
+          : "♡";
+
+    }
+  );
+
+
+  /* ==========================================================
+     MOBILE MENU
+  ========================================================== */
+
+  menuButton.addEventListener(
+    "click",
+    () => {
+
+      const open =
+        mobileMenu.classList.toggle(
+          "open"
+        );
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        String(open)
+      );
+
+      mobileMenu.setAttribute(
+        "aria-hidden",
+        String(!open)
+      );
+
+      if (open) {
+        document.body.style.overflow =
+          "hidden";
+      } else {
+        document.body.style.overflow =
+          "";
+      }
+
+    }
+  );
+
 
   document
-    .querySelectorAll('a[href^="#"]')
+    .querySelectorAll(
+      ".mobile-menu a"
+    )
     .forEach(link => {
 
       link.addEventListener(
         "click",
-        event => {
+        () => {
 
-          const targetID =
-            link.getAttribute("href");
+          mobileMenu.classList.remove(
+            "open"
+          );
 
-          if (
-            !targetID ||
-            targetID === "#"
-          ) {
-            return;
-          }
+          menuButton.setAttribute(
+            "aria-expanded",
+            "false"
+          );
 
-          const target =
-            document.querySelector(
-              targetID
-            );
+          mobileMenu.setAttribute(
+            "aria-hidden",
+            "true"
+          );
 
-          if (!target) {
-            return;
-          }
-
-          event.preventDefault();
-
-          target.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
+          document.body.style.overflow =
+            "";
 
         }
       );
@@ -496,65 +942,58 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-  /* =========================================================
-     SUBTLE MOUSE ATMOSPHERE
-  ========================================================= */
+  /* ==========================================================
+     ESCAPE KEY
+  ========================================================== */
 
-  const atmosphere =
-    document.querySelector(".atmosphere");
+  document.addEventListener(
+    "keydown",
+    event => {
 
-  if (
-    window.matchMedia(
-      "(pointer:fine)"
-    ).matches
-  ) {
+      if (
+        event.key === "Escape"
+      ) {
 
-    window.addEventListener(
-      "mousemove",
-      event => {
+        closeEmotion();
+        closeWorks();
 
-        const x =
-          (event.clientX /
-            window.innerWidth -
-            .5) * 8;
+        mobileMenu.classList.remove(
+          "open"
+        );
 
-        const y =
-          (event.clientY /
-            window.innerHeight -
-            .5) * 5;
+        document.body.style.overflow =
+          "";
 
-        atmosphere.style.transform =
-          `translate(${x * .15}px,${y * .15}px)`;
+      }
 
-      },
-      { passive: true }
-    );
-
-  }
+    }
+  );
 
 
-  /* =========================================================
-     REDUCE MOTION ACCESSIBILITY
-  ========================================================= */
+  /* ==========================================================
+     PERIOD CHECK
 
-  const reducedMotion =
-    window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    );
+     Allows the page to change automatically
+     when the real time moves into another period.
+  ========================================================== */
 
-  if (reducedMotion.matches) {
+  setInterval(
+    () => {
 
-    document.documentElement.style
-      .scrollBehavior = "auto";
+      applyPeriod(false);
 
-    document
-      .querySelectorAll("*")
-      .forEach(element => {
-        element.style.animationDuration = "0.01ms";
-        element.style.animationIterationCount = "1";
-      });
-
-  }
+    },
+    30000
+  );
 
 
-});
+  /* ==========================================================
+     INITIALISE
+  ========================================================== */
+
+  updateDate();
+
+  applyPeriod(true);
+
+
+})();
