@@ -1,940 +1,778 @@
-/* ============================================================
-   AKSH PAGE 1
-   CINEMATIC EXPERIENCE ENGINE
-============================================================ */
+/* =========================================================
+   AKSH — PAGE 01
+   COMPLETE PAGE 1 JAVASCRIPT
+   ========================================================= */
 
 (() => {
-
   "use strict";
 
-
-  /* ==========================================================
-     ELEMENTS
-  ========================================================== */
-
-  const world =
-    document.getElementById("world");
-
-  const worldVideo =
-    document.getElementById("worldVideo");
-
-  const timeTitle =
-    document.getElementById("timeTitle");
-
-  const heroQuote =
-    document.getElementById("heroQuote");
-
-  const heroDescription =
-    document.getElementById("heroDescription");
-
-  const noteGreeting =
-    document.getElementById("noteGreeting");
-
-  const dailyNoteText =
-    document.getElementById("dailyNoteText");
-
-  const currentDate =
-    document.getElementById("currentDate");
-
-  const currentDay =
-    document.getElementById("currentDay");
-
-  const emotionRail =
-    document.getElementById("emotionRail");
-
-  const emotionWorld =
-    document.getElementById("emotionWorld");
-
-  const emotionClose =
-    document.getElementById("emotionClose");
-
-  const emotionWorldKicker =
-    document.getElementById("emotionWorldKicker");
-
-  const emotionWorldTitle =
-    document.getElementById("emotionWorldTitle");
-
-  const emotionWorldText =
-    document.getElementById("emotionWorldText");
-
-  const worksModal =
-    document.getElementById("worksModal");
-
-  const listenButton =
-    document.getElementById("listenButton");
-
-  const modalClose =
-    document.getElementById("modalClose");
-
-  const heartButton =
-    document.getElementById("heartButton");
-
-  const menuButton =
-    document.getElementById("menuButton");
-
-  const mobileMenu =
-    document.getElementById("mobileMenu");
-
-
-  /* ==========================================================
-     TIME CONFIGURATION
-
-     Existing AKSH cinematic videos are used here.
-  ========================================================== */
-
-  const scenes = {
-
-    morning: {
-      label: "GOOD MORNING",
-
-      greeting: "Good morning",
-
-      description:
-        "Begin gently. There is nothing you need to rush into.",
-
-      quotes: [
-        "You deserve a morning that begins gently.",
-        "Let today arrive without asking too much of you.",
-        "There is still room for something beautiful today.",
-        "Start softly. You do not have to hurry."
-      ],
-
-      notes: [
-        "A quiet beginning can change the whole rhythm of a day.",
-        "Take one breath before you take on the world.",
-        "You are allowed to begin slowly.",
-        "Let the morning meet you exactly where you are."
-      ],
-
-      videos: [
-        "aksh-morning.1.mov",
-        "aksh-morning.2.mov",
-        "aksh-morning.3.mov",
-        "aksh-morning.4.mov"
-      ]
-    },
-
-
-    afternoon: {
-      label: "GOOD AFTERNOON",
-
-      greeting: "Good afternoon",
-
-      description:
-        "Pause in the middle of the day. Notice what your mind needs.",
-
-      quotes: [
-        "Your wellbeing belongs in the middle of your day too.",
-        "You are allowed to pause before continuing.",
-        "A slower moment can change the rest of your day.",
-        "Come back to yourself, even in the middle of everything."
-      ],
-
-      notes: [
-        "You don't need to solve everything at once.",
-        "Pause. Breathe. Continue when you are ready.",
-        "Your mind deserves a little space today.",
-        "Let this moment belong to you."
-      ],
-
-      videos: [
-        "aksh-afternoon.1.mov",
-        "aksh-afternoon.2.mov",
-        "aksh-afternoon.3.mov",
-        "aksh-afternoon.4.mov"
-      ]
-    },
-
-
-    evening: {
-      label: "GOOD EVENING",
-
-      greeting: "Good evening",
-
-      description:
-        "The day can soften now. Let yourself come back home to yourself.",
-
-      quotes: [
-        "Let the evening hold what the day could not.",
-        "You made it here. Take a moment to breathe.",
-        "Not every feeling needs an answer tonight.",
-        "Let the noise of the day become quiet."
-      ],
-
-      notes: [
-        "You don't have to carry today's weight into tonight.",
-        "Some things can wait until tomorrow.",
-        "The evening is allowed to be gentle.",
-        "Give yourself permission to exhale."
-      ],
-
-      videos: [
-        "aksh-evening.1.mov",
-        "aksh-evening.2.mov",
-        "aksh-evening.3.mov"
-      ]
-    },
-
-
-    night: {
-      label: "GOOD NIGHT",
-
-      greeting: "Good night",
-
-      description:
-        "The world can wait. Tonight, make some space for rest.",
-
-      quotes: [
-        "You have done enough for today. Let yourself rest.",
-        "The night does not ask you to be anything.",
-        "Some answers become clearer after a little rest.",
-        "Close the day gently. Tomorrow can begin later."
-      ],
-
-      notes: [
-        "Rest is not something you have to earn.",
-        "Let today end without judging yourself.",
-        "You can put some things down tonight.",
-        "Tomorrow does not need to be solved right now."
-      ],
-
-      videos: [
-        "aksh-night.1.mov",
-        "aksh-night.2.mov"
-      ]
-    }
-
-  };
-
-
-  /* ==========================================================
-     EMOTION CONTENT
-  ========================================================== */
-
-  const emotions = {
-
-    anxious: {
-      kicker: "WHEN YOUR MIND WON'T SLOW DOWN",
-
-      title:
-        "Let's make some room for your mind.",
-
-      text:
-        "You do not need to fight every thought. Start with one breath, one moment, and one small place to begin."
-    },
-
-    overwhelmed: {
-      kicker: "WHEN EVERYTHING FEELS LIKE TOO MUCH",
-
-      title:
-        "You don't have to carry everything at once.",
-
-      text:
-        "Let's separate what is happening from what your mind is carrying. One piece at a time is enough."
-    },
-
-    talk: {
-      kicker: "WHEN YOU NEED SOMEONE TO LISTEN",
-
-      title:
-        "You don't have to hold it alone.",
-
-      text:
-        "Sometimes the first step is simply being heard. You can begin here, and choose what happens next."
-    },
-
-    exploring: {
-      kicker: "WHEN YOU WANT TO UNDERSTAND YOURSELF",
-
-      title:
-        "Curiosity can be a beautiful beginning.",
-
-      text:
-        "You don't need to arrive with a problem. Explore your thoughts, emotions and patterns at your own pace."
-    }
-
-  };
-
-
-  /* ==========================================================
-     DATE
-  ========================================================== */
-
-  function updateDate() {
-
-    const now =
-      new Date();
-
-    const day =
-      String(now.getDate())
-        .padStart(2, "0");
-
-    const month =
-      String(now.getMonth() + 1)
-        .padStart(2, "0");
-
-    const year =
-      now.getFullYear();
-
-    currentDate.textContent =
-      `${day}.${month}.${year}`;
-
-    currentDay.textContent =
-      now.toLocaleDateString(
-        "en-IN",
-        {
-          weekday: "long"
-        }
-      );
-  }
-
-
-  /* ==========================================================
-     TIME PERIOD
-  ========================================================== */
-
-  function getPeriod() {
-
-    const hour =
-      new Date().getHours();
-
-    if (hour >= 5 && hour < 12) {
-      return "morning";
-    }
-
-    if (hour >= 12 && hour < 17) {
-      return "afternoon";
-    }
-
-    if (hour >= 17 && hour < 20) {
-      return "evening";
-    }
-
+  const body = document.body;
+  const header = document.getElementById("site-header");
+  const menuButton = document.getElementById("menu-button");
+  const mobileNavigation = document.getElementById("mobile-navigation");
+  const mobileOverlay = document.getElementById("mobile-overlay");
+
+
+  /* =========================================================
+     TIME OF DAY
+     ========================================================= */
+
+  function getTimeState(hour) {
+    if (hour >= 5 && hour < 12) return "morning";
+    if (hour >= 12 && hour < 17) return "afternoon";
+    if (hour >= 17 && hour < 21) return "evening";
     return "night";
   }
 
+  function updateTimeOfDay() {
+    const hour = new Date().getHours();
+    const state = getTimeState(hour);
 
-  /* ==========================================================
-     DAILY DETERMINISTIC QUOTE
-
-     Same visitor/day gets a stable quote.
-     Tomorrow changes automatically.
-  ========================================================== */
-
-  function dailyIndex(length, offset = 0) {
-
-    const now =
-      new Date();
-
-    const dayNumber =
-      Math.floor(
-        Date.UTC(
-          now.getFullYear(),
-          now.getMonth(),
-          now.getDate()
-        ) / 86400000
-      );
-
-    return (
-      Math.abs(dayNumber + offset) %
-      length
-    );
-  }
-
-
-  /* ==========================================================
-     VIDEO SELECTION
-  ========================================================== */
-
-  function videoIndex(period) {
-
-    const now =
-      new Date();
-
-    const hour =
-      now.getHours();
-
-    const minute =
-      now.getMinutes();
-
-    const totalMinutes =
-      hour * 60 + minute;
-
-
-    if (period === "morning") {
-
-      if (totalMinutes < 360) {
-        return 0;
-      }
-
-      if (totalMinutes < 480) {
-        return 1;
-      }
-
-      if (totalMinutes < 600) {
-        return 2;
-      }
-
-      return 3;
-    }
-
-
-    if (period === "afternoon") {
-
-      if (totalMinutes < 780) {
-        return 0;
-      }
-
-      if (totalMinutes < 870) {
-        return 1;
-      }
-
-      if (totalMinutes < 960) {
-        return 2;
-      }
-
-      return 3;
-    }
-
-
-    if (period === "evening") {
-
-      if (totalMinutes < 1065) {
-        return 0;
-      }
-
-      if (totalMinutes < 1140) {
-        return 1;
-      }
-
-      return 2;
-    }
-
-
-    if (period === "night") {
-
-      if (totalMinutes < 1440) {
-        return 0;
-      }
-
-      return 1;
-    }
-
-    return 0;
-  }
-
-
-  /* ==========================================================
-     APPLY WORLD
-  ========================================================== */
-
-  let activePeriod = null;
-
-
-  function applyPeriod(force = false) {
-
-    const period =
-      getPeriod();
-
-    if (
-      !force &&
-      period === activePeriod
-    ) {
-      return;
-    }
-
-    activePeriod =
-      period;
-
-    const scene =
-      scenes[period];
-
-    world.classList.remove(
+    body.classList.remove(
       "morning",
       "afternoon",
       "evening",
       "night"
     );
 
-    world.classList.add(period);
+    body.classList.add(state);
+  }
+
+  updateTimeOfDay();
+
+  setInterval(updateTimeOfDay, 60000);
 
 
-    timeTitle.textContent =
-      scene.label;
+  /* =========================================================
+     HEADER SCROLL
+     ========================================================= */
+
+  function updateHeader() {
+    if (!header) return;
+
+    if (window.scrollY > 35) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+  }
+
+  updateHeader();
+
+  window.addEventListener(
+    "scroll",
+    updateHeader,
+    { passive: true }
+  );
 
 
-    heroDescription.textContent =
-      scene.description;
+  /* =========================================================
+     MOBILE MENU
+     ========================================================= */
 
+  function openMenu() {
+    if (!header || !menuButton) return;
 
-    heroQuote.style.opacity = "0";
-    heroQuote.style.transform =
-      "translateY(10px)";
+    header.classList.add("mobile-open");
 
+    if (mobileOverlay) {
+      mobileOverlay.classList.add("is-visible");
+    }
 
-    setTimeout(() => {
+    body.classList.add("menu-locked");
 
-      heroQuote.textContent =
-        scene.quotes[
-          dailyIndex(
-            scene.quotes.length
-          )
-        ];
-
-      heroQuote.style.opacity = "1";
-      heroQuote.style.transform =
-        "translateY(0)";
-
-    }, 220);
-
-
-    noteGreeting.textContent =
-      scene.greeting;
-
-
-    dailyNoteText.textContent =
-      scene.notes[
-        dailyIndex(
-          scene.notes.length,
-          13
-        )
-      ];
-
-
-    loadSceneVideo(
-      scene,
-      videoIndex(period)
+    menuButton.setAttribute("aria-expanded", "true");
+    menuButton.setAttribute(
+      "aria-label",
+      "Close navigation"
     );
   }
 
+  function closeMenu() {
+    if (!header || !menuButton) return;
 
-  /* ==========================================================
-     LOAD SCENE VIDEO
-  ========================================================== */
+    header.classList.remove("mobile-open");
 
-  let currentVideoIndex = -1;
-
-
-  function loadSceneVideo(scene, index) {
-
-    if (!scene.videos.length) {
-      return;
+    if (mobileOverlay) {
+      mobileOverlay.classList.remove("is-visible");
     }
 
-    index =
-      Math.max(
-        0,
-        Math.min(
-          index,
-          scene.videos.length - 1
-        )
-      );
+    body.classList.remove("menu-locked");
 
-
-    if (
-      currentVideoIndex === index &&
-      worldVideo.dataset.period === activePeriod
-    ) {
-      return;
-    }
-
-    currentVideoIndex =
-      index;
-
-    worldVideo.classList.add(
-      "is-changing"
+    menuButton.setAttribute("aria-expanded", "false");
+    menuButton.setAttribute(
+      "aria-label",
+      "Open navigation"
     );
+  }
 
+  function toggleMenu() {
+    if (!header) return;
 
-    const source =
-      scene.videos[index];
+    if (header.classList.contains("mobile-open")) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
 
+  if (menuButton) {
+    menuButton.addEventListener(
+      "click",
+      toggleMenu
+    );
+  }
 
-    setTimeout(() => {
+  if (mobileOverlay) {
+    mobileOverlay.addEventListener(
+      "click",
+      closeMenu
+    );
+  }
 
-      worldVideo.src =
-        source;
-
-      worldVideo.dataset.period =
-        activePeriod;
-
-
-      const playPromise =
-        worldVideo.play();
-
-
-      if (
-        playPromise &&
-        typeof playPromise.catch === "function"
-      ) {
-
-        playPromise.catch(() => {
-          /*
-            Browser may require a user gesture
-            before media playback.
-          */
-        });
-
-      }
-
-
-      setTimeout(() => {
-
-        worldVideo.classList.remove(
-          "is-changing"
+  if (mobileNavigation) {
+    mobileNavigation
+      .querySelectorAll("a")
+      .forEach((link) => {
+        link.addEventListener(
+          "click",
+          closeMenu
         );
-
-      }, 400);
-
-    }, 180);
+      });
   }
 
 
-  /* ==========================================================
-     HANDLE VIDEO LOOP
+  /* =========================================================
+     ESCAPE KEY
+     ========================================================= */
 
-     Videos are used as cinematic ambience.
-     When one ends, move through the period's scenes.
-  ========================================================== */
+  document.addEventListener(
+    "keydown",
+    (event) => {
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+    }
+  );
 
-  worldVideo.addEventListener(
-    "ended",
-    () => {
 
-      const scene =
-        scenes[activePeriod];
+  /* =========================================================
+     SMOOTH INTERNAL NAVIGATION
+     ========================================================= */
 
-      if (!scene) {
-        return;
+  document
+    .querySelectorAll('a[href^="#"]')
+    .forEach((link) => {
+
+      link.addEventListener(
+        "click",
+        (event) => {
+
+          const targetId =
+            link.getAttribute("href");
+
+          if (
+            !targetId ||
+            targetId === "#"
+          ) {
+            return;
+          }
+
+          const target =
+            document.querySelector(targetId);
+
+          if (!target) {
+            return;
+          }
+
+          event.preventDefault();
+
+          const headerHeight = header
+            ? header.getBoundingClientRect().height
+            : 0;
+
+          const targetTop =
+            target.getBoundingClientRect().top +
+            window.scrollY -
+            headerHeight;
+
+          window.scrollTo({
+            top: Math.max(0, targetTop),
+            behavior: "smooth"
+          });
+
+          closeMenu();
+        }
+      );
+
+    });
+
+
+  /* =========================================================
+     EMOTION EXPERIENCE
+     ========================================================= */
+
+  const emotionData = {
+
+    anxious: {
+      eyebrow: "A quiet place to slow down",
+
+      title:
+        "You don't have to solve everything right now.",
+
+      text:
+        "Start by noticing what is happening. Breathe. Name what feels loud. Understanding can begin before an answer does."
+    },
+
+    overwhelmed: {
+      eyebrow: "One thing at a time",
+
+      title:
+        "You are allowed to put some things down.",
+
+      text:
+        "When everything feels urgent, creating a little space can help you see what actually needs your attention first."
+    },
+
+    "need-talk": {
+      eyebrow: "You can be heard here",
+
+      title:
+        "You don't need the perfect words.",
+
+      text:
+        "A conversation can begin with confusion, silence, a question or simply: I don't know what is happening to me."
+    },
+
+    exploring: {
+      eyebrow: "Curiosity is a beginning",
+
+      title:
+        "There is more to understand about you.",
+
+      text:
+        "Explore your thoughts, emotions, relationships and patterns at your own pace. You can begin simply by being curious."
+    }
+
+  };
+
+
+  let emotionModal = null;
+
+
+  /* =========================================================
+     CREATE EMOTION MODAL
+     ========================================================= */
+
+  function createEmotionModal() {
+
+    if (emotionModal) {
+      return emotionModal;
+    }
+
+    emotionModal =
+      document.createElement("div");
+
+    emotionModal.className =
+      "emotion-modal";
+
+    emotionModal.setAttribute(
+      "role",
+      "dialog"
+    );
+
+    emotionModal.setAttribute(
+      "aria-modal",
+      "true"
+    );
+
+    emotionModal.setAttribute(
+      "aria-label",
+      "Feeling space"
+    );
+
+    emotionModal.innerHTML = `
+
+      <div class="emotion-modal-backdrop"></div>
+
+      <div class="emotion-modal-panel">
+
+        <button
+          class="emotion-modal-close"
+          type="button"
+          aria-label="Close feeling space"
+        >
+          ×
+        </button>
+
+        <div
+          class="emotion-modal-eyebrow"
+        ></div>
+
+        <h3
+          class="emotion-modal-title"
+        ></h3>
+
+        <p
+          class="emotion-modal-text"
+        ></p>
+
+        <div
+          class="emotion-modal-actions"
+        >
+
+          <a
+            href="#begin"
+            class="emotion-modal-primary"
+          >
+            Take the next step →
+          </a>
+
+          <button
+            type="button"
+            class="emotion-modal-secondary"
+          >
+            Keep exploring
+          </button>
+
+        </div>
+
+      </div>
+    `;
+
+    document.body.appendChild(
+      emotionModal
+    );
+
+
+    /* =======================================================
+       MODAL STYLES
+       ======================================================= */
+
+    const style =
+      document.createElement("style");
+
+    style.textContent = `
+
+      .emotion-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 500;
+
+        display: grid;
+        place-items: center;
+
+        padding: 24px;
+
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+
+        transition:
+          opacity .45s var(--ease),
+          visibility .45s ease;
       }
 
-      let next =
-        currentVideoIndex + 1;
 
-      if (
-        next >= scene.videos.length
-      ) {
-        next = 0;
+      .emotion-modal.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
       }
 
-      loadSceneVideo(
-        scene,
-        next
+
+      .emotion-modal-backdrop {
+        position: absolute;
+        inset: 0;
+
+        background:
+          rgba(2,5,12,.55);
+
+        backdrop-filter:
+          blur(18px);
+
+        -webkit-backdrop-filter:
+          blur(18px);
+      }
+
+
+      .emotion-modal-panel {
+        position: relative;
+        z-index: 2;
+
+        width:
+          min(700px,100%);
+
+        padding:
+          clamp(34px,6vw,70px)
+          clamp(26px,6vw,65px);
+
+        border:
+          1px solid
+          rgba(255,255,255,.2);
+
+        border-radius: 28px;
+
+        background:
+          linear-gradient(
+            145deg,
+            rgba(255,255,255,.13),
+            rgba(255,255,255,.045)
+          );
+
+        box-shadow:
+          0 40px 130px
+          rgba(0,0,0,.4);
+
+        transform:
+          translateY(20px)
+          scale(.98);
+
+        transition:
+          transform .6s var(--slow);
+      }
+
+
+      .emotion-modal.is-open
+      .emotion-modal-panel {
+        transform:
+          translateY(0)
+          scale(1);
+      }
+
+
+      .emotion-modal-close {
+        position: absolute;
+
+        top: 18px;
+        right: 18px;
+
+        width: 40px;
+        height: 40px;
+
+        border-radius: 50%;
+
+        background:
+          rgba(255,255,255,.08);
+
+        border:
+          1px solid
+          rgba(255,255,255,.18);
+
+        color: #fff;
+
+        font-size: 25px;
+        line-height: 1;
+
+        cursor: pointer;
+      }
+
+
+      .emotion-modal-eyebrow {
+        font-size: 9px;
+
+        letter-spacing: .24em;
+
+        text-transform: uppercase;
+
+        color:
+          rgba(255,255,255,.55);
+      }
+
+
+      .emotion-modal-title {
+        margin-top: 20px;
+
+        max-width: 600px;
+
+        font-family:
+          "Times New Roman",
+          Georgia,
+          serif;
+
+        font-size:
+          clamp(40px,6vw,74px);
+
+        line-height: .92;
+
+        font-weight: 400;
+
+        letter-spacing: -.045em;
+      }
+
+
+      .emotion-modal-text {
+        max-width: 560px;
+
+        margin-top: 24px;
+
+        color:
+          rgba(255,255,255,.68);
+
+        font-size: 15px;
+
+        line-height: 1.75;
+      }
+
+
+      .emotion-modal-actions {
+        display: flex;
+
+        flex-wrap: wrap;
+
+        gap: 12px;
+
+        margin-top: 30px;
+      }
+
+
+      .emotion-modal-primary,
+      .emotion-modal-secondary {
+        display: inline-flex;
+
+        align-items: center;
+        justify-content: center;
+
+        min-height: 48px;
+
+        padding:
+          0 20px;
+
+        border-radius: 999px;
+
+        font-size: 9px;
+
+        letter-spacing: .16em;
+
+        text-transform: uppercase;
+
+        cursor: pointer;
+      }
+
+
+      .emotion-modal-primary {
+        border:
+          1px solid
+          rgba(255,255,255,.45);
+
+        background:
+          rgba(255,255,255,.11);
+
+        color: #fff;
+      }
+
+
+      .emotion-modal-secondary {
+        border:
+          1px solid
+          rgba(255,255,255,.2);
+
+        background: transparent;
+
+        color:
+          rgba(255,255,255,.72);
+      }
+
+
+      @media(max-width:480px) {
+
+        .emotion-modal {
+          padding: 16px;
+        }
+
+        .emotion-modal-panel {
+          border-radius: 22px;
+        }
+
+        .emotion-modal-actions {
+          flex-direction: column;
+        }
+
+        .emotion-modal-primary,
+        .emotion-modal-secondary {
+          width: 100%;
+        }
+
+      }
+
+
+      @media(prefers-reduced-motion:reduce) {
+
+        .emotion-modal,
+        .emotion-modal-panel {
+          transition: none;
+        }
+
+      }
+
+    `;
+
+    document.head.appendChild(style);
+
+
+    /* =======================================================
+       MODAL CONTROLS
+       ======================================================= */
+
+    const closeButton =
+      emotionModal.querySelector(
+        ".emotion-modal-close"
+      );
+
+    const backdrop =
+      emotionModal.querySelector(
+        ".emotion-modal-backdrop"
+      );
+
+    const secondaryButton =
+      emotionModal.querySelector(
+        ".emotion-modal-secondary"
+      );
+
+    const primaryLink =
+      emotionModal.querySelector(
+        ".emotion-modal-primary"
+      );
+
+
+    function closeEmotionModal() {
+
+      emotionModal.classList.remove(
+        "is-open"
+      );
+
+      body.classList.remove(
+        "menu-locked"
       );
     }
-  );
 
 
-  /* ==========================================================
-     VIDEO ERROR FALLBACK
-  ========================================================== */
+    closeButton.addEventListener(
+      "click",
+      closeEmotionModal
+    );
 
-  worldVideo.addEventListener(
-    "error",
-    () => {
+    backdrop.addEventListener(
+      "click",
+      closeEmotionModal
+    );
 
-      worldVideo.style.background =
-        "#050505";
+    secondaryButton.addEventListener(
+      "click",
+      closeEmotionModal
+    );
 
-    }
-  );
+    primaryLink.addEventListener(
+      "click",
+      closeEmotionModal
+    );
 
 
-  /* ==========================================================
-     EMOTION WORLD
-  ========================================================== */
+    emotionModal._close =
+      closeEmotionModal;
 
-  function openEmotion(key) {
+
+    return emotionModal;
+  }
+
+
+  /* =========================================================
+     OPEN EMOTION
+     ========================================================= */
+
+  function openEmotion(emotionKey) {
 
     const data =
-      emotions[key];
+      emotionData[emotionKey];
 
     if (!data) {
       return;
     }
 
-    emotionWorldKicker.textContent =
-      data.kicker;
+    const modal =
+      createEmotionModal();
 
-    emotionWorldTitle.textContent =
+
+    modal.querySelector(
+      ".emotion-modal-eyebrow"
+    ).textContent =
+      data.eyebrow;
+
+
+    modal.querySelector(
+      ".emotion-modal-title"
+    ).textContent =
       data.title;
 
-    emotionWorldText.textContent =
+
+    modal.querySelector(
+      ".emotion-modal-text"
+    ).textContent =
       data.text;
 
-    emotionWorld.classList.add("open");
 
-    emotionWorld.setAttribute(
-      "aria-hidden",
-      "false"
+    modal.classList.add(
+      "is-open"
     );
 
-    document.body.style.overflow =
-      "hidden";
+    body.classList.add(
+      "menu-locked"
+    );
+
+
+    setTimeout(() => {
+
+      const closeButton =
+        modal.querySelector(
+          ".emotion-modal-close"
+        );
+
+      if (closeButton) {
+        closeButton.focus();
+      }
+
+    }, 50);
+
   }
 
 
-  function closeEmotion() {
-
-    emotionWorld.classList.remove(
-      "open"
-    );
-
-    emotionWorld.setAttribute(
-      "aria-hidden",
-      "true"
-    );
-
-    document.body.style.overflow =
-      "";
-  }
-
+  /* =========================================================
+     EMOTION CARDS
+     ========================================================= */
 
   document
     .querySelectorAll(".emotion")
-    .forEach(button => {
+    .forEach((card) => {
 
-      button.addEventListener(
-        "click",
-        () => {
+      const open = () => {
 
-          openEmotion(
-            button.dataset.emotion
-          );
-
-        }
-      );
-
-    });
-
-
-  emotionClose.addEventListener(
-    "click",
-    closeEmotion
-  );
-
-
-  emotionWorld.addEventListener(
-    "click",
-    event => {
-
-      if (
-        event.target === emotionWorld
-      ) {
-        closeEmotion();
-      }
-
-    }
-  );
-
-
-  /* ==========================================================
-     HORIZONTAL DRAG
-  ========================================================== */
-
-  let dragging = false;
-  let dragStartX = 0;
-  let dragScrollLeft = 0;
-
-
-  emotionRail.addEventListener(
-    "pointerdown",
-    event => {
-
-      dragging = true;
-
-      dragStartX =
-        event.clientX;
-
-      dragScrollLeft =
-        emotionRail.scrollLeft;
-
-      emotionRail.setPointerCapture(
-        event.pointerId
-      );
-
-    }
-  );
-
-
-  emotionRail.addEventListener(
-    "pointermove",
-    event => {
-
-      if (!dragging) {
-        return;
-      }
-
-      const distance =
-        event.clientX - dragStartX;
-
-      emotionRail.scrollLeft =
-        dragScrollLeft - distance;
-
-    }
-  );
-
-
-  emotionRail.addEventListener(
-    "pointerup",
-    () => {
-      dragging = false;
-    }
-  );
-
-
-  emotionRail.addEventListener(
-    "pointercancel",
-    () => {
-      dragging = false;
-    }
-  );
-
-
-  /* ==========================================================
-     HOW AKSH WORKS
-  ========================================================== */
-
-  listenButton.addEventListener(
-    "click",
-    () => {
-
-      worksModal.classList.add(
-        "open"
-      );
-
-      worksModal.setAttribute(
-        "aria-hidden",
-        "false"
-      );
-
-      document.body.style.overflow =
-        "hidden";
-
-    }
-  );
-
-
-  function closeWorks() {
-
-    worksModal.classList.remove(
-      "open"
-    );
-
-    worksModal.setAttribute(
-      "aria-hidden",
-      "true"
-    );
-
-    document.body.style.overflow =
-      "";
-  }
-
-
-  modalClose.addEventListener(
-    "click",
-    closeWorks
-  );
-
-
-  worksModal.addEventListener(
-    "click",
-    event => {
-
-      if (
-        event.target === worksModal
-      ) {
-        closeWorks();
-      }
-
-    }
-  );
-
-
-  /* ==========================================================
-     HEART
-  ========================================================== */
-
-  heartButton.addEventListener(
-    "click",
-    () => {
-
-      heartButton.classList.toggle(
-        "saved"
-      );
-
-      heartButton.textContent =
-        heartButton.classList.contains(
-          "saved"
-        )
-          ? "♥"
-          : "♡";
-
-    }
-  );
-
-
-  /* ==========================================================
-     MOBILE MENU
-  ========================================================== */
-
-  menuButton.addEventListener(
-    "click",
-    () => {
-
-      const open =
-        mobileMenu.classList.toggle(
-          "open"
+        openEmotion(
+          card.dataset.emotion
         );
 
-      menuButton.setAttribute(
-        "aria-expanded",
-        String(open)
-      );
-
-      mobileMenu.setAttribute(
-        "aria-hidden",
-        String(!open)
-      );
-
-      if (open) {
-        document.body.style.overflow =
-          "hidden";
-      } else {
-        document.body.style.overflow =
-          "";
-      }
-
-    }
-  );
+      };
 
 
-  document
-    .querySelectorAll(
-      ".mobile-menu a"
-    )
-    .forEach(link => {
-
-      link.addEventListener(
+      card.addEventListener(
         "click",
-        () => {
+        open
+      );
 
-          mobileMenu.classList.remove(
-            "open"
-          );
 
-          menuButton.setAttribute(
-            "aria-expanded",
-            "false"
-          );
+      card.addEventListener(
+        "keydown",
+        (event) => {
 
-          mobileMenu.setAttribute(
-            "aria-hidden",
-            "true"
-          );
+          if (
+            event.key === "Enter" ||
+            event.key === " "
+          ) {
 
-          document.body.style.overflow =
-            "";
+            event.preventDefault();
+
+            open();
+
+          }
 
         }
       );
@@ -942,27 +780,23 @@
     });
 
 
-  /* ==========================================================
-     ESCAPE KEY
-  ========================================================== */
+  /* =========================================================
+     CLOSE EMOTION WITH ESCAPE
+     ========================================================= */
 
   document.addEventListener(
     "keydown",
-    event => {
+    (event) => {
 
       if (
-        event.key === "Escape"
+        event.key === "Escape" &&
+        emotionModal &&
+        emotionModal.classList.contains(
+          "is-open"
+        )
       ) {
 
-        closeEmotion();
-        closeWorks();
-
-        mobileMenu.classList.remove(
-          "open"
-        );
-
-        document.body.style.overflow =
-          "";
+        emotionModal._close();
 
       }
 
@@ -970,30 +804,138 @@
   );
 
 
-  /* ==========================================================
-     PERIOD CHECK
+  /* =========================================================
+     FOUNDER IMAGE FALLBACK
+     ========================================================= */
 
-     Allows the page to change automatically
-     when the real time moves into another period.
-  ========================================================== */
+  const founderPhoto =
+    document.querySelector(
+      ".founder-photo"
+    );
 
-  setInterval(
+
+  if (founderPhoto) {
+
+    founderPhoto.addEventListener(
+      "error",
+      () => {
+
+        founderPhoto.style.visibility =
+          "hidden";
+
+        if (founderPhoto.parentElement) {
+
+          founderPhoto.parentElement.classList.add(
+            "founder-photo-unavailable"
+          );
+
+        }
+
+      }
+    );
+
+  }
+
+
+  /* =========================================================
+     INTERSECTION REVEAL
+     ========================================================= */
+
+  const revealTargets =
+    document.querySelectorAll(
+      ".hero-inner, .section-inner, .footer"
+    );
+
+
+  if (
+    "IntersectionObserver" in window &&
+    !window
+      .matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      )
+      .matches
+  ) {
+
+    revealTargets.forEach(
+      (element) => {
+
+        element.classList.add(
+          "reveal-ready"
+        );
+
+      }
+    );
+
+
+    const observer =
+      new IntersectionObserver(
+        (entries) => {
+
+          entries.forEach(
+            (entry) => {
+
+              if (
+                entry.isIntersecting
+              ) {
+
+                entry.target.classList.add(
+                  "revealed"
+                );
+
+                observer.unobserve(
+                  entry.target
+                );
+
+              }
+
+            }
+          );
+
+        },
+        {
+          threshold: 0.08,
+
+          rootMargin:
+            "0px 0px -40px 0px"
+        }
+      );
+
+
+    revealTargets.forEach(
+      (element) => {
+
+        observer.observe(
+          element
+        );
+
+      }
+    );
+
+  }
+
+
+  /* =========================================================
+     RESIZE — CLOSE MOBILE MENU ON DESKTOP
+     ========================================================= */
+
+  window.addEventListener(
+    "resize",
     () => {
 
-      applyPeriod(false);
+      if (
+        window.innerWidth > 900 &&
+        header &&
+        header.classList.contains(
+          "mobile-open"
+        )
+      ) {
 
-    },
-    30000
+        closeMenu();
+
+      }
+
+    }
   );
-
-
-  /* ==========================================================
-     INITIALISE
-  ========================================================== */
-
-  updateDate();
-
-  applyPeriod(true);
 
 
 })();
