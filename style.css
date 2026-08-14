@@ -4,7 +4,6 @@
   --muted-white: rgba(248, 245, 239, 0.58);
   --gold: #d2b477;
   --dark: #080808;
-  --line: rgba(255, 255, 255, 0.22);
   --ivory: #f1ece4;
   --ink: #18131c;
   --purple: #76547d;
@@ -28,46 +27,34 @@ body {
   overflow-x: hidden;
 }
 
-button,
-a {
+button {
   font: inherit;
-}
-
-button {
   border: 0;
-}
-
-button {
   cursor: pointer;
 }
 
 
-/* =====================================================
-   AKSH ARRIVAL
-   ===================================================== */
+/* =========================================
+   ARRIVAL
+   ========================================= */
 
 .aksh-arrival {
   position: relative;
-
   width: 100%;
   min-height: 100vh;
   min-height: 100svh;
-
   overflow: hidden;
-
   background: #090909;
-
   isolation: isolate;
 }
 
 
-/* =====================================================
+/* =========================================
    VIDEO
-   ===================================================== */
+   ========================================= */
 
 .arrival-video {
   position: absolute;
-
   inset: 0;
 
   width: 100%;
@@ -77,22 +64,19 @@ button {
   object-position: center;
 
   z-index: -3;
-
   background: #090909;
 }
 
 
-/* =====================================================
+/* =========================================
    CINEMATIC OVERLAY
-   ===================================================== */
+   ========================================= */
 
 .cinematic-overlay {
   position: absolute;
-
   inset: 0;
 
   z-index: -2;
-
   pointer-events: none;
 
   background:
@@ -101,7 +85,7 @@ button {
       rgba(0, 0, 0, 0.42) 0%,
       rgba(0, 0, 0, 0.05) 35%,
       rgba(0, 0, 0, 0.12) 58%,
-      rgba(0, 0, 0, 0.58) 100%
+      rgba(0, 0, 0, 0.62) 100%
     );
 
   box-shadow:
@@ -109,9 +93,9 @@ button {
 }
 
 
-/* =====================================================
-   TOP LEFT — DATE
-   ===================================================== */
+/* =========================================
+   DATE
+   ========================================= */
 
 .date-display {
   position: absolute;
@@ -126,9 +110,9 @@ button {
 
   gap: 5px;
 
-  color: var(--white);
-
   text-align: left;
+
+  color: var(--white);
 
   text-shadow:
     0 2px 18px rgba(0, 0, 0, 0.45);
@@ -139,7 +123,6 @@ button {
   font-weight: 400;
 
   letter-spacing: 0.13em;
-
   line-height: 1.2;
 }
 
@@ -155,15 +138,14 @@ button {
 }
 
 
-/* =====================================================
-   TOP CENTER — AKSH
-   ===================================================== */
+/* =========================================
+   AKSH TOP CENTER
+   ========================================= */
 
 .aksh-identity {
   position: absolute;
 
   top: max(28px, env(safe-area-inset-top));
-
   left: 50%;
 
   transform: translateX(-50%);
@@ -204,7 +186,6 @@ button {
   font-weight: 500;
 
   letter-spacing: 0.42em;
-
   padding-left: 0.42em;
 
   line-height: 1;
@@ -222,9 +203,9 @@ button {
 }
 
 
-/* =====================================================
+/* =========================================
    SOUND
-   ===================================================== */
+   ========================================= */
 
 .sound-button {
   position: absolute;
@@ -270,29 +251,26 @@ button {
 
 .sound-icon {
   font-size: 8px;
-
   color: var(--gold);
 }
 
 .sound-text {
   font-size: 8px;
-
   letter-spacing: 0.16em;
-
   line-height: 1;
 }
 
 
-/* =====================================================
-   CENTER CONTENT
-   ===================================================== */
+/* =========================================
+   CENTER
+   ========================================= */
 
 .arrival-content {
   position: relative;
 
   z-index: 3;
 
-  width: min(900px, 90%);
+  width: min(1100px, 92%);
 
   min-height: 100vh;
   min-height: 100svh;
@@ -314,60 +292,84 @@ button {
 }
 
 
-/* =====================================================
+/* =========================================
    GREETING
-   ===================================================== */
+   BIG + SINGLE LINE
+   ========================================= */
 
 .time-greeting {
   margin-bottom: 22px;
 
   color: var(--white);
 
-  font-size: 13px;
+  font-size: clamp(
+    22px,
+    3vw,
+    38px
+  );
+
   font-weight: 400;
 
-  letter-spacing: 0.32em;
+  letter-spacing: 0.12em;
 
-  text-transform: uppercase;
+  line-height: 1.1;
+
+  text-transform: none;
+
+  white-space: nowrap;
 
   text-shadow:
-    0 2px 18px rgba(0, 0, 0, 0.55);
+    0 2px 20px rgba(0, 0, 0, 0.55);
 }
 
 
-/* =====================================================
+/* =========================================
    QUOTE
-   ===================================================== */
+   SMALL
+   ========================================= */
 
 .arrival-quote {
-  max-width: 850px;
+  width: min(700px, 90%);
 
   color: var(--white);
 
   font-family: "Playfair Display", serif;
 
   font-size: clamp(
-    38px,
-    6vw,
-    78px
+    17px,
+    2vw,
+    25px
   );
 
   font-weight: 400;
 
   font-style: italic;
 
-  line-height: 1.08;
+  line-height: 1.45;
 
-  letter-spacing: -0.035em;
+  letter-spacing: 0;
 
   text-shadow:
-    0 3px 30px rgba(0, 0, 0, 0.55);
+    0 3px 25px rgba(0, 0, 0, 0.55);
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
 }
 
 
-/* =====================================================
+/* quote transition */
+
+.arrival-quote.quote-changing {
+  opacity: 0;
+
+  transform: translateY(6px);
+}
+
+
+/* =========================================
    BEGIN JOURNEY
-   ===================================================== */
+   ========================================= */
 
 .begin-button {
   margin-top: 42px;
@@ -406,7 +408,6 @@ button {
 
 .begin-button span:first-child {
   font-size: 9px;
-
   letter-spacing: 0.22em;
 }
 
@@ -414,14 +415,13 @@ button {
   color: var(--gold);
 
   font-size: 18px;
-
   line-height: 1;
 }
 
 
-/* =====================================================
-   BOTTOM INFORMATION
-   ===================================================== */
+/* =========================================
+   BOTTOM
+   ========================================= */
 
 .arrival-bottom {
   position: absolute;
@@ -449,9 +449,9 @@ button {
 }
 
 
-/* =====================================================
+/* =========================================
    FEELING SECTION
-   ===================================================== */
+   ========================================= */
 
 .feeling-section {
   position: relative;
@@ -477,9 +477,7 @@ button {
 
 .feeling-inner {
   width: 100%;
-
   max-width: 1400px;
-
   margin: 0 auto;
 }
 
@@ -513,7 +511,6 @@ button {
 
 .feeling-section h2 em {
   color: var(--purple);
-
   font-style: italic;
 }
 
@@ -530,9 +527,9 @@ button {
 }
 
 
-/* =====================================================
+/* =========================================
    FEELING GRID
-   ===================================================== */
+   ========================================= */
 
 .feeling-grid {
   margin-top: 70px;
@@ -565,8 +562,6 @@ button {
   border-left:
     1px solid rgba(24, 19, 28, 0.16);
 
-  cursor: pointer;
-
   transition:
     background 0.5s ease,
     color 0.5s ease,
@@ -580,40 +575,32 @@ button {
 
 .feeling-card:hover {
   background: #241a29;
-
   color: var(--ivory);
-
   transform: translateY(-8px);
 }
 
 .number {
   font-size: 10px;
-
   letter-spacing: 0.2em;
-
   opacity: 0.5;
 }
 
 .feeling-title {
   font-size: 12px;
-
   letter-spacing: 0.16em;
-
   line-height: 1.5;
 }
 
 .feeling-arrow {
   align-self: flex-end;
-
   font-size: 24px;
-
   font-weight: 300;
 }
 
 
-/* =====================================================
+/* =========================================
    TABLET
-   ===================================================== */
+   ========================================= */
 
 @media (max-width: 900px) {
 
@@ -640,11 +627,18 @@ button {
 
   .arrival-content {
     width: 92%;
-
     padding:
       145px
       20px
       130px;
+  }
+
+  .time-greeting {
+    font-size: clamp(21px, 4vw, 32px);
+  }
+
+  .arrival-quote {
+    font-size: clamp(16px, 2.5vw, 22px);
   }
 
   .feeling-section {
@@ -665,13 +659,12 @@ button {
     border-top:
       1px solid rgba(24, 19, 28, 0.16);
   }
-
 }
 
 
-/* =====================================================
+/* =========================================
    MOBILE
-   ===================================================== */
+   ========================================= */
 
 @media (max-width: 600px) {
 
@@ -711,7 +704,6 @@ button {
   .aksh-icon {
     width: 35px;
     height: 35px;
-
     margin-bottom: 6px;
   }
 
@@ -719,7 +711,6 @@ button {
     font-size: 11px;
 
     letter-spacing: 0.34em;
-
     padding-left: 0.34em;
   }
 
@@ -751,25 +742,28 @@ button {
 
     padding:
       130px
-      20px
+      18px
       125px;
   }
 
   .time-greeting {
-    margin-bottom: 18px;
+    margin-bottom: 16px;
 
-    font-size: 10px;
+    font-size:
+      clamp(21px, 6vw, 30px);
 
-    letter-spacing: 0.25em;
+    letter-spacing: 0.08em;
+
+    white-space: nowrap;
   }
 
   .arrival-quote {
-    max-width: 340px;
+    width: min(330px, 90%);
 
     font-size:
-      clamp(36px, 11vw, 58px);
+      clamp(16px, 4.7vw, 21px);
 
-    line-height: 1.06;
+    line-height: 1.45;
   }
 
   .begin-button {
@@ -782,7 +776,6 @@ button {
 
   .begin-button span:first-child {
     font-size: 8px;
-
     letter-spacing: 0.16em;
   }
 
@@ -793,7 +786,6 @@ button {
   .arrival-bottom {
     left: 18px;
     right: 18px;
-
     bottom: 20px;
 
     font-size: 6px;
@@ -814,7 +806,6 @@ button {
 
   .feeling-grid {
     grid-template-columns: 1fr;
-
     margin-top: 55px;
   }
 
@@ -841,13 +832,12 @@ button {
     border-top:
       1px solid rgba(24, 19, 28, 0.16);
   }
-
 }
 
 
-/* =====================================================
+/* =========================================
    VERY SMALL PHONES
-   ===================================================== */
+   ========================================= */
 
 @media (max-width: 380px) {
 
@@ -868,38 +858,44 @@ button {
     padding: 0;
   }
 
-  .arrival-quote {
-    font-size: 35px;
+  .time-greeting {
+    font-size: 20px;
   }
 
+  .arrival-quote {
+    font-size: 16px;
+  }
 }
 
 
-/* =====================================================
+/* =========================================
    LARGE DESKTOP
-   ===================================================== */
+   ========================================= */
 
 @media (min-width: 1400px) {
 
   .arrival-content {
-    max-width: 1100px;
+    max-width: 1200px;
+  }
+
+  .time-greeting {
+    font-size: 42px;
   }
 
   .arrival-quote {
-    font-size: 82px;
+    font-size: 26px;
   }
 
   .feeling-section {
     padding-left: 9vw;
     padding-right: 9vw;
   }
-
 }
 
 
-/* =====================================================
+/* =========================================
    REDUCED MOTION
-   ===================================================== */
+   ========================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -910,5 +906,4 @@ button {
   * {
     transition: none !important;
   }
-
 }
