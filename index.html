@@ -7,16 +7,24 @@
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    content="width=device-width, initial-scale=1.0"
   >
 
-  <title>AKSH — A Safe Space for Every Mind</title>
+  <meta
+    name="theme-color"
+    content="#080808"
+  >
+
+  <title>
+    AKSH — A Safe Space for Every Mind
+  </title>
 
   <meta
     name="description"
     content="AKSH — A Safe Space for Every Mind."
   >
 
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
 
   <link
@@ -26,7 +34,7 @@
   >
 
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap"
     rel="stylesheet"
   >
 
@@ -41,70 +49,67 @@
 <body>
 
 
-  <!-- =========================================
-       AKSH ARRIVAL EXPERIENCE
-       ========================================= -->
+  <!-- =================================================
+       AKSH — ARRIVAL
+       ================================================= -->
 
-  <main
+  <section
     class="aksh-arrival"
     id="arrival"
   >
 
-
-    <!-- BACKGROUND VIDEO -->
-
     <video
-      id="arrivalVideo"
       class="arrival-video"
+      id="arrivalVideo"
+      playsinline
       autoplay
       muted
-      playsinline
       preload="auto"
     >
 
       <source
         id="arrivalVideoSource"
-        src="aksh-morning.1.mov"
+        src=""
         type="video/quicktime"
       >
 
     </video>
 
 
-    <!-- CINEMATIC OVERLAY -->
+    <div
+      class="cinematic-overlay"
+      aria-hidden="true"
+    ></div>
 
-    <div class="cinematic-overlay"></div>
 
+    <!-- DATE -->
 
-    <!-- =========================================
-         TOP LEFT — DATE + DAY
-         ========================================= -->
+    <div
+      class="date-display"
+    >
 
-    <div class="date-display">
-
-      <div
-        id="currentDate"
+      <span
         class="current-date"
+        id="currentDate"
       >
         14.08.2026
-      </div>
+      </span>
 
-      <div
-        id="currentDay"
+      <span
         class="current-day"
+        id="currentDay"
       >
         Friday
-      </div>
+      </span>
 
     </div>
 
 
-    <!-- =========================================
-         TOP CENTER — AKSH IDENTITY
-         ========================================= -->
+    <!-- AKSH IDENTITY -->
 
-    <header class="aksh-identity">
-
+    <div
+      class="aksh-identity"
+    >
 
       <img
         src="aksh-icon.PNG"
@@ -112,41 +117,40 @@
         class="aksh-icon"
       >
 
-
-      <div class="aksh-wordmark">
+      <span
+        class="aksh-wordmark"
+      >
         AKSH
-      </div>
+      </span>
+
+      <span
+        class="aksh-tagline"
+      >
+        A Safe Space For Every Mind
+      </span>
+
+    </div>
 
 
-      <div class="aksh-tagline">
-        A Safe Space for Every Mind
-      </div>
-
-
-    </header>
-
-
-    <!-- =========================================
-         SOUND CONTROL
-         ========================================= -->
+    <!-- SOUND -->
 
     <button
-      id="soundButton"
       class="sound-button"
+      id="soundButton"
       type="button"
       aria-label="Turn sound on"
     >
 
       <span
-        id="soundIcon"
         class="sound-icon"
+        id="soundIcon"
       >
         ◉
       </span>
 
       <span
-        id="soundText"
         class="sound-text"
+        id="soundText"
       >
         SOUND OFF
       </span>
@@ -154,33 +158,31 @@
     </button>
 
 
-    <!-- =========================================
-         CENTER EXPERIENCE
-         ========================================= -->
+    <!-- ARRIVAL CONTENT -->
 
-    <section class="arrival-content">
-
-
-      <p
-        id="timeGreeting"
-        class="time-greeting"
-      >
-        Good Morning
-      </p>
-
+    <div
+      class="arrival-content"
+    >
 
       <h1
-        id="arrivalQuote"
-        class="arrival-quote"
+        class="time-greeting"
+        id="timeGreeting"
       >
-        Take a moment.<br>
-        You have arrived.
+        Good Morning
       </h1>
 
 
+      <p
+        class="arrival-quote"
+        id="arrivalQuote"
+      >
+        Take a moment. You have arrived.
+      </p>
+
+
       <button
-        id="enterButton"
         class="begin-button"
+        id="enterButton"
         type="button"
       >
 
@@ -188,160 +190,392 @@
           BEGIN YOUR JOURNEY
         </span>
 
-        <span class="begin-arrow">
+        <span
+          class="begin-arrow"
+        >
           →
         </span>
 
       </button>
 
-
-    </section>
-
-
-    <!-- =========================================
-         BOTTOM
-         ========================================= -->
-
-    <div class="arrival-bottom">
-
-      <span>
-        MENTAL WELLNESS
-      </span>
-
-      <span>
-        MEGHANA KAVERAPPA
-      </span>
-
     </div>
 
 
-  </main>
+    <!-- BOTTOM -->
 
+    <div
+      class="arrival-bottom"
+    >
 
-  <!-- =========================================
-       NEXT SECTION
-       ========================================= -->
+      <span>
+        AKSH
+      </span>
 
-  <section
-    id="begin"
-    class="feeling-section"
-  >
-
-    <div class="feeling-inner">
-
-      <p class="eyebrow">
-        BEFORE WE BEGIN
-      </p>
-
-
-      <h2>
-        How are you
-        <br>
-        <em>feeling today?</em>
-      </h2>
-
-
-      <p class="feeling-intro">
-
-        There is no right way to arrive here.
-        <br>
-        Start wherever you are.
-
-      </p>
-
-
-      <div class="feeling-grid">
-
-
-        <button
-          class="feeling-card"
-          type="button"
-        >
-
-          <span class="number">
-            01
-          </span>
-
-          <span class="feeling-title">
-            I FEEL ANXIOUS
-          </span>
-
-          <span class="feeling-arrow">
-            ↗
-          </span>
-
-        </button>
-
-
-        <button
-          class="feeling-card"
-          type="button"
-        >
-
-          <span class="number">
-            02
-          </span>
-
-          <span class="feeling-title">
-            I FEEL OVERWHELMED
-          </span>
-
-          <span class="feeling-arrow">
-            ↗
-          </span>
-
-        </button>
-
-
-        <button
-          class="feeling-card"
-          type="button"
-        >
-
-          <span class="number">
-            03
-          </span>
-
-          <span class="feeling-title">
-            I NEED TO TALK
-          </span>
-
-          <span class="feeling-arrow">
-            ↗
-          </span>
-
-        </button>
-
-
-        <button
-          class="feeling-card"
-          type="button"
-        >
-
-          <span class="number">
-            04
-          </span>
-
-          <span class="feeling-title">
-            I'M JUST EXPLORING
-          </span>
-
-          <span class="feeling-arrow">
-            ↗
-          </span>
-
-        </button>
-
-
-      </div>
-
+      <span>
+        COME AS YOU ARE
+      </span>
 
     </div>
 
   </section>
 
 
-  <script src="script.js"></script>
+
+  <!-- =================================================
+       AKSH — ENTER
+       ================================================= -->
+
+  <section
+    class="enter-world"
+    id="begin"
+  >
+
+    <!-- ATMOSPHERIC SKY -->
+
+    <div
+      class="enter-sky"
+      aria-hidden="true"
+    >
+
+      <div
+        class="sky-cloud sky-cloud-one"
+      ></div>
+
+      <div
+        class="sky-cloud sky-cloud-two"
+      ></div>
+
+      <div
+        class="sky-cloud sky-cloud-three"
+      ></div>
+
+      <div
+        class="sky-rain"
+      ></div>
+
+      <div
+        class="rainbow"
+      ></div>
+
+      <div
+        class="moon"
+      ></div>
+
+      <div
+        class="stars"
+      ></div>
+
+      <div
+        class="shooting-star shooting-star-one"
+      ></div>
+
+      <div
+        class="shooting-star shooting-star-two"
+      ></div>
+
+    </div>
+
+
+    <!-- WORLD CONTENT -->
+
+    <div
+      class="enter-world-content"
+    >
+
+      <div
+        class="enter-eyebrow"
+      >
+        WELCOME TO AKSH
+      </div>
+
+
+      <h2
+        class="enter-title"
+      >
+
+        <span>
+          COME
+        </span>
+
+        <span>
+          AS
+        </span>
+
+        <span>
+          YOU
+        </span>
+
+        <span>
+          ARE.
+        </span>
+
+      </h2>
+
+
+      <p
+        class="enter-description"
+      >
+        There is no right way to arrive here.
+        <br>
+        This space begins wherever you are.
+      </p>
+
+
+      <!-- HORIZONTAL FEELING EXPERIENCE -->
+
+      <div
+        class="feeling-introduction"
+      >
+
+        <div
+          class="feeling-introduction-label"
+        >
+          HOW ARE YOU FEELING TODAY?
+        </div>
+
+
+        <div
+          class="feeling-line"
+        ></div>
+
+
+        <div
+          class="feeling-hint"
+        >
+          SWIPE TO EXPLORE
+        </div>
+
+      </div>
+
+
+      <!-- HORIZONTAL CARDS -->
+
+      <div
+        class="feeling-horizontal"
+        id="feelingHorizontal"
+      >
+
+
+        <!-- ANXIOUS -->
+
+        <article
+          class="feeling-world-card"
+          data-feeling="anxious"
+        >
+
+          <div
+            class="feeling-card-number"
+          >
+            01
+          </div>
+
+
+          <div
+            class="feeling-card-content"
+          >
+
+            <div
+              class="feeling-card-label"
+            >
+              RIGHT NOW
+            </div>
+
+            <h3>
+              ANXIOUS
+            </h3>
+
+            <p>
+              When your mind feels louder
+              than the world around you.
+            </p>
+
+          </div>
+
+
+          <div
+            class="feeling-card-arrow"
+          >
+            ↗
+          </div>
+
+        </article>
+
+
+
+        <!-- OVERWHELMED -->
+
+        <article
+          class="feeling-world-card"
+          data-feeling="overwhelmed"
+        >
+
+          <div
+            class="feeling-card-number"
+          >
+            02
+          </div>
+
+
+          <div
+            class="feeling-card-content"
+          >
+
+            <div
+              class="feeling-card-label"
+            >
+              RIGHT NOW
+            </div>
+
+            <h3>
+              OVERWHELMED
+            </h3>
+
+            <p>
+              When everything feels like
+              it needs your attention at once.
+            </p>
+
+          </div>
+
+
+          <div
+            class="feeling-card-arrow"
+          >
+            ↗
+          </div>
+
+        </article>
+
+
+
+        <!-- NEED TO TALK -->
+
+        <article
+          class="feeling-world-card"
+          data-feeling="talk"
+        >
+
+          <div
+            class="feeling-card-number"
+          >
+            03
+          </div>
+
+
+          <div
+            class="feeling-card-content"
+          >
+
+            <div
+              class="feeling-card-label"
+            >
+              RIGHT NOW
+            </div>
+
+            <h3>
+              NEED TO TALK
+            </h3>
+
+            <p>
+              When you don't want to
+              keep everything inside.
+            </p>
+
+          </div>
+
+
+          <div
+            class="feeling-card-arrow"
+          >
+            ↗
+          </div>
+
+        </article>
+
+
+
+        <!-- JUST EXPLORING -->
+
+        <article
+          class="feeling-world-card"
+          data-feeling="exploring"
+        >
+
+          <div
+            class="feeling-card-number"
+          >
+            04
+          </div>
+
+
+          <div
+            class="feeling-card-content"
+          >
+
+            <div
+              class="feeling-card-label"
+            >
+              RIGHT NOW
+            </div>
+
+            <h3>
+              JUST EXPLORING
+            </h3>
+
+            <p>
+              Take your time.
+              Discover AKSH at your own pace.
+            </p>
+
+          </div>
+
+
+          <div
+            class="feeling-card-arrow"
+          >
+            ↗
+          </div>
+
+        </article>
+
+
+      </div>
+
+
+      <!-- SCROLL INDICATOR -->
+
+      <div
+        class="enter-bottom"
+      >
+
+        <span>
+          AKSH
+        </span>
+
+        <span>
+          A SAFE SPACE FOR EVERY MIND
+        </span>
+
+        <span>
+          ↓
+        </span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =================================================
+       JAVASCRIPT
+       ================================================= -->
+
+  <script
+    src="script.js"
+  ></script>
+
 
 </body>
 
