@@ -1,11 +1,19 @@
+/* =========================================================
+   AKSH — GLOBAL
+   ========================================================= */
+
 :root {
   --white: #f8f5ef;
   --soft-white: rgba(248, 245, 239, 0.82);
   --muted-white: rgba(248, 245, 239, 0.58);
+
   --gold: #d2b477;
+
   --dark: #080808;
-  --ivory: #f1ece4;
-  --ink: #18131c;
+
+  --ivory: #f2ede5;
+  --ink: #17131a;
+
   --purple: #76547d;
 }
 
@@ -21,9 +29,13 @@ html {
 
 body {
   margin: 0;
+
   background: var(--dark);
+
   color: var(--white);
+
   font-family: "DM Sans", sans-serif;
+
   overflow-x: hidden;
 }
 
@@ -34,27 +46,36 @@ button {
 }
 
 
-/* =========================================
-   ARRIVAL
-   ========================================= */
+/* =========================================================
+   =========================================================
+   AKSH ARRIVAL
+   THIS IS THE APPROVED FIRST SCREEN
+   =========================================================
+   ========================================================= */
 
 .aksh-arrival {
   position: relative;
+
   width: 100%;
+
   min-height: 100vh;
   min-height: 100svh;
+
   overflow: hidden;
+
   background: #090909;
+
   isolation: isolate;
 }
 
 
-/* =========================================
-   VIDEO
-   ========================================= */
+/* =========================================================
+   ARRIVAL VIDEO
+   ========================================================= */
 
 .arrival-video {
   position: absolute;
+
   inset: 0;
 
   width: 100%;
@@ -64,19 +85,22 @@ button {
   object-position: center;
 
   z-index: -3;
+
   background: #090909;
 }
 
 
-/* =========================================
-   CINEMATIC OVERLAY
-   ========================================= */
+/* =========================================================
+   ARRIVAL CINEMATIC OVERLAY
+   ========================================================= */
 
 .cinematic-overlay {
   position: absolute;
+
   inset: 0;
 
   z-index: -2;
+
   pointer-events: none;
 
   background:
@@ -93,9 +117,9 @@ button {
 }
 
 
-/* =========================================
-   DATE
-   ========================================= */
+/* =========================================================
+   ARRIVAL DATE
+   ========================================================= */
 
 .date-display {
   position: absolute;
@@ -120,9 +144,11 @@ button {
 
 .current-date {
   font-size: 13px;
+
   font-weight: 400;
 
   letter-spacing: 0.13em;
+
   line-height: 1.2;
 }
 
@@ -130,6 +156,7 @@ button {
   font-family: "Playfair Display", serif;
 
   font-size: 14px;
+
   font-style: italic;
 
   color: var(--soft-white);
@@ -138,9 +165,9 @@ button {
 }
 
 
-/* =========================================
-   AKSH TOP CENTER
-   ========================================= */
+/* =========================================================
+   ARRIVAL AKSH IDENTITY
+   ========================================================= */
 
 .aksh-identity {
   position: absolute;
@@ -183,9 +210,11 @@ button {
 
 .aksh-wordmark {
   font-size: 14px;
+
   font-weight: 500;
 
   letter-spacing: 0.42em;
+
   padding-left: 0.42em;
 
   line-height: 1;
@@ -195,6 +224,7 @@ button {
   margin-top: 7px;
 
   font-size: 8px;
+
   font-weight: 300;
 
   letter-spacing: 0.17em;
@@ -203,9 +233,9 @@ button {
 }
 
 
-/* =========================================
-   SOUND
-   ========================================= */
+/* =========================================================
+   ARRIVAL SOUND
+   ========================================================= */
 
 .sound-button {
   position: absolute;
@@ -220,6 +250,7 @@ button {
   padding: 10px 13px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -229,7 +260,9 @@ button {
 
   background: rgba(0, 0, 0, 0.15);
 
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border:
+    1px solid rgba(255, 255, 255, 0.3);
+
   border-radius: 100px;
 
   backdrop-filter: blur(12px);
@@ -244,26 +277,30 @@ button {
 .sound-button:hover {
   background: rgba(0, 0, 0, 0.3);
 
-  border-color: rgba(255, 255, 255, 0.55);
+  border-color:
+    rgba(255, 255, 255, 0.55);
 
   transform: translateY(-2px);
 }
 
 .sound-icon {
   font-size: 8px;
+
   color: var(--gold);
 }
 
 .sound-text {
   font-size: 8px;
+
   letter-spacing: 0.16em;
+
   line-height: 1;
 }
 
 
-/* =========================================
-   CENTER
-   ========================================= */
+/* =========================================================
+   ARRIVAL CENTER
+   ========================================================= */
 
 .arrival-content {
   position: relative;
@@ -283,38 +320,34 @@ button {
     140px;
 
   display: flex;
+
   flex-direction: column;
 
   align-items: center;
+
   justify-content: center;
 
   text-align: center;
 }
 
 
-/* =========================================
-   GREETING
-   BIG + SINGLE LINE
-   ========================================= */
+/* =========================================================
+   ARRIVAL GREETING
+   ========================================================= */
 
 .time-greeting {
   margin-bottom: 22px;
 
   color: var(--white);
 
-  font-size: clamp(
-    22px,
-    3vw,
-    38px
-  );
+  font-size:
+    clamp(22px, 3vw, 38px);
 
   font-weight: 400;
 
   letter-spacing: 0.12em;
 
   line-height: 1.1;
-
-  text-transform: none;
 
   white-space: nowrap;
 
@@ -323,10 +356,9 @@ button {
 }
 
 
-/* =========================================
-   QUOTE
-   SMALL
-   ========================================= */
+/* =========================================================
+   ARRIVAL QUOTE
+   ========================================================= */
 
 .arrival-quote {
   width: min(700px, 90%);
@@ -335,19 +367,14 @@ button {
 
   font-family: "Playfair Display", serif;
 
-  font-size: clamp(
-    17px,
-    2vw,
-    25px
-  );
+  font-size:
+    clamp(17px, 2vw, 25px);
 
   font-weight: 400;
 
   font-style: italic;
 
   line-height: 1.45;
-
-  letter-spacing: 0;
 
   text-shadow:
     0 3px 25px rgba(0, 0, 0, 0.55);
@@ -357,9 +384,6 @@ button {
     transform 0.35s ease;
 }
 
-
-/* quote transition */
-
 .arrival-quote.quote-changing {
   opacity: 0;
 
@@ -367,9 +391,9 @@ button {
 }
 
 
-/* =========================================
-   BEGIN JOURNEY
-   ========================================= */
+/* =========================================================
+   ARRIVAL BEGIN BUTTON
+   ========================================================= */
 
 .begin-button {
   margin-top: 42px;
@@ -377,6 +401,7 @@ button {
   padding: 15px 23px;
 
   display: flex;
+
   align-items: center;
 
   gap: 25px;
@@ -385,7 +410,8 @@ button {
 
   background: rgba(0, 0, 0, 0.16);
 
-  border: 1px solid rgba(255, 255, 255, 0.38);
+  border:
+    1px solid rgba(255, 255, 255, 0.38);
 
   border-radius: 100px;
 
@@ -403,11 +429,13 @@ button {
 
   background: rgba(0, 0, 0, 0.32);
 
-  border-color: rgba(210, 180, 119, 0.8);
+  border-color:
+    rgba(210, 180, 119, 0.8);
 }
 
 .begin-button span:first-child {
   font-size: 9px;
+
   letter-spacing: 0.22em;
 }
 
@@ -415,13 +443,14 @@ button {
   color: var(--gold);
 
   font-size: 18px;
+
   line-height: 1;
 }
 
 
-/* =========================================
-   BOTTOM
-   ========================================= */
+/* =========================================================
+   ARRIVAL BOTTOM
+   ========================================================= */
 
 .arrival-bottom {
   position: absolute;
@@ -436,9 +465,11 @@ button {
   display: flex;
 
   justify-content: space-between;
+
   align-items: center;
 
-  color: rgba(255, 255, 255, 0.68);
+  color:
+    rgba(255, 255, 255, 0.68);
 
   font-size: 8px;
 
@@ -449,158 +480,1175 @@ button {
 }
 
 
-/* =========================================
-   FEELING SECTION
-   ========================================= */
+/* =========================================================
+   =========================================================
+   ENTER AKSH WORLD
+   =========================================================
+   ========================================================= */
 
-.feeling-section {
+.enter-world {
   position: relative;
+
+  width: 100%;
 
   min-height: 100vh;
   min-height: 100svh;
 
-  padding: 120px 7vw;
+  overflow: hidden;
 
-  display: flex;
-  align-items: center;
+  color: #241c29;
+
+  background:
+    linear-gradient(
+      180deg,
+      #9bbbd2 0%,
+      #c9dce5 32%,
+      #e7ded9 68%,
+      #c8b5c8 100%
+    );
+
+  isolation: isolate;
+}
+
+
+/* =========================================================
+   SKY
+   ========================================================= */
+
+.enter-sky {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -2;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   CLOUD BASE
+   ========================================================= */
+
+.sky-cloud {
+  position: absolute;
+
+  border-radius: 50%;
+
+  filter: blur(25px);
+
+  opacity: 0.72;
+
+  transform:
+    translate3d(0, 0, 0);
+}
+
+
+/* CLOUD 1 */
+
+.sky-cloud-one {
+  width: 75vw;
+  height: 27vw;
+
+  left: -20vw;
+  top: 8%;
 
   background:
     radial-gradient(
-      circle at 15% 20%,
-      rgba(118, 84, 125, 0.1),
-      transparent 30%
+      ellipse,
+      rgba(255, 255, 255, 0.82) 0%,
+      rgba(226, 238, 242, 0.48) 48%,
+      transparent 75%
+    );
+
+  animation:
+    cloudDriftOne 22s ease-in-out infinite alternate;
+}
+
+
+/* CLOUD 2 */
+
+.sky-cloud-two {
+  width: 65vw;
+  height: 25vw;
+
+  right: -18vw;
+  top: 26%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(255, 255, 255, 0.75) 0%,
+      rgba(206, 224, 232, 0.42) 50%,
+      transparent 75%
+    );
+
+  animation:
+    cloudDriftTwo 27s ease-in-out infinite alternate;
+}
+
+
+/* CLOUD 3 */
+
+.sky-cloud-three {
+  width: 85vw;
+  height: 30vw;
+
+  left: 8vw;
+  bottom: -10vw;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(198, 174, 198, 0.42) 0%,
+      rgba(255, 255, 255, 0.22) 45%,
+      transparent 72%
+    );
+
+  animation:
+    cloudDriftThree 30s ease-in-out infinite alternate;
+}
+
+
+/* =========================================================
+   CLOUD MOVEMENT
+   ========================================================= */
+
+@keyframes cloudDriftOne {
+
+  from {
+    transform:
+      translateX(-3vw)
+      scale(1);
+  }
+
+  to {
+    transform:
+      translateX(7vw)
+      scale(1.06);
+  }
+
+}
+
+@keyframes cloudDriftTwo {
+
+  from {
+    transform:
+      translateX(5vw)
+      scale(1.04);
+  }
+
+  to {
+    transform:
+      translateX(-6vw)
+      scale(1);
+  }
+
+}
+
+@keyframes cloudDriftThree {
+
+  from {
+    transform:
+      translateX(-4vw)
+      scale(1);
+  }
+
+  to {
+    transform:
+      translateX(5vw)
+      scale(1.08);
+  }
+
+}
+
+
+/* =========================================================
+   SUBTLE LIGHT
+   ========================================================= */
+
+.enter-world::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -1;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 50% 25%,
+      rgba(255, 255, 255, 0.55),
+      transparent 35%
+    );
+
+  mix-blend-mode: screen;
+}
+
+
+/* =========================================================
+   RAINBOW
+   ========================================================= */
+
+.rainbow {
+  position: absolute;
+
+  width: 620px;
+  height: 310px;
+
+  left: 50%;
+  bottom: -170px;
+
+  transform:
+    translateX(-50%);
+
+  border-radius:
+    620px 620px 0 0;
+
+  opacity: 0;
+
+  filter: blur(5px);
+
+  background:
+    conic-gradient(
+      from 180deg,
+      transparent 0deg,
+      rgba(196, 137, 154, 0.18) 35deg,
+      rgba(203, 175, 123, 0.18) 52deg,
+      rgba(146, 174, 139, 0.18) 69deg,
+      rgba(126, 163, 194, 0.18) 86deg,
+      rgba(143, 123, 176, 0.18) 103deg,
+      transparent 125deg
+    );
+
+  animation:
+    rainbowAppear 8s ease-in-out infinite alternate;
+}
+
+@keyframes rainbowAppear {
+
+  from {
+    opacity: 0.08;
+    transform:
+      translateX(-50%)
+      scale(0.96);
+  }
+
+  to {
+    opacity: 0.32;
+    transform:
+      translateX(-50%)
+      scale(1.04);
+  }
+
+}
+
+
+/* =========================================================
+   RAIN
+   ========================================================= */
+
+.sky-rain {
+  position: absolute;
+
+  inset: -20%;
+
+  opacity: 0;
+
+  background-image:
+    repeating-linear-gradient(
+      110deg,
+      transparent 0px,
+      transparent 15px,
+      rgba(255, 255, 255, 0.15) 16px,
+      transparent 17px,
+      transparent 34px
+    );
+
+  animation:
+    rainMove 1.8s linear infinite;
+
+  transition:
+    opacity 2s ease;
+}
+
+@keyframes rainMove {
+
+  from {
+    transform:
+      translateY(-20px);
+  }
+
+  to {
+    transform:
+      translateY(60px);
+  }
+
+}
+
+
+/* =========================================================
+   MOON
+   ========================================================= */
+
+.moon {
+  position: absolute;
+
+  width: 110px;
+  height: 110px;
+
+  right: 10%;
+  top: 12%;
+
+  border-radius: 50%;
+
+  opacity: 0;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #ffffff 0%,
+      #fff9df 42%,
+      #eee1bd 70%,
+      #cbbd9d 100%
+    );
+
+  box-shadow:
+    0 0 35px rgba(255, 246, 206, 0.75),
+    0 0 90px rgba(255, 238, 177, 0.42);
+
+  transition:
+    opacity 3s ease;
+}
+
+
+/* =========================================================
+   STARS
+   ========================================================= */
+
+.stars {
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0;
+
+  background-image:
+    radial-gradient(
+      circle at 12% 18%,
+      rgba(255,255,255,0.9) 0px,
+      rgba(255,255,255,0.9) 1px,
+      transparent 2px
     ),
-    var(--ivory);
+    radial-gradient(
+      circle at 28% 32%,
+      rgba(255,255,255,0.8) 0px,
+      rgba(255,255,255,0.8) 1px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 44% 15%,
+      rgba(255,255,255,0.9) 0px,
+      rgba(255,255,255,0.9) 1px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 61% 24%,
+      rgba(255,255,255,0.75) 0px,
+      rgba(255,255,255,0.75) 1px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 75% 12%,
+      rgba(255,255,255,0.9) 0px,
+      rgba(255,255,255,0.9) 1px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 88% 34%,
+      rgba(255,255,255,0.75) 0px,
+      rgba(255,255,255,0.75) 1px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 18% 58%,
+      rgba(255,255,255,0.75) 0px,
+      rgba(255,255,255,0.75) 1px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 83% 61%,
+      rgba(255,255,255,0.9) 0px,
+      rgba(255,255,255,0.9) 1px,
+      transparent 2px
+    );
 
-  color: var(--ink);
+  animation:
+    starTwinkle 4s ease-in-out infinite alternate;
+
+  transition:
+    opacity 3s ease;
 }
 
-.feeling-inner {
+@keyframes starTwinkle {
+
+  from {
+    opacity: 0.45;
+  }
+
+  to {
+    opacity: 0.9;
+  }
+
+}
+
+
+/* =========================================================
+   SHOOTING STARS
+   ========================================================= */
+
+.shooting-star {
+  position: absolute;
+
+  width: 90px;
+  height: 1px;
+
+  opacity: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,0.9)
+    );
+
+  transform:
+    rotate(-30deg);
+
+  filter:
+    drop-shadow(
+      0 0 5px rgba(255,255,255,0.8)
+    );
+}
+
+.shooting-star-one {
+  top: 25%;
+  left: 60%;
+
+  animation:
+    shootingStar 9s linear infinite;
+}
+
+.shooting-star-two {
+  top: 38%;
+  left: 35%;
+
+  animation:
+    shootingStar 13s linear infinite 5s;
+}
+
+@keyframes shootingStar {
+
+  0%,
+  82% {
+    opacity: 0;
+
+    transform:
+      translate(0, 0)
+      rotate(-30deg);
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  92% {
+    opacity: 0;
+
+    transform:
+      translate(-180px, 100px)
+      rotate(-30deg);
+  }
+
+  100% {
+    opacity: 0;
+  }
+
+}
+
+
+/* =========================================================
+   ENTER WORLD CONTENT
+   ========================================================= */
+
+.enter-world-content {
+  position: relative;
+
   width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
+
+  min-height: 100vh;
+  min-height: 100svh;
+
+  padding:
+    120px
+    0
+    80px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+
+  overflow: hidden;
 }
 
-.eyebrow {
-  margin-bottom: 28px;
 
-  color: #79605f;
+/* =========================================================
+   EYEBROW
+   ========================================================= */
+
+.enter-eyebrow {
+  margin-bottom: 35px;
+
+  color:
+    rgba(48, 39, 53, 0.65);
 
   font-size: 10px;
 
-  letter-spacing: 0.35em;
+  font-weight: 500;
+
+  letter-spacing: 0.36em;
 }
 
-.feeling-section h2 {
-  max-width: 1100px;
 
-  font-family: "Playfair Display", serif;
+/* =========================================================
+   COME AS YOU ARE
+   ========================================================= */
 
-  font-size: clamp(
-    52px,
-    7vw,
-    105px
-  );
+.enter-title {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  color: #251b2a;
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:
+    clamp(68px, 10vw, 150px);
 
   font-weight: 400;
 
-  line-height: 0.98;
+  line-height: 0.78;
 
-  letter-spacing: -0.04em;
+  letter-spacing: -0.065em;
+
+  text-transform: uppercase;
 }
 
-.feeling-section h2 em {
-  color: var(--purple);
+.enter-title span {
+  display: block;
+
+  transition:
+    transform 0.8s ease,
+    opacity 0.8s ease;
+}
+
+.enter-title span:nth-child(2) {
+  font-style: italic;
+
+  color:
+    rgba(90, 67, 97, 0.72);
+}
+
+.enter-title span:nth-child(4) {
+  color: #76547d;
+
   font-style: italic;
 }
 
-.feeling-intro {
-  margin-top: 30px;
 
-  color: #756e75;
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
 
-  font-size: 15px;
+.enter-description {
+  margin-top: 48px;
 
-  font-weight: 300;
+  max-width: 600px;
 
-  line-height: 1.8;
+  color:
+    rgba(38, 29, 43, 0.67);
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:
+    clamp(16px, 2vw, 22px);
+
+  line-height: 1.65;
+
+  font-style: italic;
 }
 
 
-/* =========================================
-   FEELING GRID
-   ========================================= */
+/* =========================================================
+   FEELING INTRO
+   ========================================================= */
 
-.feeling-grid {
-  margin-top: 70px;
+.feeling-introduction {
+  width: 100%;
 
-  display: grid;
+  margin-top: 100px;
 
-  grid-template-columns:
-    repeat(4, 1fr);
-
-  border-top:
-    1px solid rgba(24, 19, 28, 0.16);
-}
-
-.feeling-card {
-  min-height: 245px;
-
-  padding: 28px;
+  padding:
+    0
+    6vw;
 
   display: flex;
+
+  align-items: center;
+
+  gap: 22px;
+
+  color:
+    rgba(35, 27, 40, 0.58);
+}
+
+.feeling-introduction-label {
+  flex-shrink: 0;
+
+  font-size: 10px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.3em;
+}
+
+.feeling-line {
+  height: 1px;
+
+  flex: 1;
+
+  background:
+    rgba(35, 27, 40, 0.18);
+}
+
+.feeling-hint {
+  flex-shrink: 0;
+
+  font-size: 8px;
+
+  letter-spacing: 0.22em;
+}
+
+
+/* =========================================================
+   HORIZONTAL FEELING WORLD
+   ========================================================= */
+
+.feeling-horizontal {
+  width: 100%;
+
+  margin-top: 30px;
+
+  padding:
+    10px
+    6vw
+    50px;
+
+  display: flex;
+
+  gap: 18px;
+
+  overflow-x: auto;
+
+  overflow-y: hidden;
+
+  scroll-snap-type: x mandatory;
+
+  scrollbar-width: none;
+
+  cursor: grab;
+}
+
+.feeling-horizontal::-webkit-scrollbar {
+  display: none;
+}
+
+.feeling-horizontal:active {
+  cursor: grabbing;
+}
+
+
+/* =========================================================
+   FEELING CARD
+   ========================================================= */
+
+.feeling-world-card {
+  position: relative;
+
+  flex:
+    0 0
+    clamp(300px, 31vw, 460px);
+
+  height:
+    clamp(390px, 42vw, 530px);
+
+  padding: 30px;
+
+  display: flex;
+
   flex-direction: column;
 
   justify-content: space-between;
 
   text-align: left;
 
-  background: transparent;
+  overflow: hidden;
 
-  color: var(--ink);
+  scroll-snap-align: start;
 
-  border-left:
-    1px solid rgba(24, 19, 28, 0.16);
+  color: #f6f0e9;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(61, 47, 67, 0.88),
+      rgba(102, 72, 111, 0.78)
+    );
+
+  border:
+    1px solid rgba(255, 255, 255, 0.22);
+
+  border-radius: 2px;
+
+  box-shadow:
+    0 30px 70px
+    rgba(47, 33, 52, 0.18);
 
   transition:
-    background 0.5s ease,
-    color 0.5s ease,
-    transform 0.5s ease;
+    transform 0.65s cubic-bezier(.2,.8,.2,1),
+    box-shadow 0.65s ease,
+    background 0.65s ease;
 }
 
-.feeling-card:last-child {
-  border-right:
-    1px solid rgba(24, 19, 28, 0.16);
+.feeling-world-card::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 80% 15%,
+      rgba(255,255,255,0.2),
+      transparent 30%
+    );
+
+  opacity: 0.7;
+
+  pointer-events: none;
 }
 
-.feeling-card:hover {
-  background: #241a29;
-  color: var(--ivory);
-  transform: translateY(-8px);
+.feeling-world-card::after {
+  content: "";
+
+  position: absolute;
+
+  width: 260px;
+  height: 260px;
+
+  right: -100px;
+  bottom: -100px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(210, 180, 119, 0.13);
+
+  filter: blur(25px);
+
+  pointer-events: none;
 }
 
-.number {
+.feeling-world-card:hover {
+  transform:
+    translateY(-14px);
+
+  box-shadow:
+    0 45px 90px
+    rgba(47, 33, 52, 0.28);
+}
+
+
+/* =========================================================
+   DIFFERENT CARD ATMOSPHERES
+   ========================================================= */
+
+.feeling-world-card:nth-child(1) {
+
+  background:
+    linear-gradient(
+      150deg,
+      #5b6473,
+      #8a788d
+    );
+}
+
+.feeling-world-card:nth-child(2) {
+
+  background:
+    linear-gradient(
+      150deg,
+      #6b5661,
+      #a07b78
+    );
+}
+
+.feeling-world-card:nth-child(3) {
+
+  background:
+    linear-gradient(
+      150deg,
+      #4d5369,
+      #716d91
+    );
+}
+
+.feeling-world-card:nth-child(4) {
+
+  background:
+    linear-gradient(
+      150deg,
+      #71636d,
+      #9a8091
+    );
+}
+
+
+/* =========================================================
+   CARD NUMBER
+   ========================================================= */
+
+.feeling-card-number {
+  position: relative;
+
+  z-index: 2;
+
   font-size: 10px;
+
   letter-spacing: 0.2em;
-  opacity: 0.5;
+
+  color:
+    rgba(255,255,255,0.68);
 }
 
-.feeling-title {
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  line-height: 1.5;
+
+/* =========================================================
+   CARD CONTENT
+   ========================================================= */
+
+.feeling-card-content {
+  position: relative;
+
+  z-index: 2;
 }
 
-.feeling-arrow {
-  align-self: flex-end;
-  font-size: 24px;
+.feeling-card-label {
+  margin-bottom: 15px;
+
+  font-size: 8px;
+
+  letter-spacing: 0.25em;
+
+  color:
+    rgba(255,255,255,0.62);
+}
+
+.feeling-card-content h3 {
+  margin-bottom: 18px;
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:
+    clamp(31px, 4vw, 48px);
+
+  font-weight: 400;
+
+  line-height: 0.95;
+
+  letter-spacing: -0.025em;
+}
+
+.feeling-card-content p {
+  max-width: 310px;
+
+  color:
+    rgba(255,255,255,0.72);
+
+  font-size: 13px;
+
   font-weight: 300;
+
+  line-height: 1.7;
 }
 
 
-/* =========================================
+/* =========================================================
+   CARD ARROW
+   ========================================================= */
+
+.feeling-card-arrow {
+  position: relative;
+
+  z-index: 2;
+
+  align-self: flex-end;
+
+  width: 45px;
+  height: 45px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px solid rgba(255,255,255,0.35);
+
+  border-radius: 50%;
+
+  font-size: 18px;
+
+  transition:
+    transform 0.5s ease,
+    background 0.5s ease;
+}
+
+.feeling-world-card:hover
+.feeling-card-arrow {
+  transform:
+    rotate(45deg);
+
+  background:
+    rgba(255,255,255,0.12);
+}
+
+
+/* =========================================================
+   ENTER BOTTOM
+   ========================================================= */
+
+.enter-bottom {
+  width: 100%;
+
+  padding:
+    0
+    6vw;
+
+  margin-top: auto;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  color:
+    rgba(35, 27, 40, 0.45);
+
+  font-size: 8px;
+
+  letter-spacing: 0.25em;
+}
+
+
+/* =========================================================
+   =========================================================
+   TIME-BASED ATMOSPHERE
+   The JS will add the class later.
+   =========================================================
+   ========================================================= */
+
+
+/* MORNING */
+
+.enter-world.morning {
+
+  background:
+    linear-gradient(
+      180deg,
+      #91b8d4,
+      #c4dce6,
+      #e9e1dc,
+      #cdbfd0
+    );
+}
+
+
+/* AFTERNOON */
+
+.enter-world.afternoon {
+
+  background:
+    linear-gradient(
+      180deg,
+      #e8b47f,
+      #f0c69a,
+      #e8b09b,
+      #cda0a7
+    );
+}
+
+.enter-world.afternoon
+.sky-cloud-one,
+.enter-world.afternoon
+.sky-cloud-two {
+
+  opacity: 0.65;
+}
+
+
+/* EVENING */
+
+.enter-world.evening {
+
+  background:
+    linear-gradient(
+      180deg,
+      #76628c 0%,
+      #a687ad 34%,
+      #c99a9d 67%,
+      #6d557d 100%
+    );
+}
+
+.enter-world.evening
+.sky-rain {
+  opacity: 0.55;
+}
+
+.enter-world.evening
+.rainbow {
+  opacity: 0.3;
+}
+
+
+/* NIGHT */
+
+.enter-world.night {
+
+  background:
+    linear-gradient(
+      180deg,
+      #101426 0%,
+      #17182d 40%,
+      #28213c 72%,
+      #090b18 100%
+    );
+
+  color: #f2edf2;
+}
+
+.enter-world.night
+.sky-cloud-one,
+.enter-world.night
+.sky-cloud-two,
+.enter-world.night
+.sky-cloud-three {
+
+  opacity: 0.38;
+}
+
+.enter-world.night
+.moon {
+  opacity: 1;
+}
+
+.enter-world.night
+.stars {
+  opacity: 0.9;
+}
+
+.enter-world.night
+.enter-eyebrow {
+
+  color:
+    rgba(255,255,255,0.58);
+}
+
+.enter-world.night
+.enter-title {
+
+  color:
+    #f5eef3;
+}
+
+.enter-world.night
+.enter-title span:nth-child(2) {
+
+  color:
+    rgba(205,185,215,0.8);
+}
+
+.enter-world.night
+.enter-title span:nth-child(4) {
+
+  color:
+    #c8a7d1;
+}
+
+.enter-world.night
+.enter-description {
+
+  color:
+    rgba(255,255,255,0.68);
+}
+
+.enter-world.night
+.feeling-introduction {
+
+  color:
+    rgba(255,255,255,0.6);
+}
+
+.enter-world.night
+.feeling-line {
+
+  background:
+    rgba(255,255,255,0.18);
+}
+
+.enter-world.night
+.enter-bottom {
+
+  color:
+    rgba(255,255,255,0.45);
+}
+
+
+/* =========================================================
+   =========================================================
    TABLET
-   ========================================= */
+   =========================================================
+   ========================================================= */
 
 @media (max-width: 900px) {
 
@@ -627,6 +1675,7 @@ button {
 
   .arrival-content {
     width: 92%;
+
     padding:
       145px
       20px
@@ -634,45 +1683,67 @@ button {
   }
 
   .time-greeting {
-    font-size: clamp(21px, 4vw, 32px);
+    font-size:
+      clamp(21px, 4vw, 32px);
   }
 
   .arrival-quote {
-    font-size: clamp(16px, 2.5vw, 22px);
+    font-size:
+      clamp(16px, 2.5vw, 22px);
   }
 
-  .feeling-section {
-    padding: 100px 5vw;
+  .enter-world-content {
+    padding-top: 100px;
   }
 
-  .feeling-grid {
-    grid-template-columns:
-      repeat(2, 1fr);
+  .enter-title {
+    font-size:
+      clamp(62px, 11vw, 105px);
   }
 
-  .feeling-card {
-    min-height: 210px;
+  .feeling-introduction {
+    padding:
+      0
+      5vw;
   }
 
-  .feeling-card:nth-child(3),
-  .feeling-card:nth-child(4) {
-    border-top:
-      1px solid rgba(24, 19, 28, 0.16);
+  .feeling-horizontal {
+    padding-left: 5vw;
+    padding-right: 5vw;
   }
+
+  .feeling-world-card {
+    flex-basis:
+      min(72vw, 430px);
+  }
+
+  .enter-bottom {
+    padding:
+      0
+      5vw;
+  }
+
 }
 
 
-/* =========================================
+/* =========================================================
+   =========================================================
    MOBILE
-   ========================================= */
+   =========================================================
+   ========================================================= */
 
 @media (max-width: 600px) {
+
+  /* -------------------------
+     ARRIVAL
+     ------------------------- */
 
   .arrival-video {
     object-position: center center;
   }
 
   .cinematic-overlay {
+
     background:
       linear-gradient(
         to bottom,
@@ -684,37 +1755,48 @@ button {
   }
 
   .date-display {
+
     top: 22px;
+
     left: 18px;
   }
 
   .current-date {
+
     font-size: 11px;
+
     letter-spacing: 0.1em;
   }
 
   .current-day {
+
     font-size: 12px;
   }
 
   .aksh-identity {
+
     top: 20px;
   }
 
   .aksh-icon {
+
     width: 35px;
     height: 35px;
+
     margin-bottom: 6px;
   }
 
   .aksh-wordmark {
+
     font-size: 11px;
 
     letter-spacing: 0.34em;
+
     padding-left: 0.34em;
   }
 
   .aksh-tagline {
+
     margin-top: 5px;
 
     font-size: 6px;
@@ -723,7 +1805,9 @@ button {
   }
 
   .sound-button {
+
     top: 22px;
+
     right: 18px;
 
     min-width: auto;
@@ -732,10 +1816,12 @@ button {
   }
 
   .sound-text {
+
     font-size: 7px;
   }
 
   .arrival-content {
+
     width: 100%;
 
     min-height: 100svh;
@@ -747,6 +1833,7 @@ button {
   }
 
   .time-greeting {
+
     margin-bottom: 16px;
 
     font-size:
@@ -758,6 +1845,7 @@ button {
   }
 
   .arrival-quote {
+
     width: min(330px, 90%);
 
     font-size:
@@ -767,6 +1855,7 @@ button {
   }
 
   .begin-button {
+
     margin-top: 32px;
 
     padding: 14px 19px;
@@ -775,17 +1864,22 @@ button {
   }
 
   .begin-button span:first-child {
+
     font-size: 8px;
+
     letter-spacing: 0.16em;
   }
 
   .begin-arrow {
+
     font-size: 16px;
   }
 
   .arrival-bottom {
+
     left: 18px;
     right: 18px;
+
     bottom: 20px;
 
     font-size: 6px;
@@ -793,51 +1887,211 @@ button {
     letter-spacing: 0.16em;
   }
 
-  .feeling-section {
+
+  /* -------------------------
+     ENTER WORLD
+     ------------------------- */
+
+  .enter-world {
+
+    min-height: 100svh;
+  }
+
+  .enter-world-content {
+
+    min-height: 100svh;
+
     padding:
       90px
-      22px;
+      0
+      35px;
   }
 
-  .feeling-section h2 {
+  .enter-eyebrow {
+
+    margin-bottom: 30px;
+
+    font-size: 8px;
+
+    letter-spacing: 0.28em;
+  }
+
+  .enter-title {
+
     font-size:
-      clamp(48px, 14vw, 70px);
+      clamp(58px, 17vw, 82px);
+
+    line-height: 0.8;
+
+    letter-spacing: -0.065em;
   }
 
-  .feeling-grid {
-    grid-template-columns: 1fr;
-    margin-top: 55px;
+  .enter-description {
+
+    margin-top: 38px;
+
+    padding:
+      0
+      25px;
+
+    font-size: 16px;
+
+    line-height: 1.6;
   }
 
-  .feeling-card,
-  .feeling-card:nth-child(2),
-  .feeling-card:nth-child(3),
-  .feeling-card:nth-child(4) {
 
-    min-height: 150px;
+  /* -------------------------
+     FEELING INTRO
+     ------------------------- */
 
-    border-left:
-      1px solid rgba(24, 19, 28, 0.16);
+  .feeling-introduction {
 
-    border-right:
-      1px solid rgba(24, 19, 28, 0.16);
+    margin-top: 72px;
 
-    border-bottom:
-      1px solid rgba(24, 19, 28, 0.16);
+    padding:
+      0
+      22px;
 
-    border-top: 0;
+    gap: 12px;
   }
 
-  .feeling-card:first-child {
-    border-top:
-      1px solid rgba(24, 19, 28, 0.16);
+  .feeling-introduction-label {
+
+    font-size: 7px;
+
+    letter-spacing: 0.2em;
   }
+
+  .feeling-hint {
+
+    font-size: 6px;
+
+    letter-spacing: 0.15em;
+  }
+
+
+  /* -------------------------
+     HORIZONTAL CARDS
+     ------------------------- */
+
+  .feeling-horizontal {
+
+    margin-top: 22px;
+
+    padding:
+      10px
+      22px
+      45px;
+
+    gap: 14px;
+
+    scroll-padding-left: 22px;
+  }
+
+  .feeling-world-card {
+
+    flex:
+      0 0
+      calc(100vw - 68px);
+
+    height:
+      min(112vw, 500px);
+
+    min-height: 390px;
+
+    padding: 25px;
+
+    scroll-snap-align: center;
+  }
+
+  .feeling-card-content h3 {
+
+    font-size:
+      clamp(34px, 10vw, 46px);
+  }
+
+  .feeling-card-content p {
+
+    max-width: 280px;
+
+    font-size: 12px;
+  }
+
+  .feeling-card-arrow {
+
+    width: 42px;
+    height: 42px;
+  }
+
+
+  /* -------------------------
+     SKY
+     ------------------------- */
+
+  .sky-cloud-one {
+
+    width: 130vw;
+    height: 55vw;
+
+    left: -45vw;
+  }
+
+  .sky-cloud-two {
+
+    width: 120vw;
+    height: 50vw;
+
+    right: -50vw;
+  }
+
+  .sky-cloud-three {
+
+    width: 140vw;
+    height: 65vw;
+
+    left: -20vw;
+  }
+
+  .rainbow {
+
+    width: 420px;
+    height: 210px;
+
+    bottom: -120px;
+  }
+
+  .moon {
+
+    width: 75px;
+    height: 75px;
+
+    right: 12%;
+
+    top: 11%;
+  }
+
+
+  /* -------------------------
+     BOTTOM
+     ------------------------- */
+
+  .enter-bottom {
+
+    padding:
+      0
+      22px;
+
+    font-size: 6px;
+
+    letter-spacing: 0.15em;
+  }
+
 }
 
 
-/* =========================================
+/* =========================================================
    VERY SMALL PHONES
-   ========================================= */
+   ========================================================= */
 
 @media (max-width: 380px) {
 
@@ -850,6 +2104,7 @@ button {
   }
 
   .sound-button {
+
     width: 36px;
     height: 36px;
 
@@ -865,12 +2120,25 @@ button {
   .arrival-quote {
     font-size: 16px;
   }
+
+  .enter-title {
+
+    font-size:
+      55px;
+  }
+
+  .feeling-world-card {
+
+    flex-basis:
+      calc(100vw - 50px);
+  }
+
 }
 
 
-/* =========================================
+/* =========================================================
    LARGE DESKTOP
-   ========================================= */
+   ========================================================= */
 
 @media (min-width: 1400px) {
 
@@ -886,16 +2154,27 @@ button {
     font-size: 26px;
   }
 
-  .feeling-section {
-    padding-left: 9vw;
-    padding-right: 9vw;
+  .enter-title {
+
+    font-size:
+      clamp(110px, 11vw, 175px);
   }
+
+  .feeling-world-card {
+
+    flex-basis:
+      clamp(400px, 30vw, 500px);
+
+    height:
+      560px;
+  }
+
 }
 
 
-/* =========================================
+/* =========================================================
    REDUCED MOTION
-   ========================================= */
+   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -903,7 +2182,15 @@ button {
     scroll-behavior: auto;
   }
 
-  * {
-    transition: none !important;
+  *,
+  *::before,
+  *::after {
+
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
   }
+
 }
