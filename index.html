@@ -1,121 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
 
   <title>AKSH — A Safe Space for Every Mind</title>
 
   <meta
     name="description"
-    content="AKSH Mental Wellness — A Safe Space for Every Mind."
+    content="AKSH — A Safe Space for Every Mind."
   >
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
 
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
     rel="stylesheet"
   >
 
-  <link rel="stylesheet" href="style.css">
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
 </head>
+
 
 <body>
 
-  <!-- ==============================
-       ARRIVAL
-       ============================== -->
 
-  <main class="arrival" id="arrival">
+  <!-- =========================================
+       AKSH ARRIVAL EXPERIENCE
+       ========================================= -->
 
-    <div class="ambient ambient-one"></div>
-    <div class="ambient ambient-two"></div>
+  <main
+    class="aksh-arrival"
+    id="arrival"
+  >
 
-    <nav class="nav">
 
-      <a href="#arrival" class="brand" aria-label="AKSH Home">
+    <!-- BACKGROUND VIDEO -->
 
-        <span class="brand-mark">A</span>
+    <video
+      id="arrivalVideo"
+      class="arrival-video"
+      autoplay
+      muted
+      playsinline
+      preload="auto"
+    >
 
-        <span class="brand-name">
-          AKSH
-        </span>
-
-      </a>
-
-      <button
-        class="menu-button"
-        type="button"
-        aria-label="Open menu"
+      <source
+        id="arrivalVideoSource"
+        src="aksh-morning.1.mov"
+        type="video/quicktime"
       >
-        <span></span>
-        <span></span>
-      </button>
 
-    </nav>
+    </video>
 
 
-    <section class="hero">
+    <!-- CINEMATIC OVERLAY -->
 
-      <p class="eyebrow">
-        MENTAL WELLNESS
+    <div class="cinematic-overlay"></div>
+
+
+    <!-- =========================================
+         TOP LEFT — DATE + DAY
+         ========================================= -->
+
+    <div class="date-display">
+
+      <div
+        id="currentDate"
+        class="current-date"
+      >
+        14.08.2026
+      </div>
+
+      <div
+        id="currentDay"
+        class="current-day"
+      >
+        Friday
+      </div>
+
+    </div>
+
+
+    <!-- =========================================
+         TOP CENTER — AKSH IDENTITY
+         ========================================= -->
+
+    <header class="aksh-identity">
+
+
+      <img
+        src="aksh-icon.PNG"
+        alt="AKSH"
+        class="aksh-icon"
+      >
+
+
+      <div class="aksh-wordmark">
+        AKSH
+      </div>
+
+
+      <div class="aksh-tagline">
+        A Safe Space for Every Mind
+      </div>
+
+
+    </header>
+
+
+    <!-- =========================================
+         SOUND CONTROL
+         ========================================= -->
+
+    <button
+      id="soundButton"
+      class="sound-button"
+      type="button"
+      aria-label="Turn sound on"
+    >
+
+      <span
+        id="soundIcon"
+        class="sound-icon"
+      >
+        ◉
+      </span>
+
+      <span
+        id="soundText"
+        class="sound-text"
+      >
+        SOUND OFF
+      </span>
+
+    </button>
+
+
+    <!-- =========================================
+         CENTER EXPERIENCE
+         ========================================= -->
+
+    <section class="arrival-content">
+
+
+      <p
+        id="timeGreeting"
+        class="time-greeting"
+      >
+        Good Morning
       </p>
 
-      <h1>
-        A safe space
-        <br>
-        <em>for every mind.</em>
+
+      <h1
+        id="arrivalQuote"
+        class="arrival-quote"
+      >
+        Take a moment.<br>
+        You have arrived.
       </h1>
 
-      <p class="intro">
-        Come as you are.
-        <br>
-        There is space for you here.
-      </p>
 
       <button
-        class="enter-button"
         id="enterButton"
+        class="begin-button"
         type="button"
       >
 
         <span>
-          ENTER AKSH
+          BEGIN YOUR JOURNEY
         </span>
 
-        <span class="arrow">
+        <span class="begin-arrow">
           →
         </span>
 
       </button>
 
+
     </section>
 
 
-    <div class="bottom-note">
+    <!-- =========================================
+         BOTTOM
+         ========================================= -->
+
+    <div class="arrival-bottom">
 
       <span>
-        FOUNDED BY
+        MENTAL WELLNESS
       </span>
 
-      <strong>
+      <span>
         MEGHANA KAVERAPPA
-      </strong>
+      </span>
 
     </div>
+
 
   </main>
 
 
-  <!-- ==============================
-       FEELING EXPERIENCE
-       ============================== -->
+  <!-- =========================================
+       NEXT SECTION
+       ========================================= -->
 
   <section
-    class="feeling-section"
     id="begin"
+    class="feeling-section"
   >
 
     <div class="feeling-inner">
@@ -124,16 +233,20 @@
         BEFORE WE BEGIN
       </p>
 
+
       <h2>
         How are you
         <br>
         <em>feeling today?</em>
       </h2>
 
+
       <p class="feeling-intro">
+
         There is no right way to arrive here.
         <br>
         Start wherever you are.
+
       </p>
 
 
@@ -222,16 +335,14 @@
 
       </div>
 
+
     </div>
 
   </section>
 
 
-  <!-- ==============================
-       JAVASCRIPT
-       ============================== -->
-
   <script src="script.js"></script>
 
 </body>
+
 </html>
