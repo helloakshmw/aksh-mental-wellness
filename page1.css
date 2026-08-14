@@ -1,7 +1,7 @@
 /* =========================================================
    AKSH — PAGE 01
    PREMIUM CINEMATIC ATMOSPHERIC WORLD
-   FINAL PAGE 1 CSS
+   COMPACT EMOTIONAL NAVIGATION
    ========================================================= */
 
 :root{
@@ -32,6 +32,7 @@ body{
   overflow-x:hidden;
   background:#07101c;
   color:var(--white);
+
   font-family:
     Inter,
     -apple-system,
@@ -84,8 +85,6 @@ a{
 
 /* =========================================================
    ATMOSPHERE
-   IMPORTANT:
-   Atmosphere is behind content, never behind the page itself.
    ========================================================= */
 
 .atmosphere{
@@ -104,6 +103,7 @@ a{
   position:absolute;
   inset:0;
   overflow:hidden;
+
   transition:
     opacity 3.5s var(--slow),
     transform 5s var(--slow);
@@ -111,7 +111,7 @@ a{
 
 
 /* =========================================================
-   MORNING SKY
+   MORNING
    ========================================================= */
 
 .morning-sky{
@@ -136,7 +136,7 @@ a{
 
 
 /* =========================================================
-   AFTERNOON SKY
+   AFTERNOON
    ========================================================= */
 
 .afternoon-sky{
@@ -165,8 +165,7 @@ a{
 
 
 /* =========================================================
-   EVENING SKY
-   ROMANTIC RAIN / PURPLE / LAVENDER
+   EVENING
    ========================================================= */
 
 .evening-sky{
@@ -200,7 +199,7 @@ a{
 
 
 /* =========================================================
-   NIGHT SKY
+   NIGHT
    ========================================================= */
 
 .night-sky{
@@ -242,7 +241,6 @@ body.morning .night-sky{
   opacity:0;
 }
 
-
 body.afternoon .morning-sky,
 body.afternoon .evening-sky,
 body.afternoon .night-sky{
@@ -253,7 +251,6 @@ body.afternoon .afternoon-sky{
   opacity:1;
 }
 
-
 body.evening .morning-sky,
 body.evening .afternoon-sky,
 body.evening .night-sky{
@@ -263,7 +260,6 @@ body.evening .night-sky{
 body.evening .evening-sky{
   opacity:1;
 }
-
 
 body.night .morning-sky,
 body.night .afternoon-sky,
@@ -277,17 +273,21 @@ body.night .night-sky{
 
 
 /* =========================================================
-   ATMOSPHERIC LIGHT
+   LIGHT
    ========================================================= */
 
 .light{
   position:absolute;
+
   width:65vw;
   height:65vw;
+
   max-width:900px;
   max-height:900px;
+
   right:-25%;
   top:-30%;
+
   border-radius:50%;
 
   background:
@@ -299,19 +299,23 @@ body.night .night-sky{
     );
 
   filter:blur(30px);
+
   opacity:.7;
 }
 
 
 /* =========================================================
-   CLOUD SYSTEM
+   CLOUDS
    ========================================================= */
 
 .cloud{
   position:absolute;
+
   width:540px;
   height:150px;
+
   border-radius:50%;
+
   filter:blur(22px);
   opacity:.34;
 
@@ -322,14 +326,18 @@ body.night .night-sky{
 .cloud::before,
 .cloud::after{
   content:"";
+
   position:absolute;
+
   border-radius:50%;
+
   background:inherit;
 }
 
 .cloud::before{
   width:260px;
   height:190px;
+
   left:65px;
   bottom:-28px;
 }
@@ -337,16 +345,15 @@ body.night .night-sky{
 .cloud::after{
   width:310px;
   height:205px;
+
   right:35px;
   bottom:-42px;
 }
 
-
-/* Morning clouds */
-
 .cloud.one{
   top:12%;
   left:-18%;
+
   background:
     radial-gradient(
       ellipse,
@@ -359,7 +366,9 @@ body.night .night-sky{
 .cloud.two{
   top:29%;
   right:-25%;
+
   width:700px;
+
   opacity:.24;
 
   background:
@@ -377,7 +386,9 @@ body.night .night-sky{
 .cloud.three{
   top:57%;
   left:15%;
+
   width:620px;
+
   opacity:.16;
 
   background:
@@ -390,7 +401,6 @@ body.night .night-sky{
 
   animation-duration:62s;
 }
-
 
 @keyframes cloudFloat{
 
@@ -415,14 +425,18 @@ body.night .night-sky{
 .evening-sky::before,
 .evening-sky::after{
   content:"";
+
   position:absolute;
+
   border-radius:50%;
+
   filter:blur(30px);
 }
 
 .evening-sky::before{
   width:65vw;
   height:22vw;
+
   left:-10%;
   top:14%;
 
@@ -437,6 +451,7 @@ body.night .night-sky{
 .evening-sky::after{
   width:55vw;
   height:20vw;
+
   right:-8%;
   top:31%;
 
@@ -450,18 +465,16 @@ body.night .night-sky{
 
 
 /* =========================================================
-   RAIN — MULTIPLE ATMOSPHERIC LAYERS
+   RAIN
    ========================================================= */
 
 .rain,
 .rain-soft{
   position:absolute;
   inset:-25%;
+
   pointer-events:none;
 }
-
-
-/* Main rain */
 
 .rain{
   opacity:0;
@@ -477,17 +490,13 @@ body.night .night-sky{
       transparent 39px
     );
 
-  background-size:
-    46px 46px;
+  background-size:46px 46px;
 
   transform:rotate(7deg);
 
   animation:
     rainMove .65s linear infinite;
 }
-
-
-/* Soft distant rain */
 
 .rain-soft{
   opacity:0;
@@ -506,17 +515,11 @@ body.night .night-sky{
   background-size:72px 72px;
 
   transform:rotate(7deg);
+
   filter:blur(2px);
 
   animation:
     rainSoftMove 1.35s linear infinite;
-}
-
-
-/* Foreground fine rain */
-
-.evening-sky::before{
-  pointer-events:none;
 }
 
 body.evening .rain{
@@ -526,7 +529,6 @@ body.evening .rain{
 body.evening .rain-soft{
   opacity:.42;
 }
-
 
 @keyframes rainMove{
 
@@ -538,7 +540,6 @@ body.evening .rain-soft{
     background-position:-28px 78px;
   }
 }
-
 
 @keyframes rainSoftMove{
 
@@ -553,18 +554,7 @@ body.evening .rain-soft{
 
 
 /* =========================================================
-   RAIN GLOW
-   ========================================================= */
-
-body.evening .evening-sky{
-  box-shadow:
-    inset 0 -20vh 15vh rgba(255,190,205,.08);
-}
-
-
-/* =========================================================
    RAINBOW
-   Soft atmospheric rainbow
    ========================================================= */
 
 .rainbow{
@@ -609,18 +599,15 @@ body.evening .evening-sky{
 
 body.evening .rainbow{
   opacity:.95;
+
   transform:
     translateX(-50%)
     translateY(4%);
 }
 
-
-/* =========================================================
-   RAINBOW SECOND SOFT GLOW
-   ========================================================= */
-
 .evening-sky .rainbow::after{
   content:"";
+
   position:absolute;
   inset:8%;
 
@@ -685,9 +672,6 @@ body.night .moon{
   transform:scale(1);
 }
 
-
-/* Moon subtle surface */
-
 .moon::before{
   content:"";
 
@@ -722,6 +706,7 @@ body.night .moon{
 .stars{
   position:absolute;
   inset:0;
+
   opacity:0;
 
   transition:
@@ -731,7 +716,6 @@ body.night .moon{
 body.night .stars{
   opacity:1;
 }
-
 
 .star{
   position:absolute;
@@ -750,7 +734,6 @@ body.night .stars{
   animation:
     starTwinkle 3.5s ease-in-out infinite;
 }
-
 
 .star:nth-child(1){left:8%;top:17%;animation-delay:.4s}
 .star:nth-child(2){left:16%;top:31%;animation-delay:1.2s}
@@ -772,7 +755,6 @@ body.night .stars{
 .star:nth-child(18){left:61%;top:72%;animation-delay:1.8s}
 .star:nth-child(19){left:94%;top:16%;animation-delay:2.2s}
 .star:nth-child(20){left:5%;top:42%;animation-delay:.3s}
-
 
 @keyframes starTwinkle{
 
@@ -816,35 +798,34 @@ body.night .stars{
     0 0 10px rgba(255,255,255,.8),
     0 0 22px rgba(190,210,255,.5);
 
-  transform:
-    rotate(-30deg);
+  transform:rotate(-30deg);
 }
-
 
 body.night .shooting-star{
   animation:
     shootingStar 11s linear infinite;
 }
 
-
 .shooting-star.one{
   top:25%;
   left:68%;
+
   animation-delay:2s !important;
 }
 
 .shooting-star.two{
   top:41%;
   left:31%;
+
   animation-delay:7s !important;
 }
-
 
 @keyframes shootingStar{
 
   0%,
   68%{
     opacity:0;
+
     transform:
       translate3d(0,0,0)
       rotate(-30deg);
@@ -869,7 +850,7 @@ body.night .shooting-star{
 
 
 /* =========================================================
-   CONTENT LAYER
+   CONTENT
    ========================================================= */
 
 .header,
@@ -900,6 +881,7 @@ body.night .shooting-star{
     18px;
 
   display:flex;
+
   align-items:center;
   justify-content:space-between;
 
@@ -908,7 +890,6 @@ body.night .shooting-star{
     backdrop-filter .6s ease,
     padding .6s ease;
 }
-
 
 .header.scrolled{
   background:
@@ -927,15 +908,15 @@ body.night .shooting-star{
     rgba(255,255,255,.07);
 }
 
-
 .brand{
   display:flex;
+
   align-items:center;
+
   gap:11px;
 
   min-width:160px;
 }
-
 
 .brand img{
   width:42px;
@@ -949,12 +930,10 @@ body.night .shooting-star{
     );
 }
 
-
 .brand-copy{
   display:flex;
   flex-direction:column;
 }
-
 
 .brand-name{
   font-family:
@@ -966,7 +945,6 @@ body.night .shooting-star{
 
   letter-spacing:.18em;
 }
-
 
 .brand-tagline{
   margin-top:3px;
@@ -982,17 +960,17 @@ body.night .shooting-star{
 
 
 /* =========================================================
-   NAVIGATION
+   NAV
    ========================================================= */
 
 .nav{
   display:flex;
+
   align-items:center;
 
   gap:
     clamp(16px,2.5vw,35px);
 }
-
 
 .nav a{
   position:relative;
@@ -1009,7 +987,6 @@ body.night .shooting-star{
   transition:
     color .3s ease;
 }
-
 
 .nav a::after{
   content:"";
@@ -1029,16 +1006,13 @@ body.night .shooting-star{
     right .35s var(--ease);
 }
 
-
 .nav a:hover{
   color:#fff;
 }
 
-
 .nav a:hover::after{
   right:0;
 }
-
 
 .nav-book{
   padding:11px 18px;
@@ -1058,7 +1032,6 @@ body.night .shooting-star{
   -webkit-backdrop-filter:
     blur(15px);
 }
-
 
 .nav-book::after{
   display:none;
@@ -1092,7 +1065,6 @@ body.night .shooting-star{
   cursor:pointer;
 }
 
-
 .menu-lines{
   width:17px;
 
@@ -1101,7 +1073,6 @@ body.night .shooting-star{
 
   gap:4px;
 }
-
 
 .menu-lines span{
   width:100%;
@@ -1121,6 +1092,7 @@ body.night .shooting-star{
   position:relative;
 
   display:flex;
+
   align-items:center;
   justify-content:center;
 
@@ -1130,7 +1102,6 @@ body.night .shooting-star{
     100px;
 }
 
-
 .hero-inner{
   width:min(1180px,100%);
 
@@ -1139,9 +1110,9 @@ body.night .shooting-star{
   z-index:20;
 }
 
-
 .hero-kicker{
   display:flex;
+
   align-items:center;
 
   gap:13px;
@@ -1158,7 +1129,6 @@ body.night .shooting-star{
     rgba(255,255,255,.65);
 }
 
-
 .hero-kicker-line{
   width:38px;
   height:1px;
@@ -1166,7 +1136,6 @@ body.night .shooting-star{
   background:
     rgba(255,255,255,.6);
 }
-
 
 .hero-title{
   max-width:1000px;
@@ -1189,12 +1158,10 @@ body.night .shooting-star{
     0 15px 55px rgba(0,0,0,.12);
 }
 
-
 .hero-title em{
   font-style:italic;
   font-weight:400;
 }
-
 
 .hero-description{
   max-width:560px;
@@ -1210,11 +1177,11 @@ body.night .shooting-star{
     rgba(255,255,255,.78);
 }
 
-
 .hero-actions{
   margin-top:36px;
 
   display:flex;
+
   align-items:center;
 
   gap:20px;
@@ -1222,9 +1189,9 @@ body.night .shooting-star{
   flex-wrap:wrap;
 }
 
-
 .begin-button{
   display:inline-flex;
+
   align-items:center;
 
   gap:14px;
@@ -1255,7 +1222,6 @@ body.night .shooting-star{
     background .35s ease;
 }
 
-
 .begin-button:hover{
   transform:translateY(-3px);
 
@@ -1263,11 +1229,9 @@ body.night .shooting-star{
     rgba(255,255,255,.18);
 }
 
-
 .begin-arrow{
   font-size:18px;
 }
-
 
 .explore-link{
   font-size:10px;
@@ -1280,7 +1244,6 @@ body.night .shooting-star{
     rgba(255,255,255,.7);
 }
 
-
 .hero-side{
   position:absolute;
 
@@ -1292,7 +1255,6 @@ body.night .shooting-star{
   text-align:right;
 }
 
-
 .hero-side-label{
   font-size:8px;
 
@@ -1302,7 +1264,6 @@ body.night .shooting-star{
 
   opacity:.55;
 }
-
 
 .hero-side-text{
   margin-top:9px;
@@ -1317,7 +1278,6 @@ body.night .shooting-star{
   line-height:1.25;
 }
 
-
 .scroll-indicator{
   position:absolute;
 
@@ -1327,6 +1287,7 @@ body.night .shooting-star{
   bottom:38px;
 
   display:flex;
+
   align-items:center;
 
   gap:12px;
@@ -1339,7 +1300,6 @@ body.night .shooting-star{
 
   opacity:.5;
 }
-
 
 .scroll-line{
   width:50px;
@@ -1364,11 +1324,11 @@ body.night .shooting-star{
     clamp(22px,6vw,100px);
 
   display:flex;
+
   align-items:center;
 
   overflow:hidden;
 }
-
 
 .section-inner{
   width:min(1180px,100%);
@@ -1379,7 +1339,6 @@ body.night .shooting-star{
 
   z-index:20;
 }
-
 
 .section-label{
   font-size:9px;
@@ -1393,7 +1352,6 @@ body.night .shooting-star{
 
   margin-bottom:22px;
 }
-
 
 .section-title{
   font-family:
@@ -1411,11 +1369,9 @@ body.night .shooting-star{
   letter-spacing:-.045em;
 }
 
-
 .section-title em{
   font-style:italic;
 }
-
 
 .section-intro{
   max-width:570px;
@@ -1447,20 +1403,19 @@ body.night .shooting-star{
     );
 }
 
-
 .feeling-header{
   display:flex;
+
   align-items:flex-end;
+
   justify-content:space-between;
 
   gap:40px;
 }
 
-
 .feeling-header-copy{
   max-width:720px;
 }
-
 
 .feeling-question{
   font-family:
@@ -1478,11 +1433,9 @@ body.night .shooting-star{
   letter-spacing:-.05em;
 }
 
-
 .feeling-question em{
   font-style:italic;
 }
-
 
 .feeling-note{
   max-width:270px;
@@ -1498,87 +1451,104 @@ body.night .shooting-star{
 
 /* =========================================================
    EMOTION TRACK
-   SIDEWAYS EXPERIENCE
+   SMALL / PREMIUM / EDITORIAL
    ========================================================= */
 
 .emotion-track{
-  display:flex;
+  display:grid;
 
-  flex-direction:row;
+  grid-template-columns:
+    repeat(4, minmax(0,1fr));
 
-  flex-wrap:nowrap;
-
-  gap:22px;
-
-  overflow-x:auto;
-  overflow-y:hidden;
+  gap:16px;
 
   width:100%;
 
-  margin-top:65px;
+  margin-top:55px;
 
   padding:
-    8px 0 35px;
+    8px 0 20px;
 
-  scroll-snap-type:x mandatory;
-
-  scrollbar-width:none;
-
-  -webkit-overflow-scrolling:touch;
+  overflow:visible;
 }
 
 
-.emotion-track::-webkit-scrollbar{
-  display:none;
-}
-
+/* =========================================================
+   EMOTION CARD
+   MUCH SMALLER
+   ========================================================= */
 
 .emotion{
-  flex:
-    0 0
-    clamp(300px,31vw,420px);
-
-  height:
-    clamp(410px,58vh,570px);
-
   position:relative;
+
+  width:100%;
+
+  height:210px;
 
   overflow:hidden;
 
-  border-radius:24px;
-
-  scroll-snap-align:start;
+  border-radius:18px;
 
   cursor:pointer;
 
   border:
     1px solid
-    rgba(255,255,255,.15);
+    rgba(255,255,255,.16);
 
   background:
-    rgba(255,255,255,.045);
+    rgba(255,255,255,.035);
 
   box-shadow:
-    0 25px 80px rgba(0,0,0,.12);
+    0 15px 45px rgba(0,0,0,.08);
 
   transition:
-    transform .7s var(--ease),
-    box-shadow .7s ease,
-    border-color .7s ease;
+    transform .6s var(--ease),
+    box-shadow .6s ease,
+    border-color .6s ease;
 }
 
+
+/* =========================================================
+   CARD HOVER
+   ========================================================= */
 
 .emotion:hover{
   transform:
-    translateY(-12px);
+    translateY(-8px)
+    scale(1.015);
 
   border-color:
-    rgba(255,255,255,.3);
+    rgba(255,255,255,.34);
 
   box-shadow:
-    0 35px 100px rgba(0,0,0,.2);
+    0 25px 70px rgba(0,0,0,.18);
 }
 
+
+/* =========================================================
+   CARD IMAGE / ATMOSPHERE
+   ========================================================= */
+
+.emotion-bg{
+  position:absolute;
+
+  inset:-8%;
+
+  transition:
+    transform 1s var(--slow),
+    filter 1s ease;
+}
+
+.emotion:hover .emotion-bg{
+  transform:scale(1.09);
+
+  filter:saturate(1.08);
+}
+
+
+/* =========================================================
+   DARK CINEMATIC OVERLAY
+   ========================================================= */
 
 .emotion::after{
   content:"";
@@ -1592,31 +1562,12 @@ body.night .shooting-star{
   background:
     linear-gradient(
       180deg,
-      transparent 25%,
-      rgba(0,0,0,.04) 42%,
-      rgba(0,0,0,.28) 72%,
-      rgba(0,0,0,.72) 100%
+      rgba(0,0,0,.02) 0%,
+      rgba(0,0,0,.08) 38%,
+      rgba(0,0,0,.62) 100%
     );
 
   pointer-events:none;
-}
-
-
-.emotion-bg{
-  position:absolute;
-
-  inset:-4%;
-
-  transition:
-    transform 1s var(--slow),
-    filter 1s ease;
-}
-
-
-.emotion:hover .emotion-bg{
-  transform:scale(1.07);
-
-  filter:saturate(1.08);
 }
 
 
@@ -1645,7 +1596,6 @@ body.night .shooting-star{
     );
 }
 
-
 .overwhelmed .emotion-bg{
   background:
     radial-gradient(
@@ -1667,7 +1617,6 @@ body.night .shooting-star{
     );
 }
 
-
 .need-talk .emotion-bg{
   background:
     radial-gradient(
@@ -1688,7 +1637,6 @@ body.night .shooting-star{
       #252238 100%
     );
 }
-
 
 .exploring .emotion-bg{
   background:
@@ -1713,30 +1661,112 @@ body.night .shooting-star{
 
 
 /* =========================================================
+   EMOTION ICON
+   CSS-GENERATED ICON
+   ========================================================= */
+
+.emotion::before{
+  position:absolute;
+
+  top:22px;
+  left:22px;
+
+  width:38px;
+  height:38px;
+
+  z-index:8;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  border:
+    1px solid
+    rgba(255,255,255,.28);
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.08);
+
+  backdrop-filter:
+    blur(12px);
+
+  -webkit-backdrop-filter:
+    blur(12px);
+
+  font-family:
+    "Times New Roman",
+    Georgia,
+    serif;
+
+  font-size:18px;
+
+  color:
+    rgba(255,255,255,.9);
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.12);
+
+  transition:
+    transform .5s var(--ease),
+    background .5s ease,
+    border-color .5s ease;
+}
+
+.anxious::before{
+  content:"∿";
+}
+
+.overwhelmed::before{
+  content:"◌";
+}
+
+.need-talk::before{
+  content:"♡";
+}
+
+.exploring::before{
+  content:"✦";
+}
+
+.emotion:hover::before{
+  transform:
+    rotate(8deg)
+    scale(1.08);
+
+  background:
+    rgba(255,255,255,.15);
+
+  border-color:
+    rgba(255,255,255,.45);
+}
+
+
+/* =========================================================
    EMOTION CONTENT
    ========================================================= */
 
 .emotion-content{
   position:absolute;
 
-  left:30px;
-  right:30px;
-  bottom:30px;
+  left:22px;
+  right:22px;
+  bottom:20px;
 
   z-index:10;
 }
 
-
 .emotion-number{
-  font-size:9px;
+  font-size:7px;
 
   letter-spacing:.22em;
 
-  opacity:.55;
+  opacity:.5;
 
-  margin-bottom:14px;
+  margin-bottom:7px;
 }
-
 
 .emotion-title{
   font-family:
@@ -1745,48 +1775,48 @@ body.night .shooting-star{
     serif;
 
   font-size:
-    clamp(34px,4vw,53px);
+    clamp(25px,2.6vw,38px);
 
-  line-height:.9;
+  line-height:.92;
 
   font-weight:400;
 
   letter-spacing:-.04em;
 }
 
-
 .emotion-description{
-  margin-top:16px;
+  margin-top:9px;
 
-  max-width:285px;
-
-  font-size:11px;
-
-  line-height:1.6;
-
-  color:
-    rgba(255,255,255,.7);
-}
-
-
-.emotion-open{
-  margin-top:20px;
-
-  display:inline-flex;
-  align-items:center;
-
-  gap:9px;
+  max-width:250px;
 
   font-size:9px;
+
+  line-height:1.5;
+
+  color:
+    rgba(255,255,255,.68);
+}
+
+.emotion-open{
+  margin-top:11px;
+
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:7px;
+
+  font-size:7px;
 
   letter-spacing:.18em;
 
   text-transform:uppercase;
+
+  opacity:.78;
 }
 
-
 .emotion-open span{
-  font-size:15px;
+  font-size:12px;
 }
 
 
@@ -1813,7 +1843,6 @@ body.night .shooting-star{
     );
 }
 
-
 .ai-layout{
   display:grid;
 
@@ -1824,7 +1853,6 @@ body.night .shooting-star{
 
   align-items:center;
 }
-
 
 .ai-title{
   font-family:
@@ -1842,11 +1870,9 @@ body.night .shooting-star{
   letter-spacing:-.055em;
 }
 
-
 .ai-title em{
   font-style:italic;
 }
-
 
 .ai-description{
   margin-top:28px;
@@ -1860,7 +1886,6 @@ body.night .shooting-star{
 
   font-size:15px;
 }
-
 
 .ai-button{
   display:inline-flex;
@@ -1894,7 +1919,6 @@ body.night .shooting-star{
     transform .35s ease,
     background .35s ease;
 }
-
 
 .ai-button:hover{
   transform:translateY(-3px);
@@ -1938,7 +1962,6 @@ body.night .shooting-star{
     orbFloat 7s ease-in-out infinite;
 }
 
-
 .ai-orb::before,
 .ai-orb::after{
   content:"";
@@ -1957,14 +1980,12 @@ body.night .shooting-star{
     0 0 40px rgba(200,190,255,.05);
 }
 
-
 .ai-orb::after{
   inset:28%;
 
   border-color:
     rgba(255,255,255,.09);
 }
-
 
 .ai-orb-text{
   position:absolute;
@@ -1974,7 +1995,6 @@ body.night .shooting-star{
   display:flex;
 
   align-items:center;
-
   justify-content:center;
 
   text-align:center;
@@ -1988,7 +2008,6 @@ body.night .shooting-star{
 
   z-index:3;
 }
-
 
 @keyframes orbFloat{
 
@@ -2016,7 +2035,6 @@ body.night .shooting-star{
     );
 }
 
-
 .journey-line{
   margin-top:65px;
 
@@ -2033,11 +2051,9 @@ body.night .shooting-star{
   scroll-snap-type:x proximity;
 }
 
-
 .journey-line::-webkit-scrollbar{
   display:none;
 }
-
 
 .journey-step{
   min-width:220px;
@@ -2048,7 +2064,6 @@ body.night .shooting-star{
 
   scroll-snap-align:start;
 }
-
 
 .journey-step::after{
   content:"";
@@ -2071,11 +2086,9 @@ body.night .shooting-star{
     );
 }
 
-
 .journey-step:last-child::after{
   display:none;
 }
-
 
 .journey-dot{
   width:10px;
@@ -2100,7 +2113,6 @@ body.night .shooting-star{
     0 0 15px rgba(255,255,255,.12);
 }
 
-
 .journey-number{
   font-size:9px;
 
@@ -2108,7 +2120,6 @@ body.night .shooting-star{
 
   opacity:.45;
 }
-
 
 .journey-name{
   margin-top:9px;
@@ -2120,7 +2131,6 @@ body.night .shooting-star{
 
   font-size:28px;
 }
-
 
 .journey-copy{
   margin-top:8px;
@@ -2137,7 +2147,7 @@ body.night .shooting-star{
 
 
 /* =========================================================
-   MEGHANA KAVERAPPA
+   FOUNDER
    ========================================================= */
 
 .founder-section{
@@ -2149,7 +2159,6 @@ body.night .shooting-star{
     );
 }
 
-
 .founder-layout{
   display:grid;
 
@@ -2160,7 +2169,6 @@ body.night .shooting-star{
 
   align-items:center;
 }
-
 
 .founder-photo{
   width:100%;
@@ -2180,11 +2188,9 @@ body.night .shooting-star{
     0 30px 100px rgba(0,0,0,.2);
 }
 
-
 .founder-copy{
   max-width:650px;
 }
-
 
 .founder-name{
   font-family:
@@ -2202,7 +2208,6 @@ body.night .shooting-star{
   font-weight:400;
 }
 
-
 .founder-role{
   margin-top:20px;
 
@@ -2216,7 +2221,6 @@ body.night .shooting-star{
     rgba(255,255,255,.58);
 }
 
-
 .founder-text{
   margin-top:28px;
 
@@ -2229,7 +2233,6 @@ body.night .shooting-star{
 
   max-width:540px;
 }
-
 
 .founder-link{
   display:inline-flex;
@@ -2262,7 +2265,6 @@ body.night .shooting-star{
   justify-content:center;
 }
 
-
 .begin-section .section-inner{
   display:flex;
 
@@ -2270,7 +2272,6 @@ body.night .shooting-star{
 
   align-items:center;
 }
-
 
 .begin-title{
   max-width:900px;
@@ -2290,11 +2291,9 @@ body.night .shooting-star{
   letter-spacing:-.055em;
 }
 
-
 .begin-title em{
   font-style:italic;
 }
-
 
 .begin-copy{
   max-width:500px;
@@ -2309,7 +2308,6 @@ body.night .shooting-star{
   line-height:1.7;
 }
 
-
 .begin-actions{
   margin-top:35px;
 
@@ -2321,7 +2319,6 @@ body.night .shooting-star{
 
   justify-content:center;
 }
-
 
 .begin-primary,
 .begin-secondary{
@@ -2340,7 +2337,6 @@ body.night .shooting-star{
     background .35s ease;
 }
 
-
 .begin-primary{
   border:
     1px solid
@@ -2350,7 +2346,6 @@ body.night .shooting-star{
     rgba(255,255,255,.12);
 }
 
-
 .begin-secondary{
   border:
     1px solid
@@ -2358,7 +2353,6 @@ body.night .shooting-star{
 
   background:transparent;
 }
-
 
 .begin-primary:hover,
 .begin-secondary:hover{
@@ -2400,7 +2394,6 @@ body.night .shooting-star{
     blur(18px);
 }
 
-
 .footer-brand{
   font-family:
     "Times New Roman",
@@ -2412,7 +2405,6 @@ body.night .shooting-star{
   letter-spacing:.15em;
 }
 
-
 .footer-right{
   display:flex;
 
@@ -2420,7 +2412,6 @@ body.night .shooting-star{
 
   flex-wrap:wrap;
 }
-
 
 .footer-right a{
   font-size:8px;
@@ -2457,11 +2448,14 @@ body.night .shooting-star{
     blur(5px);
 }
 
-
 .header.mobile-open + .mobile-overlay{
   display:block;
 }
 
+
+/* =========================================================
+   TABLET / MOBILE
+   ========================================================= */
 
 @media(max-width:900px){
 
@@ -2487,7 +2481,6 @@ body.night .shooting-star{
     top:78px;
 
     left:18px;
-
     right:18px;
 
     padding:25px;
@@ -2513,58 +2506,120 @@ body.night .shooting-star{
     z-index:120;
   }
 
-
   .header.mobile-open .nav a{
     font-size:11px;
   }
 
-
   .header.mobile-open .nav-book{
     width:100%;
-
     text-align:center;
   }
-
 
   .brand{
     min-width:auto;
   }
 
-
   .hero{
     padding-top:130px;
   }
-
 
   .hero-side{
     display:none;
   }
 
-
   .feeling-header{
     display:block;
   }
-
 
   .feeling-note{
     margin-top:25px;
   }
 
 
-  .emotion-track{
-    margin-top:45px;
+  /* -------------------------------------------------------
+     MOBILE EMOTION TILES
+     ------------------------------------------------------- */
 
-    gap:16px;
+  .emotion-track{
+    display:flex;
+
+    flex-direction:row;
+
+    gap:12px;
+
+    overflow-x:auto;
+    overflow-y:hidden;
+
+    margin-top:42px;
+
+    padding:
+      8px 0 25px;
+
+    scroll-snap-type:x mandatory;
+
+    scrollbar-width:none;
+
+    -webkit-overflow-scrolling:touch;
   }
 
+  .emotion-track::-webkit-scrollbar{
+    display:none;
+  }
 
   .emotion{
     flex:
-      0 0 78vw;
+      0 0 185px;
 
-    max-width:390px;
+    width:185px;
 
-    height:510px;
+    height:175px;
+
+    border-radius:16px;
+
+    scroll-snap-align:start;
+  }
+
+  .emotion::before{
+    top:16px;
+    left:16px;
+
+    width:32px;
+    height:32px;
+
+    font-size:15px;
+  }
+
+  .emotion-content{
+    left:17px;
+    right:17px;
+    bottom:16px;
+  }
+
+  .emotion-number{
+    font-size:6px;
+    margin-bottom:5px;
+  }
+
+  .emotion-title{
+    font-size:25px;
+  }
+
+  .emotion-description{
+    font-size:8px;
+
+    line-height:1.45;
+
+    margin-top:7px;
+  }
+
+  .emotion-open{
+    margin-top:8px;
+
+    font-size:6px;
+  }
+
+  .emotion-open span{
+    font-size:10px;
   }
 
 
@@ -2573,11 +2628,9 @@ body.night .shooting-star{
     grid-template-columns:1fr;
   }
 
-
   .ai-orb{
     margin-top:45px;
   }
-
 
   .founder-photo{
     max-width:100%;
@@ -2585,11 +2638,9 @@ body.night .shooting-star{
     aspect-ratio:4/5;
   }
 
-
   .journey-line{
     margin-top:45px;
   }
-
 
   .footer{
     flex-direction:column;
@@ -2610,60 +2661,57 @@ body.night .shooting-star{
     height:36px;
   }
 
-
   .brand-name{
     font-size:17px;
   }
 
-
   .brand-tagline{
     font-size:6px;
   }
-
 
   .hero{
     padding-left:20px;
     padding-right:20px;
   }
 
-
   .hero-title{
     font-size:
       clamp(57px,16vw,78px);
   }
 
-
   .hero-description{
     font-size:14px;
   }
-
 
   .section{
     padding-left:20px;
     padding-right:20px;
   }
 
-
-  .emotion{
-    flex-basis:84vw;
-
-    height:480px;
-
-    border-radius:20px;
-  }
-
-
-  .emotion-content{
-    left:22px;
-    right:22px;
-    bottom:22px;
-  }
-
-
   .feeling-question{
     font-size:52px;
   }
 
+
+  /* EVEN SMALLER TILES */
+
+  .emotion{
+    flex-basis:165px;
+
+    width:165px;
+
+    height:165px;
+
+    border-radius:15px;
+  }
+
+  .emotion-title{
+    font-size:23px;
+  }
+
+  .emotion-description{
+    max-width:130px;
+  }
 
   .moon{
     width:100px;
@@ -2672,7 +2720,6 @@ body.night .shooting-star{
 
     top:14%;
   }
-
 
   .rainbow{
     width:150vw;
@@ -2694,18 +2741,21 @@ body.night .shooting-star{
     font-size:54px;
   }
 
-
   .emotion{
-    flex-basis:88vw;
+    flex-basis:155px;
 
-    height:455px;
+    width:155px;
+
+    height:155px;
   }
-
 
   .emotion-title{
-    font-size:34px;
+    font-size:21px;
   }
 
+  .emotion-description{
+    display:none;
+  }
 
   .brand-tagline{
     display:none;
@@ -2722,7 +2772,6 @@ body.night .shooting-star{
   html{
     scroll-behavior:auto;
   }
-
 
   *,
   *::before,
