@@ -2,20 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#090909">
 
-  <title>AKSH — Mental Wellness</title>
-
-  <meta
-    name="description"
-    content="AKSH Mental Wellness — A Safe Space For Every Mind."
-  >
+  <title>AKSH — A Safe Space For Every Mind</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
     rel="stylesheet"
   >
 
@@ -24,832 +20,543 @@
 
 <body>
 
-  <main class="aksh-page" id="akshPage">
+  <main id="aksh-page">
 
-    <!-- =========================
-         CINEMATIC ATMOSPHERE
-    ========================== -->
+    <!-- =========================================================
+         CINEMATIC ENVIRONMENT
+    ========================================================== -->
 
-    <div class="atmosphere" aria-hidden="true">
+    <section
+      class="world"
+      id="world"
+      aria-label="AKSH experience"
+    >
 
-      <div class="sky"></div>
+      <!-- Background video -->
+      <video
+        id="worldVideo"
+        class="world-video"
+        autoplay
+        muted
+        playsinline
+        preload="auto"
+        aria-hidden="true"
+      ></video>
 
-      <div class="sun"></div>
+      <!-- Cinematic depth -->
+      <div class="world-vignette"></div>
+      <div class="world-grain"></div>
+      <div class="world-haze"></div>
 
-      <div class="moon">
+      <!-- Morning atmosphere -->
+      <div class="atmosphere atmosphere-morning"></div>
+
+      <!-- Afternoon atmosphere -->
+      <div class="atmosphere atmosphere-afternoon"></div>
+
+      <!-- Evening atmosphere -->
+      <div class="atmosphere atmosphere-evening"></div>
+
+      <!-- Night atmosphere -->
+      <div class="atmosphere atmosphere-night"></div>
+
+      <!-- Real-time atmospheric layers -->
+      <div id="cloudLayer" class="cloud-layer"></div>
+
+      <div id="rainLayer" class="rain-layer" aria-hidden="true"></div>
+
+      <div id="starLayer" class="star-layer" aria-hidden="true"></div>
+
+      <div id="shootingStars" class="shooting-stars" aria-hidden="true">
+        <span></span>
+        <span></span>
         <span></span>
       </div>
 
-      <div class="cloud cloud-one"></div>
-      <div class="cloud cloud-two"></div>
-      <div class="cloud cloud-three"></div>
-      <div class="cloud cloud-four"></div>
+      <div id="moon" class="moon" aria-hidden="true"></div>
 
-      <div class="rainbow">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-
-      <div class="rain"></div>
-
-      <div class="stars">
-        <i></i><i></i><i></i><i></i><i></i>
-        <i></i><i></i><i></i><i></i><i></i>
-        <i></i><i></i><i></i><i></i><i></i>
-        <i></i><i></i><i></i><i></i><i></i>
-      </div>
-
-      <div class="shooting-star shooting-one"></div>
-      <div class="shooting-star shooting-two"></div>
-
-      <div class="atmosphere-vignette"></div>
-
-    </div>
+      <div class="rainbow" id="rainbow" aria-hidden="true"></div>
 
 
-    <!-- =========================
-         NAVIGATION
-    ========================== -->
+      <!-- =======================================================
+           TOP NAVIGATION
+      ======================================================== -->
 
-    <header class="site-header">
+      <header class="topbar">
 
-      <a class="brand" href="index.html" aria-label="AKSH Home">
-
-        <img
-          src="aksh-icon.PNG"
-          alt="AKSH"
-          class="brand-icon"
+        <a
+          href="index.html"
+          class="brand"
+          aria-label="AKSH Home"
         >
 
-        <span class="brand-copy">
-          <strong>AKSH</strong>
-          <small>MENTAL WELLNESS</small>
-        </span>
+          <img
+            src="aksh-icon.PNG"
+            alt="AKSH"
+            class="brand-icon"
+          >
 
-      </a>
+          <span class="brand-copy">
+            <strong>AKSH</strong>
+            <small>MENTAL WELLNESS</small>
+          </span>
 
-
-      <nav class="desktop-nav" aria-label="Main navigation">
-
-        <a href="index.html">HOME</a>
-
-        <a href="#journey">JOURNEY</a>
-
-        <a href="#ai">AI COMPANION</a>
-
-        <a href="#resources">RESOURCES</a>
-
-        <a href="#journal">JOURNAL</a>
-
-        <a href="#about">ABOUT</a>
-
-      </nav>
-
-
-      <div class="header-actions">
-
-        <a class="space-button" href="#my-space">
-          <span class="space-icon">◌</span>
-          MY SPACE
         </a>
 
-        <button
-          class="menu-button"
-          id="menuButton"
-          aria-label="Open menu"
-          aria-expanded="false"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
 
-      </div>
+        <nav class="main-nav" aria-label="Primary navigation">
 
-    </header>
+          <a href="index.html" class="nav-link active">
+            HOME
+          </a>
 
+          <a href="page2.html" class="nav-link">
+            JOURNEY
+          </a>
 
-    <!-- =========================
-         MOBILE MENU
-    ========================== -->
+          <a href="#ai" class="nav-link">
+            AI COMPANION
+          </a>
 
-    <div class="mobile-menu" id="mobileMenu">
+          <a href="page3.html" class="nav-link">
+            RESOURCES
+          </a>
 
-      <div class="mobile-menu-inner">
+          <a href="page4.html" class="nav-link">
+            JOURNAL
+          </a>
 
-        <a href="index.html">HOME</a>
-        <a href="#journey">JOURNEY</a>
-        <a href="#ai">AI COMPANION</a>
-        <a href="#resources">RESOURCES</a>
-        <a href="#journal">JOURNAL</a>
-        <a href="#about">ABOUT</a>
+          <a href="page5.html" class="nav-link">
+            ABOUT
+          </a>
 
-        <a class="mobile-book" href="#booking">
-          BOOK AN APPOINTMENT
-          <span>→</span>
-        </a>
-
-      </div>
-
-    </div>
+        </nav>
 
 
-    <!-- =========================
-         HERO
-    ========================== -->
+        <div class="top-actions">
 
-    <section class="hero">
+          <a
+            href="booking.html"
+            class="space-button"
+          >
+            <span class="space-dot"></span>
+            BOOK A SESSION
+          </a>
 
-      <div class="hero-left">
+          <button
+            class="menu-button"
+            id="menuButton"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+          >
+            <span></span>
+            <span></span>
+          </button>
 
-        <div class="hero-kicker">
-          <span></span>
-          AKSH MENTAL WELLNESS
         </div>
 
-        <h1>
-          A space to understand
-          <em>your mind.</em>
+      </header>
+
+
+      <!-- =======================================================
+           MOBILE MENU
+      ======================================================== -->
+
+      <div
+        class="mobile-menu"
+        id="mobileMenu"
+        aria-hidden="true"
+      >
+
+        <div class="mobile-menu-inner">
+
+          <p class="mobile-menu-label">
+            AKSH
+          </p>
+
+          <a href="index.html">HOME</a>
+          <a href="page2.html">JOURNEY</a>
+          <a href="#ai">AI COMPANION</a>
+          <a href="page3.html">RESOURCES</a>
+          <a href="page4.html">JOURNAL</a>
+          <a href="page5.html">ABOUT</a>
+
+          <a
+            href="booking.html"
+            class="mobile-book"
+          >
+            BOOK A SESSION
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- =======================================================
+           DATE / TIME
+      ======================================================== -->
+
+      <div class="date-display">
+
+        <span id="currentDate">
+          14.08.2026
+        </span>
+
+        <span id="currentDay">
+          Friday
+        </span>
+
+      </div>
+
+
+      <!-- =======================================================
+           HERO
+      ======================================================== -->
+
+      <section class="hero">
+
+        <div class="hero-kicker">
+          A SAFE SPACE FOR EVERY MIND
+        </div>
+
+        <div class="time-title" id="timeTitle">
+          GOOD AFTERNOON
+        </div>
+
+        <h1 id="heroQuote">
+          You deserve a moment
+          that belongs only to you.
         </h1>
 
-        <p class="hero-description">
-          A thoughtful place to pause, understand what you are feeling,
-          explore your wellbeing and find the right kind of support.
+        <p class="hero-description" id="heroDescription">
+          Slow down. Notice what is happening within you.
+          You do not have to have everything figured out today.
         </p>
 
         <div class="hero-actions">
 
-          <a href="#feeling" class="gold-button">
-            EXPLORE YOUR JOURNEY
+          <a
+            href="#feelings"
+            class="hero-primary"
+          >
+            BEGIN YOUR JOURNEY
             <span>→</span>
           </a>
 
-          <a href="#journey" class="outline-button">
-            DISCOVER AKSH
-            <span>↗</span>
-          </a>
+          <button
+            type="button"
+            class="hero-secondary"
+            id="listenButton"
+          >
+            <span class="play-symbol">▶</span>
+            HOW AKSH WORKS
+          </button>
 
         </div>
 
-      </div>
+      </section>
 
 
-      <!-- Daily atmosphere card -->
+      <!-- =======================================================
+           RIGHT FLOATING DAILY NOTE
+      ======================================================== -->
 
-      <aside class="daily-card">
+      <aside class="daily-note">
 
-        <div class="daily-top">
+        <div class="daily-note-top">
 
-          <span id="dailyGreeting">
-            GOOD MORNING
+          <span id="noteGreeting">
+            Good afternoon
           </span>
 
-          <span class="daily-symbol">✦</span>
+          <span class="note-spark">
+            ✦
+          </span>
 
         </div>
 
-        <div class="daily-date" id="dailyDate">
-          14.08.2026
-        </div>
+        <div class="note-line"></div>
 
-        <div class="daily-line"></div>
-
-        <p id="dailyQuote">
-          You do not have to have everything figured out today.
+        <p id="dailyNoteText">
+          You don't need to solve
+          everything at once.
         </p>
 
-        <div class="daily-bottom">
-          <span>AKSH</span>
-          <span>♡</span>
-        </div>
+        <button
+          class="note-heart"
+          type="button"
+          aria-label="Save this thought"
+          id="heartButton"
+        >
+          ♡
+        </button>
 
       </aside>
 
 
-      <div class="hero-scroll">
+      <!-- =======================================================
+           SIDE SCROLL INDICATOR
+      ======================================================== -->
 
-        <span class="scroll-line"></span>
+      <div class="scroll-indicator">
 
         <span>
           EXPLORE
         </span>
 
+        <div class="scroll-line"></div>
+
+        <small>
+          SCROLL
+        </small>
+
       </div>
 
-    </section>
 
+      <!-- =======================================================
+           FEELINGS EXPERIENCE
+      ======================================================== -->
 
-    <!-- =========================
-         FEELING SECTION
-    ========================== -->
+      <section
+        class="feelings-section"
+        id="feelings"
+      >
 
-    <section class="feeling-section" id="feeling">
+        <div class="feelings-intro">
 
-      <div class="section-heading">
-
-        <div>
-
-          <span class="section-eyebrow">
-            YOUR MOMENT
+          <span>
+            A MOMENT WITH YOURSELF
           </span>
 
           <h2>
-            How are you feeling
-            <em>today?</em>
-          </h2>
-
-        </div>
-
-        <p>
-          There is no right answer.
-          Choose what feels closest to you right now.
-        </p>
-
-      </div>
-
-
-      <div class="emotion-track" id="emotionTrack">
-
-        <article
-          class="emotion-card emotion-anxious"
-          data-emotion="anxious"
-        >
-
-          <div class="emotion-number">01</div>
-
-          <div class="emotion-icon">◌</div>
-
-          <div class="emotion-content">
-
-            <span>IF YOUR MIND FEELS</span>
-
-            <h3>ANXIOUS</h3>
-
-            <p>
-              Slow everything down.
-              Let's create a little more space to breathe.
-            </p>
-
-          </div>
-
-          <button class="emotion-open">
-            ENTER THIS SPACE
-            <span>→</span>
-          </button>
-
-        </article>
-
-
-        <article
-          class="emotion-card emotion-overwhelmed"
-          data-emotion="overwhelmed"
-        >
-
-          <div class="emotion-number">02</div>
-
-          <div class="emotion-icon">✧</div>
-
-          <div class="emotion-content">
-
-            <span>IF EVERYTHING FEELS</span>
-
-            <h3>OVERWHELMING</h3>
-
-            <p>
-              You don't have to solve everything at once.
-              Let's take one thing at a time.
-            </p>
-
-          </div>
-
-          <button class="emotion-open">
-            ENTER THIS SPACE
-            <span>→</span>
-          </button>
-
-        </article>
-
-
-        <article
-          class="emotion-card emotion-talk"
-          data-emotion="talk"
-        >
-
-          <div class="emotion-number">03</div>
-
-          <div class="emotion-icon">♡</div>
-
-          <div class="emotion-content">
-
-            <span>IF YOU FEEL YOU</span>
-
-            <h3>NEED TO TALK</h3>
-
-            <p>
-              Sometimes being heard is where everything begins.
-            </p>
-
-          </div>
-
-          <button class="emotion-open">
-            FIND SUPPORT
-            <span>→</span>
-          </button>
-
-        </article>
-
-
-        <article
-          class="emotion-card emotion-explore"
-          data-emotion="explore"
-        >
-
-          <div class="emotion-number">04</div>
-
-          <div class="emotion-icon">✦</div>
-
-          <div class="emotion-content">
-
-            <span>IF YOU ARE</span>
-
-            <h3>JUST EXPLORING</h3>
-
-            <p>
-              Discover AKSH at your own pace.
-              There is no pressure to begin anywhere.
-            </p>
-
-          </div>
-
-          <button class="emotion-open">
-            EXPLORE AKSH
-            <span>→</span>
-          </button>
-
-        </article>
-
-      </div>
-
-
-      <div class="track-controls">
-
-        <button id="emotionPrev" aria-label="Previous emotion">
-          ←
-        </button>
-
-        <div class="track-progress">
-          <span id="trackProgress"></span>
-        </div>
-
-        <button id="emotionNext" aria-label="Next emotion">
-          →
-        </button>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         JOURNEY
-    ========================== -->
-
-    <section class="journey-section" id="journey">
-
-      <div class="journey-copy">
-
-        <span class="section-eyebrow">
-          YOUR JOURNEY
-        </span>
-
-        <h2>
-          You don't have to know
-          <em>where to begin.</em>
-        </h2>
-
-        <p>
-          AKSH brings together professional psychological support,
-          self-understanding, thoughtful resources and technology —
-          so you can choose the path that feels right for you.
-        </p>
-
-        <a href="#booking" class="text-link">
-          FIND YOUR NEXT STEP
-          <span>→</span>
-        </a>
-
-      </div>
-
-
-      <div class="journey-path">
-
-        <div class="journey-step active">
-          <span>01</span>
-          <strong>NOTICE</strong>
-          <p>Understand what you are feeling.</p>
-        </div>
-
-        <div class="journey-connector"></div>
-
-        <div class="journey-step">
-          <span>02</span>
-          <strong>EXPLORE</strong>
-          <p>Discover what may help.</p>
-        </div>
-
-        <div class="journey-connector"></div>
-
-        <div class="journey-step">
-          <span>03</span>
-          <strong>CONNECT</strong>
-          <p>Talk when you are ready.</p>
-        </div>
-
-        <div class="journey-connector"></div>
-
-        <div class="journey-step">
-          <span>04</span>
-          <strong>GROW</strong>
-          <p>Move forward with support.</p>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         AI COMPANION
-    ========================== -->
-
-    <section class="ai-section" id="ai">
-
-      <div class="ai-glow"></div>
-
-      <div class="ai-orb">
-        <div class="orb-core"></div>
-        <div class="orb-ring orb-ring-one"></div>
-        <div class="orb-ring orb-ring-two"></div>
-      </div>
-
-
-      <div class="ai-copy">
-
-        <span class="section-eyebrow">
-          AKSH AI COMPANION
-        </span>
-
-        <h2>
-          Meet the intelligence
-          <em>inside AKSH.</em>
-        </h2>
-
-        <p>
-          A private digital companion designed to listen,
-          understand and help you find your next step.
-        </p>
-
-        <div class="ai-capabilities">
-
-          <span>CHAT</span>
-          <span>VOICE</span>
-          <span>VIDEO</span>
-          <span>5 LANGUAGES</span>
-
-        </div>
-
-      </div>
-
-
-      <a href="#ai-chat" class="ai-button">
-        TALK WITH AKSH AI
-        <span>→</span>
-      </a>
-
-    </section>
-
-
-    <!-- =========================
-         RESOURCES
-    ========================== -->
-
-    <section class="resources-section" id="resources">
-
-      <div class="section-heading">
-
-        <div>
-
-          <span class="section-eyebrow">
-            EXPLORE
-          </span>
-
-          <h2>
-            Spaces created
-            <em>for you.</em>
-          </h2>
-
-        </div>
-
-        <a href="#resources" class="text-link">
-          VIEW ALL
-          <span>↗</span>
-        </a>
-
-      </div>
-
-
-      <div class="resource-grid">
-
-        <a class="resource-card" href="#breathing">
-
-          <div class="resource-image resource-one"></div>
-
-          <div class="resource-overlay"></div>
-
-          <div class="resource-info">
-
-            <span>7 MINUTES</span>
-
-            <h3>
-              Breathe
-              <br>
-              Slowly
-            </h3>
-
-            <p>
-              A quiet reset for a busy mind.
-            </p>
-
-            <strong>
-              EXPLORE →
-            </strong>
-
-          </div>
-
-        </a>
-
-
-        <a class="resource-card" href="#sleep">
-
-          <div class="resource-image resource-two"></div>
-
-          <div class="resource-overlay"></div>
-
-          <div class="resource-info">
-
-            <span>REST</span>
-
-            <h3>
-              A Better
-              <br>
-              Night
-            </h3>
-
-            <p>
-              Gentle practices for deeper rest.
-            </p>
-
-            <strong>
-              EXPLORE →
-            </strong>
-
-          </div>
-
-        </a>
-
-
-        <a class="resource-card" href="#reflection">
-
-          <div class="resource-image resource-three"></div>
-
-          <div class="resource-overlay"></div>
-
-          <div class="resource-info">
-
-            <span>REFLECTION</span>
-
-            <h3>
-              Write It
-              <br>
-              Out
-            </h3>
-
-            <p>
-              Sometimes words create clarity.
-            </p>
-
-            <strong>
-              EXPLORE →
-            </strong>
-
-          </div>
-
-        </a>
-
-
-        <a class="resource-card" href="#wellbeing">
-
-          <div class="resource-image resource-four"></div>
-
-          <div class="resource-overlay"></div>
-
-          <div class="resource-info">
-
-            <span>WELLBEING</span>
-
-            <h3>
-              Understand
-              <br>
-              Your Mind
-            </h3>
-
-            <p>
-              Learn without judgement.
-            </p>
-
-            <strong>
-              EXPLORE →
-            </strong>
-
-          </div>
-
-        </a>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         JOURNAL
-    ========================== -->
-
-    <section class="journal-section" id="journal">
-
-      <div class="journal-card">
-
-        <div class="journal-symbol">
-          “
-        </div>
-
-        <div class="journal-copy">
-
-          <span class="section-eyebrow">
-            FROM THE AKSH JOURNAL
-          </span>
-
-          <h2>
-            Healing is not a race.
-            <em>It is a journey.</em>
+            How are you<br>
+            feeling today?
           </h2>
 
           <p>
-            Thoughtful ideas about emotions, relationships,
-            stress, self-understanding and everyday wellbeing.
+            There is no right answer.
+            Start wherever you are.
           </p>
 
-          <a href="#journal" class="text-link">
-            READ THE JOURNAL
+        </div>
+
+
+        <!-- HORIZONTAL EMOTION RAIL -->
+
+        <div
+          class="emotion-rail"
+          id="emotionRail"
+          tabindex="0"
+          aria-label="Choose how you are feeling"
+        >
+
+          <button
+            class="emotion"
+            data-emotion="anxious"
+            type="button"
+          >
+
+            <span class="emotion-number">
+              01
+            </span>
+
+            <span class="emotion-title">
+              ANXIOUS
+            </span>
+
+            <span class="emotion-description">
+              My mind won't slow down.
+            </span>
+
+            <span class="emotion-arrow">
+              ↗
+            </span>
+
+          </button>
+
+
+          <button
+            class="emotion"
+            data-emotion="overwhelmed"
+            type="button"
+          >
+
+            <span class="emotion-number">
+              02
+            </span>
+
+            <span class="emotion-title">
+              OVERWHELMED
+            </span>
+
+            <span class="emotion-description">
+              Everything feels like too much.
+            </span>
+
+            <span class="emotion-arrow">
+              ↗
+            </span>
+
+          </button>
+
+
+          <button
+            class="emotion"
+            data-emotion="talk"
+            type="button"
+          >
+
+            <span class="emotion-number">
+              03
+            </span>
+
+            <span class="emotion-title">
+              NEED TO TALK
+            </span>
+
+            <span class="emotion-description">
+              I don't want to carry this alone.
+            </span>
+
+            <span class="emotion-arrow">
+              ↗
+            </span>
+
+          </button>
+
+
+          <button
+            class="emotion"
+            data-emotion="exploring"
+            type="button"
+          >
+
+            <span class="emotion-number">
+              04
+            </span>
+
+            <span class="emotion-title">
+              JUST EXPLORING
+            </span>
+
+            <span class="emotion-description">
+              I want to understand myself.
+            </span>
+
+            <span class="emotion-arrow">
+              ↗
+            </span>
+
+          </button>
+
+        </div>
+
+        <div class="rail-hint">
+          <span>DRAG</span>
+          <i></i>
+          <span>EXPLORE</span>
+        </div>
+
+      </section>
+
+
+      <!-- =======================================================
+           AI COMPANION
+      ======================================================== -->
+
+      <section
+        class="ai-section"
+        id="ai"
+      >
+
+        <div class="ai-orb">
+          <div class="orb-core"></div>
+          <div class="orb-ring ring-one"></div>
+          <div class="orb-ring ring-two"></div>
+          <div class="orb-light"></div>
+        </div>
+
+
+        <div class="ai-copy">
+
+          <span class="ai-label">
+            AKSH AI COMPANION
+          </span>
+
+          <h2>
+            A conversation
+            that meets you
+            where you are.
+          </h2>
+
+          <p>
+            Talk. Listen. Reflect.
+            AKSH AI is designed to be
+            present when you need a place
+            to begin.
+          </p>
+
+          <div class="ai-capabilities">
+
+            <span>CHAT</span>
+            <span>VOICE</span>
+            <span>VIDEO</span>
+
+          </div>
+
+        </div>
+
+
+        <div class="ai-actions">
+
+          <a
+            href="ai.html"
+            class="ai-button"
+          >
+            TALK WITH AKSH AI
             <span>→</span>
+          </a>
+
+          <a
+            href="booking.html"
+            class="ai-book"
+          >
+            BOOK WITH A PROFESSIONAL
           </a>
 
         </div>
 
-      </div>
-
-    </section>
+      </section>
 
 
-    <!-- =========================
-         ABOUT / FOUNDER
-    ========================== -->
+      <!-- =======================================================
+           BOTTOM BRAND LINE
+      ======================================================== -->
 
-    <section class="about-section" id="about">
-
-      <div class="about-photo">
-
-        <img
-          src="meghana.kaverappa.jpg"
-          alt="Meghana Kaverappa"
-        >
-
-      </div>
-
-
-      <div class="about-copy">
-
-        <span class="section-eyebrow">
-          THE PERSON BEHIND AKSH
-        </span>
-
-        <h2>
-          Meet
-          <em>Meghana Kaverappa.</em>
-        </h2>
-
-        <p>
-          Founder and Chief Psychologist of AKSH Mental Wellness.
-          AKSH was created with a simple belief:
-          every mind deserves a safe space to speak,
-          be understood and grow.
-        </p>
-
-        <a href="#founder" class="text-link">
-          MEET MEGHANA
-          <span>→</span>
-        </a>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         BOOKING
-    ========================== -->
-
-    <section class="booking-section" id="booking">
-
-      <div>
-
-        <span class="section-eyebrow">
-          WHEN YOU ARE READY
-        </span>
-
-        <h2>
-          Your next step
-          <em>can begin here.</em>
-        </h2>
-
-        <p>
-          Whether you know exactly what you need or are still
-          figuring it out, you can reach AKSH when you are ready.
-        </p>
-
-        <a href="booking.html" class="gold-button">
-          BOOK AN APPOINTMENT
-          <span>→</span>
-        </a>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
-
-    <footer class="site-footer">
-
-      <div class="footer-brand">
-
-        <img
-          src="aksh-icon.PNG"
-          alt="AKSH"
-        >
-
-        <div>
-          <strong>AKSH</strong>
-          <span>A Safe Space For Every Mind</span>
-        </div>
-
-      </div>
-
-
-      <div class="footer-links">
-
-        <a href="#journey">Journey</a>
-        <a href="#ai">AI Companion</a>
-        <a href="#resources">Resources</a>
-        <a href="#journal">Journal</a>
-        <a href="#about">About</a>
-
-      </div>
-
-
-      <div class="footer-bottom">
+      <footer class="bottom-line">
 
         <span>
-          © <span id="currentYear"></span> AKSH Mental Wellness
+          MENTAL WELLNESS
+        </span>
+
+        <span class="bottom-center">
+          AKSH — A SAFE SPACE FOR EVERY MIND
         </span>
 
         <span>
-          CONFIDENTIAL · COMPASSIONATE · HUMAN
+          MEGHANA KAVERAPPA
         </span>
 
-      </div>
+      </footer>
 
-    </footer>
+    </section>
 
 
-    <!-- =========================
-         EMOTION WORLD MODAL
-    ========================== -->
+    <!-- =========================================================
+         EMOTION IMMERSIVE PANEL
+    ========================================================== -->
 
     <div
       class="emotion-world"
@@ -857,40 +564,56 @@
       aria-hidden="true"
     >
 
+      <div class="emotion-world-background"></div>
+
       <button
-        class="world-close"
-        id="worldClose"
+        type="button"
+        class="emotion-close"
+        id="emotionClose"
         aria-label="Close"
       >
-        ×
+        <span></span>
+        <span></span>
       </button>
 
-      <div class="world-background"></div>
 
-      <div class="world-content">
+      <div class="emotion-world-content">
 
-        <span class="world-eyebrow" id="worldEyebrow">
-          AKSH
+        <span
+          class="emotion-world-kicker"
+          id="emotionWorldKicker"
+        >
+          YOU ARE HERE
         </span>
 
-        <h2 id="worldTitle">
-          A quieter place
+        <h2 id="emotionWorldTitle">
+          Let's make
+          some room
+          for your mind.
         </h2>
 
-        <p id="worldDescription">
-          You are allowed to pause here.
+        <p id="emotionWorldText">
+          You don't need to push the feeling away.
+          Let's slow down and understand what it
+          is asking for.
         </p>
 
-        <div class="world-actions">
+        <div class="emotion-world-actions">
 
-          <a href="booking.html" class="gold-button">
-            TALK TO SOMEONE
+          <a
+            href="booking.html"
+            class="world-book"
+          >
+            TALK TO A PROFESSIONAL
             <span>→</span>
           </a>
 
-          <button class="outline-button" id="worldBack">
-            STAY HERE A LITTLE LONGER
-          </button>
+          <a
+            href="ai.html"
+            class="world-ai"
+          >
+            TALK WITH AKSH AI
+          </a>
 
         </div>
 
@@ -899,8 +622,54 @@
     </div>
 
 
-  </main>
+    <!-- =========================================================
+         HOW AKSH WORKS MODAL
+    ========================================================== -->
 
+    <div
+      class="works-modal"
+      id="worksModal"
+      aria-hidden="true"
+    >
+
+      <div class="works-modal-inner">
+
+        <button
+          type="button"
+          class="modal-close"
+          id="modalClose"
+          aria-label="Close"
+        >
+          ×
+        </button>
+
+        <span>
+          AKSH
+        </span>
+
+        <h2>
+          Begin exactly<br>
+          where you are.
+        </h2>
+
+        <p>
+          Explore your emotions, discover tools,
+          speak with AKSH AI, or connect with a
+          professional when you are ready.
+        </p>
+
+        <a
+          href="page2.html"
+          class="modal-link"
+        >
+          EXPLORE THE JOURNEY →
+        </a>
+
+      </div>
+
+    </div>
+
+  </main>
 
   <script src="page1.js"></script>
 
