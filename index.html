@@ -1,1538 +1,2287 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<meta charset="UTF-8">
 
-    <meta
-        name="theme-color"
-        content="#090a0b"
-    >
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+>
 
-    <meta
-        name="description"
-        content="AKSH — A Safe Space For Every Mind."
-    >
+<meta
+  name="theme-color"
+  content="#050505"
+>
 
-    <title>AKSH — A Safe Space For Every Mind</title>
+<title>AKSH — A Safe Space For Every Mind</title>
 
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
+<style>
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+/* =========================================================
+   AKSH ARRIVAL
+   Cinematic 4-second entrance
+   ========================================================= */
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap"
-        rel="stylesheet"
-    >
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+html,
+body{
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#050505;
+}
+
+body{
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+
+  color:#fff;
+
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+
+/* =========================================================
+   MAIN SCREEN
+   ========================================================= */
+
+#arrival{
+  position:fixed;
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  overflow:hidden;
+
+  background:#050505;
+
+  isolation:isolate;
+}
+
+
+/* =========================================================
+   VIDEO
+   ========================================================= */
+
+#arrivalVideo{
+  position:absolute;
+
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  object-position:center center;
+
+  background:#050505;
+
+  opacity:0;
+
+  transform:scale(1.035);
+
+  transition:
+    opacity 1.2s ease,
+    transform 4.5s cubic-bezier(.2,.7,.2,1);
+
+  z-index:1;
+}
+
+#arrivalVideo.visible{
+  opacity:1;
+  transform:scale(1);
+}
+
+
+/* =========================================================
+   CINEMATIC DARKNESS
+   ========================================================= */
+
+.video-overlay{
+  position:absolute;
+
+  inset:0;
+
+  z-index:2;
+
+  pointer-events:none;
+
+  background:
+
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,.48) 0%,
+      rgba(0,0,0,.08) 27%,
+      rgba(0,0,0,.08) 52%,
+      rgba(0,0,0,.38) 100%
+    );
+
+}
+
+
+/* Extra cinematic vignette */
+
+.vignette{
+  position:absolute;
+
+  inset:-5%;
+
+  z-index:3;
+
+  pointer-events:none;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      transparent 35%,
+      rgba(0,0,0,.25) 72%,
+      rgba(0,0,0,.58) 100%
+    );
+}
+
+
+/* =========================================================
+   TOP LEFT — DATE
+   ========================================================= */
+
+.date-block{
+
+  position:absolute;
+
+  top:
+    max(
+      28px,
+      env(safe-area-inset-top)
+    );
+
+  left:
+    max(
+      28px,
+      env(safe-area-inset-left)
+    );
+
+  z-index:10;
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:7px;
+
+  pointer-events:none;
+
+}
+
+.date{
+
+  font-family:
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+
+  font-size:12px;
+
+  font-weight:400;
+
+  letter-spacing:.16em;
+
+  color:rgba(255,255,255,.90);
+
+  white-space:nowrap;
+
+}
+
+.day{
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:15px;
+
+  font-style:italic;
+
+  letter-spacing:.04em;
+
+  color:rgba(255,255,255,.82);
+
+}
+
+
+/* =========================================================
+   CENTER TOP — AKSH
+   ========================================================= */
+
+.brand{
+
+  position:absolute;
+
+  top:
+    max(
+      26px,
+      env(safe-area-inset-top)
+    );
+
+  left:50%;
+
+  transform:translateX(-50%);
+
+  z-index:10;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  text-align:center;
+
+  pointer-events:none;
+
+}
+
+.brand-icon{
+
+  width:43px;
+  height:43px;
+
+  object-fit:contain;
+
+  margin-bottom:7px;
+
+  filter:
+    drop-shadow(
+      0 5px 18px
+      rgba(0,0,0,.45)
+    );
+
+}
+
+.brand-name{
+
+  font-size:14px;
+
+  font-weight:400;
+
+  letter-spacing:.52em;
+
+  margin-left:.52em;
+
+  color:
+    rgba(255,255,255,.94);
+
+}
+
+.brand-tagline{
+
+  margin-top:6px;
+
+  font-size:8px;
+
+  letter-spacing:.15em;
+
+  color:
+    rgba(255,255,255,.72);
+
+  white-space:nowrap;
+
+}
+
+
+/* =========================================================
+   TOP RIGHT — SOUND
+   ========================================================= */
+
+.sound-button{
+
+  position:absolute;
+
+  top:
+    max(
+      25px,
+      env(safe-area-inset-top)
+    );
+
+  right:
+    max(
+      24px,
+      env(safe-area-inset-right)
+    );
+
+  z-index:20;
+
+  height:44px;
+
+  min-width:132px;
+
+  padding:
+    0 18px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:10px;
+
+  border:
+
+    1px solid
+    rgba(255,255,255,.42);
+
+  border-radius:999px;
+
+  background:
+    rgba(0,0,0,.18);
+
+  color:#fff;
+
+  backdrop-filter:
+    blur(20px);
+
+  -webkit-backdrop-filter:
+    blur(20px);
+
+  cursor:pointer;
+
+  font-size:9px;
+
+  letter-spacing:.18em;
+
+  text-transform:uppercase;
+
+  transition:
+    background .3s ease,
+    border-color .3s ease,
+    transform .3s ease;
+
+  -webkit-tap-highlight-color:
+    transparent;
+
+}
+
+.sound-button:active{
+
+  transform:scale(.96);
+
+}
+
+.sound-dot{
+
+  width:8px;
+  height:8px;
+
+  border-radius:50%;
+
+  background:#e6c27a;
+
+  box-shadow:
+    0 0 10px
+    rgba(230,194,122,.65);
+
+}
+
+.sound-button.on{
+
+  background:
+    rgba(255,255,255,.15);
+
+  border-color:
+    rgba(255,255,255,.68);
+
+}
+
+
+/* =========================================================
+   CENTER MESSAGE
+   ========================================================= */
+
+.center-content{
+
+  position:absolute;
+
+  inset:0;
+
+  z-index:8;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  text-align:center;
+
+  padding:
+    120px
+    30px
+    150px;
+
+  pointer-events:none;
+
+}
+
+
+/* Greeting */
+
+#greeting{
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+
+  font-size:
+    clamp(
+      12px,
+      1.5vw,
+      18px
+    );
+
+  font-weight:400;
+
+  letter-spacing:.34em;
+
+  text-transform:uppercase;
+
+  color:
+    rgba(255,255,255,.88);
+
+  margin-bottom:19px;
+
+  text-shadow:
+    0 4px 25px
+    rgba(0,0,0,.55);
+
+}
+
+
+/* Main quote */
+
+#quote{
+
+  max-width:
+    min(
+      820px,
+      90vw
+    );
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      26px,
+      4.3vw,
+      64px
+    );
+
+  font-weight:400;
+
+  line-height:1.08;
+
+  letter-spacing:-.025em;
+
+  color:#fff;
+
+  text-shadow:
+    0 7px 35px
+    rgba(0,0,0,.55);
+
+}
+
+
+/* =========================================================
+   JOURNEY BUTTON
+   ========================================================= */
+
+.journey-button{
+
+  position:absolute;
+
+  left:50%;
+
+  bottom:
+    max(
+      82px,
+      calc(
+        72px +
+        env(safe-area-inset-bottom)
+      )
+    );
+
+  transform:
+    translateX(-50%);
+
+  z-index:15;
+
+  min-width:238px;
+
+  height:54px;
+
+  padding:
+    0 27px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:27px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.55);
+
+  border-radius:999px;
+
+  background:
+    rgba(20,20,20,.24);
+
+  color:#fff;
+
+  backdrop-filter:
+    blur(20px);
+
+  -webkit-backdrop-filter:
+    blur(20px);
+
+  cursor:pointer;
+
+  font-size:10px;
+
+  font-weight:400;
+
+  letter-spacing:.20em;
+
+  text-transform:uppercase;
+
+  transition:
+    transform .35s ease,
+    background .35s ease,
+    border-color .35s ease;
+
+  -webkit-tap-highlight-color:
+    transparent;
+
+}
+
+.journey-arrow{
+
+  font-size:22px;
+
+  line-height:1;
+
+  color:#e6c27a;
+
+  transition:
+    transform .35s ease;
+
+}
+
+.journey-button:hover{
+
+  background:
+    rgba(255,255,255,.13);
+
+  border-color:
+    rgba(255,255,255,.82);
+
+}
+
+.journey-button:hover
+.journey-arrow{
+
+  transform:
+    translateX(5px);
+
+}
+
+.journey-button:active{
+
+  transform:
+    translateX(-50%)
+    scale(.97);
+
+}
+
+
+/* =========================================================
+   BOTTOM CORNERS
+   ========================================================= */
+
+.bottom-left{
+
+  position:absolute;
+
+  left:
+    max(
+      27px,
+      env(safe-area-inset-left)
+    );
+
+  bottom:
+    max(
+      25px,
+      env(safe-area-inset-bottom)
+    );
+
+  z-index:10;
+
+  font-size:8px;
+
+  letter-spacing:.18em;
+
+  color:
+    rgba(255,255,255,.62);
+
+  text-transform:uppercase;
+
+}
+
+.bottom-right{
+
+  position:absolute;
+
+  right:
+    max(
+      27px,
+      env(safe-area-inset-right)
+    );
+
+  bottom:
+    max(
+      25px,
+      env(safe-area-inset-bottom)
+    );
+
+  z-index:10;
+
+  font-size:8px;
+
+  letter-spacing:.16em;
+
+  color:
+    rgba(255,255,255,.62);
+
+  text-transform:uppercase;
+
+}
+
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.loading{
+
+  position:absolute;
+
+  left:50%;
+  top:50%;
+
+  transform:
+    translate(-50%,-50%);
+
+  z-index:6;
+
+  width:30px;
+  height:30px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.18);
+
+  border-top-color:
+    rgba(255,255,255,.85);
+
+  border-radius:50%;
+
+  animation:
+    spin .9s linear infinite;
+
+  opacity:1;
+
+  transition:
+    opacity .5s ease;
+
+}
+
+.loading.hidden{
+
+  opacity:0;
+
+}
+
+@keyframes spin{
+
+  to{
+    transform:
+      translate(-50%,-50%)
+      rotate(360deg);
+  }
+
+}
+
+
+/* =========================================================
+   PAGE TRANSITION
+   ========================================================= */
+
+#transition{
+
+  position:absolute;
+
+  inset:0;
+
+  z-index:100;
+
+  background:#050505;
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:
+    opacity .85s
+    cubic-bezier(.65,0,.35,1);
+
+}
+
+#transition.active{
+
+  opacity:1;
+
+}
+
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width:1200px){
+
+  .date{
+
+    font-size:13px;
+
+  }
+
+  .day{
+
+    font-size:17px;
+
+  }
+
+  .brand-icon{
+
+    width:50px;
+    height:50px;
+
+  }
+
+  .brand-name{
+
+    font-size:15px;
+
+  }
+
+  .brand-tagline{
+
+    font-size:9px;
+
+  }
+
+  .sound-button{
+
+    height:46px;
+
+    min-width:145px;
+
+    font-size:10px;
+
+  }
+
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media
+(min-width:601px)
+and
+(max-width:1199px){
+
+  .center-content{
+
+    padding-left:8vw;
+    padding-right:8vw;
+
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width:600px){
+
+  .video-overlay{
+
+    background:
+
+      linear-gradient(
+        180deg,
+        rgba(0,0,0,.55) 0%,
+        rgba(0,0,0,.10) 30%,
+        rgba(0,0,0,.12) 55%,
+        rgba(0,0,0,.52) 100%
+      );
+
+  }
+
+
+  .date-block{
+
+    top:
+      max(
+        23px,
+        env(safe-area-inset-top)
+      );
+
+    left:
+      max(
+        20px,
+        env(safe-area-inset-left)
+      );
+
+  }
+
+
+  .date{
+
+    font-size:11px;
+
+    letter-spacing:.11em;
+
+  }
+
+
+  .day{
+
+    font-size:14px;
+
+  }
+
+
+  .brand{
+
+    top:
+      max(
+        21px,
+        env(safe-area-inset-top)
+      );
+
+  }
+
+
+  .brand-icon{
+
+    width:37px;
+    height:37px;
+
+    margin-bottom:5px;
+
+  }
+
+
+  .brand-name{
+
+    font-size:12px;
+
+    letter-spacing:.43em;
+
+    margin-left:.43em;
+
+  }
+
+
+  .brand-tagline{
+
+    font-size:7px;
+
+    letter-spacing:.10em;
+
+  }
+
+
+  .sound-button{
+
+    top:
+      max(
+        20px,
+        env(safe-area-inset-top)
+      );
+
+    right:
+      max(
+        17px,
+        env(safe-area-inset-right)
+      );
+
+    min-width:112px;
+
+    height:40px;
+
+    padding:
+      0 13px;
+
+    gap:8px;
+
+    font-size:8px;
+
+    letter-spacing:.13em;
+
+  }
+
+
+  .sound-dot{
+
+    width:7px;
+    height:7px;
+
+  }
+
+
+  .center-content{
+
+    padding:
+      150px
+      20px
+      170px;
+
+  }
+
+
+  #greeting{
+
+    font-size:11px;
+
+    letter-spacing:.25em;
+
+    margin-bottom:17px;
+
+  }
+
+
+  #quote{
+
+    max-width:92vw;
+
+    font-size:
+      clamp(
+        28px,
+        8.5vw,
+        43px
+      );
+
+    line-height:1.08;
+
+    letter-spacing:-.025em;
+
+  }
+
+
+  .journey-button{
+
+    bottom:
+      max(
+        82px,
+        calc(
+          72px +
+          env(safe-area-inset-bottom)
+        )
+      );
+
+    min-width:210px;
+
+    height:51px;
+
+    gap:20px;
+
+    font-size:9px;
+
+  }
+
+
+  .bottom-left{
+
+    left:
+      max(
+        20px,
+        env(safe-area-inset-left)
+      );
+
+    bottom:
+      max(
+        20px,
+        env(safe-area-inset-bottom)
+      );
+
+    font-size:7px;
+
+  }
+
+
+  .bottom-right{
+
+    right:
+      max(
+        20px,
+        env(safe-area-inset-right)
+      );
+
+    bottom:
+      max(
+        20px,
+        env(safe-area-inset-bottom)
+      );
+
+    font-size:7px;
+
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-height:700px){
+
+  .center-content{
+
+    padding-top:120px;
+    padding-bottom:130px;
+
+  }
+
+
+  #quote{
+
+    font-size:
+      clamp(
+        25px,
+        8vw,
+        37px
+      );
+
+  }
+
+
+  .journey-button{
+
+    bottom:65px;
+
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media
+(prefers-reduced-motion:reduce){
+
+  #arrivalVideo{
+
+    transition:none;
+
+    transform:none;
+
+  }
+
+  .journey-button{
+
+    transition:none;
+
+  }
+
+  #transition{
+
+    transition:none;
+
+  }
+
+}
+
+</style>
+
 </head>
 
 
 <body>
 
-<!-- =====================================================
-     AKSH — CINEMATIC ARRIVAL
-     ===================================================== -->
 
-<div
-    id="akshArrival"
-    class="aksh-arrival"
-    aria-label="AKSH arrival experience"
->
+<div id="arrival">
 
-    <video
-        id="arrivalVideo"
-        class="arrival-video"
-        autoplay
-        muted
-        playsinline
-        webkit-playsinline
-        preload="auto"
+
+  <!-- =====================================================
+       VIDEO
+       ===================================================== -->
+
+  <video
+    id="arrivalVideo"
+    autoplay
+    muted
+    playsinline
+    webkit-playsinline
+    preload="auto"
+    disablepictureinpicture
+    disableremoteplayback
+  ></video>
+
+
+  <!-- Cinematic layers -->
+
+  <div class="video-overlay"></div>
+
+  <div class="vignette"></div>
+
+
+  <!-- Loading indicator -->
+
+  <div
+    id="loading"
+    class="loading"
+  ></div>
+
+
+  <!-- =====================================================
+       DATE
+       ===================================================== -->
+
+  <div class="date-block">
+
+    <div
+      id="date"
+      class="date"
+    ></div>
+
+    <div
+      id="day"
+      class="day"
+    ></div>
+
+  </div>
+
+
+  <!-- =====================================================
+       AKSH BRAND
+       ===================================================== -->
+
+  <div class="brand">
+
+    <img
+      src="aksh-icon.PNG"
+      class="brand-icon"
+      alt="AKSH"
     >
-        <source
-            id="arrivalVideoSource"
-            src=""
-            type="video/quicktime"
-        >
-    </video>
 
-    <div class="arrival-overlay"></div>
-
-    <div class="arrival-grain"></div>
-
-
-    <!-- DATE -->
-
-    <div class="arrival-date">
-        <span id="arrivalDate">14.08.2026</span>
-        <span id="arrivalDay">Friday</span>
+    <div class="brand-name">
+      AKSH
     </div>
 
-
-    <!-- SOUND -->
-
-    <button
-        id="soundButton"
-        class="sound-button"
-        type="button"
-        aria-label="Turn sound on"
-    >
-        <span
-            id="soundIcon"
-            class="sound-icon"
-        >
-            ◉
-        </span>
-
-        <span id="soundText">
-            SOUND OFF
-        </span>
-    </button>
-
-
-    <!-- AKSH BRAND -->
-
-    <div class="arrival-brand">
-
-        <img
-            src="aksh-icon.PNG"
-            alt="AKSH"
-            class="arrival-icon"
-        >
-
-        <div class="arrival-name">
-            A K S H
-        </div>
-
-        <div class="arrival-tagline">
-            A Safe Space For Every Mind
-        </div>
-
+    <div class="brand-tagline">
+      A Safe Space For Every Mind
     </div>
 
+  </div>
 
-    <!-- ARRIVAL MESSAGE -->
 
-    <div class="arrival-content">
+  <!-- =====================================================
+       SOUND
+       ===================================================== -->
 
-        <div
-            id="arrivalGreeting"
-            class="arrival-greeting"
-        >
-            GOOD MORNING
-        </div>
+  <button
+    id="soundButton"
+    class="sound-button"
+    type="button"
+    aria-label="Turn sound on"
+  >
 
-        <h1
-            id="arrivalQuote"
-            class="arrival-quote"
-        >
-            Come as you are.
-        </h1>
+    <span
+      id="soundDot"
+      class="sound-dot"
+    ></span>
 
-        <button
-            id="beginJourney"
-            class="begin-button"
-            type="button"
-        >
-            <span>
-                BEGIN YOUR JOURNEY
-            </span>
+    <span id="soundText">
+      SOUND OFF
+    </span>
 
-            <span class="button-arrow">
-                →
-            </span>
-        </button>
+  </button>
 
+
+  <!-- =====================================================
+       CENTER
+       ===================================================== -->
+
+  <main class="center-content">
+
+    <div id="greeting">
+      Good Morning
     </div>
 
-
-    <!-- ARRIVAL FOOTER -->
-
-    <div class="arrival-footer">
-
-        <span>
-            MENTAL WELLNESS
-        </span>
-
-        <span>
-            MEGHANA KAVERAPPA
-        </span>
-
+    <div id="quote">
+      Come as you are.
     </div>
+
+  </main>
+
+
+  <!-- =====================================================
+       BEGIN JOURNEY
+       ===================================================== -->
+
+  <button
+    id="journeyButton"
+    class="journey-button"
+    type="button"
+  >
+
+    <span>
+      Begin Your Journey
+    </span>
+
+    <span class="journey-arrow">
+      →
+    </span>
+
+  </button>
+
+
+  <!-- =====================================================
+       BOTTOM
+       ===================================================== -->
+
+  <div class="bottom-left">
+    Mental Wellness
+  </div>
+
+  <div class="bottom-right">
+    Meghana Kaverappa
+  </div>
+
+
+  <!-- =====================================================
+       TRANSITION
+       ===================================================== -->
+
+  <div id="transition"></div>
+
 
 </div>
 
 
+<script>
 
-<!-- =====================================================
-     AKSH MAIN WORLD
-     ===================================================== -->
+/* =========================================================
+   AKSH ARRIVAL EXPERIENCE ENGINE
+   ========================================================= */
 
-<main
-    id="akshWorld"
-    class="aksh-world"
->
 
+/* ---------------------------------------------------------
+   ELEMENTS
+   --------------------------------------------------------- */
 
-    <!-- =================================================
-         ATMOSPHERE
-         ================================================= -->
+const video =
+  document.getElementById("arrivalVideo");
 
-    <div
-        id="worldAtmosphere"
-        class="world-atmosphere"
-    >
+const dateBox =
+  document.getElementById("date");
 
-        <div class="sky-cloud cloud-one"></div>
-        <div class="sky-cloud cloud-two"></div>
-        <div class="sky-cloud cloud-three"></div>
+const dayBox =
+  document.getElementById("day");
 
-        <div class="rain-layer"></div>
+const greeting =
+  document.getElementById("greeting");
 
-        <div class="moon"></div>
+const quote =
+  document.getElementById("quote");
 
-        <div class="stars stars-one"></div>
-        <div class="stars stars-two"></div>
+const soundButton =
+  document.getElementById("soundButton");
 
-        <div class="shooting-star shooting-one"></div>
-        <div class="shooting-star shooting-two"></div>
+const soundText =
+  document.getElementById("soundText");
 
-    </div>
+const journeyButton =
+  document.getElementById("journeyButton");
 
+const transition =
+  document.getElementById("transition");
 
+const loading =
+  document.getElementById("loading");
 
-    <!-- =================================================
-         NAVIGATION
-         ================================================= -->
 
-    <header class="aksh-header">
+/* ---------------------------------------------------------
+   VIDEO FILES
+   --------------------------------------------------------- */
 
-        <a
-            href="#home"
-            class="aksh-logo"
-            aria-label="AKSH Home"
-        >
+const videos = {
 
-            <img
-                src="aksh-icon.PNG"
-                alt="AKSH"
-            >
+  morning1:
+    "aksh-morning.1.mov",
 
-            <span class="logo-text">
+  morning2:
+    "aksh-morning.2.mov",
 
-                <strong>
-                    AKSH
-                </strong>
+  morning3:
+    "aksh-morning.3.mov",
 
-                <small>
-                    MENTAL WELLNESS
-                </small>
+  morning4:
+    "aksh-morning.4.mov",
 
-            </span>
 
-        </a>
+  afternoon1:
+    "aksh-afternoon.1.mov",
 
+  afternoon2:
+    "aksh-afternoon.2.mov",
 
-        <nav class="desktop-nav">
+  afternoon3:
+    "aksh-afternoon.3.mov",
 
-            <a href="#home">
-                HOME
-            </a>
+  afternoon4:
+    "aksh-afternoon.4.mov",
 
-            <a href="#journey">
-                JOURNEY
-            </a>
 
-            <a href="#ai">
-                AI COMPANION
-            </a>
+  evening1:
+    "aksh-evening.1.mov",
 
-            <a href="#explore">
-                EXPLORE
-            </a>
+  evening2:
+    "aksh-evening.2.mov",
 
-            <a href="#journal">
-                JOURNAL
-            </a>
+  evening3:
+    "aksh-evening.3.mov",
 
-            <a href="#about">
-                ABOUT
-            </a>
 
-        </nav>
+  night1:
+    "aksh-night.1.mov",
 
+  night2:
+    "aksh-night.2.mov"
 
-        <div class="header-actions">
+};
 
-            <a
-                href="#begin"
-                class="my-space"
-            >
-                <span class="space-icon">
-                    ◯
-                </span>
 
-                MY SPACE
-            </a>
+/* ---------------------------------------------------------
+   QUOTES
+   Different quote every visit.
+   --------------------------------------------------------- */
 
-            <button
-                id="menuButton"
-                class="menu-button"
-                type="button"
-                aria-label="Open menu"
-            >
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+const quotes = {
 
-        </div>
+  morning: [
 
-    </header>
+    "Come as you are.",
 
+    "Begin gently. The day can wait.",
 
+    "Take a breath. There is time.",
 
-    <!-- =================================================
-         MOBILE MENU
-         ================================================= -->
+    "Let today meet you exactly as you are.",
 
-    <div
-        id="mobileMenu"
-        class="mobile-menu"
-    >
+    "You do not have to rush into the day.",
 
-        <button
-            id="closeMenu"
-            class="close-menu"
-            type="button"
-        >
-            ×
-        </button>
+    "Start with one peaceful thought.",
 
-        <nav>
+    "You are allowed to move slowly.",
 
-            <a href="#home">
-                HOME
-            </a>
+    "A new morning is another chance to begin.",
 
-            <a href="#journey">
-                JOURNEY
-            </a>
+    "You don't need to have everything figured out today.",
 
-            <a href="#ai">
-                AI COMPANION
-            </a>
+    "Give yourself permission to simply begin."
 
-            <a href="#explore">
-                EXPLORE
-            </a>
+  ],
 
-            <a href="#journal">
-                JOURNAL
-            </a>
 
-            <a href="#about">
-                ABOUT
-            </a>
+  afternoon: [
 
-        </nav>
+    "Pause for a moment. Notice where you are.",
 
-    </div>
+    "You are allowed to pause in the middle of everything.",
 
+    "Take a breath before taking the next step.",
 
+    "There is still time to choose yourself.",
 
-    <!-- =================================================
-         HOME
-         ================================================= -->
+    "You don't have to carry everything at once.",
 
-    <section
-        id="home"
-        class="home-section"
-    >
+    "Your wellbeing belongs in the middle of your day too.",
 
-        <div class="hero-container">
+    "Not every moment needs an answer.",
 
+    "You are more than what you accomplish today.",
 
-            <!-- HERO LEFT -->
+    "Pause. Breathe. Continue when you are ready.",
 
-            <div class="hero-copy">
+    "Whatever today feels like, you can meet it gently."
 
-                <div class="eyebrow">
-                    WELCOME TO AKSH
-                </div>
+  ],
 
-                <h1>
-                    A Safe Space
-                    <br>
-                    For Every Mind
-                </h1>
 
-                <p class="hero-description">
-                    You matter.
-                    Your mind matters.
-                    <br>
-                    Begin your journey to
-                    understanding, balance
-                    and wellbeing.
-                </p>
+  evening: [
 
+    "Let the day become quieter.",
 
-                <div class="hero-actions">
+    "You have made it this far. Breathe.",
 
-                    <button
-                        class="primary-button"
-                        data-scroll-target="feeling"
-                        type="button"
-                    >
-                        BEGIN YOUR JOURNEY
-                        <span>→</span>
-                    </button>
+    "The day does not need to end perfectly.",
 
-                    <button
-                        class="secondary-button"
-                        data-scroll-target="about"
-                        type="button"
-                    >
-                        HOW IT WORKS
-                        <span>▶</span>
-                    </button>
+    "Leave some space for yourself tonight.",
 
-                </div>
+    "You can put down what no longer needs carrying.",
 
-            </div>
+    "Let yourself arrive here.",
 
+    "You deserve a moment without expectations.",
 
+    "Slow down. You are safe to pause.",
 
-            <!-- TIME CARD -->
+    "The evening is allowed to be gentle.",
 
-            <aside class="time-card">
+    "Somewhere between today and tomorrow, there is rest."
 
-                <div class="time-card-top">
+  ],
 
-                    <div>
 
-                        <span
-                            id="homeGreeting"
-                            class="home-greeting"
-                        >
-                            Good Morning
-                        </span>
+  night: [
 
-                        <span class="home-aksh">
-                            AKSH
-                        </span>
+    "Nothing needs to be solved tonight.",
 
-                    </div>
+    "Rest is also a form of moving forward.",
 
-                    <span class="sun-symbol">
-                        ✦
-                    </span>
+    "Tomorrow can wait.",
 
-                </div>
+    "You have permission to rest.",
 
+    "The night does not ask anything from you.",
 
-                <div class="time-divider"></div>
+    "Breathe. You have done enough for today.",
 
+    "Some answers arrive after we stop searching.",
 
-                <div class="home-date">
+    "Close the day gently.",
 
-                    <span id="homeDate">
-                        14.08.2026
-                    </span>
+    "You can simply be here.",
 
-                    <span id="homeDay">
-                        Friday
-                    </span>
+    "Let your mind become quiet, one breath at a time."
 
-                </div>
+  ]
 
+};
 
-                <p
-                    id="homeQuote"
-                    class="home-quote"
-                >
-                    Every moment is a
-                    chance to begin again.
-                </p>
 
+/* ---------------------------------------------------------
+   CURRENT TIME
+   --------------------------------------------------------- */
 
-                <div class="breathing-line">
+const now =
+  new Date();
 
-                    <span></span>
+const minutes =
+  now.getHours() * 60 +
+  now.getMinutes();
 
-                    <small>
-                        Take a breath.
-                    </small>
 
-                </div>
+/* ---------------------------------------------------------
+   TIME SELECTION
+   --------------------------------------------------------- */
 
-            </aside>
+let period;
+let selectedVideo;
+let greetingText;
 
-        </div>
 
+/* MORNING */
 
+if (
+  minutes >= 300 &&
+  minutes < 360
+){
 
-        <!-- =================================================
-             HOW ARE YOU FEELING
-             ================================================= -->
+  period = "morning";
 
-        <div
-            id="feeling"
-            class="feeling-section"
-        >
+  selectedVideo =
+    videos.morning1;
 
-            <div class="section-heading-row">
+  greetingText =
+    "Good Morning";
 
-                <div>
+}
 
-                    <span class="section-eyebrow">
-                        YOUR MOMENT
-                    </span>
+else if (
+  minutes >= 360 &&
+  minutes < 480
+){
 
-                    <h2>
-                        How are you
-                        feeling today?
-                    </h2>
+  period = "morning";
 
-                    <p>
-                        You don't have to
-                        find the right words.
-                        Just start somewhere.
-                    </p>
+  selectedVideo =
+    videos.morning2;
 
-                </div>
+  greetingText =
+    "Good Morning";
 
+}
 
-                <div class="heading-note">
+else if (
+  minutes >= 480 &&
+  minutes < 600
+){
 
-                    <span>
-                        YOU ARE NOT ALONE.
-                    </span>
+  period = "morning";
 
-                    <span>
-                        WE ARE HERE WITH YOU.
-                    </span>
+  selectedVideo =
+    videos.morning3;
 
-                </div>
+  greetingText =
+    "Good Morning";
 
-            </div>
+}
 
+else if (
+  minutes >= 600 &&
+  minutes < 720
+){
 
+  period = "morning";
 
-            <!-- HORIZONTAL FEELING WORLD -->
+  selectedVideo =
+    videos.morning4;
 
-            <div
-                id="feelingHorizontal"
-                class="feeling-horizontal"
-            >
+  greetingText =
+    "Good Morning";
 
+}
 
-                <!-- ANXIOUS -->
 
-                <article
-                    class="feeling-card feeling-anxious"
-                    data-feeling="anxious"
-                >
+/* AFTERNOON */
 
-                    <div class="feeling-number">
-                        01
-                    </div>
+else if (
+  minutes >= 720 &&
+  minutes < 780
+){
 
-                    <div class="feeling-icon">
-                        ◌
-                    </div>
+  period = "afternoon";
 
-                    <div class="feeling-content">
+  selectedVideo =
+    videos.afternoon1;
 
-                        <span>
-                            IF YOU FEEL
-                        </span>
+  greetingText =
+    "Good Afternoon";
 
-                        <h3>
-                            Anxious
-                        </h3>
+}
 
-                        <p>
-                            Let's create a
-                            little more calm.
-                        </p>
+else if (
+  minutes >= 780 &&
+  minutes < 870
+){
 
-                    </div>
+  period = "afternoon";
 
-                    <button
-                        class="card-arrow"
-                        type="button"
-                        aria-label="Explore anxiety support"
-                    >
-                        →
-                    </button>
+  selectedVideo =
+    videos.afternoon2;
 
-                </article>
+  greetingText =
+    "Good Afternoon";
 
+}
 
+else if (
+  minutes >= 870 &&
+  minutes < 960
+){
 
-                <!-- OVERWHELMED -->
+  period = "afternoon";
 
-                <article
-                    class="feeling-card feeling-overwhelmed"
-                    data-feeling="overwhelmed"
-                >
+  selectedVideo =
+    videos.afternoon3;
 
-                    <div class="feeling-number">
-                        02
-                    </div>
+  greetingText =
+    "Good Afternoon";
 
-                    <div class="feeling-icon">
-                        ◇
-                    </div>
+}
 
-                    <div class="feeling-content">
+else if (
+  minutes >= 960 &&
+  minutes < 1020
+){
 
-                        <span>
-                            IF YOU FEEL
-                        </span>
+  period = "afternoon";
 
-                        <h3>
-                            Overwhelmed
-                        </h3>
+  selectedVideo =
+    videos.afternoon4;
 
-                        <p>
-                            Let's slow things
-                            down together.
-                        </p>
+  greetingText =
+    "Good Afternoon";
 
-                    </div>
+}
 
-                    <button
-                        class="card-arrow"
-                        type="button"
-                        aria-label="Explore overwhelm support"
-                    >
-                        →
-                    </button>
 
-                </article>
+/* EVENING */
 
+else if (
+  minutes >= 1020 &&
+  minutes < 1065
+){
 
+  period = "evening";
 
-                <!-- NEED TO TALK -->
+  selectedVideo =
+    videos.evening1;
 
-                <article
-                    class="feeling-card feeling-talk"
-                    data-feeling="talk"
-                >
+  greetingText =
+    "Good Evening";
 
-                    <div class="feeling-number">
-                        03
-                    </div>
+}
 
-                    <div class="feeling-icon">
-                        ♡
-                    </div>
+else if (
+  minutes >= 1065 &&
+  minutes < 1140
+){
 
-                    <div class="feeling-content">
+  period = "evening";
 
-                        <span>
-                            IF YOU NEED
-                        </span>
+  selectedVideo =
+    videos.evening2;
 
-                        <h3>
-                            Someone To Talk To
-                        </h3>
+  greetingText =
+    "Good Evening";
 
-                        <p>
-                            You don't have to
-                            carry everything alone.
-                        </p>
+}
 
-                    </div>
+else if (
+  minutes >= 1140 &&
+  minutes < 1200
+){
 
-                    <button
-                        class="card-arrow"
-                        type="button"
-                        aria-label="Talk to someone"
-                    >
-                        →
-                    </button>
+  period = "evening";
 
-                </article>
+  selectedVideo =
+    videos.evening3;
 
+  greetingText =
+    "Good Evening";
 
+}
 
-                <!-- JUST EXPLORING -->
 
-                <article
-                    class="feeling-card feeling-explore"
-                    data-feeling="exploring"
-                >
+/* NIGHT */
 
-                    <div class="feeling-number">
-                        04
-                    </div>
+else if (
+  minutes >= 1200
+){
 
-                    <div class="feeling-icon">
-                        ✦
-                    </div>
+  period = "night";
 
-                    <div class="feeling-content">
+  selectedVideo =
+    videos.night1;
 
-                        <span>
-                            IF YOU ARE
-                        </span>
+  greetingText =
+    "Good Night";
 
-                        <h3>
-                            Just Exploring
-                        </h3>
+}
 
-                        <p>
-                            Take your time.
-                            Discover what feels right.
-                        </p>
+else{
 
-                    </div>
+  period = "night";
 
-                    <button
-                        class="card-arrow"
-                        type="button"
-                        aria-label="Explore AKSH"
-                    >
-                        →
-                    </button>
+  selectedVideo =
+    videos.night2;
 
-                </article>
+  greetingText =
+    "Good Night";
 
-            </div>
+}
 
 
-            <div class="horizontal-hint">
+/* ---------------------------------------------------------
+   DATE
+   Required format:
+   14.08.2026
+   Friday
+   --------------------------------------------------------- */
 
-                <span>
-                    ←
-                </span>
+const day =
+  String(
+    now.getDate()
+  ).padStart(2,"0");
 
-                SWIPE TO EXPLORE
+const month =
+  String(
+    now.getMonth() + 1
+  ).padStart(2,"0");
 
-                <span>
-                    →
-                </span>
+const year =
+  now.getFullYear();
 
-            </div>
 
-        </div>
+const weekday =
+  now.toLocaleDateString(
+    "en-IN",
+    {
+      weekday:"long"
+    }
+  );
 
 
+dateBox.textContent =
+  `${day}.${month}.${year}`;
 
-        <!-- =================================================
-             FEATURED EXPERIENCE
-             ================================================= -->
+dayBox.textContent =
+  weekday;
 
-        <section
-            id="explore"
-            class="featured-section"
-        >
 
-            <div class="featured-image">
+/* ---------------------------------------------------------
+   GREETING
+   --------------------------------------------------------- */
 
-                <div class="featured-overlay"></div>
+greeting.textContent =
+  greetingText;
 
-                <div class="featured-content">
 
-                    <span class="section-eyebrow">
-                        FEATURED
-                    </span>
+/* ---------------------------------------------------------
+   DIFFERENT QUOTE
+   --------------------------------------------------------- */
 
-                    <h2>
-                        A Moment
-                        <br>
-                        For You
-                    </h2>
+function chooseQuote(){
 
-                    <p>
-                        Pause.
-                        Breathe.
-                        Notice where you are.
-                    </p>
+  const list =
+    quotes[period];
 
-                    <button
-                        class="outline-button"
-                        type="button"
-                    >
-                        START NOW
-                        <span>▶</span>
-                    </button>
+  /*
+    Use date + time + random value
+    so repeated visitors don't all
+    necessarily see the same quote.
+  */
 
-                </div>
+  const randomIndex =
+    Math.floor(
+      Math.random() *
+      list.length
+    );
 
-            </div>
+  return list[randomIndex];
 
+}
 
-            <div class="featured-side">
 
+quote.textContent =
+  chooseQuote();
 
-                <!-- WELLBEING -->
 
-                <div class="mini-panel wellbeing-panel">
+/* ---------------------------------------------------------
+   LOAD VIDEO
+   --------------------------------------------------------- */
 
-                    <div class="mini-panel-heading">
+let journeyStarted =
+  false;
 
-                        <h3>
-                            Your Wellbeing
-                        </h3>
+let transitionStarted =
+  false;
 
-                        <span>
-                            A space to return to.
-                        </span>
+let fourSecondTimer =
+  null;
 
-                    </div>
 
-                    <div class="wellbeing-ring">
+function startArrival(){
 
-                        <div>
-                            <strong>
-                                AKSH
-                            </strong>
+  if (
+    journeyStarted
+  ){
 
-                            <span>
-                                JOURNEY
-                            </span>
-                        </div>
+    return;
 
-                    </div>
+  }
 
-                    <div class="wellbeing-list">
 
-                        <span>
-                            <i>♡</i>
-                            Daily reflection
-                        </span>
+  if (
+    !selectedVideo
+  ){
 
-                        <span>
-                            <i>✦</i>
-                            Mindful moments
-                        </span>
+    return;
 
-                        <span>
-                            <i>◌</i>
-                            Personal support
-                        </span>
+  }
 
-                    </div>
 
-                </div>
+  video.src =
+    selectedVideo;
 
 
+  video.muted =
+    true;
 
-                <!-- AI PREVIEW -->
 
-                <div class="mini-panel ai-mini-panel">
+  video.setAttribute(
+    "muted",
+    ""
+  );
 
-                    <div class="ai-glow-orb">
 
-                        <div class="orb-core"></div>
+  video.setAttribute(
+    "playsinline",
+    ""
+  );
 
-                    </div>
 
-                    <div class="ai-mini-copy">
+  video.setAttribute(
+    "webkit-playsinline",
+    ""
+  );
 
-                        <span>
-                            AI COMPANION
-                        </span>
 
-                        <h3>
-                            I'm here to listen.
-                        </h3>
+  video.load();
 
-                        <p>
-                            How are you
-                            feeling today?
-                        </p>
 
-                        <button
-                            data-scroll-target="ai"
-                            type="button"
-                        >
-                            LET'S TALK
-                            <span>→</span>
-                        </button>
+  const playVideo =
+    () => {
 
-                    </div>
+      const playPromise =
+        video.play();
 
-                </div>
 
-            </div>
+      if (
+        playPromise &&
+        typeof playPromise.catch ===
+        "function"
+      ){
 
-        </section>
+        playPromise.catch(
+          () => {
 
+            /*
+              iPhone may require a user
+              interaction in some cases.
 
+              The sound button / page tap
+              will retry playback.
+            */
 
-        <!-- =================================================
-             AI COMPANION
-             ================================================= -->
+          }
+        );
 
-        <section
-            id="ai"
-            class="ai-section"
-        >
+      }
 
-            <div class="ai-world">
+    };
 
-                <div class="ai-background-glow"></div>
 
-                <div class="ai-stars"></div>
+  video.addEventListener(
+    "canplay",
+    () => {
 
+      loading.classList.add(
+        "hidden"
+      );
 
-                <!-- AI VISUAL -->
+      video.classList.add(
+        "visible"
+      );
 
-                <div class="ai-visual">
 
-                    <div class="ai-orbit orbit-one"></div>
-                    <div class="ai-orbit orbit-two"></div>
-                    <div class="ai-orbit orbit-three"></div>
+      playVideo();
 
-                    <div class="ai-sphere">
 
-                        <div class="ai-sphere-light"></div>
+      /*
+        The four-second experience
+        begins once the video is ready.
+      */
 
-                        <div class="ai-sphere-core">
-                            AKSH
-                        </div>
+      if (
+        !fourSecondTimer
+      ){
 
-                    </div>
+        fourSecondTimer =
+          setTimeout(
+            openPage1,
+            4000
+          );
 
-                </div>
+      }
 
+    },
+    {
+      once:true
+    }
+  );
 
-                <!-- AI CONTENT -->
 
-                <div class="ai-copy">
+  /*
+    Backup in case the browser
+    already has enough data.
+  */
 
-                    <span class="section-eyebrow">
-                        AKSH AI
-                    </span>
+  video.addEventListener(
+    "loadeddata",
+    () => {
 
-                    <h2>
-                        A companion
-                        <br>
-                        when you need
-                        <br>
-                        someone there.
-                    </h2>
+      video.classList.add(
+        "visible"
+      );
 
-                    <p>
-                        Listen.
-                        Understand.
-                        Guide.
-                    </p>
+      playVideo();
 
-                    <p class="ai-note">
-                        Designed to support your
-                        mental wellness journey —
-                        not replace a psychologist.
-                    </p>
+    },
+    {
+      once:true
+    }
+  );
 
 
-                    <!-- LANGUAGES -->
+  /*
+    Final fallback.
+  */
 
-                    <div class="ai-languages">
+  setTimeout(
+    () => {
 
-                        <span>English</span>
-                        <span>Hindi</span>
-                        <span>Kannada</span>
-                        <span>Telugu</span>
-                        <span>Tamil</span>
-                        <span>Malayalam</span>
+      if (
+        !video.classList.contains(
+          "visible"
+        )
+      ){
 
-                    </div>
+        video.classList.add(
+          "visible"
+        );
 
+        loading.classList.add(
+          "hidden"
+        );
 
-                    <!-- AI MODES -->
+        playVideo();
 
-                    <div class="ai-modes">
+      }
 
-                        <button type="button">
-                            <span>◌</span>
-                            CHAT
-                        </button>
+    },
+    1800
+  );
 
-                        <button type="button">
-                            <span>⌁</span>
-                            VOICE
-                        </button>
+}
 
-                        <button type="button">
-                            <span>◉</span>
-                            VIDEO
-                        </button>
 
-                    </div>
+/* ---------------------------------------------------------
+   PAGE 1 TRANSITION
+   --------------------------------------------------------- */
 
+function openPage1(){
 
-                    <button
-                        class="ai-main-button"
-                        type="button"
-                    >
-                        TALK WITH AKSH AI
-                        <span>→</span>
-                    </button>
+  if (
+    transitionStarted
+  ){
 
-                </div>
+    return;
 
-            </div>
+  }
 
-        </section>
 
+  transitionStarted =
+    true;
 
 
-        <!-- =================================================
-             EXPLORE YOUR MIND
-             ================================================= -->
+  if (
+    fourSecondTimer
+  ){
 
-        <section class="mind-section">
+    clearTimeout(
+      fourSecondTimer
+    );
 
-            <div class="section-heading-row">
+  }
 
-                <div>
 
-                    <span class="section-eyebrow">
-                        EXPLORE
-                    </span>
+  transition.classList.add(
+    "active"
+  );
 
-                    <h2>
-                        Your mind deserves
-                        attention too.
-                    </h2>
 
-                </div>
+  /*
+    Give the black cinematic
+    transition enough time to
+    cover the old page.
+  */
 
-                <p class="section-description">
-                    Discover small moments,
-                    tools and experiences
-                    designed to support
-                    everyday mental wellness.
-                </p>
+  setTimeout(
+    () => {
 
-            </div>
+      window.location.href =
+        "page1.html";
 
+    },
+    780
+  );
 
-            <div class="mind-grid">
+}
 
 
-                <article class="mind-card">
+/* ---------------------------------------------------------
+   BEGIN JOURNEY
+   --------------------------------------------------------- */
 
-                    <span>
-                        01
-                    </span>
+journeyButton.addEventListener(
+  "click",
+  () => {
 
-                    <div class="mind-symbol">
-                        ◌
-                    </div>
+    openPage1();
 
-                    <h3>
-                        Calm
-                    </h3>
+  }
+);
 
-                    <p>
-                        Create a little more
-                        space inside your day.
-                    </p>
 
-                    <button type="button">
-                        EXPLORE →
-                    </button>
+/* ---------------------------------------------------------
+   SOUND
+   --------------------------------------------------------- */
 
-                </article>
+let soundOn =
+  false;
 
 
+soundButton.addEventListener(
+  "click",
+  (event) => {
 
-                <article class="mind-card">
+    /*
+      Prevent the button tap
+      from affecting anything else.
+    */
 
-                    <span>
-                        02
-                    </span>
+    event.stopPropagation();
 
-                    <div class="mind-symbol">
-                        ☾
-                    </div>
 
-                    <h3>
-                        Sleep
-                    </h3>
+    if (
+      soundOn
+    ){
 
-                    <p>
-                        Slow down and prepare
-                        your mind for rest.
-                    </p>
+      video.muted =
+        true;
 
-                    <button type="button">
-                        EXPLORE →
-                    </button>
+      soundOn =
+        false;
 
-                </article>
+      soundText.textContent =
+        "SOUND OFF";
 
+      soundButton.classList.remove(
+        "on"
+      );
 
+      soundButton.setAttribute(
+        "aria-label",
+        "Turn sound on"
+      );
 
-                <article class="mind-card">
+      return;
 
-                    <span>
-                        03
-                    </span>
+    }
 
-                    <div class="mind-symbol">
-                        ♡
-                    </div>
 
-                    <h3>
-                        Mood
-                    </h3>
+    /*
+      This tap is a genuine
+      user interaction, so iPhone
+      allows us to enable sound.
+    */
 
-                    <p>
-                        Understand what you
-                        are feeling today.
-                    </p>
+    video.muted =
+      false;
 
-                    <button type="button">
-                        EXPLORE →
-                    </button>
+    video.volume =
+      1;
 
-                </article>
 
+    const playPromise =
+      video.play();
 
 
-                <article class="mind-card">
+    if (
+      playPromise &&
+      typeof playPromise.catch ===
+      "function"
+    ){
 
-                    <span>
-                        04
-                    </span>
+      playPromise.catch(
+        () => {
 
-                    <div class="mind-symbol">
-                        ✧
-                    </div>
+          /*
+            If the browser still
+            refuses sound, keep the
+            visual state safe.
+          */
 
-                    <h3>
-                        Journal
-                    </h3>
+          video.muted =
+            true;
 
-                    <p>
-                        Put your thoughts
-                        somewhere safe.
-                    </p>
+          soundOn =
+            false;
 
-                    <button
-                        id="journal"
-                        type="button"
-                    >
-                        EXPLORE →
-                    </button>
+          soundText.textContent =
+            "SOUND OFF";
 
-                </article>
+        }
+      );
 
-            </div>
+    }
 
-        </section>
 
+    soundOn =
+      true;
 
+    soundText.textContent =
+      "SOUND ON";
 
-        <!-- =================================================
-             AKSH JOURNEY
-             ================================================= -->
+    soundButton.classList.add(
+      "on"
+    );
 
-        <section
-            id="journey"
-            class="journey-section"
-        >
+    soundButton.setAttribute(
+      "aria-label",
+      "Turn sound off"
+    );
 
-            <div class="journey-intro">
+  }
+);
 
-                <span class="section-eyebrow">
-                    THE AKSH JOURNEY
-                </span>
 
-                <h2>
-                    Mental wellness
-                    belongs everywhere.
-                </h2>
+/* ---------------------------------------------------------
+   ANY FIRST TOUCH
+   --------------------------------------------------------- */
 
-                <p>
-                    AKSH begins with one person
-                    and grows toward a world where
-                    every mind has a safe space.
-                </p>
+document.addEventListener(
+  "touchstart",
+  () => {
 
-            </div>
+    /*
+      If the video was prevented
+      from starting automatically,
+      a genuine touch gives us a
+      chance to start it.
 
+      We do NOT automatically
+      unmute it.
+    */
 
-            <div class="journey-line"></div>
+    if (
+      video.paused
+    ){
 
+      video.muted =
+        true;
 
-            <div class="journey-grid">
+      video.play().catch(
+        () => {}
+      );
 
-                <article>
-                    <span>01</span>
-                    <h3>Individuals</h3>
-                    <p>
-                        Personal mental wellness
-                        and psychological support.
-                    </p>
-                </article>
+    }
 
-                <article>
-                    <span>02</span>
-                    <h3>Families</h3>
-                    <p>
-                        Creating healthier
-                        conversations at home.
-                    </p>
-                </article>
+  },
+  {
+    passive:true,
+    once:true
+  }
+);
 
-                <article>
-                    <span>03</span>
-                    <h3>Schools</h3>
-                    <p>
-                        Building mental wellness
-                        into education.
-                    </p>
-                </article>
 
-                <article>
-                    <span>04</span>
-                    <h3>Colleges</h3>
-                    <p>
-                        Supporting students
-                        through important years.
-                    </p>
-                </article>
+/* ---------------------------------------------------------
+   DESKTOP FALLBACK
+   --------------------------------------------------------- */
 
-                <article>
-                    <span>05</span>
-                    <h3>Workplaces</h3>
-                    <p>
-                        Healthier people,
-                        healthier organisations.
-                    </p>
-                </article>
+document.addEventListener(
+  "click",
+  () => {
 
-                <article>
-                    <span>06</span>
-                    <h3>Communities</h3>
-                    <p>
-                        A larger culture of
-                        everyday mental wellness.
-                    </p>
-                </article>
+    if (
+      video.paused
+    ){
 
-            </div>
+      video.muted =
+        true;
 
-        </section>
+      video.play().catch(
+        () => {}
+      );
 
+    }
 
+  },
+  {
+    passive:true,
+    once:true
+  }
+);
 
-        <!-- =================================================
-             STORIES / JOURNAL
-             ================================================= -->
 
-        <section
-            id="journal"
-            class="stories-section"
-        >
+/* ---------------------------------------------------------
+   START
+   --------------------------------------------------------- */
 
-            <div class="stories-heading">
+startArrival();
 
-                <span class="section-eyebrow">
-                    STORIES & JOURNAL
-                </span>
 
-                <h2>
-                    There is always
-                    more to understand.
-                </h2>
+/* ---------------------------------------------------------
+   DEBUG
+   --------------------------------------------------------- */
 
-            </div>
+console.log(
+  "AKSH Arrival Loaded"
+);
 
+console.log(
+  "Time:",
+  greetingText
+);
 
-            <div class="story-row">
+console.log(
+  "Video:",
+  selectedVideo
+);
 
-                <article class="story-card">
+console.log(
+  "Period:",
+  period
+);
 
-                    <span>
-                        JOURNAL
-                    </span>
-
-                    <h3>
-                        Learning to
-                        slow down.
-                    </h3>
-
-                    <p>
-                        Reflections on creating
-                        space for yourself.
-                    </p>
-
-                    <button type="button">
-                        READ →
-                    </button>
-
-                </article>
-
-
-                <article class="story-card">
-
-                    <span>
-                        MENTAL WELLNESS
-                    </span>
-
-                    <h3>
-                        When your mind
-                        feels full.
-                    </h3>
-
-                    <p>
-                        Understanding overwhelm
-                        without judgement.
-                    </p>
-
-                    <button type="button">
-                        READ →
-                    </button>
-
-                </article>
-
-
-                <article class="story-card">
-
-                    <span>
-                        REFLECTION
-                    </span>
-
-                    <h3>
-                        You are allowed
-                        to begin again.
-                    </h3>
-
-                    <p>
-                        A small reminder for
-                        difficult days.
-                    </p>
-
-                    <button type="button">
-                        READ →
-                    </button>
-
-                </article>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =================================================
-             ABOUT / MEGHANA
-             ================================================= -->
-
-        <section
-            id="about"
-            class="about-section"
-        >
-
-            <div class="about-photo">
-
-                <img
-                    src="meghana.kaverappa.jpg"
-                    alt="Meghana Kaverappa"
-                >
-
-            </div>
-
-
-            <div class="about-copy">
-
-                <span class="section-eyebrow">
-                    THE PERSON BEHIND AKSH
-                </span>
-
-                <h2>
-                    Meghana
-                    Kaverappa
-                </h2>
-
-                <span class="about-role">
-                    FOUNDER & CHIEF PSYCHOLOGIST
-                </span>
-
-                <p>
-                    AKSH begins with a simple belief:
-                    every mind deserves a safe space.
-                </p>
-
-                <p>
-                    What begins with psychological
-                    support today is envisioned as
-                    a much larger mental wellness
-                    ecosystem for individuals,
-                    families, education,
-                    workplaces and communities.
-                </p>
-
-                <button
-                    class="outline-button"
-                    type="button"
-                >
-                    MEET MEGHANA
-                    <span>→</span>
-                </button>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =================================================
-             BEGIN
-             ================================================= -->
-
-        <section
-            id="begin"
-            class="begin-section"
-        >
-
-            <div class="begin-glow"></div>
-
-            <span class="section-eyebrow">
-                YOUR JOURNEY CAN BEGIN HERE
-            </span>
-
-            <h2>
-                Come as you are.
-            </h2>
-
-            <p>
-                No judgement.
-                No pressure.
-                Just a safe space for your mind.
-            </p>
-
-            <div class="begin-actions">
-
-                <button
-                    class="primary-button"
-                    type="button"
-                >
-                    BOOK AN APPOINTMENT
-                    <span>→</span>
-                </button>
-
-                <button
-                    class="secondary-button"
-                    type="button"
-                >
-                    TALK WITH AKSH AI
-                    <span>→</span>
-                </button>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =================================================
-             FOOTER
-             ================================================= -->
-
-        <footer class="aksh-footer">
-
-            <div class="footer-brand">
-
-                <img
-                    src="aksh-icon.PNG"
-                    alt="AKSH"
-                >
-
-                <div>
-
-                    <strong>
-                        AKSH
-                    </strong>
-
-                    <span>
-                        A Safe Space For Every Mind
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="footer-links">
-
-                <a href="#home">
-                    HOME
-                </a>
-
-                <a href="#journey">
-                    JOURNEY
-                </a>
-
-                <a href="#ai">
-                    AI
-                </a>
-
-                <a href="#about">
-                    ABOUT
-                </a>
-
-                <a href="#journal">
-                    JOURNAL
-                </a>
-
-            </div>
-
-
-            <div class="footer-bottom">
-
-                <span>
-                    © AKSH
-                </span>
-
-                <span>
-                    MENTAL WELLNESS
-                </span>
-
-                <span>
-                    MEGHANA KAVERAPPA
-                </span>
-
-            </div>
-
-        </footer>
-
-    </section>
-
-</main>
-
-
-
-<!-- =====================================================
-     SCRIPT
-     ===================================================== -->
-
-<script src="script.js"></script>
+</script>
 
 </body>
 </html>
