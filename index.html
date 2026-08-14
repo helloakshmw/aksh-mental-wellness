@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -11,7 +12,7 @@
 
 <meta
   name="theme-color"
-  content="#050505"
+  content="#050609"
 >
 
 <title>AKSH — A Safe Space For Every Mind</title>
@@ -19,8 +20,7 @@
 <style>
 
 /* =========================================================
-   AKSH ARRIVAL
-   Cinematic 4-second entrance
+   AKSH — ARRIVAL EXPERIENCE
    ========================================================= */
 
 *{
@@ -34,18 +34,17 @@ body{
   width:100%;
   height:100%;
   overflow:hidden;
-  background:#050505;
+  background:#050609;
 }
 
 body{
   font-family:
     -apple-system,
     BlinkMacSystemFont,
+    "SF Pro Display",
     "Helvetica Neue",
     Arial,
     sans-serif;
-
-  color:#fff;
 
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
@@ -53,10 +52,10 @@ body{
 
 
 /* =========================================================
-   MAIN SCREEN
+   FULL SCREEN
    ========================================================= */
 
-#arrival{
+#page{
   position:fixed;
   inset:0;
 
@@ -65,7 +64,7 @@ body{
 
   overflow:hidden;
 
-  background:#050505;
+  background:#050609;
 
   isolation:isolate;
 }
@@ -75,44 +74,41 @@ body{
    VIDEO
    ========================================================= */
 
-#arrivalVideo{
+#video{
   position:absolute;
-
   inset:0;
 
   width:100%;
   height:100%;
 
   object-fit:cover;
-
   object-position:center center;
 
-  background:#050505;
+  background:#050609;
 
   opacity:0;
 
-  transform:scale(1.035);
+  transform:scale(1.04);
 
   transition:
-    opacity 1.2s ease,
-    transform 4.5s cubic-bezier(.2,.7,.2,1);
+    opacity 1.25s ease,
+    transform 5s cubic-bezier(.2,.7,.2,1);
 
   z-index:1;
 }
 
-#arrivalVideo.visible{
+#video.show{
   opacity:1;
   transform:scale(1);
 }
 
 
 /* =========================================================
-   CINEMATIC DARKNESS
+   CINEMATIC OVERLAY
    ========================================================= */
 
-.video-overlay{
+.overlay{
   position:absolute;
-
   inset:0;
 
   z-index:2;
@@ -124,19 +120,17 @@ body{
     linear-gradient(
       180deg,
       rgba(0,0,0,.48) 0%,
-      rgba(0,0,0,.08) 27%,
-      rgba(0,0,0,.08) 52%,
-      rgba(0,0,0,.38) 100%
+      rgba(0,0,0,.08) 28%,
+      rgba(0,0,0,.05) 52%,
+      rgba(0,0,0,.48) 100%
     );
-
 }
 
 
-/* Extra cinematic vignette */
+/* Cinematic vignette */
 
 .vignette{
   position:absolute;
-
   inset:-5%;
 
   z-index:3;
@@ -146,93 +140,23 @@ body{
   background:
     radial-gradient(
       ellipse at center,
-      transparent 35%,
-      rgba(0,0,0,.25) 72%,
-      rgba(0,0,0,.58) 100%
+      transparent 34%,
+      rgba(0,0,0,.20) 68%,
+      rgba(0,0,0,.55) 100%
     );
 }
 
 
 /* =========================================================
-   TOP LEFT — DATE
+   TOP BRAND
    ========================================================= */
 
-.date-block{
-
+.top{
   position:absolute;
 
   top:
     max(
-      28px,
-      env(safe-area-inset-top)
-    );
-
-  left:
-    max(
-      28px,
-      env(safe-area-inset-left)
-    );
-
-  z-index:10;
-
-  display:flex;
-
-  flex-direction:column;
-
-  gap:7px;
-
-  pointer-events:none;
-
-}
-
-.date{
-
-  font-family:
-    "Helvetica Neue",
-    Arial,
-    sans-serif;
-
-  font-size:12px;
-
-  font-weight:400;
-
-  letter-spacing:.16em;
-
-  color:rgba(255,255,255,.90);
-
-  white-space:nowrap;
-
-}
-
-.day{
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-size:15px;
-
-  font-style:italic;
-
-  letter-spacing:.04em;
-
-  color:rgba(255,255,255,.82);
-
-}
-
-
-/* =========================================================
-   CENTER TOP — AKSH
-   ========================================================= */
-
-.brand{
-
-  position:absolute;
-
-  top:
-    max(
-      26px,
+      25px,
       env(safe-area-inset-top)
     );
 
@@ -251,173 +175,152 @@ body{
   text-align:center;
 
   pointer-events:none;
-
 }
 
-.brand-icon{
 
-  width:43px;
-  height:43px;
+/* AKSH ICON */
+
+#icon{
+  width:68px;
+  height:68px;
 
   object-fit:contain;
 
-  margin-bottom:7px;
+  margin-bottom:8px;
 
   filter:
     drop-shadow(
-      0 5px 18px
-      rgba(0,0,0,.45)
+      0 12px 30px
+      rgba(0,0,0,.38)
     );
-
 }
 
-.brand-name{
+
+/* AKSH */
+
+#watermark{
+  color:
+    rgba(255,255,255,.94);
 
   font-size:14px;
 
   font-weight:400;
 
-  letter-spacing:.52em;
+  letter-spacing:.50em;
 
-  margin-left:.52em;
-
-  color:
-    rgba(255,255,255,.94);
-
+  margin-left:.50em;
 }
 
-.brand-tagline{
 
-  margin-top:6px;
+/* TAGLINE */
 
-  font-size:8px;
-
-  letter-spacing:.15em;
+#tagline{
+  margin-top:7px;
 
   color:
-    rgba(255,255,255,.72);
+    rgba(255,255,255,.78);
+
+  font-size:9px;
+
+  font-weight:400;
+
+  letter-spacing:.13em;
 
   white-space:nowrap;
-
 }
 
 
 /* =========================================================
-   TOP RIGHT — SOUND
+   DATE — TOP LEFT
    ========================================================= */
 
-.sound-button{
-
+#date{
   position:absolute;
 
   top:
     max(
-      25px,
+      28px,
       env(safe-area-inset-top)
     );
 
-  right:
+  left:
     max(
-      24px,
-      env(safe-area-inset-right)
+      25px,
+      env(safe-area-inset-left)
     );
 
-  z-index:20;
+  z-index:10;
 
-  height:44px;
+  color:
+    rgba(255,255,255,.92);
 
-  min-width:132px;
+  font-size:12px;
 
-  padding:
-    0 18px;
+  font-weight:400;
 
-  display:flex;
+  letter-spacing:.08em;
 
-  align-items:center;
+  white-space:nowrap;
 
-  justify-content:center;
-
-  gap:10px;
-
-  border:
-
-    1px solid
-    rgba(255,255,255,.42);
-
-  border-radius:999px;
-
-  background:
-    rgba(0,0,0,.18);
-
-  color:#fff;
-
-  backdrop-filter:
-    blur(20px);
-
-  -webkit-backdrop-filter:
-    blur(20px);
-
-  cursor:pointer;
-
-  font-size:9px;
-
-  letter-spacing:.18em;
-
-  text-transform:uppercase;
-
-  transition:
-    background .3s ease,
-    border-color .3s ease,
-    transform .3s ease;
-
-  -webkit-tap-highlight-color:
-    transparent;
-
-}
-
-.sound-button:active{
-
-  transform:scale(.96);
-
-}
-
-.sound-dot{
-
-  width:8px;
-  height:8px;
-
-  border-radius:50%;
-
-  background:#e6c27a;
-
-  box-shadow:
-    0 0 10px
-    rgba(230,194,122,.65);
-
-}
-
-.sound-button.on{
-
-  background:
-    rgba(255,255,255,.15);
-
-  border-color:
-    rgba(255,255,255,.68);
-
+  text-shadow:
+    0 3px 15px
+    rgba(0,0,0,.35);
 }
 
 
 /* =========================================================
-   CENTER MESSAGE
+   DAY — UNDER DATE
    ========================================================= */
 
-.center-content{
+#day{
+  position:absolute;
 
+  top:
+    calc(
+      max(
+        28px,
+        env(safe-area-inset-top)
+      ) + 21px
+    );
+
+  left:
+    max(
+      25px,
+      env(safe-area-inset-left)
+    );
+
+  z-index:10;
+
+  color:
+    rgba(255,255,255,.78);
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:14px;
+
+  font-style:italic;
+
+  letter-spacing:.04em;
+
+  text-shadow:
+    0 3px 15px
+    rgba(0,0,0,.35);
+}
+
+
+/* =========================================================
+   CENTER CONTENT
+   ========================================================= */
+
+.center{
   position:absolute;
 
   inset:0;
 
-  z-index:8;
+  z-index:6;
 
   display:flex;
 
@@ -430,60 +333,64 @@ body{
   text-align:center;
 
   padding:
-    120px
-    30px
-    150px;
+    130px 25px 150px;
 
   pointer-events:none;
-
 }
 
 
-/* Greeting */
+/* =========================================================
+   GREETING
+   ========================================================= */
 
 #greeting{
+  color:#fff;
 
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Helvetica Neue",
-    Arial,
-    sans-serif;
+  /*
+    BIG HERO TEXT
+  */
 
   font-size:
     clamp(
-      12px,
-      1.5vw,
-      18px
+      58px,
+      9vw,
+      120px
     );
 
-  font-weight:400;
+  line-height:.98;
 
-  letter-spacing:.34em;
+  font-weight:300;
 
-  text-transform:uppercase;
+  letter-spacing:-.055em;
 
-  color:
-    rgba(255,255,255,.88);
-
-  margin-bottom:19px;
+  white-space:nowrap;
 
   text-shadow:
-    0 4px 25px
-    rgba(0,0,0,.55);
+    0 7px 38px
+    rgba(0,0,0,.48);
 
+  margin-bottom:24px;
+
+  animation:
+    greetingIn 1.1s
+    cubic-bezier(.2,.7,.2,1)
+    both;
 }
 
 
-/* Main quote */
+/* =========================================================
+   QUOTE
+   ========================================================= */
 
 #quote{
-
   max-width:
     min(
-      820px,
-      90vw
+      720px,
+      86vw
     );
+
+  color:
+    rgba(255,255,255,.90);
 
   font-family:
     Georgia,
@@ -492,41 +399,85 @@ body{
 
   font-size:
     clamp(
-      26px,
-      4.3vw,
-      64px
+      15px,
+      1.7vw,
+      23px
     );
+
+  line-height:1.45;
 
   font-weight:400;
 
-  line-height:1.08;
+  font-style:italic;
 
-  letter-spacing:-.025em;
-
-  color:#fff;
+  letter-spacing:.01em;
 
   text-shadow:
-    0 7px 35px
-    rgba(0,0,0,.55);
+    0 4px 25px
+    rgba(0,0,0,.50);
+
+  animation:
+    quoteIn 1.3s
+    .15s
+    cubic-bezier(.2,.7,.2,1)
+    both;
+}
+
+
+/* =========================================================
+   TEXT ANIMATIONS
+   ========================================================= */
+
+@keyframes greetingIn{
+
+  from{
+    opacity:0;
+    transform:
+      translateY(18px)
+      scale(.98);
+  }
+
+  to{
+    opacity:1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+@keyframes quoteIn{
+
+  from{
+    opacity:0;
+    transform:
+      translateY(12px);
+  }
+
+  to{
+    opacity:1;
+    transform:
+      translateY(0);
+  }
 
 }
 
 
 /* =========================================================
-   JOURNEY BUTTON
+   BEGIN YOUR JOURNEY
    ========================================================= */
 
-.journey-button{
-
+#journey{
   position:absolute;
 
   left:50%;
 
   bottom:
     max(
-      82px,
+      78px,
       calc(
-        72px +
+        62px +
         env(safe-area-inset-bottom)
       )
     );
@@ -534,14 +485,14 @@ body{
   transform:
     translateX(-50%);
 
-  z-index:15;
+  z-index:12;
 
-  min-width:238px;
+  min-width:235px;
 
-  height:54px;
+  min-height:54px;
 
   padding:
-    0 27px;
+    0 28px;
 
   display:flex;
 
@@ -549,26 +500,25 @@ body{
 
   justify-content:center;
 
-  gap:27px;
+  gap:24px;
 
   border:
     1px solid
-    rgba(255,255,255,.55);
+    rgba(255,255,255,.52);
 
   border-radius:999px;
 
   background:
-    rgba(20,20,20,.24);
+    rgba(0,0,0,.16);
 
   color:#fff;
 
-  backdrop-filter:
-    blur(20px);
-
-  -webkit-backdrop-filter:
-    blur(20px);
-
-  cursor:pointer;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
 
   font-size:10px;
 
@@ -578,30 +528,41 @@ body{
 
   text-transform:uppercase;
 
-  transition:
-    transform .35s ease,
-    background .35s ease,
-    border-color .35s ease;
+  backdrop-filter:
+    blur(20px);
+
+  -webkit-backdrop-filter:
+    blur(20px);
+
+  cursor:pointer;
 
   -webkit-tap-highlight-color:
     transparent;
 
+  transition:
+    background .35s ease,
+    border-color .35s ease,
+    transform .35s ease;
 }
 
-.journey-arrow{
 
-  font-size:22px;
+#journey::after{
+
+  content:"→";
+
+  color:
+    rgba(230,194,122,.95);
+
+  font-size:21px;
 
   line-height:1;
 
-  color:#e6c27a;
-
   transition:
     transform .35s ease;
-
 }
 
-.journey-button:hover{
+
+#journey:hover{
 
   background:
     rgba(255,255,255,.13);
@@ -611,63 +572,34 @@ body{
 
 }
 
-.journey-button:hover
-.journey-arrow{
+
+#journey:hover::after{
 
   transform:
     translateX(5px);
 
 }
 
-.journey-button:active{
+
+#journey:active{
 
   transform:
     translateX(-50%)
-    scale(.97);
+    scale(.96);
 
 }
 
 
 /* =========================================================
-   BOTTOM CORNERS
+   SOUND BUTTON
    ========================================================= */
 
-.bottom-left{
-
-  position:absolute;
-
-  left:
-    max(
-      27px,
-      env(safe-area-inset-left)
-    );
-
-  bottom:
-    max(
-      25px,
-      env(safe-area-inset-bottom)
-    );
-
-  z-index:10;
-
-  font-size:8px;
-
-  letter-spacing:.18em;
-
-  color:
-    rgba(255,255,255,.62);
-
-  text-transform:uppercase;
-
-}
-
-.bottom-right{
-
+#sound{
   position:absolute;
 
   right:
     max(
-      27px,
+      25px,
       env(safe-area-inset-right)
     );
 
@@ -677,63 +609,129 @@ body{
       env(safe-area-inset-bottom)
     );
 
-  z-index:10;
+  z-index:15;
 
-  font-size:8px;
+  width:46px;
+  height:46px;
 
-  letter-spacing:.16em;
+  border-radius:50%;
 
-  color:
-    rgba(255,255,255,.62);
+  border:
+    1px solid
+    rgba(255,255,255,.42);
 
-  text-transform:uppercase;
+  background:
+    rgba(0,0,0,.20);
+
+  color:#fff;
+
+  font-size:17px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  backdrop-filter:
+    blur(18px);
+
+  -webkit-backdrop-filter:
+    blur(18px);
+
+  cursor:pointer;
+
+  -webkit-tap-highlight-color:
+    transparent;
+
+  transition:
+    transform .25s ease,
+    background .25s ease;
+}
+
+
+#sound:active{
+
+  transform:scale(.91);
+
+}
+
+
+#sound.on{
+
+  background:
+    rgba(255,255,255,.15);
 
 }
 
 
 /* =========================================================
-   LOADING
+   FADE TRANSITION
    ========================================================= */
 
-.loading{
+#fade{
+  position:absolute;
 
+  inset:0;
+
+  background:#050609;
+
+  opacity:0;
+
+  z-index:30;
+
+  pointer-events:none;
+
+  transition:
+    opacity .85s
+    cubic-bezier(.65,0,.35,1);
+}
+
+
+#fade.on{
+  opacity:1;
+}
+
+
+/* =========================================================
+   SMALL LOADING STATE
+   ========================================================= */
+
+#loader{
   position:absolute;
 
   left:50%;
   top:50%;
 
+  width:28px;
+  height:28px;
+
   transform:
     translate(-50%,-50%);
 
-  z-index:6;
-
-  width:30px;
-  height:30px;
+  z-index:5;
 
   border:
     1px solid
     rgba(255,255,255,.18);
 
   border-top-color:
-    rgba(255,255,255,.85);
+    rgba(255,255,255,.82);
 
   border-radius:50%;
 
   animation:
     spin .9s linear infinite;
 
-  opacity:1;
-
   transition:
     opacity .5s ease;
-
 }
 
-.loading.hidden{
 
+#loader.hide{
   opacity:0;
-
 }
+
 
 @keyframes spin{
 
@@ -741,87 +739,6 @@ body{
     transform:
       translate(-50%,-50%)
       rotate(360deg);
-  }
-
-}
-
-
-/* =========================================================
-   PAGE TRANSITION
-   ========================================================= */
-
-#transition{
-
-  position:absolute;
-
-  inset:0;
-
-  z-index:100;
-
-  background:#050505;
-
-  opacity:0;
-
-  pointer-events:none;
-
-  transition:
-    opacity .85s
-    cubic-bezier(.65,0,.35,1);
-
-}
-
-#transition.active{
-
-  opacity:1;
-
-}
-
-
-/* =========================================================
-   DESKTOP
-   ========================================================= */
-
-@media (min-width:1200px){
-
-  .date{
-
-    font-size:13px;
-
-  }
-
-  .day{
-
-    font-size:17px;
-
-  }
-
-  .brand-icon{
-
-    width:50px;
-    height:50px;
-
-  }
-
-  .brand-name{
-
-    font-size:15px;
-
-  }
-
-  .brand-tagline{
-
-    font-size:9px;
-
-  }
-
-  .sound-button{
-
-    height:46px;
-
-    min-width:145px;
-
-    font-size:10px;
-
   }
 
 }
@@ -836,10 +753,25 @@ body{
 and
 (max-width:1199px){
 
-  .center-content{
+  #greeting{
 
-    padding-left:8vw;
-    padding-right:8vw;
+    font-size:
+      clamp(
+        55px,
+        9vw,
+        95px
+      );
+
+  }
+
+  #quote{
+
+    font-size:
+      clamp(
+        16px,
+        2vw,
+        21px
+      );
 
   }
 
@@ -850,78 +782,45 @@ and
    MOBILE
    ========================================================= */
 
-@media (max-width:600px){
+@media(max-width:600px){
 
-  .video-overlay{
+  .overlay{
 
     background:
 
       linear-gradient(
         180deg,
-        rgba(0,0,0,.55) 0%,
-        rgba(0,0,0,.10) 30%,
-        rgba(0,0,0,.12) 55%,
-        rgba(0,0,0,.52) 100%
+        rgba(0,0,0,.53) 0%,
+        rgba(0,0,0,.08) 30%,
+        rgba(0,0,0,.10) 53%,
+        rgba(0,0,0,.53) 100%
       );
 
   }
 
 
-  .date-block{
+  .top{
 
     top:
-      max(
-        23px,
-        env(safe-area-inset-top)
-      );
-
-    left:
       max(
         20px,
-        env(safe-area-inset-left)
-      );
-
-  }
-
-
-  .date{
-
-    font-size:11px;
-
-    letter-spacing:.11em;
-
-  }
-
-
-  .day{
-
-    font-size:14px;
-
-  }
-
-
-  .brand{
-
-    top:
-      max(
-        21px,
         env(safe-area-inset-top)
       );
 
   }
 
 
-  .brand-icon{
+  #icon{
 
-    width:37px;
-    height:37px;
+    width:52px;
+    height:52px;
 
-    margin-bottom:5px;
+    margin-bottom:6px;
 
   }
 
 
-  .brand-name{
+  #watermark{
 
     font-size:12px;
 
@@ -932,148 +831,151 @@ and
   }
 
 
-  .brand-tagline{
+  #tagline{
 
     font-size:7px;
 
-    letter-spacing:.10em;
+    letter-spacing:.09em;
 
   }
 
 
-  .sound-button{
+  #date{
 
     top:
       max(
-        20px,
+        23px,
         env(safe-area-inset-top)
       );
 
-    right:
+    left:
       max(
-        17px,
-        env(safe-area-inset-right)
+        18px,
+        env(safe-area-inset-left)
       );
 
-    min-width:112px;
+    font-size:10px;
 
-    height:40px;
+    letter-spacing:.06em;
+
+  }
+
+
+  #day{
+
+    top:
+      calc(
+        max(
+          23px,
+          env(safe-area-inset-top)
+        ) + 18px
+      );
+
+    left:
+      max(
+        18px,
+        env(safe-area-inset-left)
+      );
+
+    font-size:13px;
+
+  }
+
+
+  .center{
 
     padding:
-      0 13px;
-
-    gap:8px;
-
-    font-size:8px;
-
-    letter-spacing:.13em;
+      150px 18px 155px;
 
   }
 
 
-  .sound-dot{
-
-    width:7px;
-    height:7px;
-
-  }
-
-
-  .center-content{
-
-    padding:
-      150px
-      20px
-      170px;
-
-  }
-
+  /*
+    IMPORTANT:
+    Large enough to be the hero,
+    but responsive enough to stay
+    on ONE LINE on modern phones.
+  */
 
   #greeting{
 
-    font-size:11px;
+    font-size:
+      clamp(
+        40px,
+        10.8vw,
+        67px
+      );
 
-    letter-spacing:.25em;
+    letter-spacing:-.065em;
 
-    margin-bottom:17px;
+    margin-bottom:18px;
+
+    white-space:nowrap;
 
   }
 
 
   #quote{
 
-    max-width:92vw;
+    max-width:88vw;
 
     font-size:
       clamp(
-        28px,
-        8.5vw,
-        43px
+        13px,
+        3.7vw,
+        17px
       );
 
-    line-height:1.08;
-
-    letter-spacing:-.025em;
+    line-height:1.42;
 
   }
 
 
-  .journey-button{
+  #journey{
 
     bottom:
       max(
-        82px,
+        76px,
         calc(
-          72px +
+          62px +
           env(safe-area-inset-bottom)
         )
       );
 
     min-width:210px;
 
-    height:51px;
+    min-height:51px;
 
-    gap:20px;
+    padding:
+      0 22px;
+
+    gap:19px;
 
     font-size:9px;
 
-  }
-
-
-  .bottom-left{
-
-    left:
-      max(
-        20px,
-        env(safe-area-inset-left)
-      );
-
-    bottom:
-      max(
-        20px,
-        env(safe-area-inset-bottom)
-      );
-
-    font-size:7px;
+    letter-spacing:.16em;
 
   }
 
 
-  .bottom-right{
+  #sound{
 
     right:
       max(
-        20px,
+        18px,
         env(safe-area-inset-right)
       );
 
     bottom:
       max(
-        20px,
+        19px,
         env(safe-area-inset-bottom)
       );
 
-    font-size:7px;
+    width:42px;
+    height:42px;
+
+    font-size:15px;
 
   }
 
@@ -1081,34 +983,67 @@ and
 
 
 /* =========================================================
-   VERY SMALL PHONES
+   VERY SMALL PHONE
    ========================================================= */
 
-@media (max-height:700px){
+@media(max-width:380px){
 
-  .center-content{
+  #greeting{
 
-    padding-top:120px;
-    padding-bottom:130px;
+    font-size:
+      clamp(
+        34px,
+        10.5vw,
+        46px
+      );
 
   }
 
 
   #quote{
 
-    font-size:
-      clamp(
-        25px,
-        8vw,
-        37px
-      );
+    font-size:13px;
 
   }
 
 
-  .journey-button{
+  #journey{
 
-    bottom:65px;
+    min-width:195px;
+
+    min-height:48px;
+
+    font-size:8px;
+
+  }
+
+}
+
+
+/* =========================================================
+   SHORT SCREEN
+   ========================================================= */
+
+@media(max-height:700px){
+
+  .center{
+
+    padding-top:110px;
+    padding-bottom:130px;
+
+  }
+
+
+  #greeting{
+
+    margin-bottom:14px;
+
+  }
+
+
+  #journey{
+
+    bottom:60px;
 
   }
 
@@ -1119,10 +1054,9 @@ and
    REDUCED MOTION
    ========================================================= */
 
-@media
-(prefers-reduced-motion:reduce){
+@media(prefers-reduced-motion:reduce){
 
-  #arrivalVideo{
+  #video{
 
     transition:none;
 
@@ -1130,13 +1064,14 @@ and
 
   }
 
-  .journey-button{
+  #greeting,
+  #quote{
 
-    transition:none;
+    animation:none;
 
   }
 
-  #transition{
+  #fade{
 
     transition:none;
 
@@ -1152,7 +1087,7 @@ and
 <body>
 
 
-<div id="arrival">
+<div id="page">
 
 
   <!-- =====================================================
@@ -1160,7 +1095,7 @@ and
        ===================================================== -->
 
   <video
-    id="arrivalVideo"
+    id="video"
     autoplay
     muted
     playsinline
@@ -1171,57 +1106,44 @@ and
   ></video>
 
 
-  <!-- Cinematic layers -->
+  <!-- Cinematic overlay -->
 
-  <div class="video-overlay"></div>
+  <div class="overlay"></div>
 
   <div class="vignette"></div>
 
 
-  <!-- Loading indicator -->
+  <!-- Loading -->
 
-  <div
-    id="loading"
-    class="loading"
-  ></div>
+  <div id="loader"></div>
 
 
   <!-- =====================================================
-       DATE
+       DATE + DAY
        ===================================================== -->
 
-  <div class="date-block">
+  <div id="date"></div>
 
-    <div
-      id="date"
-      class="date"
-    ></div>
-
-    <div
-      id="day"
-      class="day"
-    ></div>
-
-  </div>
+  <div id="day"></div>
 
 
   <!-- =====================================================
        AKSH BRAND
        ===================================================== -->
 
-  <div class="brand">
+  <div class="top">
 
     <img
+      id="icon"
       src="aksh-icon.PNG"
-      class="brand-icon"
       alt="AKSH"
     >
 
-    <div class="brand-name">
+    <div id="watermark">
       AKSH
     </div>
 
-    <div class="brand-tagline">
+    <div id="tagline">
       A Safe Space For Every Mind
     </div>
 
@@ -1229,43 +1151,16 @@ and
 
 
   <!-- =====================================================
-       SOUND
+       CENTER HERO
        ===================================================== -->
 
-  <button
-    id="soundButton"
-    class="sound-button"
-    type="button"
-    aria-label="Turn sound on"
-  >
+  <div class="center">
 
-    <span
-      id="soundDot"
-      class="sound-dot"
-    ></span>
+    <div id="greeting"></div>
 
-    <span id="soundText">
-      SOUND OFF
-    </span>
+    <div id="quote"></div>
 
-  </button>
-
-
-  <!-- =====================================================
-       CENTER
-       ===================================================== -->
-
-  <main class="center-content">
-
-    <div id="greeting">
-      Good Morning
-    </div>
-
-    <div id="quote">
-      Come as you are.
-    </div>
-
-  </main>
+  </div>
 
 
   <!-- =====================================================
@@ -1273,40 +1168,31 @@ and
        ===================================================== -->
 
   <button
-    id="journeyButton"
-    class="journey-button"
+    id="journey"
     type="button"
   >
-
-    <span>
-      Begin Your Journey
-    </span>
-
-    <span class="journey-arrow">
-      →
-    </span>
-
+    Begin Your Journey
   </button>
 
 
   <!-- =====================================================
-       BOTTOM
+       SOUND
        ===================================================== -->
 
-  <div class="bottom-left">
-    Mental Wellness
-  </div>
-
-  <div class="bottom-right">
-    Meghana Kaverappa
-  </div>
+  <button
+    id="sound"
+    type="button"
+    aria-label="Turn sound on"
+  >
+    🔇
+  </button>
 
 
   <!-- =====================================================
-       TRANSITION
+       PAGE TRANSITION
        ===================================================== -->
 
-  <div id="transition"></div>
+  <div id="fade"></div>
 
 
 </div>
@@ -1315,7 +1201,7 @@ and
 <script>
 
 /* =========================================================
-   AKSH ARRIVAL EXPERIENCE ENGINE
+   AKSH ARRIVAL ENGINE
    ========================================================= */
 
 
@@ -1324,13 +1210,7 @@ and
    --------------------------------------------------------- */
 
 const video =
-  document.getElementById("arrivalVideo");
-
-const dateBox =
-  document.getElementById("date");
-
-const dayBox =
-  document.getElementById("day");
+  document.getElementById("video");
 
 const greeting =
   document.getElementById("greeting");
@@ -1338,27 +1218,30 @@ const greeting =
 const quote =
   document.getElementById("quote");
 
-const soundButton =
-  document.getElementById("soundButton");
+const dateBox =
+  document.getElementById("date");
 
-const soundText =
-  document.getElementById("soundText");
+const dayBox =
+  document.getElementById("day");
 
-const journeyButton =
-  document.getElementById("journeyButton");
+const sound =
+  document.getElementById("sound");
 
-const transition =
-  document.getElementById("transition");
+const journey =
+  document.getElementById("journey");
 
-const loading =
-  document.getElementById("loading");
+const fade =
+  document.getElementById("fade");
+
+const loader =
+  document.getElementById("loader");
 
 
 /* ---------------------------------------------------------
-   VIDEO FILES
+   ALL 13 VIDEOS
    --------------------------------------------------------- */
 
-const videos = {
+const files = {
 
   morning1:
     "aksh-morning.1.mov",
@@ -1406,8 +1289,7 @@ const videos = {
 
 
 /* ---------------------------------------------------------
-   QUOTES
-   Different quote every visit.
+   QUOTE LIBRARY
    --------------------------------------------------------- */
 
 const quotes = {
@@ -1432,7 +1314,11 @@ const quotes = {
 
     "You don't need to have everything figured out today.",
 
-    "Give yourself permission to simply begin."
+    "Give yourself permission to simply begin.",
+
+    "Let the morning be kind to you.",
+
+    "There is no perfect way to begin a day."
 
   ],
 
@@ -1457,7 +1343,11 @@ const quotes = {
 
     "Pause. Breathe. Continue when you are ready.",
 
-    "Whatever today feels like, you can meet it gently."
+    "Whatever today feels like, you can meet it gently.",
+
+    "A quiet moment can change the rest of a day.",
+
+    "You are allowed to make space for yourself."
 
   ],
 
@@ -1482,7 +1372,11 @@ const quotes = {
 
     "The evening is allowed to be gentle.",
 
-    "Somewhere between today and tomorrow, there is rest."
+    "Somewhere between today and tomorrow, there is rest.",
+
+    "Let the noise of the day soften.",
+
+    "You can finish today without finishing everything."
 
   ],
 
@@ -1507,7 +1401,11 @@ const quotes = {
 
     "You can simply be here.",
 
-    "Let your mind become quiet, one breath at a time."
+    "Let your mind become quiet, one breath at a time.",
+
+    "Tonight, you don't have to be anything for anyone.",
+
+    "It is okay to let today go."
 
   ]
 
@@ -1521,7 +1419,7 @@ const quotes = {
 const now =
   new Date();
 
-const minutes =
+const total =
   now.getHours() * 60 +
   now.getMinutes();
 
@@ -1531,197 +1429,211 @@ const minutes =
    --------------------------------------------------------- */
 
 let period;
-let selectedVideo;
-let greetingText;
+
+let message;
+
+let selected;
 
 
-/* MORNING */
+/* =========================================================
+   GOOD MORNING
+   5:00 AM — 11:59 AM
+   ========================================================= */
 
-if (
-  minutes >= 300 &&
-  minutes < 360
+if(
+  total >= 300 &&
+  total < 360
 ){
 
   period = "morning";
 
-  selectedVideo =
-    videos.morning1;
-
-  greetingText =
+  message =
     "Good Morning";
+
+  selected =
+    files.morning1;
 
 }
 
-else if (
-  minutes >= 360 &&
-  minutes < 480
+else if(
+  total >= 360 &&
+  total < 480
 ){
 
   period = "morning";
 
-  selectedVideo =
-    videos.morning2;
-
-  greetingText =
+  message =
     "Good Morning";
+
+  selected =
+    files.morning2;
 
 }
 
-else if (
-  minutes >= 480 &&
-  minutes < 600
+else if(
+  total >= 480 &&
+  total < 600
 ){
 
   period = "morning";
 
-  selectedVideo =
-    videos.morning3;
-
-  greetingText =
+  message =
     "Good Morning";
+
+  selected =
+    files.morning3;
 
 }
 
-else if (
-  minutes >= 600 &&
-  minutes < 720
+else if(
+  total >= 600 &&
+  total < 720
 ){
 
   period = "morning";
 
-  selectedVideo =
-    videos.morning4;
-
-  greetingText =
+  message =
     "Good Morning";
 
+  selected =
+    files.morning4;
+
 }
 
 
-/* AFTERNOON */
+/* =========================================================
+   GOOD AFTERNOON
+   12:00 PM — 4:59 PM
+   ========================================================= */
 
-else if (
-  minutes >= 720 &&
-  minutes < 780
+else if(
+  total >= 720 &&
+  total < 780
 ){
 
   period = "afternoon";
 
-  selectedVideo =
-    videos.afternoon1;
-
-  greetingText =
+  message =
     "Good Afternoon";
+
+  selected =
+    files.afternoon1;
 
 }
 
-else if (
-  minutes >= 780 &&
-  minutes < 870
+else if(
+  total >= 780 &&
+  total < 870
 ){
 
   period = "afternoon";
 
-  selectedVideo =
-    videos.afternoon2;
-
-  greetingText =
+  message =
     "Good Afternoon";
+
+  selected =
+    files.afternoon2;
 
 }
 
-else if (
-  minutes >= 870 &&
-  minutes < 960
+else if(
+  total >= 870 &&
+  total < 960
 ){
 
   period = "afternoon";
 
-  selectedVideo =
-    videos.afternoon3;
-
-  greetingText =
+  message =
     "Good Afternoon";
+
+  selected =
+    files.afternoon3;
 
 }
 
-else if (
-  minutes >= 960 &&
-  minutes < 1020
+else if(
+  total >= 960 &&
+  total < 1020
 ){
 
   period = "afternoon";
 
-  selectedVideo =
-    videos.afternoon4;
-
-  greetingText =
+  message =
     "Good Afternoon";
+
+  selected =
+    files.afternoon4;
 
 }
 
 
-/* EVENING */
+/* =========================================================
+   GOOD EVENING
+   5:00 PM — 7:59 PM
+   ========================================================= */
 
-else if (
-  minutes >= 1020 &&
-  minutes < 1065
+else if(
+  total >= 1020 &&
+  total < 1065
 ){
 
   period = "evening";
 
-  selectedVideo =
-    videos.evening1;
-
-  greetingText =
+  message =
     "Good Evening";
+
+  selected =
+    files.evening1;
 
 }
 
-else if (
-  minutes >= 1065 &&
-  minutes < 1140
+else if(
+  total >= 1065 &&
+  total < 1140
 ){
 
   period = "evening";
 
-  selectedVideo =
-    videos.evening2;
-
-  greetingText =
+  message =
     "Good Evening";
+
+  selected =
+    files.evening2;
 
 }
 
-else if (
-  minutes >= 1140 &&
-  minutes < 1200
+else if(
+  total >= 1140 &&
+  total < 1200
 ){
 
   period = "evening";
 
-  selectedVideo =
-    videos.evening3;
-
-  greetingText =
+  message =
     "Good Evening";
+
+  selected =
+    files.evening3;
 
 }
 
 
-/* NIGHT */
+/* =========================================================
+   GOOD NIGHT
+   8:00 PM — 4:59 AM
+   ========================================================= */
 
-else if (
-  minutes >= 1200
+else if(
+  total >= 1200
 ){
 
   period = "night";
 
-  selectedVideo =
-    videos.night1;
-
-  greetingText =
+  message =
     "Good Night";
+
+  selected =
+    files.night1;
 
 }
 
@@ -1729,37 +1641,56 @@ else{
 
   period = "night";
 
-  selectedVideo =
-    videos.night2;
-
-  greetingText =
+  message =
     "Good Night";
+
+  selected =
+    files.night2;
 
 }
 
 
 /* ---------------------------------------------------------
-   DATE
-   Required format:
-   14.08.2026
-   Friday
+   SET GREETING
    --------------------------------------------------------- */
 
-const day =
+greeting.textContent =
+  message;
+
+
+/* ---------------------------------------------------------
+   DATE
+   EXACT FORMAT:
+
+   14.08.2026
+
+   --------------------------------------------------------- */
+
+const dayNumber =
   String(
     now.getDate()
   ).padStart(2,"0");
 
-const month =
+const monthNumber =
   String(
     now.getMonth() + 1
   ).padStart(2,"0");
 
-const year =
+const yearNumber =
   now.getFullYear();
 
 
-const weekday =
+dateBox.textContent =
+  `${dayNumber}.${monthNumber}.${yearNumber}`;
+
+
+/* ---------------------------------------------------------
+   DAY
+
+   Friday
+   --------------------------------------------------------- */
+
+dayBox.textContent =
   now.toLocaleDateString(
     "en-IN",
     {
@@ -1768,104 +1699,64 @@ const weekday =
   );
 
 
-dateBox.textContent =
-  `${day}.${month}.${year}`;
-
-dayBox.textContent =
-  weekday;
-
-
-/* ---------------------------------------------------------
-   GREETING
-   --------------------------------------------------------- */
-
-greeting.textContent =
-  greetingText;
-
-
 /* ---------------------------------------------------------
    DIFFERENT QUOTE
    --------------------------------------------------------- */
 
-function chooseQuote(){
+const quoteList =
+  quotes[period];
 
-  const list =
-    quotes[period];
 
-  /*
-    Use date + time + random value
-    so repeated visitors don't all
-    necessarily see the same quote.
-  */
+/*
+  Random selection.
 
-  const randomIndex =
+  Every visitor can receive
+  a different quote.
+
+  The list is intentionally
+  large so repeated visits
+  have many possibilities.
+*/
+
+const randomQuote =
+  quoteList[
     Math.floor(
       Math.random() *
-      list.length
-    );
-
-  return list[randomIndex];
-
-}
+      quoteList.length
+    )
+  ];
 
 
 quote.textContent =
-  chooseQuote();
+  randomQuote;
 
 
 /* ---------------------------------------------------------
    LOAD VIDEO
    --------------------------------------------------------- */
 
-let journeyStarted =
-  false;
-
-let transitionStarted =
-  false;
-
-let fourSecondTimer =
-  null;
+video.src =
+  selected;
 
 
-function startArrival(){
+/* ---------------------------------------------------------
+   START VIDEO
+   --------------------------------------------------------- */
 
-  if (
-    journeyStarted
-  ){
-
-    return;
-
-  }
-
-
-  if (
-    !selectedVideo
-  ){
-
-    return;
-
-  }
-
-
-  video.src =
-    selectedVideo;
-
+function startVideo(){
 
   video.muted =
     true;
-
 
   video.setAttribute(
     "muted",
     ""
   );
 
-
   video.setAttribute(
     "playsinline",
     ""
   );
-
 
   video.setAttribute(
     "webkit-playsinline",
@@ -1873,143 +1764,114 @@ function startArrival(){
   );
 
 
-  video.load();
+  const promise =
+    video.play();
 
 
-  const playVideo =
-    () => {
+  if(
+    promise &&
+    typeof promise.catch ===
+    "function"
+  ){
 
-      const playPromise =
-        video.play();
+    promise.catch(
+      () => {
 
-
-      if (
-        playPromise &&
-        typeof playPromise.catch ===
-        "function"
-      ){
-
-        playPromise.catch(
-          () => {
-
-            /*
-              iPhone may require a user
-              interaction in some cases.
-
-              The sound button / page tap
-              will retry playback.
-            */
-
-          }
-        );
+        /*
+          iPhone/Safari may wait
+          for interaction.
+        */
 
       }
+    );
 
-    };
-
-
-  video.addEventListener(
-    "canplay",
-    () => {
-
-      loading.classList.add(
-        "hidden"
-      );
-
-      video.classList.add(
-        "visible"
-      );
-
-
-      playVideo();
-
-
-      /*
-        The four-second experience
-        begins once the video is ready.
-      */
-
-      if (
-        !fourSecondTimer
-      ){
-
-        fourSecondTimer =
-          setTimeout(
-            openPage1,
-            4000
-          );
-
-      }
-
-    },
-    {
-      once:true
-    }
-  );
-
-
-  /*
-    Backup in case the browser
-    already has enough data.
-  */
-
-  video.addEventListener(
-    "loadeddata",
-    () => {
-
-      video.classList.add(
-        "visible"
-      );
-
-      playVideo();
-
-    },
-    {
-      once:true
-    }
-  );
-
-
-  /*
-    Final fallback.
-  */
-
-  setTimeout(
-    () => {
-
-      if (
-        !video.classList.contains(
-          "visible"
-        )
-      ){
-
-        video.classList.add(
-          "visible"
-        );
-
-        loading.classList.add(
-          "hidden"
-        );
-
-        playVideo();
-
-      }
-
-    },
-    1800
-  );
+  }
 
 }
 
 
 /* ---------------------------------------------------------
-   PAGE 1 TRANSITION
+   VIDEO READY
    --------------------------------------------------------- */
+
+video.addEventListener(
+  "canplay",
+  () => {
+
+    loader.classList.add(
+      "hide"
+    );
+
+    video.classList.add(
+      "show"
+    );
+
+    startVideo();
+
+  },
+  {
+    once:true
+  }
+);
+
+
+/* Backup */
+
+video.addEventListener(
+  "loadeddata",
+  () => {
+
+    loader.classList.add(
+      "hide"
+    );
+
+    video.classList.add(
+      "show"
+    );
+
+    startVideo();
+
+  },
+  {
+    once:true
+  }
+);
+
+
+/* ---------------------------------------------------------
+   FALLBACK
+   --------------------------------------------------------- */
+
+setTimeout(
+  () => {
+
+    loader.classList.add(
+      "hide"
+    );
+
+    video.classList.add(
+      "show"
+    );
+
+    startVideo();
+
+  },
+  1800
+);
+
+
+/* =========================================================
+   TRANSITION
+   ========================================================= */
+
+let opened =
+  false;
+
 
 function openPage1(){
 
-  if (
-    transitionStarted
+  if(
+    opened
   ){
 
     return;
@@ -2017,50 +1879,34 @@ function openPage1(){
   }
 
 
-  transitionStarted =
+  opened =
     true;
 
 
-  if (
-    fourSecondTimer
-  ){
-
-    clearTimeout(
-      fourSecondTimer
-    );
-
-  }
-
-
-  transition.classList.add(
-    "active"
+  fade.classList.add(
+    "on"
   );
 
-
-  /*
-    Give the black cinematic
-    transition enough time to
-    cover the old page.
-  */
 
   setTimeout(
     () => {
 
-      window.location.href =
-        "page1.html";
+      window.location.replace(
+        "page1.html"
+      );
 
     },
-    780
+    820
   );
 
 }
 
 
-/* ---------------------------------------------------------
-   BEGIN JOURNEY
-   --------------------------------------------------------- */
+/* =========================================================
+   BEGIN YOUR JOURNEY
+   ========================================================= */
 
-journeyButton.addEventListener(
+journey.addEventListener(
   "click",
   () => {
 
@@ -2070,27 +1916,36 @@ journeyButton.addEventListener(
 );
 
 
-/* ---------------------------------------------------------
+/* =========================================================
+   AUTOMATIC 4-SECOND ARRIVAL
+   ========================================================= */
+
+setTimeout(
+  () => {
+
+    openPage1();
+
+  },
+  4000
+);
+
+
+/* =========================================================
    SOUND
-   --------------------------------------------------------- */
+   ========================================================= */
 
 let soundOn =
   false;
 
 
-soundButton.addEventListener(
+sound.addEventListener(
   "click",
   (event) => {
-
-    /*
-      Prevent the button tap
-      from affecting anything else.
-    */
 
     event.stopPropagation();
 
 
-    if (
+    if(
       soundOn
     ){
 
@@ -2100,14 +1955,14 @@ soundButton.addEventListener(
       soundOn =
         false;
 
-      soundText.textContent =
-        "SOUND OFF";
+      sound.textContent =
+        "🔇";
 
-      soundButton.classList.remove(
+      sound.classList.remove(
         "on"
       );
 
-      soundButton.setAttribute(
+      sound.setAttribute(
         "aria-label",
         "Turn sound on"
       );
@@ -2118,9 +1973,9 @@ soundButton.addEventListener(
 
 
     /*
-      This tap is a genuine
-      user interaction, so iPhone
-      allows us to enable sound.
+      This tap is a real user
+      interaction, allowing the
+      browser to enable audio.
     */
 
     video.muted =
@@ -2134,7 +1989,7 @@ soundButton.addEventListener(
       video.play();
 
 
-    if (
+    if(
       playPromise &&
       typeof playPromise.catch ===
       "function"
@@ -2143,20 +1998,14 @@ soundButton.addEventListener(
       playPromise.catch(
         () => {
 
-          /*
-            If the browser still
-            refuses sound, keep the
-            visual state safe.
-          */
-
           video.muted =
             true;
 
           soundOn =
             false;
 
-          soundText.textContent =
-            "SOUND OFF";
+          sound.textContent =
+            "🔇";
 
         }
       );
@@ -2167,14 +2016,14 @@ soundButton.addEventListener(
     soundOn =
       true;
 
-    soundText.textContent =
-      "SOUND ON";
+    sound.textContent =
+      "🔊";
 
-    soundButton.classList.add(
+    sound.classList.add(
       "on"
     );
 
-    soundButton.setAttribute(
+    sound.setAttribute(
       "aria-label",
       "Turn sound off"
     );
@@ -2183,25 +2032,15 @@ soundButton.addEventListener(
 );
 
 
-/* ---------------------------------------------------------
-   ANY FIRST TOUCH
-   --------------------------------------------------------- */
+/* =========================================================
+   FIRST TOUCH FALLBACK
+   ========================================================= */
 
 document.addEventListener(
   "touchstart",
   () => {
 
-    /*
-      If the video was prevented
-      from starting automatically,
-      a genuine touch gives us a
-      chance to start it.
-
-      We do NOT automatically
-      unmute it.
-    */
-
-    if (
+    if(
       video.paused
     ){
 
@@ -2222,15 +2061,15 @@ document.addEventListener(
 );
 
 
-/* ---------------------------------------------------------
+/* =========================================================
    DESKTOP FALLBACK
-   --------------------------------------------------------- */
+   ========================================================= */
 
 document.addEventListener(
   "click",
   () => {
 
-    if (
+    if(
       video.paused
     ){
 
@@ -2251,29 +2090,17 @@ document.addEventListener(
 );
 
 
-/* ---------------------------------------------------------
-   START
-   --------------------------------------------------------- */
-
-startArrival();
-
-
-/* ---------------------------------------------------------
+/* =========================================================
    DEBUG
-   --------------------------------------------------------- */
+   ========================================================= */
 
 console.log(
-  "AKSH Arrival Loaded"
+  "AKSH ARRIVAL"
 );
 
 console.log(
-  "Time:",
-  greetingText
-);
-
-console.log(
-  "Video:",
-  selectedVideo
+  "Greeting:",
+  message
 );
 
 console.log(
@@ -2281,7 +2108,18 @@ console.log(
   period
 );
 
+console.log(
+  "Video:",
+  selected
+);
+
+console.log(
+  "Quote:",
+  randomQuote
+);
+
 </script>
 
 </body>
+
 </html>
