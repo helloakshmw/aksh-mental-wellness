@@ -1,44 +1,31 @@
 /* =========================================================
-   AKSH — PAGE 01 JS
-   PREMIUM CINEMATIC ATMOSPHERIC WORLD
+   AKSH — PAGE 01
+   PREMIUM CINEMATIC WORLD
+   COMPLETE PAGE 1 JAVASCRIPT
    ========================================================= */
 
-(() => {
-  "use strict";
+document.addEventListener("DOMContentLoaded", () => {
 
   /* =======================================================
-     DOM
+     ELEMENTS
      ======================================================= */
 
   const body = document.body;
-
   const header = document.querySelector(".header");
   const menuButton = document.querySelector(".menu-button");
   const nav = document.querySelector(".nav");
-
-  const emotionTrack = document.querySelector(".emotion-track");
   const emotions = document.querySelectorAll(".emotion");
-
   const beginButtons = document.querySelectorAll(
-    ".begin-button, .begin-primary, .ai-button"
-  );
-
-  const exploreLinks = document.querySelectorAll(
-    ".explore-link, .founder-link"
+    ".begin-button, .begin-primary, .begin-secondary, .ai-button"
   );
 
 
   /* =======================================================
      TIME OF DAY
-     Automatically changes the atmosphere.
-
-     Morning   : 05:00 — 11:59
-     Afternoon : 12:00 — 16:59
-     Evening   : 17:00 — 20:59
-     Night     : 21:00 — 04:59
      ======================================================= */
 
-  function updateTimeAtmosphere() {
+  function updateTimeOfDay() {
+
     const hour = new Date().getHours();
 
     body.classList.remove(
@@ -49,20 +36,27 @@
     );
 
     if (hour >= 5 && hour < 12) {
+
       body.classList.add("morning");
+
     } else if (hour >= 12 && hour < 17) {
+
       body.classList.add("afternoon");
+
     } else if (hour >= 17 && hour < 21) {
+
       body.classList.add("evening");
+
     } else {
+
       body.classList.add("night");
+
     }
   }
 
-  updateTimeAtmosphere();
+  updateTimeOfDay();
 
-  /* Update every minute */
-  setInterval(updateTimeAtmosphere, 60000);
+  setInterval(updateTimeOfDay, 60000);
 
 
   /* =======================================================
@@ -70,12 +64,17 @@
      ======================================================= */
 
   function updateHeader() {
+
     if (!header) return;
 
-    if (window.scrollY > 30) {
+    if (window.scrollY > 40) {
+
       header.classList.add("scrolled");
+
     } else {
+
       header.classList.remove("scrolled");
+
     }
   }
 
@@ -93,18 +92,19 @@
      ======================================================= */
 
   if (menuButton && header) {
+
     menuButton.addEventListener("click", () => {
-      const isOpen = header.classList.toggle("mobile-open");
+
+      const isOpen =
+        header.classList.toggle("mobile-open");
 
       menuButton.setAttribute(
         "aria-expanded",
         String(isOpen)
       );
 
-      document.body.style.overflow = isOpen
-        ? "hidden"
-        : "";
     });
+
   }
 
 
@@ -113,8 +113,11 @@
      ======================================================= */
 
   if (nav && header) {
-    nav.querySelectorAll("a").forEach((link) => {
+
+    nav.querySelectorAll("a").forEach(link => {
+
       link.addEventListener("click", () => {
+
         header.classList.remove("mobile-open");
 
         if (menuButton) {
@@ -124,162 +127,212 @@
           );
         }
 
-        document.body.style.overflow = "";
       });
+
     });
+
   }
 
 
   /* =======================================================
-     ESCAPE KEY
+     ESCAPE KEY — CLOSE MENU
      ======================================================= */
 
-  document.addEventListener("keydown", (event) => {
+  document.addEventListener("keydown", event => {
+
     if (event.key === "Escape") {
-      if (header) {
-        header.classList.remove("mobile-open");
-      }
 
-      if (menuButton) {
-        menuButton.setAttribute(
-          "aria-expanded",
-          "false"
-        );
-      }
+      header?.classList.remove("mobile-open");
 
-      document.body.style.overflow = "";
+      menuButton?.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
     }
+
   });
 
 
   /* =======================================================
      EMOTION CARDS
-     Small cinematic interaction.
-
-     Cards remain compact.
-     Clicking a card can reveal its state without
-     forcing the user into a huge popup.
      ======================================================= */
 
-  emotions.forEach((card) => {
+  emotions.forEach(card => {
+
     card.addEventListener("click", () => {
 
-      emotions.forEach((item) => {
-        item.classList.remove("active");
-      });
+      const target =
+        card.dataset.target ||
+        card.getAttribute("data-target");
 
-      card.classList.add("active");
+      if (target) {
 
-      const emotionName =
-        card.querySelector(".emotion-title")?.textContent?.trim();
+        const destination =
+          document.querySelector(target);
 
-      if (emotionName) {
-        console.log(
-          `AKSH feeling selected: ${emotionName}`
-        );
+        if (destination) {
+
+          destination.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+
+        }
+
       }
+
+      card.classList.add("emotion-active");
+
+      setTimeout(() => {
+
+        card.classList.remove("emotion-active");
+
+      }, 700);
+
     });
+
   });
 
 
   /* =======================================================
      HORIZONTAL EMOTION TRACK
-     DESKTOP MOUSE WHEEL
-
-     Converts vertical wheel movement into subtle
-     horizontal movement only while the emotion track
-     can still scroll horizontally.
+     MOUSE WHEEL → HORIZONTAL SCROLL
      ======================================================= */
+
+  const emotionTrack =
+    document.querySelector(".emotion-track");
 
   if (emotionTrack) {
 
     emotionTrack.addEventListener(
       "wheel",
-      (event) => {
-
-        const canScrollLeft =
-          emotionTrack.scrollLeft > 0;
-
-        const canScrollRight =
-          emotionTrack.scrollLeft +
-          emotionTrack.clientWidth <
-          emotionTrack.scrollWidth - 1;
+      event => {
 
         if (
-          (event.deltaY > 0 && canScrollRight) ||
-          (event.deltaY < 0 && canScrollLeft)
+          Math.abs(event.deltaY) >
+          Math.abs(event.deltaX)
         ) {
-          event.preventDefault();
 
-          emotionTrack.scrollLeft +=
-            event.deltaY * 0.85;
+          if (
+            emotionTrack.scrollWidth >
+            emotionTrack.clientWidth
+          ) {
+
+            event.preventDefault();
+
+            emotionTrack.scrollLeft +=
+              event.deltaY;
+
+          }
+
         }
+
       },
       { passive: false }
     );
+
   }
 
 
   /* =======================================================
-     DRAG TO EXPLORE EMOTION WORLD
-     Desktop only.
+     CARD PARALLAX
      ======================================================= */
 
-  if (emotionTrack) {
+  emotions.forEach(card => {
 
-    let isDragging = false;
-    let startX = 0;
-    let startScrollLeft = 0;
+    const background =
+      card.querySelector(".emotion-bg");
 
-    emotionTrack.addEventListener(
-      "pointerdown",
-      (event) => {
+    if (!background) return;
 
-        if (event.pointerType === "touch") return;
+    card.addEventListener("pointermove", event => {
 
-        isDragging = true;
+      if (window.innerWidth < 901) return;
 
-        startX = event.clientX;
-        startScrollLeft = emotionTrack.scrollLeft;
+      const rect =
+        card.getBoundingClientRect();
 
-        emotionTrack.setPointerCapture?.(
-          event.pointerId
-        );
-      }
+      const x =
+        (event.clientX - rect.left) /
+        rect.width -
+        0.5;
+
+      const y =
+        (event.clientY - rect.top) /
+        rect.height -
+        0.5;
+
+      background.style.transform =
+        `scale(1.06)
+         translate3d(${x * 12}px, ${y * 12}px, 0)`;
+
+    });
+
+    card.addEventListener("pointerleave", () => {
+
+      background.style.transform =
+        "scale(1) translate3d(0,0,0)";
+
+    });
+
+  });
+
+
+  /* =======================================================
+     INTERSECTION REVEALS
+     ======================================================= */
+
+  const revealElements =
+    document.querySelectorAll(
+      ".hero-inner, .section-inner, .emotion, .journey-step, .founder-photo, .ai-orb"
     );
 
-    emotionTrack.addEventListener(
-      "pointermove",
-      (event) => {
+  if ("IntersectionObserver" in window) {
 
-        if (!isDragging) return;
+    const observer =
+      new IntersectionObserver(
+        entries => {
 
-        const distance =
-          event.clientX - startX;
+          entries.forEach(entry => {
 
-        emotionTrack.scrollLeft =
-          startScrollLeft - distance;
-      }
-    );
+            if (entry.isIntersecting) {
 
-    const stopDragging = () => {
-      isDragging = false;
-    };
+              entry.target.classList.add(
+                "is-visible"
+              );
 
-    emotionTrack.addEventListener(
-      "pointerup",
-      stopDragging
-    );
+              observer.unobserve(
+                entry.target
+              );
 
-    emotionTrack.addEventListener(
-      "pointercancel",
-      stopDragging
-    );
+            }
 
-    emotionTrack.addEventListener(
-      "pointerleave",
-      stopDragging
-    );
+          });
+
+        },
+        {
+          threshold: 0.12,
+          rootMargin: "0px 0px -40px 0px"
+        }
+      );
+
+    revealElements.forEach(element => {
+
+      element.classList.add("reveal");
+
+      observer.observe(element);
+
+    });
+
+  } else {
+
+    revealElements.forEach(element => {
+
+      element.classList.add("is-visible");
+
+    });
+
   }
 
 
@@ -289,22 +342,23 @@
 
   document
     .querySelectorAll('a[href^="#"]')
-    .forEach((link) => {
+    .forEach(link => {
 
-      link.addEventListener("click", (event) => {
+      link.addEventListener("click", event => {
 
-        const targetId =
+        const href =
           link.getAttribute("href");
 
         if (
-          !targetId ||
-          targetId === "#"
+          !href ||
+          href === "#" ||
+          href === "#!"
         ) {
           return;
         }
 
         const target =
-          document.querySelector(targetId);
+          document.querySelector(href);
 
         if (!target) return;
 
@@ -314,205 +368,107 @@
           behavior: "smooth",
           block: "start"
         });
+
       });
+
     });
 
 
   /* =======================================================
-     REVEAL ANIMATIONS
+     AI ORB — SUBTLE INTERACTION
      ======================================================= */
 
-  const revealElements = document.querySelectorAll(
-    ".hero-kicker, .hero-title, .hero-description, " +
-    ".hero-actions, .section-label, .section-title, " +
-    ".section-intro, .emotion, .ai-layout, " +
-    ".journey-step, .founder-layout, .begin-title, " +
-    ".begin-copy, .begin-actions"
-  );
+  const orb =
+    document.querySelector(".ai-orb");
 
-  if ("IntersectionObserver" in window) {
+  if (orb) {
 
-    const revealObserver =
-      new IntersectionObserver(
-        (entries, observer) => {
+    orb.addEventListener("pointermove", event => {
 
-          entries.forEach((entry) => {
+      if (window.innerWidth < 901) return;
 
-            if (!entry.isIntersecting) return;
+      const rect =
+        orb.getBoundingClientRect();
 
-            entry.target.classList.add(
-              "is-visible"
-            );
+      const x =
+        (event.clientX - rect.left) /
+        rect.width -
+        0.5;
 
-            observer.unobserve(
-              entry.target
-            );
-          });
+      const y =
+        (event.clientY - rect.top) /
+        rect.height -
+        0.5;
 
-        },
-        {
-          threshold: 0.12,
-          rootMargin: "0px 0px -8% 0px"
-        }
-      );
+      orb.style.transform =
+        `translate(${x * 8}px, ${y * 8}px)`;
 
-    revealElements.forEach((element) => {
-      element.classList.add("aksh-reveal");
-      revealObserver.observe(element);
     });
 
-  } else {
+    orb.addEventListener("pointerleave", () => {
 
-    revealElements.forEach((element) => {
-      element.classList.add("is-visible");
+      orb.style.transform =
+        "";
+
     });
+
   }
 
 
   /* =======================================================
-     SUBTLE PARALLAX
+     BUTTON MICRO INTERACTION
      ======================================================= */
 
-  const atmosphereElements = document.querySelectorAll(
-    ".cloud, .light, .rainbow, .moon"
-  );
+  beginButtons.forEach(button => {
 
-  let ticking = false;
+    button.addEventListener("pointerdown", () => {
 
-  function parallaxAtmosphere() {
+      button.style.transform =
+        "scale(.97)";
 
-    if (ticking) return;
-
-    ticking = true;
-
-    requestAnimationFrame(() => {
-
-      const scrollY = window.scrollY;
-
-      atmosphereElements.forEach(
-        (element, index) => {
-
-          const multiplier =
-            index % 2 === 0
-              ? 0.025
-              : 0.04;
-
-          element.style.transform =
-            `translate3d(0, ${scrollY * multiplier}px, 0)`;
-        }
-      );
-
-      ticking = false;
     });
-  }
 
-  window.addEventListener(
-    "scroll",
-    parallaxAtmosphere,
-    { passive: true }
-  );
+    button.addEventListener("pointerup", () => {
 
+      button.style.transform =
+        "";
 
-  /* =======================================================
-     BUTTON MICRO-INTERACTION
-     ======================================================= */
+    });
 
-  beginButtons.forEach((button) => {
+    button.addEventListener("pointercancel", () => {
 
-    button.addEventListener(
-      "pointerenter",
-      () => {
-        button.style.setProperty(
-          "--aksh-hover-scale",
-          "1.015"
-        );
-      }
-    );
+      button.style.transform =
+        "";
 
-    button.addEventListener(
-      "pointerleave",
-      () => {
-        button.style.setProperty(
-          "--aksh-hover-scale",
-          "1"
-        );
-      }
-    );
+    });
+
   });
 
 
   /* =======================================================
-     PREVENT DOUBLE-TAP ZOOM ON INTERACTIVE ELEMENTS
+     PREVENT DOUBLE TAP ZOOM ON INTERACTIVE ELEMENTS
      ======================================================= */
 
   document
     .querySelectorAll(
-      ".emotion, .begin-button, .begin-primary, " +
-      ".begin-secondary, .ai-button, .menu-button"
+      "button, .emotion, .begin-button, .ai-button"
     )
-    .forEach((element) => {
+    .forEach(element => {
 
-      element.addEventListener(
-        "touchstart",
-        () => {},
-        { passive: true }
-      );
+      element.style.touchAction =
+        "manipulation";
+
     });
 
 
   /* =======================================================
-     PAGE VISIBILITY
-     Pause unnecessary atmosphere calculations when
-     the page is not visible.
+     PAGE READY
      ======================================================= */
 
-  document.addEventListener(
-    "visibilitychange",
-    () => {
+  requestAnimationFrame(() => {
 
-      if (document.hidden) {
-        body.classList.add(
-          "aksh-page-hidden"
-        );
-      } else {
-        body.classList.remove(
-          "aksh-page-hidden"
-        );
+    body.classList.add("page-ready");
 
-        updateTimeAtmosphere();
-      }
+  });
 
-    }
-  );
-
-
-  /* =======================================================
-     ACCESSIBILITY
-     ======================================================= */
-
-  if (menuButton) {
-    menuButton.setAttribute(
-      "aria-expanded",
-      "false"
-    );
-
-    menuButton.setAttribute(
-      "aria-label",
-      "Open AKSH navigation"
-    );
-  }
-
-
-  /* =======================================================
-     INITIALISE
-     ======================================================= */
-
-  document.documentElement.classList.add(
-    "aksh-ready"
-  );
-
-  body.classList.add(
-    "aksh-page-ready"
-  );
-
-})(); 
+});
