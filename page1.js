@@ -1,83 +1,59 @@
 /* =========================================================
-   AKSH — PAGE 01 JAVASCRIPT
-   COME AS YOU ARE
-   PREMIUM INTERACTION SYSTEM
-   ========================================================= */
+   AKSH PAGE 1
+   Cinematic atmosphere + navigation + emotions
+========================================================= */
 
-(() => {
-  "use strict";
+document.addEventListener("DOMContentLoaded", () => {
 
-  /* =======================================================
-     GLOBAL CONFIGURATION
-     ======================================================= */
+  const page = document.getElementById("akshPage");
 
-  const CONFIG = {
-    nextPage: "page2.html",
+  const menuButton = document.getElementById("menuButton");
+  const mobileMenu = document.getElementById("mobileMenu");
 
-    selectors: {
-      page: ".aksh-page",
-      atmosphere: ".atmosphere",
-      hero: ".hero",
-      menuButton: ".menu-button",
-      mobileMenu: ".mobile-menu",
-      mobileMenuClose: ".mobile-menu-top button",
+  const dailyGreeting = document.getElementById("dailyGreeting");
+  const dailyDate = document.getElementById("dailyDate");
+  const dailyQuote = document.getElementById("dailyQuote");
 
-      emotionWrapper: ".emotion-track-wrapper",
-      emotionTrack: ".emotion-track",
-      emotionCard: ".emotion-card",
-      emotionButton: ".emotion-enter",
+  const emotionTrack = document.getElementById("emotionTrack");
+  const emotionPrev = document.getElementById("emotionPrev");
+  const emotionNext = document.getElementById("emotionNext");
+  const trackProgress = document.getElementById("trackProgress");
 
-      emotionWorld: ".emotion-world",
-      emotionWorldClose: ".world-close",
+  const emotionWorld = document.getElementById("emotionWorld");
+  const worldClose = document.getElementById("worldClose");
+  const worldBack = document.getElementById("worldBack");
 
-      pageTransition: ".page-transition",
+  const worldEyebrow = document.getElementById("worldEyebrow");
+  const worldTitle = document.getElementById("worldTitle");
+  const worldDescription = document.getElementById("worldDescription");
 
-      progressLine: ".progress-line i",
-
-      reveal: ".reveal",
-
-      exploreButton: ".explore-button",
-      aiButton: ".ai-enter",
-
-      pathway: ".pathway",
-      finalBook: ".final-book"
-    },
-
-    timing: {
-      transition: 850,
-      revealOffset: 0.88,
-      dragMultiplier: 1.15
-    }
-  };
+  const currentYear = document.getElementById("currentYear");
 
 
-  /* =======================================================
-     DOM HELPERS
-     ======================================================= */
+  /* =========================================================
+     DATE
+  ========================================================= */
 
-  const $ = (selector, parent = document) =>
-    parent.querySelector(selector);
+  const now = new Date();
 
-  const $$ = (selector, parent = document) =>
-    Array.from(parent.querySelectorAll(selector));
+  const day = String(now.getDate()).padStart(2, "0");
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const year = now.getFullYear();
+
+  const formattedDate = `${day}.${month}.${year}`;
+
+  dailyDate.textContent = formattedDate;
+
+  if (currentYear) {
+    currentYear.textContent = year;
+  }
 
 
-  /* =======================================================
-     PAGE
-     ======================================================= */
+  /* =========================================================
+     TIME OF DAY
+  ========================================================= */
 
-  const page =
-    $(CONFIG.selectors.page) ||
-    document.body;
-
-
-  /* =======================================================
-     TIME / ATMOSPHERE
-     ======================================================= */
-
-  function getTimePeriod() {
-    const now = new Date();
-    const hour = now.getHours();
+  function getTimePeriod(hour) {
 
     if (hour >= 5 && hour < 12) {
       return "morning";
@@ -95,1320 +71,490 @@
   }
 
 
-  function setTimeAtmosphere() {
-    const period = getTimePeriod();
+  function getGreeting(period) {
 
-    page.classList.remove(
-      "time-morning",
-      "time-afternoon",
-      "time-evening",
-      "time-night"
+    const greetings = {
+      morning: "GOOD MORNING",
+      afternoon: "GOOD AFTERNOON",
+      evening: "GOOD EVENING",
+      night: "GOOD NIGHT"
+    };
+
+    return greetings[period];
+  }
+
+
+  const period = getTimePeriod(now.getHours());
+
+  page.classList.add(period);
+
+  dailyGreeting.textContent = getGreeting(period);
+
+
+  /* =========================================================
+     DAILY QUOTES
+  ========================================================= */
+
+  const quotes = {
+
+    morning: [
+      "You do not have to have everything figured out today.",
+      "A new morning can begin with one quiet breath.",
+      "Give yourself permission to begin slowly.",
+      "There is still room for something good today.",
+      "You are allowed to take this morning at your own pace."
+    ],
+
+    afternoon: [
+      "Your wellbeing belongs in the middle of your day too.",
+      "Pause for a moment. Notice where you are.",
+      "You can continue without carrying everything at once.",
+      "A small pause can change the rest of your day.",
+      "Take a breath. You are still allowed to slow down."
+    ],
+
+    evening: [
+      "Let the day become quieter around you.",
+      "You made it through another day. Be gentle with yourself.",
+      "Some moments are meant to be felt, not solved.",
+      "Let yourself arrive softly at the end of today.",
+      "You don't have to carry today into tomorrow."
+    ],
+
+    night: [
+      "The world can wait. You are allowed to rest.",
+      "Let your mind become quiet, one thought at a time.",
+      "Tonight, choose gentleness over perfection.",
+      "Rest is not something you need to earn.",
+      "Tomorrow does not need to be solved tonight."
+    ]
+
+  };
+
+
+  /* =========================================================
+     DIFFERENT QUOTE FOR VISITORS
+  ========================================================= */
+
+  function getVisitorQuote() {
+
+    const pool = quotes[period];
+
+    const storageKey = `akshQuote_${formattedDate}`;
+
+    let usedQuotes = [];
+
+    try {
+      usedQuotes = JSON.parse(
+        localStorage.getItem(storageKey) || "[]"
+      );
+    } catch {
+      usedQuotes = [];
+    }
+
+    let available = pool.filter(
+      quote => !usedQuotes.includes(quote)
     );
 
-    page.classList.add(`time-${period}`);
+    if (!available.length) {
+      usedQuotes = [];
+      available = [...pool];
+    }
 
-    document.documentElement.dataset.akshTime = period;
+    const selected =
+      available[
+        Math.floor(Math.random() * available.length)
+      ];
 
-    return period;
+    usedQuotes.push(selected);
+
+    try {
+      localStorage.setItem(
+        storageKey,
+        JSON.stringify(usedQuotes)
+      );
+    } catch {}
+
+    return selected;
   }
 
 
-  setTimeAtmosphere();
+  dailyQuote.textContent = getVisitorQuote();
 
 
-  /*
-   * Keep the atmosphere accurate if the visitor
-   * stays on the page across a time boundary.
-   */
-  let lastPeriod = getTimePeriod();
-
-  setInterval(() => {
-    const currentPeriod = getTimePeriod();
-
-    if (currentPeriod !== lastPeriod) {
-      lastPeriod = currentPeriod;
-      setTimeAtmosphere();
-    }
-  }, 30000);
-
-
-  /* =======================================================
+  /* =========================================================
      MOBILE MENU
-     ======================================================= */
+  ========================================================= */
 
-  const menuButton = $(CONFIG.selectors.menuButton);
-  const mobileMenu = $(CONFIG.selectors.mobileMenu);
-  const mobileMenuClose = $(CONFIG.selectors.mobileMenuClose);
-
-
-  function openMobileMenu() {
-    if (!mobileMenu) return;
-
-    mobileMenu.classList.add("open");
-    document.body.classList.add("menu-open");
-
-    if (menuButton) {
-      menuButton.setAttribute("aria-expanded", "true");
-    }
-  }
-
-
-  function closeMobileMenu() {
-    if (!mobileMenu) return;
+  function closeMenu() {
 
     mobileMenu.classList.remove("open");
-    document.body.classList.remove("menu-open");
 
-    if (menuButton) {
-      menuButton.setAttribute("aria-expanded", "false");
-    }
-  }
+    menuButton.classList.remove("active");
 
-
-  if (menuButton) {
-    menuButton.addEventListener("click", () => {
-      if (mobileMenu?.classList.contains("open")) {
-        closeMobileMenu();
-      } else {
-        openMobileMenu();
-      }
-    });
-  }
-
-
-  if (mobileMenuClose) {
-    mobileMenuClose.addEventListener(
-      "click",
-      closeMobileMenu
+    menuButton.setAttribute(
+      "aria-expanded",
+      "false"
     );
+
+    document.body.style.overflow = "";
+
   }
 
 
-  $$(".mobile-navigation a").forEach(link => {
-    link.addEventListener("click", () => {
-      closeMobileMenu();
+  menuButton.addEventListener("click", () => {
+
+    const open =
+      mobileMenu.classList.toggle("open");
+
+    menuButton.classList.toggle(
+      "active",
+      open
+    );
+
+    menuButton.setAttribute(
+      "aria-expanded",
+      String(open)
+    );
+
+    document.body.style.overflow =
+      open ? "hidden" : "";
+
+  });
+
+
+  mobileMenu
+    .querySelectorAll("a")
+    .forEach(link => {
+
+      link.addEventListener(
+        "click",
+        closeMenu
+      );
+
     });
-  });
 
 
-  /* =======================================================
-     ESCAPE KEY
-     ======================================================= */
+  /* =========================================================
+     EMOTION SIDEWAYS SCROLL
+  ========================================================= */
 
-  document.addEventListener("keydown", event => {
+  const cards =
+    [...document.querySelectorAll(".emotion-card")];
 
-    if (event.key === "Escape") {
-      closeMobileMenu();
-      closeEmotionWorld();
-    }
+  function updateProgress() {
 
-  });
-
-
-  /* =======================================================
-     PAGE TRANSITION
-     ======================================================= */
-
-  const pageTransition =
-    $(CONFIG.selectors.pageTransition);
-
-
-  function transitionTo(url) {
-
-    if (!url) return;
-
-    if (!pageTransition) {
-      window.location.href = url;
+    if (!emotionTrack || !trackProgress) {
       return;
     }
 
-    pageTransition.classList.add("active");
+    const maxScroll =
+      emotionTrack.scrollWidth -
+      emotionTrack.clientWidth;
 
-    setTimeout(() => {
-      window.location.href = url;
-    }, CONFIG.timing.transition);
-  }
-
-
-  /* =======================================================
-     INTERNAL NAVIGATION
-     ======================================================= */
-
-  $$("a[href]").forEach(link => {
-
-    const href = link.getAttribute("href");
-
-    if (
-      !href ||
-      href.startsWith("#") ||
-      href.startsWith("mailto:") ||
-      href.startsWith("tel:") ||
-      href.startsWith("javascript:") ||
-      link.target === "_blank"
-    ) {
-      return;
-    }
-
-
-    /*
-     * Only animate local page navigation.
-     */
-    const isExternal =
-      href.startsWith("http://") ||
-      href.startsWith("https://");
-
-
-    if (isExternal) return;
-
-
-    link.addEventListener("click", event => {
-
-      /*
-       * Don't interfere with same-page anchors.
-       */
-      if (href.startsWith("#")) return;
-
-      event.preventDefault();
-
-      closeMobileMenu();
-
-      transitionTo(href);
-
-    });
-
-  });
-
-
-  /* =======================================================
-     EXPLORE / BEGIN JOURNEY
-     ======================================================= */
-
-  const exploreButton =
-    $(CONFIG.selectors.exploreButton);
-
-
-  if (exploreButton) {
-
-    exploreButton.addEventListener("click", event => {
-
-      event.preventDefault();
-
-      const target =
-        document.querySelector("#feeling") ||
-        document.querySelector(".feeling-section");
-
-      if (target) {
-
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-
-      }
-
-    });
-
-  }
-
-
-  /* =======================================================
-     SCROLL PROGRESS
-     ======================================================= */
-
-  const progress =
-    $(CONFIG.selectors.progressLine);
-
-
-  function updateScrollProgress() {
-
-    if (!progress) return;
-
-    const scrollTop =
-      window.scrollY || window.pageYOffset;
-
-    const documentHeight =
-      document.documentElement.scrollHeight -
-      window.innerHeight;
-
-    if (documentHeight <= 0) {
-      progress.style.height = "0%";
+    if (maxScroll <= 0) {
+      trackProgress.style.width = "100%";
       return;
     }
 
     const percentage =
-      Math.min(
-        100,
-        Math.max(
-          0,
-          (scrollTop / documentHeight) * 100
-        )
-      );
+      emotionTrack.scrollLeft /
+      maxScroll;
 
-    progress.style.height = `${percentage}%`;
+    trackProgress.style.width =
+      `${Math.max(25, percentage * 100)}%`;
 
   }
 
 
-  window.addEventListener(
+  emotionTrack.addEventListener(
     "scroll",
-    updateScrollProgress,
+    updateProgress,
     { passive: true }
   );
 
-  updateScrollProgress();
 
+  emotionNext.addEventListener("click", () => {
 
-  /* =======================================================
-     REVEAL SYSTEM
-     ======================================================= */
-
-  const revealElements =
-    $$(CONFIG.selectors.reveal);
-
-
-  if ("IntersectionObserver" in window) {
-
-    const revealObserver =
-      new IntersectionObserver(
-        entries => {
-
-          entries.forEach(entry => {
-
-            if (entry.isIntersecting) {
-
-              entry.target.classList.add("visible");
-
-              revealObserver.unobserve(
-                entry.target
-              );
-
-            }
-
-          });
-
-        },
-        {
-          threshold: 0.12,
-          rootMargin: "0px 0px -8% 0px"
-        }
-      );
-
-
-    revealElements.forEach(element => {
-      revealObserver.observe(element);
+    emotionTrack.scrollBy({
+      left:
+        emotionTrack.clientWidth * .78,
+      behavior: "smooth"
     });
 
-  } else {
+  });
 
-    revealElements.forEach(element => {
-      element.classList.add("visible");
+
+  emotionPrev.addEventListener("click", () => {
+
+    emotionTrack.scrollBy({
+      left:
+        -emotionTrack.clientWidth * .78,
+      behavior: "smooth"
     });
 
-  }
+  });
 
 
-  /* =======================================================
-     EMOTION HORIZONTAL TRACK
-     ======================================================= */
-
-  const emotionWrapper =
-    $(CONFIG.selectors.emotionWrapper);
-
-  const emotionTrack =
-    $(CONFIG.selectors.emotionTrack);
+  updateProgress();
 
 
-  let isDragging = false;
-  let dragStartX = 0;
-  let initialScrollLeft = 0;
+  /* =========================================================
+     EMOTION WORLDS
+  ========================================================= */
 
-
-  if (emotionWrapper && emotionTrack) {
-
-    emotionWrapper.addEventListener(
-      "pointerdown",
-      event => {
-
-        /*
-         * Don't start dragging when pressing
-         * an interactive button.
-         */
-        if (
-          event.target.closest(
-            "button, a, input"
-          )
-        ) {
-          return;
-        }
-
-        isDragging = true;
-
-        emotionWrapper.classList.add("dragging");
-
-        dragStartX = event.clientX;
-
-        initialScrollLeft =
-          emotionWrapper.scrollLeft;
-
-        emotionWrapper.setPointerCapture(
-          event.pointerId
-        );
-
-      }
-    );
-
-
-    emotionWrapper.addEventListener(
-      "pointermove",
-      event => {
-
-        if (!isDragging) return;
-
-        const distance =
-          event.clientX - dragStartX;
-
-        emotionWrapper.scrollLeft =
-          initialScrollLeft -
-          distance *
-          CONFIG.timing.dragMultiplier;
-
-      }
-    );
-
-
-    const stopDragging = event => {
-
-      if (!isDragging) return;
-
-      isDragging = false;
-
-      emotionWrapper.classList.remove(
-        "dragging"
-      );
-
-      try {
-        emotionWrapper.releasePointerCapture(
-          event.pointerId
-        );
-      } catch (_) {}
-
-    };
-
-
-    emotionWrapper.addEventListener(
-      "pointerup",
-      stopDragging
-    );
-
-    emotionWrapper.addEventListener(
-      "pointercancel",
-      stopDragging
-    );
-
-    emotionWrapper.addEventListener(
-      "pointerleave",
-      event => {
-
-        if (
-          event.pointerType === "mouse"
-        ) {
-          stopDragging(event);
-        }
-
-      }
-    );
-
-  }
-
-
-  /* =======================================================
-     EMOTION TRACK BUTTONS
-     ======================================================= */
-
-  const emotionButtons =
-    $$(CONFIG.selectors.emotionButton);
-
-
-  /* =======================================================
-     EMOTION WORLD DATA
-     ======================================================= */
-
-  const emotionWorlds = {
+  const worlds = {
 
     anxious: {
-      title: "You can breathe.",
-      kicker: "A QUIET PLACE FOR ANXIOUS MOMENTS",
+
+      eyebrow: "A QUIETER SPACE",
+
+      title: "Let's slow this down.",
+
       description:
-        "Nothing needs to be solved right now. Take a moment. Slow down. Let yourself arrive.",
-      background:
-        "radial-gradient(circle at 50% 28%, rgba(150,190,205,.32), transparent 40%), linear-gradient(180deg,#253a43,#0b1318)"
+        "You don't have to fight every thought right now. Stay here for a moment, breathe, and give yourself permission to feel a little lighter."
+
     },
 
     overwhelmed: {
-      title: "One thing at a time.",
-      kicker: "A SPACE TO SLOW THE NOISE",
+
+      eyebrow: "ONE THING AT A TIME",
+
+      title: "You can put some of it down.",
+
       description:
-        "You don't have to carry everything at once. Let's create a little room around what you're feeling.",
-      background:
-        "radial-gradient(circle at 50% 30%, rgba(224,180,142,.25), transparent 40%), linear-gradient(180deg,#493d3c,#121114)"
+        "Everything does not need your attention at the same time. Let's create some space between you and everything that feels too much."
+
     },
 
     talk: {
-      title: "You don't have to be alone.",
-      kicker: "WHEN YOU NEED SOMEONE TO TALK TO",
+
+      eyebrow: "YOU DON'T HAVE TO HOLD IT ALONE",
+
+      title: "Someone can listen.",
+
       description:
-        "Sometimes being heard is where everything begins. You can talk, explore or take the next step when you're ready.",
-      background:
-        "radial-gradient(circle at 50% 25%, rgba(195,165,225,.32), transparent 40%), linear-gradient(180deg,#453752,#101018)"
+        "You don't need the perfect words. You can begin exactly where you are and take the next step towards professional support."
+
     },
 
-    exploring: {
+    explore: {
+
+      eyebrow: "WELCOME TO AKSH",
+
       title: "Take your time.",
-      kicker: "WELCOME TO AKSH",
+
       description:
-        "Explore at your own pace. Discover the space, understand your mind and find what feels right for you.",
-      background:
-        "radial-gradient(circle at 50% 28%, rgba(160,205,184,.3), transparent 40%), linear-gradient(180deg,#304a43,#0c1412)"
+        "Explore the spaces, resources and support available at AKSH. There is no pressure to decide anything today."
+
     }
 
   };
 
 
-  /* =======================================================
-     GET EMOTION
-     ======================================================= */
+  function openWorld(type) {
 
-  function getEmotionFromCard(card) {
+    const world = worlds[type];
 
-    if (!card) return "exploring";
-
-    const explicitEmotion =
-      card.dataset.emotion;
-
-    if (explicitEmotion) {
-      return explicitEmotion.toLowerCase();
+    if (!world) {
+      return;
     }
 
+    worldEyebrow.textContent =
+      world.eyebrow;
 
-    const text =
-      card.textContent.toLowerCase();
+    worldTitle.textContent =
+      world.title;
 
+    worldDescription.textContent =
+      world.description;
 
-    if (
-      text.includes("anxious") ||
-      text.includes("anxiety")
-    ) {
-      return "anxious";
-    }
+    emotionWorld.classList.add("open");
 
-
-    if (
-      text.includes("overwhelmed") ||
-      text.includes("overwhelm")
-    ) {
-      return "overwhelmed";
-    }
-
-
-    if (
-      text.includes("talk") ||
-      text.includes("someone")
-    ) {
-      return "talk";
-    }
-
-
-    return "exploring";
-  }
-
-
-  /* =======================================================
-     OPEN EMOTION WORLD
-     ======================================================= */
-
-  function openEmotionWorld(emotion) {
-
-    const world =
-      $(CONFIG.selectors.emotionWorld);
-
-    if (!world) return;
-
-
-    const data =
-      emotionWorlds[emotion] ||
-      emotionWorlds.exploring;
-
-
-    world.classList.add("open");
-
-    document.body.classList.add(
-      "emotion-world-open"
+    emotionWorld.setAttribute(
+      "aria-hidden",
+      "false"
     );
 
-
-    const background =
-      $(".emotion-world-background", world);
-
-    if (background) {
-      background.style.background =
-        data.background;
-    }
-
-
-    const kicker =
-      $(".world-kicker", world);
-
-    if (kicker) {
-      kicker.textContent =
-        data.kicker;
-    }
-
-
-    const title =
-      $(".world-content h2", world);
-
-    if (title) {
-      title.textContent =
-        data.title;
-    }
-
-
-    const description =
-      $(".world-description", world);
-
-    if (description) {
-      description.textContent =
-        data.description;
-    }
-
-
-    world.dataset.emotion =
-      emotion;
-
-
-    /*
-     * Start/reset breathing animation.
-     */
-    const breathCircle =
-      $(".breath-circle", world);
-
-    if (breathCircle) {
-
-      breathCircle.style.animation =
-        "none";
-
-      void breathCircle.offsetWidth;
-
-      breathCircle.style.animation =
-        "breath 5s ease-in-out infinite";
-
-    }
+    document.body.style.overflow =
+      "hidden";
 
   }
 
 
-  /* =======================================================
-     CLOSE EMOTION WORLD
-     ======================================================= */
+  function closeWorld() {
 
-  function closeEmotionWorld() {
+    emotionWorld.classList.remove("open");
 
-    const world =
-      $(CONFIG.selectors.emotionWorld);
-
-    if (!world) return;
-
-    world.classList.remove("open");
-
-    document.body.classList.remove(
-      "emotion-world-open"
+    emotionWorld.setAttribute(
+      "aria-hidden",
+      "true"
     );
+
+    document.body.style.overflow =
+      "";
 
   }
 
 
-  /* =======================================================
-     EMOTION CARD EVENTS
-     ======================================================= */
+  cards.forEach(card => {
 
-  emotionButtons.forEach(button => {
+    card.addEventListener("click", () => {
 
-    button.addEventListener(
-      "click",
-      event => {
+      const emotion =
+        card.dataset.emotion;
 
-        event.preventDefault();
-
-        event.stopPropagation();
-
-        const card =
-          button.closest(
-            CONFIG.selectors.emotionCard
-          );
-
-
-        const emotion =
-          getEmotionFromCard(card);
-
-
-        openEmotionWorld(emotion);
-
-      }
-    );
-
-  });
-
-
-  /* =======================================================
-     EMOTION CARD KEYBOARD ACCESS
-     ======================================================= */
-
-  $$(CONFIG.selectors.emotionCard)
-    .forEach(card => {
-
-      card.addEventListener(
-        "keydown",
-        event => {
-
-          if (
-            event.key !== "Enter" &&
-            event.key !== " "
-          ) {
-            return;
-          }
-
-
-          /*
-           * Only activate the card itself
-           * if there isn't already a button.
-           */
-          if (
-            event.target.closest(
-              "button, a"
-            )
-          ) {
-            return;
-          }
-
-
-          event.preventDefault();
-
-          openEmotionWorld(
-            getEmotionFromCard(card)
-          );
-
-        }
-      );
+      openWorld(emotion);
 
     });
 
-
-  /* =======================================================
-     WORLD CLOSE
-     ======================================================= */
-
-  const worldClose =
-    $(CONFIG.selectors.emotionWorldClose);
-
-
-  if (worldClose) {
-
-    worldClose.addEventListener(
-      "click",
-      event => {
-
-        event.preventDefault();
-
-        closeEmotionWorld();
-
-      }
-    );
-
-  }
-
-
-  /* =======================================================
-     CLICK OUTSIDE WORLD
-     ======================================================= */
-
-  const emotionWorld =
-    $(CONFIG.selectors.emotionWorld);
-
-
-  if (emotionWorld) {
-
-    emotionWorld.addEventListener(
-      "click",
-      event => {
-
-        if (
-          event.target === emotionWorld
-        ) {
-          closeEmotionWorld();
-        }
-
-      }
-    );
-
-  }
-
-
-  /* =======================================================
-     WORLD BOOKING BUTTON
-     ======================================================= */
-
-  $$(".world-primary").forEach(button => {
-
-    button.addEventListener(
-      "click",
-      event => {
-
-        event.preventDefault();
-
-        /*
-         * Booking will eventually become
-         * its own dedicated page.
-         */
-        transitionTo("booking.html");
-
-      }
-    );
-
   });
 
 
-  /* =======================================================
-     WORLD AI BUTTON
-     ======================================================= */
+  worldClose.addEventListener(
+    "click",
+    closeWorld
+  );
 
-  $$(".world-secondary").forEach(button => {
 
-    button.addEventListener(
-      "click",
-      event => {
+  worldBack.addEventListener(
+    "click",
+    closeWorld
+  );
 
-        event.preventDefault();
 
-        /*
-         * AI will eventually have its own
-         * dedicated immersive experience.
-         */
-        const aiSection =
-          document.querySelector(
-            ".ai-section"
-          );
+  emotionWorld.addEventListener(
+    "click",
+    event => {
 
-        closeEmotionWorld();
-
-        if (aiSection) {
-
-          setTimeout(() => {
-
-            aiSection.scrollIntoView({
-              behavior: "smooth",
-              block: "start"
-            });
-
-          }, 350);
-
-        }
-
+      if (
+        event.target === emotionWorld
+      ) {
+        closeWorld();
       }
-    );
 
-  });
-
-
-  /* =======================================================
-     AI ENTER
-     ======================================================= */
-
-  const aiButton =
-    $(CONFIG.selectors.aiButton);
+    }
+  );
 
 
-  if (aiButton) {
+  document.addEventListener(
+    "keydown",
+    event => {
 
-    aiButton.addEventListener(
-      "click",
-      event => {
-
-        event.preventDefault();
-
-        /*
-         * AI page can be connected later
-         * without changing Page 1 design.
-         */
-        const aiTarget =
-          aiButton.dataset.aiUrl ||
-          "ai.html";
-
-        transitionTo(aiTarget);
-
+      if (
+        event.key === "Escape" &&
+        emotionWorld.classList.contains("open")
+      ) {
+        closeWorld();
       }
-    );
 
-  }
+    }
+  );
 
 
-  /* =======================================================
-     PATHWAY INTERACTIONS
-     ======================================================= */
+  /* =========================================================
+     SMOOTH INTERNAL NAVIGATION
+  ========================================================= */
 
-  $$(CONFIG.selectors.pathway)
-    .forEach(pathway => {
+  document
+    .querySelectorAll('a[href^="#"]')
+    .forEach(link => {
 
-      pathway.addEventListener(
+      link.addEventListener(
         "click",
-        () => {
-
-          const url =
-            pathway.dataset.url;
-
-          if (url) {
-            transitionTo(url);
-          }
-
-        }
-      );
-
-
-      pathway.addEventListener(
-        "keydown",
         event => {
 
+          const targetID =
+            link.getAttribute("href");
+
           if (
-            event.key !== "Enter" &&
-            event.key !== " "
+            !targetID ||
+            targetID === "#"
           ) {
             return;
           }
 
-          event.preventDefault();
+          const target =
+            document.querySelector(
+              targetID
+            );
 
-          const url =
-            pathway.dataset.url;
-
-          if (url) {
-            transitionTo(url);
-          }
-
-        }
-      );
-
-    });
-
-
-  /* =======================================================
-     FINAL BOOKING
-     ======================================================= */
-
-  const finalBook =
-    $(CONFIG.selectors.finalBook);
-
-
-  if (finalBook) {
-
-    finalBook.addEventListener(
-      "click",
-      event => {
-
-        event.preventDefault();
-
-        const url =
-          finalBook.getAttribute("href") ||
-          "booking.html";
-
-        transitionTo(url);
-
-      }
-    );
-
-  }
-
-
-  /* =======================================================
-     SMART HORIZONTAL WHEEL
-     ======================================================= */
-
-  if (emotionWrapper) {
-
-    emotionWrapper.addEventListener(
-      "wheel",
-      event => {
-
-        /*
-         * Convert vertical mouse wheel movement
-         * into horizontal emotion movement.
-         */
-        if (
-          Math.abs(event.deltaY) >
-          Math.abs(event.deltaX)
-        ) {
-
-          const atStart =
-            emotionWrapper.scrollLeft <= 0 &&
-            event.deltaY < 0;
-
-          const atEnd =
-            emotionWrapper.scrollLeft +
-            emotionWrapper.clientWidth >=
-            emotionWrapper.scrollWidth - 2 &&
-            event.deltaY > 0;
-
-
-          /*
-           * Allow normal page scrolling at
-           * the beginning/end of the track.
-           */
-          if (atStart || atEnd) {
+          if (!target) {
             return;
           }
 
-
           event.preventDefault();
 
-          emotionWrapper.scrollLeft +=
-            event.deltaY * 1.15;
-
-        }
-
-      },
-      { passive: false }
-    );
-
-  }
-
-
-  /* =======================================================
-     TOUCH FRIENDLY EMOTION TRACK
-     ======================================================= */
-
-  if (emotionWrapper) {
-
-    let touchStartX = 0;
-    let touchStartScroll = 0;
-
-
-    emotionWrapper.addEventListener(
-      "touchstart",
-      event => {
-
-        if (!event.touches.length) return;
-
-        touchStartX =
-          event.touches[0].clientX;
-
-        touchStartScroll =
-          emotionWrapper.scrollLeft;
-
-      },
-      { passive: true }
-    );
-
-
-    emotionWrapper.addEventListener(
-      "touchmove",
-      event => {
-
-        if (!event.touches.length) return;
-
-        const currentX =
-          event.touches[0].clientX;
-
-        const difference =
-          currentX - touchStartX;
-
-        emotionWrapper.scrollLeft =
-          touchStartScroll - difference;
-
-      },
-      { passive: true }
-    );
-
-  }
-
-
-  /* =======================================================
-     PARALLAX ATMOSPHERE
-     ======================================================= */
-
-  const clouds =
-    $$(".cloud");
-
-
-  if (
-    clouds.length &&
-    !window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches
-  ) {
-
-    let targetX = 0;
-    let targetY = 0;
-
-    let currentX = 0;
-    let currentY = 0;
-
-
-    window.addEventListener(
-      "pointermove",
-      event => {
-
-        targetX =
-          (event.clientX /
-            window.innerWidth -
-            .5) * 2;
-
-        targetY =
-          (event.clientY /
-            window.innerHeight -
-            .5) * 2;
-
-      },
-      { passive: true }
-    );
-
-
-    function animateAtmosphere() {
-
-      currentX +=
-        (targetX - currentX) * .025;
-
-      currentY +=
-        (targetY - currentY) * .025;
-
-
-      clouds.forEach(
-        (cloud, index) => {
-
-          const multiplier =
-            (index + 1) * 6;
-
-          cloud.style.marginLeft =
-            `${currentX * multiplier}px`;
-
-          cloud.style.marginTop =
-            `${currentY * multiplier}px`;
-
-        }
-      );
-
-
-      requestAnimationFrame(
-        animateAtmosphere
-      );
-
-    }
-
-
-    animateAtmosphere();
-
-  }
-
-
-  /* =======================================================
-     MOUSE PARALLAX FOR AI ORBIT
-     ======================================================= */
-
-  const aiOrbit =
-    $(".ai-orbit");
-
-
-  if (
-    aiOrbit &&
-    window.matchMedia(
-      "(pointer: fine)"
-    ).matches
-  ) {
-
-    let targetX = 0;
-    let targetY = 0;
-
-    let currentX = 0;
-    let currentY = 0;
-
-
-    window.addEventListener(
-      "pointermove",
-      event => {
-
-        targetX =
-          (event.clientX /
-            window.innerWidth -
-            .5) * 10;
-
-        targetY =
-          (event.clientY /
-            window.innerHeight -
-            .5) * 10;
-
-      },
-      { passive: true }
-    );
-
-
-    function animateAIOrbit() {
-
-      currentX +=
-        (targetX - currentX) * .035;
-
-      currentY +=
-        (targetY - currentY) * .035;
-
-
-      aiOrbit.style.transform =
-        `translate3d(${currentX}px, ${currentY}px, 0)`;
-
-
-      requestAnimationFrame(
-        animateAIOrbit
-      );
-
-    }
-
-
-    animateAIOrbit();
-
-  }
-
-
-  /* =======================================================
-     IMAGE LOADING ENHANCEMENT
-     ======================================================= */
-
-  $$("img").forEach(image => {
-
-    image.addEventListener(
-      "load",
-      () => {
-        image.classList.add("loaded");
-      },
-      { once: true }
-    );
-
-  });
-
-
-  /* =======================================================
-     ACTIVE NAVIGATION
-     ======================================================= */
-
-  const currentPage =
-    window.location.pathname
-      .split("/")
-      .pop()
-      .toLowerCase();
-
-
-  $$(
-    ".desktop-nav a, .mobile-navigation a"
-  ).forEach(link => {
-
-    const href =
-      (link.getAttribute("href") || "")
-        .split("/")
-        .pop()
-        .toLowerCase();
-
-
-    if (
-      href &&
-      href === currentPage
-    ) {
-
-      link.classList.add("active");
-
-    }
-
-  });
-
-
-  /* =======================================================
-     SECTION OBSERVER
-     ======================================================= */
-
-  const sections =
-    $$("section[id]");
-
-
-  if (
-    sections.length &&
-    "IntersectionObserver" in window
-  ) {
-
-    const sectionObserver =
-      new IntersectionObserver(
-        entries => {
-
-          entries.forEach(entry => {
-
-            if (
-              entry.isIntersecting
-            ) {
-
-              document.body.dataset.activeSection =
-                entry.target.id;
-
-            }
-
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
           });
 
-        },
-        {
-          threshold: .35
         }
       );
 
-
-    sections.forEach(section => {
-
-      sectionObserver.observe(section);
-
     });
+
+
+  /* =========================================================
+     SUBTLE MOUSE ATMOSPHERE
+  ========================================================= */
+
+  const atmosphere =
+    document.querySelector(".atmosphere");
+
+  if (
+    window.matchMedia(
+      "(pointer:fine)"
+    ).matches
+  ) {
+
+    window.addEventListener(
+      "mousemove",
+      event => {
+
+        const x =
+          (event.clientX /
+            window.innerWidth -
+            .5) * 8;
+
+        const y =
+          (event.clientY /
+            window.innerHeight -
+            .5) * 5;
+
+        atmosphere.style.transform =
+          `translate(${x * .15}px,${y * .15}px)`;
+
+      },
+      { passive: true }
+    );
 
   }
 
 
-  /* =======================================================
-     PREVENT DOUBLE TAP ZOOM ON BUTTONS
-     ======================================================= */
+  /* =========================================================
+     REDUCE MOTION ACCESSIBILITY
+  ========================================================= */
 
-  $$(
-    "button, .emotion-enter, .explore-button"
-  ).forEach(button => {
-
-    button.addEventListener(
-      "touchend",
-      () => {},
-      { passive: true }
+  const reducedMotion =
+    window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
     );
 
-  });
+  if (reducedMotion.matches) {
+
+    document.documentElement.style
+      .scrollBehavior = "auto";
+
+    document
+      .querySelectorAll("*")
+      .forEach(element => {
+        element.style.animationDuration = "0.01ms";
+        element.style.animationIterationCount = "1";
+      });
+
+  }
 
 
-  /* =======================================================
-     PAGE 1 READY STATE
-     ======================================================= */
-
-  requestAnimationFrame(() => {
-
-    page.classList.add("page-ready");
-
-  });
-
-
-  /* =======================================================
-     DEBUG-SAFE ERROR HANDLING
-     ======================================================= */
-
-  window.AKSHPage1 = {
-    getTimePeriod,
-    setTimeAtmosphere,
-    openEmotionWorld,
-    closeEmotionWorld,
-    transitionTo
-  };
-
-
-})();
+});
