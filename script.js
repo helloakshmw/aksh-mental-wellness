@@ -1,12 +1,13 @@
-/* =====================================================
-   AKSH — ARRIVAL EXPERIENCE ENGINE
-   ===================================================== */
+/* =========================================================
+   AKSH — SCRIPT
+   ========================================================= */
 
 
-/* =====================================================
-   ELEMENTS
-   ===================================================== */
+/* =========================================================
+   BASIC ELEMENTS
+   ========================================================= */
 
+const arrival = document.getElementById("arrival");
 const arrivalVideo = document.getElementById("arrivalVideo");
 const arrivalVideoSource = document.getElementById("arrivalVideoSource");
 
@@ -21,388 +22,475 @@ const soundIcon = document.getElementById("soundIcon");
 const soundText = document.getElementById("soundText");
 
 const enterButton = document.getElementById("enterButton");
+const enterWorld = document.getElementById("begin");
+
+const feelingHorizontal =
+  document.getElementById("feelingHorizontal");
 
 
-/* =====================================================
-   VIDEO FILES
-   ===================================================== */
+/* =========================================================
+   AKSH TIME
+   ========================================================= */
 
-const videos = {
-  morning1: "aksh-morning.1.mov",
-  morning2: "aksh-morning.2.mov",
-  morning3: "aksh-morning.3.mov",
-  morning4: "aksh-morning.4.mov",
+function getCurrentTime() {
 
-  afternoon1: "aksh-afternoon.1.mov",
-  afternoon2: "aksh-afternoon.2.mov",
-  afternoon3: "aksh-afternoon.3.mov",
-  afternoon4: "aksh-afternoon.4.mov",
-
-  evening1: "aksh-evening.1.mov",
-  evening2: "aksh-evening.2.mov",
-  evening3: "aksh-evening.3.mov",
-
-  night1: "aksh-night.1.mov",
-  night2: "aksh-night.2.mov"
-};
-
-
-/* =====================================================
-   TIME EXPERIENCE
-   ===================================================== */
-
-function getArrivalExperience() {
-
-  const now = new Date();
-
-  const hour = now.getHours();
-  const minute = now.getMinutes();
-
-  const timeInMinutes =
-    (hour * 60) + minute;
-
-
-  /* ---------------------------------------------
-     GOOD MORNING
-     5:00 AM – 11:59 AM
-     --------------------------------------------- */
-
-  if (
-    timeInMinutes >= 300 &&
-    timeInMinutes < 720
-  ) {
-
-    if (timeInMinutes < 360) {
-
-      return {
-        greeting: "Good Morning",
-        video: videos.morning1,
-        quote: "Begin gently. There is nowhere else you need to be."
-      };
-
-    }
-
-    if (timeInMinutes < 480) {
-
-      return {
-        greeting: "Good Morning",
-        video: videos.morning2,
-        quote: "Let the morning arrive at its own pace."
-      };
-
-    }
-
-    if (timeInMinutes < 600) {
-
-      return {
-        greeting: "Good Morning",
-        video: videos.morning3,
-        quote: "Give yourself a quiet moment before the world begins."
-      };
-
-    }
-
-    return {
-      greeting: "Good Morning",
-      video: videos.morning4,
-      quote: "There is always a little space to breathe."
-    };
-
-  }
-
-
-  /* ---------------------------------------------
-     GOOD AFTERNOON
-     12:00 PM – 4:59 PM
-     --------------------------------------------- */
-
-  if (
-    timeInMinutes >= 720 &&
-    timeInMinutes < 1020
-  ) {
-
-    if (timeInMinutes < 780) {
-
-      return {
-        greeting: "Good Afternoon",
-        video: videos.afternoon1,
-        quote: "Pause for a moment. Notice where you are."
-      };
-
-    }
-
-    if (timeInMinutes < 870) {
-
-      return {
-        greeting: "Good Afternoon",
-        video: videos.afternoon2,
-        quote: "You are allowed to slow down."
-      };
-
-    }
-
-    if (timeInMinutes < 960) {
-
-      return {
-        greeting: "Good Afternoon",
-        video: videos.afternoon3,
-        quote: "Make a little room for yourself today."
-      };
-
-    }
-
-    return {
-      greeting: "Good Afternoon",
-      video: videos.afternoon4,
-      quote: "Even in a busy day, there can be a quiet moment."
-    };
-
-  }
-
-
-  /* ---------------------------------------------
-     GOOD EVENING
-     5:00 PM – 7:59 PM
-     --------------------------------------------- */
-
-  if (
-    timeInMinutes >= 1020 &&
-    timeInMinutes < 1200
-  ) {
-
-    if (timeInMinutes < 1065) {
-
-      return {
-        greeting: "Good Evening",
-        video: videos.evening1,
-        quote: "Let the day soften around you."
-      };
-
-    }
-
-    if (timeInMinutes < 1140) {
-
-      return {
-        greeting: "Good Evening",
-        video: videos.evening2,
-        quote: "You made it through another day. Breathe."
-      };
-
-    }
-
-    return {
-      greeting: "Good Evening",
-      video: videos.evening3,
-      quote: "Leave a little space for yourself tonight."
-    };
-
-  }
-
-
-  /* ---------------------------------------------
-     GOOD NIGHT
-     8:00 PM – 4:59 AM
-     --------------------------------------------- */
-
-  if (
-    timeInMinutes >= 1200 ||
-    timeInMinutes < 300
-  ) {
-
-    if (timeInMinutes >= 1200) {
-
-      return {
-        greeting: "Good Night",
-        video: videos.night1,
-        quote: "Let the noise of the day become quiet."
-      };
-
-    }
-
-    return {
-      greeting: "Good Night",
-      video: videos.night2,
-      quote: "Rest. Tomorrow does not need to arrive tonight."
-    };
-
-  }
-
-
-  /* ---------------------------------------------
-     SAFETY FALLBACK
-     --------------------------------------------- */
-
-  return {
-    greeting: "Welcome to AKSH",
-    video: videos.morning1,
-    quote: "Take a moment. You have arrived."
-  };
+  return new Date();
 
 }
 
 
-/* =====================================================
-   DATE + DAY
-   FORMAT:
+/* =========================================================
+   FORMAT DATE
+   Example:
    14.08.2026
    Friday
-   ===================================================== */
+   ========================================================= */
 
 function updateDate() {
 
-  const now = new Date();
+  const now = getCurrentTime();
 
+  const day = String(
+    now.getDate()
+  ).padStart(2, "0");
 
-  const day =
-    String(now.getDate()).padStart(2, "0");
+  const month = String(
+    now.getMonth() + 1
+  ).padStart(2, "0");
 
-  const month =
-    String(now.getMonth() + 1).padStart(2, "0");
+  const year = now.getFullYear();
 
-  const year =
-    now.getFullYear();
-
-
-  const formattedDate =
-    `${day}.${month}.${year}`;
-
-
-  const formattedDay =
-    now.toLocaleDateString(
-      undefined,
-      {
-        weekday: "long"
-      }
-    );
-
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
 
   currentDate.textContent =
-    formattedDate;
+    `${day}.${month}.${year}`;
 
   currentDay.textContent =
-    formattedDay;
+    days[now.getDay()];
 
 }
 
 
-/* =====================================================
-   LOAD ARRIVAL EXPERIENCE
-   ===================================================== */
+/* =========================================================
+   TIME PERIOD
+   =========================================================
 
-function loadArrival() {
+   05:00 – 11:59  GOOD MORNING
 
-  const experience =
-    getArrivalExperience();
+   12:00 – 16:59  GOOD AFTERNOON
 
+   17:00 – 19:59  GOOD EVENING
 
-  /* ---------------------------------------------
-     DATE
-     --------------------------------------------- */
+   20:00 – 04:59  GOOD NIGHT
 
-  updateDate();
+   ========================================================= */
 
+function getTimePeriod() {
 
-  /* ---------------------------------------------
-     GREETING
-     --------------------------------------------- */
+  const now = getCurrentTime();
 
-  timeGreeting.textContent =
-    experience.greeting;
+  const hour = now.getHours();
 
+  const minutes = now.getMinutes();
 
-  /* ---------------------------------------------
-     QUOTE
-     --------------------------------------------- */
-
-  arrivalQuote.textContent =
-    experience.quote;
+  const totalMinutes =
+    (hour * 60) + minutes;
 
 
-  /* ---------------------------------------------
-     VIDEO
-     --------------------------------------------- */
+  /* GOOD MORNING */
 
-  arrivalVideoSource.src =
-    experience.video;
+  if (
+    totalMinutes >= 300 &&
+    totalMinutes < 720
+  ) {
+
+    return "morning";
+
+  }
 
 
-  arrivalVideo.load();
+  /* GOOD AFTERNOON */
+
+  if (
+    totalMinutes >= 720 &&
+    totalMinutes < 1020
+  ) {
+
+    return "afternoon";
+
+  }
+
+
+  /* GOOD EVENING */
+
+  if (
+    totalMinutes >= 1020 &&
+    totalMinutes < 1200
+  ) {
+
+    return "evening";
+
+  }
+
+
+  /* GOOD NIGHT */
+
+  return "night";
+
+}
+
+
+/* =========================================================
+   GREETING TEXT
+   ========================================================= */
+
+function getGreeting(period) {
+
+  if (period === "morning") {
+
+    return "Good Morning";
+
+  }
+
+  if (period === "afternoon") {
+
+    return "Good Afternoon";
+
+  }
+
+  if (period === "evening") {
+
+    return "Good Evening";
+
+  }
+
+  return "Good Night";
+
+}
+
+
+/* =========================================================
+   ARRIVAL VIDEO SELECTION
+   =========================================================
+
+   MORNING
+
+   05:00 - 05:59
+   morning.1
+
+   06:00 - 07:59
+   morning.2
+
+   08:00 - 09:59
+   morning.3
+
+   10:00 - 11:59
+   morning.4
+
+
+   AFTERNOON
+
+   12:00 - 12:59
+   afternoon.1
+
+   13:00 - 14:29
+   afternoon.2
+
+   14:30 - 15:59
+   afternoon.3
+
+   16:00 - 16:59
+   afternoon.4
+
+
+   EVENING
+
+   17:00 - 17:44
+   evening.1
+
+   17:45 - 18:59
+   evening.2
+
+   19:00 - 19:59
+   evening.3
+
+
+   NIGHT
+
+   20:00 - 23:59
+   night.1
+
+   00:00 - 04:59
+   night.2
+
+   ========================================================= */
+
+function getArrivalVideo() {
+
+  const now = getCurrentTime();
+
+  const hour = now.getHours();
+
+  const minutes = now.getMinutes();
+
+  const totalMinutes =
+    (hour * 60) + minutes;
+
+
+  /* -------------------------
+     MORNING
+     ------------------------- */
+
+  if (
+    totalMinutes >= 300 &&
+    totalMinutes < 360
+  ) {
+
+    return "aksh-morning.1.mov";
+
+  }
+
+
+  if (
+    totalMinutes >= 360 &&
+    totalMinutes < 480
+  ) {
+
+    return "aksh-morning.2.mov";
+
+  }
+
+
+  if (
+    totalMinutes >= 480 &&
+    totalMinutes < 600
+  ) {
+
+    return "aksh-morning.3.mov";
+
+  }
+
+
+  if (
+    totalMinutes >= 600 &&
+    totalMinutes < 720
+  ) {
+
+    return "aksh-morning.4.mov";
+
+  }
+
+
+  /* -------------------------
+     AFTERNOON
+     ------------------------- */
+
+  if (
+    totalMinutes >= 720 &&
+    totalMinutes < 780
+  ) {
+
+    return "aksh-afternoon.1.mov";
+
+  }
+
+
+  if (
+    totalMinutes >= 780 &&
+    totalMinutes < 870
+  ) {
+
+    return "aksh-afternoon.2.mov";
+
+  }
+
+
+  if (
+    totalMinutes >= 870 &&
+    totalMinutes < 960
+  ) {
+
+    return "aksh-afternoon.3.mov";
+
+  }
+
+
+  if (
+    totalMinutes >= 960 &&
+    totalMinutes < 1020
+  ) {
+
+    return "aksh-afternoon.4.mov";
+
+  }
+
+
+  /* -------------------------
+     EVENING
+     ------------------------- */
+
+  if (
+    totalMinutes >= 1020 &&
+    totalMinutes < 1065
+  ) {
+
+    return "aksh-evening.1.mov";
+
+  }
+
+
+  if (
+    totalMinutes >= 1065 &&
+    totalMinutes < 1140
+  ) {
+
+    return "aksh-evening.2.mov";
+
+  }
+
+
+  if (
+    totalMinutes >= 1140 &&
+    totalMinutes < 1200
+  ) {
+
+    return "aksh-evening.3.mov";
+
+  }
+
+
+  /* -------------------------
+     NIGHT
+     ------------------------- */
+
+  if (
+    totalMinutes >= 1200 ||
+    totalMinutes < 300
+  ) {
+
+    if (totalMinutes >= 1200) {
+
+      return "aksh-night.1.mov";
+
+    }
+
+    return "aksh-night.2.mov";
+
+  }
+
+
+  return "aksh-night.1.mov";
+
+}
+
+
+/* =========================================================
+   LOAD ARRIVAL VIDEO
+   ========================================================= */
+
+function loadArrivalVideo() {
+
+  const videoFile =
+    getArrivalVideo();
+
+
+  if (!arrivalVideo) {
+    return;
+  }
 
 
   /*
-     Start muted first.
+    Use the GitHub Pages root.
 
-     This is the browser-safe autoplay
-     behaviour.
+    Example:
+    https://helloakshmw.github.io/aksh-mental-wellness/
   */
 
+  const videoPath =
+    encodeURI(videoFile);
+
+
+  arrivalVideo.src =
+    videoPath;
+
+
+  arrivalVideo.loop = true;
+
   arrivalVideo.muted = true;
+
+  arrivalVideo.playsInline = true;
+
+  arrivalVideo.setAttribute(
+    "playsinline",
+    ""
+  );
+
+  arrivalVideo.setAttribute(
+    "webkit-playsinline",
+    ""
+  );
+
+
+  arrivalVideo.load();
 
 
   const playPromise =
     arrivalVideo.play();
 
 
-  if (playPromise !== undefined) {
+  if (
+    playPromise !== undefined
+  ) {
 
     playPromise.catch(() => {
 
       /*
-         Some browsers may still block autoplay.
-         The visitor can start it through interaction.
+        Some browsers may wait for
+        the first user interaction.
       */
 
     });
 
   }
 
-
-  /*
-     Try to enable sound automatically.
-
-     Some browsers allow it.
-     Others will block it.
-
-     If blocked, video remains muted
-     and the SOUND button becomes the
-     way to enable the music.
-  */
-
-  setTimeout(() => {
-
-    arrivalVideo.muted = false;
-
-    const soundPromise =
-      arrivalVideo.play();
-
-
-    if (
-      soundPromise &&
-      typeof soundPromise.catch === "function"
-    ) {
-
-      soundPromise.catch(() => {
-
-        arrivalVideo.muted = true;
-
-        updateSoundButton();
-
-      });
-
-    }
-
-  }, 150);
-
 }
 
 
-/* =====================================================
-   SOUND BUTTON
-   ===================================================== */
+/* =========================================================
+   SOUND CONTROL
+   ========================================================= */
 
-function updateSoundButton() {
+let soundOn = false;
 
-  if (arrivalVideo.muted) {
+
+function updateSoundUI() {
+
+  if (!soundButton) {
+    return;
+  }
+
+
+  if (soundOn) {
+
+    soundIcon.textContent = "●";
+
+    soundText.textContent =
+      "SOUND ON";
+
+    soundButton.setAttribute(
+      "aria-label",
+      "Turn sound off"
+    );
+
+  } else {
 
     soundIcon.textContent = "◉";
 
@@ -414,18 +502,6 @@ function updateSoundButton() {
       "Turn sound on"
     );
 
-  } else {
-
-    soundIcon.textContent = "◉";
-
-    soundText.textContent =
-      "SOUND ON";
-
-    soundButton.setAttribute(
-      "aria-label",
-      "Turn sound off"
-    );
-
   }
 
 }
@@ -433,151 +509,717 @@ function updateSoundButton() {
 
 function toggleSound() {
 
-  if (arrivalVideo.muted) {
+  if (!arrivalVideo) {
+    return;
+  }
 
-    arrivalVideo.muted = false;
+
+  soundOn =
+    !soundOn;
+
+
+  arrivalVideo.muted =
+    !soundOn;
+
+
+  if (soundOn) {
 
     const playPromise =
       arrivalVideo.play();
 
 
     if (
-      playPromise &&
-      typeof playPromise.catch === "function"
+      playPromise !== undefined
     ) {
 
       playPromise.catch(() => {
 
+        soundOn = false;
+
         arrivalVideo.muted = true;
+
+        updateSoundUI();
 
       });
 
     }
 
-  } else {
-
-    arrivalVideo.muted = true;
-
   }
 
 
-  updateSoundButton();
+  updateSoundUI();
 
 }
 
 
-soundButton.addEventListener(
-  "click",
-  toggleSound
-);
+if (soundButton) {
+
+  soundButton.addEventListener(
+    "click",
+    toggleSound
+  );
+
+}
 
 
-/* =====================================================
-   BEGIN YOUR JOURNEY
-   ===================================================== */
+/* =========================================================
+   QUOTE COLLECTION
+   =========================================================
 
-enterButton.addEventListener(
-  "click",
-  () => {
+   Quotes are intentionally short.
 
-    const beginning =
-      document.getElementById("begin");
+   They will rotate every second.
+
+   We prevent the immediate previous
+   quote from being selected again.
+   ========================================================= */
+
+const quotes = [
+
+  "Take a moment. You have arrived.",
+
+  "You do not have to have everything figured out.",
+
+  "Be where you are. That is enough.",
+
+  "A quiet mind begins with a quiet moment.",
+
+  "There is space for you here.",
+
+  "You are allowed to slow down.",
+
+  "Some days need softness.",
+
+  "You can begin again from here.",
+
+  "Your feelings deserve a safe place.",
+
+  "You are more than what you are going through.",
+
+  "It is okay to pause.",
+
+  "Let this moment belong to you.",
+
+  "You don't have to carry everything alone.",
+
+  "There is no perfect way to feel.",
+
+  "Come as you are.",
+
+  "Your mind deserves kindness too.",
+
+  "One breath. One moment. One step.",
+
+  "You are allowed to take your time.",
+
+  "A little space can change a lot.",
+
+  "You can meet yourself with kindness.",
+
+  "Nothing needs to be solved right now.",
+
+  "You are welcome here.",
+
+  "Rest is also part of the journey.",
+
+  "Your story deserves to be heard.",
+
+  "You don't have to pretend here.",
+
+  "Maybe today can be a little gentler.",
+
+  "There is strength in asking for support.",
+
+  "You can start exactly where you are.",
+
+  "Your inner world matters.",
+
+  "Make room for yourself.",
+
+  "Even a small pause can be meaningful.",
+
+  "You deserve a space without judgement.",
+
+  "It is okay to not be okay.",
+
+  "Let yourself breathe.",
+
+  "You are not behind.",
+
+  "Your journey does not need comparison.",
+
+  "There is always another beginning.",
+
+  "Give yourself the same kindness you give others.",
+
+  "Your feelings are worth listening to.",
+
+  "Stay for a moment.",
+
+  "You are enough for this moment.",
+
+  "The next step can be small.",
+
+  "You can choose softness today.",
+
+  "There is no rush here.",
+
+  "Your mind can rest here.",
+
+  "You deserve to feel understood.",
+
+  "Sometimes being heard is enough.",
+
+  "A safe space can begin with one conversation.",
+
+  "You don't need the right words.",
+
+  "Start with whatever feels true.",
+
+  "Your thoughts can be held gently.",
+
+  "You are allowed to ask for help.",
+
+  "Every mind deserves care.",
+
+  "Your wellbeing matters.",
+
+  "There is courage in reaching out.",
+
+  "You can take one moment at a time.",
+
+  "Let today be a beginning.",
+
+  "You are not your hardest day.",
+
+  "There is more to you than one moment.",
+
+  "Your mind deserves room to breathe.",
+
+  "Sometimes the first step is simply arriving.",
+
+  "You can be honest here.",
+
+  "You don't have to explain everything at once.",
+
+  "Your pace is your own.",
+
+  "A softer moment is still progress.",
+
+  "You deserve support without judgement.",
+
+  "Your emotions have a place here.",
+
+  "You can put down what feels heavy.",
+
+  "There is nothing weak about needing support.",
+
+  "You are allowed to be human.",
+
+  "Your wellbeing is worth making time for.",
+
+  "You can listen to yourself today.",
+
+  "Small moments matter.",
+
+  "Sometimes clarity comes after stillness.",
+
+  "You don't need to rush your healing.",
+
+  "You can make space for what you feel.",
+
+  "You deserve to be met with understanding.",
+
+  "Your mind is part of your whole story.",
+
+  "Let this be your pause.",
+
+  "You can begin without knowing the ending.",
+
+  "There is room for hope.",
+
+  "You are not alone in needing support.",
+
+  "A conversation can be a beginning.",
+
+  "Your thoughts deserve attention, not judgement.",
+
+  "You can choose to take care of yourself.",
+
+  "Today does not have to be perfect.",
+
+  "You can start again tomorrow.",
+
+  "You deserve moments that feel peaceful.",
+
+  "Your mind deserves compassion.",
+
+  "It is brave to reach out.",
+
+  "You can take up space here.",
+
+  "There is no judgement in this space.",
+
+  "You are seen.",
+
+  "You are heard.",
+
+  "You matter.",
+
+  "You can breathe.",
+
+  "You can pause.",
+
+  "You can begin.",
+
+  "You can simply be."
+
+];
 
 
-    if (beginning) {
+let previousQuote = -1;
 
-      beginning.scrollIntoView({
-        behavior: "smooth"
-      });
 
-    }
+function getRandomQuote() {
+
+  if (
+    quotes.length <= 1
+  ) {
+
+    return quotes[0];
 
   }
-);
 
 
-/* =====================================================
-   FIRST USER INTERACTION
-   =====================================================
+  let randomIndex;
 
-   If the browser blocked audio autoplay,
-   the first interaction with the page gives
-   us an opportunity to start the video with
-   sound.
-   ===================================================== */
 
-function enableAudioAfterInteraction() {
+  do {
 
-  if (!arrivalVideo.muted) {
+    randomIndex =
+      Math.floor(
+        Math.random() * quotes.length
+      );
+
+  } while (
+    randomIndex === previousQuote
+  );
+
+
+  previousQuote =
+    randomIndex;
+
+
+  return quotes[randomIndex];
+
+}
+
+
+/* =========================================================
+   CHANGE QUOTE
+   ========================================================= */
+
+function changeQuote() {
+
+  if (!arrivalQuote) {
+    return;
+  }
+
+
+  arrivalQuote.classList.add(
+    "quote-changing"
+  );
+
+
+  setTimeout(() => {
+
+    arrivalQuote.textContent =
+      getRandomQuote();
+
+
+    arrivalQuote.classList.remove(
+      "quote-changing"
+    );
+
+  }, 180);
+
+}
+
+
+/* =========================================================
+   START QUOTE ROTATION
+   ========================================================= */
+
+function startQuoteRotation() {
+
+  if (!arrivalQuote) {
     return;
   }
 
 
   /*
-     We only attempt this once.
+    Start with a random quote.
   */
 
-  arrivalVideo.muted = false;
+  arrivalQuote.textContent =
+    getRandomQuote();
 
 
-  const playPromise =
-    arrivalVideo.play();
+  /*
+    New quote every second.
+  */
 
-
-  if (
-    playPromise &&
-    typeof playPromise.catch === "function"
-  ) {
-
-    playPromise.catch(() => {
-
-      arrivalVideo.muted = true;
-
-      updateSoundButton();
-
-    });
-
-  }
-
-
-  updateSoundButton();
-
-
-  document.removeEventListener(
-    "click",
-    enableAudioAfterInteraction
-  );
-
-  document.removeEventListener(
-    "touchstart",
-    enableAudioAfterInteraction
+  setInterval(
+    changeQuote,
+    1000
   );
 
 }
 
 
-document.addEventListener(
-  "click",
-  enableAudioAfterInteraction,
-  {
-    once: true
+/* =========================================================
+   ENTER WORLD ATMOSPHERE
+   ========================================================= */
+
+function updateWorldAtmosphere() {
+
+  if (!enterWorld) {
+    return;
   }
+
+
+  const period =
+    getTimePeriod();
+
+
+  enterWorld.classList.remove(
+    "morning",
+    "afternoon",
+    "evening",
+    "night"
+  );
+
+
+  enterWorld.classList.add(
+    period
+  );
+
+
+  if (period === "evening") {
+
+    enterWorld
+      .querySelector(".sky-rain")
+      ?.style
+      .setProperty(
+        "opacity",
+        "0.55"
+      );
+
+  }
+
+
+}
+
+
+/* =========================================================
+   UPDATE GREETING
+   ========================================================= */
+
+function updateGreeting() {
+
+  if (!timeGreeting) {
+    return;
+  }
+
+
+  const period =
+    getTimePeriod();
+
+
+  timeGreeting.textContent =
+    getGreeting(period);
+
+}
+
+
+/* =========================================================
+   REFRESH TIME INFORMATION
+   ========================================================= */
+
+function refreshTimeExperience() {
+
+  updateDate();
+
+  updateGreeting();
+
+  updateWorldAtmosphere();
+
+}
+
+
+/* =========================================================
+   BEGIN YOUR JOURNEY
+   ========================================================= */
+
+function enterAKSHWorld() {
+
+  if (!enterWorld) {
+    return;
+  }
+
+
+  enterWorld.scrollIntoView({
+
+    behavior: "smooth",
+
+    block: "start"
+
+  });
+
+}
+
+
+if (enterButton) {
+
+  enterButton.addEventListener(
+    "click",
+    enterAKSHWorld
+  );
+
+}
+
+
+/* =========================================================
+   HORIZONTAL TOUCH / MOUSE EXPERIENCE
+   =========================================================
+
+   The cards naturally scroll sideways on phones.
+
+   On desktop, we also allow click-and-drag.
+   ========================================================= */
+
+function enableHorizontalDrag() {
+
+  if (!feelingHorizontal) {
+    return;
+  }
+
+
+  let isDown = false;
+
+  let startX = 0;
+
+  let scrollStart = 0;
+
+
+  feelingHorizontal.addEventListener(
+    "pointerdown",
+    (event) => {
+
+      isDown = true;
+
+      startX =
+        event.clientX;
+
+      scrollStart =
+        feelingHorizontal.scrollLeft;
+
+      feelingHorizontal.setPointerCapture(
+        event.pointerId
+      );
+
+    }
+  );
+
+
+  feelingHorizontal.addEventListener(
+    "pointermove",
+    (event) => {
+
+      if (!isDown) {
+        return;
+      }
+
+
+      const distance =
+        event.clientX - startX;
+
+
+      feelingHorizontal.scrollLeft =
+        scrollStart - distance;
+
+    }
+  );
+
+
+  function stopDragging(event) {
+
+    isDown = false;
+
+
+    try {
+
+      feelingHorizontal.releasePointerCapture(
+        event.pointerId
+      );
+
+    } catch (error) {
+
+      /* Nothing required */
+
+    }
+
+  }
+
+
+  feelingHorizontal.addEventListener(
+    "pointerup",
+    stopDragging
+  );
+
+
+  feelingHorizontal.addEventListener(
+    "pointercancel",
+    stopDragging
+  );
+
+
+  feelingHorizontal.addEventListener(
+    "pointerleave",
+    () => {
+
+      isDown = false;
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   EMOTION CARD INTERACTION
+   ========================================================= */
+
+function enableEmotionCards() {
+
+  const cards =
+    document.querySelectorAll(
+      ".feeling-world-card"
+    );
+
+
+  cards.forEach((card) => {
+
+    card.addEventListener(
+      "click",
+      () => {
+
+        const feeling =
+          card.dataset.feeling;
+
+
+        /*
+          IMPORTANT:
+
+          We are NOT opening the final
+          emotion worlds yet.
+
+          This is the foundation.
+
+          Later each feeling will open
+          its own cinematic world:
+
+          ANXIOUS
+          OVERWHELMED
+          NEED TO TALK
+          JUST EXPLORING
+        */
+
+        console.log(
+          "AKSH feeling selected:",
+          feeling
+        );
+
+      }
+    );
+
+  });
+
+}
+
+
+/* =========================================================
+   VIDEO ERROR HANDLING
+   ========================================================= */
+
+if (arrivalVideo) {
+
+  arrivalVideo.addEventListener(
+    "error",
+    () => {
+
+      console.log(
+        "AKSH arrival video could not be loaded."
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   KEEP WORLD ATMOSPHERE UPDATED
+   =========================================================
+
+   The visitor may keep the website open
+   across a time period.
+
+   Check every 30 seconds.
+   ========================================================= */
+
+setInterval(
+  refreshTimeExperience,
+  30000
 );
 
-document.addEventListener(
-  "touchstart",
-  enableAudioAfterInteraction,
-  {
-    once: true,
-    passive: true
-  }
-);
+
+/* =========================================================
+   INITIALISE AKSH
+   ========================================================= */
+
+function initialiseAKSH() {
+
+  refreshTimeExperience();
+
+  loadArrivalVideo();
+
+  updateSoundUI();
+
+  startQuoteRotation();
+
+  enableHorizontalDrag();
+
+  enableEmotionCards();
+
+}
 
 
-/* =====================================================
-   INITIALISE
-   ===================================================== */
+/* =========================================================
+   START
+   ========================================================= */
 
-loadArrival();
+if (
+  document.readyState === "loading"
+) {
 
-updateSoundButton();
+  document.addEventListener(
+    "DOMContentLoaded",
+    initialiseAKSH
+  );
+
+} else {
+
+  initialiseAKSH();
+
+}
