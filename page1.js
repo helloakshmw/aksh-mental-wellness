@@ -1,350 +1,897 @@
 /* =========================================================
-   AKSH — PAGE 01 ENGINE
-   HOW ARE YOU FEELING TODAY?
+   AKSH — PAGE 1 JAVASCRIPT
+   MATCHED TO page1.html + page1.css
    ========================================================= */
 
-"use strict";
+(() => {
 
-/* =========================================================
-   DOM
-   ========================================================= */
+  "use strict";
 
-const page = document.querySelector("#page1");
 
-const emotionCards = document.querySelectorAll(
-  ".emotion-card, .feeling-card, .card"
-);
+  /* =======================================================
+     CONFIG
+     ======================================================= */
 
-const transition =
-  document.querySelector("#page-transition") ||
-  document.querySelector(".page1-transition");
+  const CONFIG = {
 
-const bookingButtons = document.querySelectorAll(
-  ".booking-cta, .book-button"
-);
+    home: "index.html",
 
-/* =========================================================
-   EMOTION DATA
-   ========================================================= */
+    booking: "page9.html",
 
-const emotions = {
-  anxious: {
-    title: "ANXIOUS",
-    message:
-      "You don't have to figure everything out right now.",
-    destination: "anxious.html"
-  },
+    transitionDuration: 650
 
-  overwhelmed: {
-    title: "OVERWHELMED",
-    message:
-      "Let's make this moment a little lighter.",
-    destination: "overwhelmed.html"
-  },
+  };
 
-  talk: {
-    title: "NEED TO TALK",
-    message:
-      "Sometimes being heard is the first step.",
-    destination: "talk.html"
-  },
 
-  exploring: {
-    title: "JUST EXPLORING",
-    message:
-      "Take your time. There is no right way to begin.",
-    destination: "explore.html"
-  }
-};
+  /* =======================================================
+     DOM
+     ======================================================= */
 
-/* =========================================================
-   HELPERS
-   ========================================================= */
+  const body =
+    document.body;
 
-function getEmotionFromCard(card) {
+  const header =
+    document.querySelector(".site-header");
 
-  const raw =
-    card.dataset.emotion ||
-    card.dataset.feeling ||
-    card.getAttribute("data-type") ||
-    "";
+  const menuButton =
+    document.getElementById("menu-button");
 
-  const value =
-    raw
-      .toLowerCase()
-      .trim()
-      .replace(/\s+/g, "-");
+  const mobileMenu =
+    document.getElementById("mobile-menu");
 
-  if (value.includes("anx")) {
-    return "anxious";
-  }
+  const mobileClose =
+    document.getElementById("mobile-close");
 
-  if (value.includes("over")) {
-    return "overwhelmed";
-  }
-
-  if (
-    value.includes("talk") ||
-    value.includes("someone")
-  ) {
-    return "talk";
-  }
-
-  if (
-    value.includes("explor")
-  ) {
-    return "exploring";
-  }
-
-  const text =
-    card.textContent.toLowerCase();
-
-  if (text.includes("anxious")) {
-    return "anxious";
-  }
-
-  if (text.includes("overwhelmed")) {
-    return "overwhelmed";
-  }
-
-  if (
-    text.includes("need to talk") ||
-    text.includes("talk to someone")
-  ) {
-    return "talk";
-  }
-
-  if (text.includes("exploring")) {
-    return "exploring";
-  }
-
-  return null;
-}
-
-/* =========================================================
-   PAGE TRANSITION
-   ========================================================= */
-
-let isTransitioning = false;
-
-function cinematicTransition(destination) {
-
-  if (isTransitioning) {
-    return;
-  }
-
-  isTransitioning = true;
-
-  if (transition) {
-    transition.classList.add("active");
-  }
-
-  document.body.classList.add("page-leaving");
-
-  setTimeout(() => {
-
-    window.location.href = destination;
-
-  }, 700);
-}
-
-/* =========================================================
-   EMOTION CARD INTERACTION
-   ========================================================= */
-
-emotionCards.forEach((card) => {
-
-  card.setAttribute("role", "button");
-  card.setAttribute("tabindex", "0");
-
-  card.addEventListener("click", () => {
-
-    const emotion =
-      getEmotionFromCard(card);
-
-    if (!emotion) {
-      return;
-    }
-
-    const data =
-      emotions[emotion];
-
-    if (!data) {
-      return;
-    }
-
-    /* Small visual response before leaving */
-
-    emotionCards.forEach((item) => {
-      item.classList.remove("active");
-    });
-
-    card.classList.add("active");
-
-    /*
-       Give the visitor a very short cinematic
-       moment before moving to the next world.
-    */
-
-    setTimeout(() => {
-
-      cinematicTransition(
-        data.destination
-      );
-
-    }, 180);
-
-  });
-
-  /* Keyboard support */
-
-  card.addEventListener("keydown", (event) => {
-
-    if (
-      event.key === "Enter" ||
-      event.key === " "
-    ) {
-
-      event.preventDefault();
-
-      card.click();
-    }
-
-  });
-
-});
-
-/* =========================================================
-   BOOKING
-   ========================================================= */
-
-bookingButtons.forEach((button) => {
-
-  button.addEventListener("click", (event) => {
-
-    event.preventDefault();
-
-    cinematicTransition(
-      "booking.html"
+  const mobileLinks =
+    document.querySelectorAll(
+      ".mobile-menu a"
     );
 
-  });
+  const transition =
+    document.getElementById("page-transition");
 
-});
+  const cards =
+    document.querySelectorAll(
+      ".emotion-card"
+    );
 
-/* =========================================================
-   MOUSE / POINTER DEPTH
-   ========================================================= */
+  const panel =
+    document.getElementById(
+      "experience-panel"
+    );
 
-const canUsePointer =
-  window.matchMedia(
-    "(hover: hover) and (pointer: fine)"
-  ).matches;
+  const panelClose =
+    document.getElementById(
+      "experience-close"
+    );
 
-if (canUsePointer && page) {
+  const experienceNumber =
+    document.getElementById(
+      "experience-number"
+    );
 
-  page.addEventListener(
-    "pointermove",
-    (event) => {
+  const experienceEyebrow =
+    document.getElementById(
+      "experience-eyebrow"
+    );
 
-      const x =
-        (event.clientX / window.innerWidth - 0.5);
+  const experienceIcon =
+    document.getElementById(
+      "experience-icon"
+    );
 
-      const y =
-        (event.clientY / window.innerHeight - 0.5);
+  const experienceTitle =
+    document.getElementById(
+      "experience-title"
+    );
 
-      page.style.setProperty(
-        "--mouse-x",
-        `${x * 20}px`
-      );
+  const experienceMessage =
+    document.getElementById(
+      "experience-message"
+    );
 
-      page.style.setProperty(
-        "--mouse-y",
-        `${y * 20}px`
-      );
+  const experienceDescription =
+    document.getElementById(
+      "experience-description"
+    );
+
+  const experienceAction =
+    document.getElementById(
+      "experience-action"
+    );
+
+  const experienceButton =
+    document.getElementById(
+      "experience-button"
+    );
+
+
+  /* =======================================================
+     EXPERIENCE DATA
+     ======================================================= */
+
+  const experiences = {
+
+    anxious: {
+
+      number: "01",
+
+      icon: "◌",
+
+      eyebrow:
+        "WHEN YOUR MIND WON'T SLOW DOWN",
+
+      title:
+        "Anxious",
+
+      message:
+        "You don't have to figure everything out at once.",
+
+      description:
+        "Sometimes the first step is simply creating a little space to breathe, understand what you're feeling, and feel supported.",
+
+      action:
+        "I WANT TO FEEL CALMER"
 
     },
+
+
+    overwhelmed: {
+
+      number: "02",
+
+      icon: "≈",
+
+      eyebrow:
+        "WHEN EVERYTHING FEELS LIKE TOO MUCH",
+
+      title:
+        "Overwhelmed",
+
+      message:
+        "You are allowed to pause.",
+
+      description:
+        "You don't have to carry everything at the same time. AKSH is a space to slow down, organise what you're feeling, and find your next step.",
+
+      action:
+        "I NEED SOME SPACE"
+
+    },
+
+
+    talk: {
+
+      number: "03",
+
+      icon: "○",
+
+      eyebrow:
+        "WHEN YOU JUST WANT TO BE HEARD",
+
+      title:
+        "Need to talk",
+
+      message:
+        "You don't need the perfect words.",
+
+      description:
+        "AKSH is built around empathy, confidentiality and professional psychological support — a place where you can speak without judgment.",
+
+      action:
+        "I WANT TO TALK"
+
+    },
+
+
+    exploring: {
+
+      number: "04",
+
+      icon: "✦",
+
+      eyebrow:
+        "THERE IS NO RIGHT WAY TO BEGIN",
+
+      title:
+        "Just exploring",
+
+      message:
+        "Take your time. Explore at your own pace.",
+
+      description:
+        "Discover AKSH, understand your mind, meet the people behind the space and find what feels right for you.",
+
+      action:
+        "EXPLORE AKSH"
+
+    }
+
+  };
+
+
+  /* =======================================================
+     PAGE TRANSITION
+     ======================================================= */
+
+  let transitioning = false;
+
+
+  function goToPage(
+    destination
+  ){
+
+    if(
+      !destination ||
+      transitioning
+    ){
+      return;
+    }
+
+    transitioning = true;
+
+    if(transition){
+
+      transition.classList.add(
+        "active"
+      );
+
+    }
+
+    window.setTimeout(
+      () => {
+
+        window.location.href =
+          destination;
+
+      },
+      CONFIG.transitionDuration
+    );
+
+  }
+
+
+  /* =======================================================
+     HEADER ON SCROLL
+     ======================================================= */
+
+  function updateHeader(){
+
+    if(
+      window.scrollY > 30
+    ){
+
+      header?.classList.add(
+        "scrolled"
+      );
+
+    }else{
+
+      header?.classList.remove(
+        "scrolled"
+      );
+
+    }
+
+  }
+
+
+  window.addEventListener(
+    "scroll",
+    updateHeader,
     {
-      passive: true
+      passive:true
     }
   );
 
-}
+  updateHeader();
 
-/* =========================================================
-   PREVENT DOUBLE TAP ZOOM
-   ========================================================= */
 
-let lastTouchEnd = 0;
+  /* =======================================================
+     MOBILE MENU
+     ======================================================= */
 
-document.addEventListener(
-  "touchend",
-  (event) => {
+  function openMenu(){
 
-    const now =
-      Date.now();
-
-    if (
-      now - lastTouchEnd <= 300
-    ) {
-      event.preventDefault();
+    if(!mobileMenu){
+      return;
     }
 
-    lastTouchEnd = now;
+    mobileMenu.classList.add(
+      "open"
+    );
 
-  },
-  {
-    passive: false
+    body.classList.add(
+      "menu-open"
+    );
+
+    menuButton?.setAttribute(
+      "aria-expanded",
+      "true"
+    );
+
+    mobileMenu.setAttribute(
+      "aria-hidden",
+      "false"
+    );
+
   }
-);
 
-/* =========================================================
-   PAGE ENTER
-   ========================================================= */
 
-window.addEventListener(
-  "pageshow",
-  () => {
+  function closeMenu(){
 
-    isTransitioning = false;
-
-    if (transition) {
-      transition.classList.remove("active");
+    if(!mobileMenu){
+      return;
     }
 
+    mobileMenu.classList.remove(
+      "open"
+    );
+
+    body.classList.remove(
+      "menu-open"
+    );
+
+    menuButton?.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+
+    mobileMenu.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
   }
-);
 
-/* =========================================================
-   ESCAPE
-   ========================================================= */
 
-document.addEventListener(
-  "keydown",
-  (event) => {
+  menuButton?.addEventListener(
+    "click",
+    openMenu
+  );
 
-    if (
-      event.key === "Escape" &&
-      isTransitioning
-    ) {
 
-      isTransitioning = false;
+  mobileClose?.addEventListener(
+    "click",
+    closeMenu
+  );
 
-      if (transition) {
-        transition.classList.remove(
-          "active"
-        );
+
+  mobileLinks.forEach(
+    link => {
+
+      link.addEventListener(
+        "click",
+        closeMenu
+      );
+
+    }
+  );
+
+
+  document.addEventListener(
+    "keydown",
+    event => {
+
+      if(
+        event.key === "Escape"
+      ){
+
+        closeMenu();
+        closeExperience();
+
       }
 
     }
+  );
+
+
+  /* =======================================================
+     EXPERIENCE PANEL
+     ======================================================= */
+
+  function openExperience(
+    type
+  ){
+
+    const data =
+      experiences[type];
+
+    if(
+      !data ||
+      !panel
+    ){
+      return;
+    }
+
+
+    experienceNumber.textContent =
+      data.number;
+
+    experienceEyebrow.textContent =
+      data.eyebrow;
+
+    experienceIcon.textContent =
+      data.icon;
+
+    experienceTitle.textContent =
+      data.title;
+
+    experienceMessage.textContent =
+      data.message;
+
+    experienceDescription.textContent =
+      data.description;
+
+    experienceAction.textContent =
+      data.action;
+
+
+    /*
+      Exploring can remain on the page.
+      The actual action still goes toward
+      the booking/exploration route.
+    */
+
+    if(type === "exploring"){
+
+      experienceButton.href =
+        "#mind";
+
+    }else{
+
+      experienceButton.href =
+        CONFIG.booking;
+
+    }
+
+
+    panel.classList.add(
+      "open"
+    );
+
+    panel.setAttribute(
+      "aria-hidden",
+      "false"
+    );
+
+    body.classList.add(
+      "panel-open"
+    );
 
   }
-);
 
-/* =========================================================
-   CONSOLE CHECK
-   ========================================================= */
 
-console.log(
-  "AKSH — Page 01 loaded successfully."
-);
+  function closeExperience(){
+
+    if(!panel){
+      return;
+    }
+
+    panel.classList.remove(
+      "open"
+    );
+
+    panel.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+    body.classList.remove(
+      "panel-open"
+    );
+
+  }
+
+
+  panelClose?.addEventListener(
+    "click",
+    closeExperience
+  );
+
+
+  panel?.addEventListener(
+    "click",
+    event => {
+
+      if(
+        event.target === panel
+      ){
+
+        closeExperience();
+
+      }
+
+    }
+  );
+
+
+  /* =======================================================
+     EMOTION CARD CLICK
+     ======================================================= */
+
+  cards.forEach(
+    card => {
+
+      const type =
+        card.dataset.experience;
+
+
+      card.addEventListener(
+        "click",
+        () => {
+
+          openExperience(
+            type
+          );
+
+        }
+      );
+
+
+      /* Keyboard */
+
+      card.addEventListener(
+        "keydown",
+        event => {
+
+          if(
+            event.key === "Enter" ||
+            event.key === " "
+          ){
+
+            event.preventDefault();
+
+            openExperience(
+              type
+            );
+
+          }
+
+        }
+      );
+
+    }
+  );
+
+
+  /* =======================================================
+     DESKTOP CARD PARALLAX
+     ======================================================= */
+
+  const finePointer =
+    window.matchMedia(
+      "(pointer:fine)"
+    );
+
+
+  if(
+    finePointer.matches
+  ){
+
+    cards.forEach(
+      card => {
+
+        card.addEventListener(
+          "pointermove",
+          event => {
+
+            const rect =
+              card.getBoundingClientRect();
+
+            const x =
+              (
+                event.clientX -
+                rect.left
+              ) /
+              rect.width;
+
+            const y =
+              (
+                event.clientY -
+                rect.top
+              ) /
+              rect.height;
+
+
+            const rotateY =
+              (x - .5) * 5;
+
+            const rotateX =
+              (.5 - y) * 5;
+
+
+            card.style.setProperty(
+              "--rx",
+              `${rotateX}deg`
+            );
+
+            card.style.setProperty(
+              "--ry",
+              `${rotateY}deg`
+            );
+
+          },
+          {
+            passive:true
+          }
+        );
+
+
+        card.addEventListener(
+          "pointerleave",
+          () => {
+
+            card.style.setProperty(
+              "--rx",
+              "0deg"
+            );
+
+            card.style.setProperty(
+              "--ry",
+              "0deg"
+            );
+
+          }
+        );
+
+      }
+    );
+
+  }
+
+
+  /* =======================================================
+     HORIZONTAL TOUCH FEEL
+     ======================================================= */
+
+  const track =
+    document.getElementById(
+      "emotion-track"
+    );
+
+
+  let dragging = false;
+
+  let startX = 0;
+
+  let startScroll = 0;
+
+
+  track?.addEventListener(
+    "pointerdown",
+    event => {
+
+      /*
+        Don't interfere with clicking
+        a card itself.
+      */
+
+      if(
+        event.target.closest(
+          ".emotion-card"
+        )
+      ){
+        return;
+      }
+
+      dragging = true;
+
+      startX =
+        event.clientX;
+
+      startScroll =
+        track.scrollLeft;
+
+    }
+  );
+
+
+  track?.addEventListener(
+    "pointermove",
+    event => {
+
+      if(!dragging){
+        return;
+      }
+
+      const distance =
+        event.clientX -
+        startX;
+
+      track.scrollLeft =
+        startScroll -
+        distance;
+
+    }
+  );
+
+
+  window.addEventListener(
+    "pointerup",
+    () => {
+
+      dragging = false;
+
+    }
+  );
+
+
+  /* =======================================================
+     SMOOTH ANCHOR NAVIGATION
+     ======================================================= */
+
+  document
+    .querySelectorAll(
+      'a[href^="#"]'
+    )
+    .forEach(
+      link => {
+
+        link.addEventListener(
+          "click",
+          event => {
+
+            const targetId =
+              link.getAttribute(
+                "href"
+              );
+
+            if(
+              !targetId ||
+              targetId === "#"
+            ){
+              return;
+            }
+
+
+            const target =
+              document.querySelector(
+                targetId
+              );
+
+            if(!target){
+              return;
+            }
+
+
+            /*
+              The experience button
+              can close its panel before
+              moving to the target.
+            */
+
+            if(
+              link === experienceButton
+            ){
+
+              closeExperience();
+
+            }
+
+
+            event.preventDefault();
+
+
+            target.scrollIntoView({
+              behavior:"smooth",
+              block:"start"
+            });
+
+          }
+        );
+
+      }
+    );
+
+
+  /* =======================================================
+     CLOSE PANEL WHEN BOOKING
+     ======================================================= */
+
+  experienceButton?.addEventListener(
+    "click",
+    event => {
+
+      const href =
+        experienceButton.getAttribute(
+          "href"
+        );
+
+      if(
+        href &&
+        href !== "#mind"
+      ){
+
+        event.preventDefault();
+
+        closeExperience();
+
+        window.setTimeout(
+          () => {
+
+            goToPage(
+              href
+            );
+
+          },
+          180
+        );
+
+      }
+
+    }
+  );
+
+
+  /* =======================================================
+     PREVENT DOUBLE TAP ZOOM
+     ======================================================= */
+
+  let lastTouchEnd = 0;
+
+
+  document.addEventListener(
+    "touchend",
+    event => {
+
+      const now =
+        Date.now();
+
+      if(
+        now - lastTouchEnd <= 300
+      ){
+
+        event.preventDefault();
+
+      }
+
+      lastTouchEnd =
+        now;
+
+    },
+    {
+      passive:false
+    }
+  );
+
+
+  /* =======================================================
+     IMAGE ERROR PROTECTION
+     ======================================================= */
+
+  document
+    .querySelectorAll("img")
+    .forEach(
+      image => {
+
+        image.addEventListener(
+          "error",
+          () => {
+
+            image.style.opacity =
+              "0";
+
+          }
+        );
+
+      }
+    );
+
+
+  /* =======================================================
+     INITIAL REVEAL
+     ======================================================= */
+
+  requestAnimationFrame(
+    () => {
+
+      body.classList.add(
+        "page-ready"
+      );
+
+    }
+  );
+
+
+})();
