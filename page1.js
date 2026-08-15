@@ -1,474 +1,1392 @@
 /* =========================================================
-   AKSH — PAGE 01
-   PREMIUM CINEMATIC WORLD
-   COMPLETE PAGE 1 JAVASCRIPT
+   AKSH — 01 AKSH
+   PAGE 1 JAVASCRIPT
+   A SAFE SPACE FOR EVERY MIND
    ========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+(() => {
+  "use strict";
 
   /* =======================================================
-     ELEMENTS
+     CONFIG
      ======================================================= */
 
-  const body = document.body;
-  const header = document.querySelector(".header");
-  const menuButton = document.querySelector(".menu-button");
-  const nav = document.querySelector(".nav");
-  const emotions = document.querySelectorAll(".emotion");
-  const beginButtons = document.querySelectorAll(
-    ".begin-button, .begin-primary, .begin-secondary, .ai-button"
-  );
+  const CONFIG = {
+    homePage: "index.html",
 
+    pages: {
+      world: "page2.html",
+      mind: "page3.html",
+      withYou: "page4.html",
+      meghana: "page5.html",
+      journey: "page6.html",
+      stories: "page7.html",
+      journal: "page8.html",
+      begin: "page9.html"
+    },
+
+    transitionDuration: 650,
+
+    storageKey: "aksh-page1-visited"
+  };
 
   /* =======================================================
-     TIME OF DAY
+     AKSH EXPERIENCE DATA
      ======================================================= */
 
-  function updateTimeOfDay() {
+  const experiences = {
 
-    const hour = new Date().getHours();
+    anxious: {
+      title: "ANXIOUS",
 
-    body.classList.remove(
-      "morning",
-      "afternoon",
-      "evening",
-      "night"
+      icon: "◌",
+
+      eyebrow: "WHEN YOUR MIND WON'T SLOW DOWN",
+
+      message:
+        "You don't have to figure everything out at once.",
+
+      description:
+        "Sometimes the first step is simply creating a little space to breathe, understand what you're feeling, and feel supported.",
+
+      action:
+        "I WANT TO FEEL CALMER",
+
+      destination:
+        "page9.html"
+    },
+
+    overwhelmed: {
+      title: "OVERWHELMED",
+
+      icon: "≈",
+
+      eyebrow: "WHEN EVERYTHING FEELS LIKE TOO MUCH",
+
+      message:
+        "You are allowed to pause.",
+
+      description:
+        "You don't have to carry everything at the same time. AKSH is a space to slow down, organise what you're feeling, and find your next step.",
+
+      action:
+        "I NEED SOME SPACE",
+
+      destination:
+        "page9.html"
+    },
+
+    talk: {
+      title: "NEED TO TALK TO SOMEONE",
+
+      icon: "○",
+
+      eyebrow: "WHEN YOU JUST WANT TO BE HEARD",
+
+      message:
+        "You don't need the perfect words.",
+
+      description:
+        "AKSH is built around empathy, confidentiality, and professional psychological support — a place where you can speak without judgment.",
+
+      action:
+        "I WANT TO TALK",
+
+      destination:
+        "page9.html"
+    },
+
+    exploring: {
+      title: "JUST EXPLORING",
+
+      icon: "✦",
+
+      eyebrow: "THERE IS NO RIGHT WAY TO BEGIN",
+
+      message:
+        "Take your time. Explore at your own pace.",
+
+      description:
+        "Discover AKSH, understand your mind, meet the people behind the space, and find what feels right for you.",
+
+      action:
+        "EXPLORE AKSH",
+
+      destination:
+        "page2.html"
+    }
+
+  };
+
+  /* =======================================================
+     DOM HELPERS
+     ======================================================= */
+
+  const $ = (selector, parent = document) =>
+    parent.querySelector(selector);
+
+  const $$ = (selector, parent = document) =>
+    Array.from(parent.querySelectorAll(selector));
+
+  /* =======================================================
+     ELEMENT REFERENCES
+     ======================================================= */
+
+  const page =
+    document.body;
+
+  const transition =
+    $("#page-transition");
+
+  const cards =
+    $$(".emotion-card");
+
+  const navLinks =
+    $$("[data-page]");
+
+  const menuButton =
+    $("#menu-button");
+
+  const menu =
+    $("#mobile-menu");
+
+  const closeMenuButton =
+    $("#close-menu");
+
+  const beginButtons =
+    $$("[data-begin]");
+
+  const backButton =
+    $("[data-back]");
+
+  /* =======================================================
+     PAGE STATE
+     ======================================================= */
+
+  let currentExperience = null;
+
+  let isTransitioning = false;
+
+  let menuOpen = false;
+
+  /* =======================================================
+     TRANSITION ENGINE
+     ======================================================= */
+
+  function startTransition(destination) {
+
+    if (!destination || isTransitioning) {
+      return;
+    }
+
+    isTransitioning = true;
+
+    if (transition) {
+      transition.classList.add("active");
+    }
+
+    document.documentElement.classList.add(
+      "aksh-is-transitioning"
     );
 
-    if (hour >= 5 && hour < 12) {
+    window.setTimeout(() => {
 
-      body.classList.add("morning");
+      window.location.href = destination;
 
-    } else if (hour >= 12 && hour < 17) {
+    }, CONFIG.transitionDuration);
+  }
 
-      body.classList.add("afternoon");
+  /* =======================================================
+     BACKGROUND TRANSITION
+     ======================================================= */
 
-    } else if (hour >= 17 && hour < 21) {
+  function changeBackground(className) {
 
-      body.classList.add("evening");
+    const possibleClasses = [
+      "state-anxious",
+      "state-overwhelmed",
+      "state-talk",
+      "state-exploring"
+    ];
 
-    } else {
+    possibleClasses.forEach((name) => {
+      page.classList.remove(name);
+    });
 
-      body.classList.add("night");
-
+    if (className) {
+      page.classList.add(className);
     }
   }
 
-  updateTimeOfDay();
-
-  setInterval(updateTimeOfDay, 60000);
-
-
   /* =======================================================
-     HEADER SCROLL
+     ICON CREATION
      ======================================================= */
 
-  function updateHeader() {
+  function getCardIcon(card, type) {
 
-    if (!header) return;
+    let icon =
+      $(".emotion-icon", card);
 
-    if (window.scrollY > 40) {
+    if (!icon) {
 
-      header.classList.add("scrolled");
+      icon =
+        document.createElement("span");
 
-    } else {
+      icon.className =
+        "emotion-icon";
 
-      header.classList.remove("scrolled");
+      const title =
+        $(".emotion-title", card);
 
+      if (title) {
+        card.insertBefore(
+          icon,
+          title
+        );
+      } else {
+        card.prepend(icon);
+      }
+    }
+
+    if (experiences[type]) {
+      icon.textContent =
+        experiences[type].icon;
     }
   }
 
-  updateHeader();
-
-  window.addEventListener(
-    "scroll",
-    updateHeader,
-    { passive: true }
-  );
-
-
   /* =======================================================
-     MOBILE MENU
+     DETECT CARD TYPE
      ======================================================= */
 
-  if (menuButton && header) {
+  function detectCardType(card) {
 
-    menuButton.addEventListener("click", () => {
+    const explicit =
+      card.dataset.emotion ||
+      card.dataset.type;
 
-      const isOpen =
-        header.classList.toggle("mobile-open");
+    if (explicit) {
 
-      menuButton.setAttribute(
-        "aria-expanded",
-        String(isOpen)
+      const value =
+        explicit
+          .toLowerCase()
+          .replace(/\s+/g, "-");
+
+      if (
+        value === "anxious" ||
+        value === "overwhelmed" ||
+        value === "talk" ||
+        value === "need-to-talk" ||
+        value === "need-to-talk-to-someone" ||
+        value === "exploring" ||
+        value === "just-exploring"
+      ) {
+
+        if (value === "need-to-talk" ||
+            value === "need-to-talk-to-someone") {
+          return "talk";
+        }
+
+        if (value === "just-exploring") {
+          return "exploring";
+        }
+
+        return value;
+      }
+    }
+
+    const text =
+      card.textContent
+        .toLowerCase()
+        .replace(/\s+/g, " ")
+        .trim();
+
+    if (text.includes("anxious")) {
+      return "anxious";
+    }
+
+    if (text.includes("overwhelmed")) {
+      return "overwhelmed";
+    }
+
+    if (
+      text.includes("need to talk") ||
+      text.includes("talk to someone")
+    ) {
+      return "talk";
+    }
+
+    if (
+      text.includes("exploring") ||
+      text.includes("explore")
+    ) {
+      return "exploring";
+    }
+
+    return null;
+  }
+
+  /* =======================================================
+     PREPARE CARDS
+     ======================================================= */
+
+  function prepareCards() {
+
+    cards.forEach((card, index) => {
+
+      const type =
+        detectCardType(card);
+
+      if (!type) {
+        return;
+      }
+
+      card.dataset.emotion =
+        type;
+
+      card.setAttribute(
+        "role",
+        "button"
+      );
+
+      card.setAttribute(
+        "tabindex",
+        "0"
+      );
+
+      card.setAttribute(
+        "aria-label",
+        experiences[type].title
+      );
+
+      card.style.setProperty(
+        "--emotion-index",
+        index
+      );
+
+      getCardIcon(
+        card,
+        type
       );
 
     });
 
   }
 
-
   /* =======================================================
-     CLOSE MOBILE MENU WHEN NAV ITEM IS CLICKED
+     CARD HOVER
      ======================================================= */
 
-  if (nav && header) {
+  function activateCard(card) {
 
-    nav.querySelectorAll("a").forEach(link => {
+    cards.forEach((item) => {
 
-      link.addEventListener("click", () => {
+      item.classList.remove(
+        "is-active"
+      );
 
-        header.classList.remove("mobile-open");
+    });
 
-        if (menuButton) {
-          menuButton.setAttribute(
-            "aria-expanded",
-            "false"
+    card.classList.add(
+      "is-active"
+    );
+
+    const type =
+      card.dataset.emotion;
+
+    if (type) {
+
+      changeBackground(
+        `state-${type}`
+      );
+
+      currentExperience =
+        type;
+
+    }
+
+  }
+
+  /* =======================================================
+     CARD CLICK
+     ======================================================= */
+
+  function openExperience(type) {
+
+    const experience =
+      experiences[type];
+
+    if (!experience) {
+      return;
+    }
+
+    currentExperience =
+      type;
+
+    sessionStorage.setItem(
+      CONFIG.storageKey,
+      type
+    );
+
+    const card =
+      cards.find(
+        item =>
+          item.dataset.emotion === type
+      );
+
+    if (card) {
+      activateCard(card);
+    }
+
+    showExperienceOverlay(
+      experience
+    );
+
+  }
+
+  /* =======================================================
+     EXPERIENCE OVERLAY
+     ======================================================= */
+
+  function showExperienceOverlay(experience) {
+
+    let overlay =
+      $("#experience-overlay");
+
+    if (!overlay) {
+
+      overlay =
+        document.createElement("div");
+
+      overlay.id =
+        "experience-overlay";
+
+      overlay.className =
+        "experience-overlay";
+
+      document.body.appendChild(
+        overlay
+      );
+    }
+
+    overlay.innerHTML = `
+
+      <div
+        class="experience-backdrop"
+        data-close-experience>
+      </div>
+
+      <section
+        class="experience-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="experience-title">
+
+        <button
+          class="experience-close"
+          type="button"
+          aria-label="Close"
+          data-close-experience>
+          ×
+        </button>
+
+        <div class="experience-symbol">
+          ${experience.icon}
+        </div>
+
+        <div class="experience-eyebrow">
+          ${experience.eyebrow}
+        </div>
+
+        <h2
+          id="experience-title"
+          class="experience-title">
+          ${experience.title}
+        </h2>
+
+        <p class="experience-message">
+          ${experience.message}
+        </p>
+
+        <p class="experience-description">
+          ${experience.description}
+        </p>
+
+        <button
+          class="experience-action"
+          type="button"
+          data-experience-action>
+          ${experience.action}
+          <span>→</span>
+        </button>
+
+      </section>
+    `;
+
+    requestAnimationFrame(() => {
+
+      overlay.classList.add(
+        "is-visible"
+      );
+
+    });
+
+    $$(
+      "[data-close-experience]",
+      overlay
+    ).forEach((element) => {
+
+      element.addEventListener(
+        "click",
+        closeExperience
+      );
+
+    });
+
+    const action =
+      $(
+        "[data-experience-action]",
+        overlay
+      );
+
+    if (action) {
+
+      action.addEventListener(
+        "click",
+        () => {
+
+          startTransition(
+            experience.destination
           );
-        }
 
-      });
+        }
+      );
+
+    }
+
+    document.body.classList.add(
+      "experience-open"
+    );
+
+  }
+
+  /* =======================================================
+     CLOSE EXPERIENCE
+     ======================================================= */
+
+  function closeExperience() {
+
+    const overlay =
+      $("#experience-overlay");
+
+    if (!overlay) {
+      return;
+    }
+
+    overlay.classList.remove(
+      "is-visible"
+    );
+
+    document.body.classList.remove(
+      "experience-open"
+    );
+
+    window.setTimeout(() => {
+
+      overlay.remove();
+
+    }, 450);
+
+  }
+
+  /* =======================================================
+     CARD EVENTS
+     ======================================================= */
+
+  function setupCardEvents() {
+
+    cards.forEach((card) => {
+
+      const type =
+        detectCardType(card);
+
+      if (!type) {
+        return;
+      }
+
+      card.addEventListener(
+        "mouseenter",
+        () => {
+          activateCard(card);
+        }
+      );
+
+      card.addEventListener(
+        "focus",
+        () => {
+          activateCard(card);
+        }
+      );
+
+      card.addEventListener(
+        "click",
+        () => {
+          openExperience(type);
+        }
+      );
+
+      card.addEventListener(
+        "keydown",
+        (event) => {
+
+          if (
+            event.key === "Enter" ||
+            event.key === " "
+          ) {
+
+            event.preventDefault();
+
+            openExperience(type);
+
+          }
+
+        }
+      );
 
     });
 
   }
 
-
   /* =======================================================
-     ESCAPE KEY — CLOSE MENU
+     NAVIGATION
      ======================================================= */
 
-  document.addEventListener("keydown", event => {
+  function setupNavigation() {
 
-    if (event.key === "Escape") {
+    navLinks.forEach((link) => {
 
-      header?.classList.remove("mobile-open");
+      link.addEventListener(
+        "click",
+        (event) => {
 
-      menuButton?.setAttribute(
+          const destination =
+            link.dataset.page;
+
+          if (!destination) {
+            return;
+          }
+
+          event.preventDefault();
+
+          closeMenu();
+
+          startTransition(
+            destination
+          );
+
+        }
+      );
+
+    });
+
+  }
+
+  /* =======================================================
+     BEGIN BUTTONS
+     ======================================================= */
+
+  function setupBeginButtons() {
+
+    beginButtons.forEach((button) => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          const destination =
+            button.dataset.begin ||
+            CONFIG.pages.begin;
+
+          startTransition(
+            destination
+          );
+
+        }
+      );
+
+    });
+
+  }
+
+  /* =======================================================
+     MOBILE MENU
+     ======================================================= */
+
+  function openMenu() {
+
+    if (!menu) {
+      return;
+    }
+
+    menuOpen =
+      true;
+
+    menu.classList.add(
+      "is-open"
+    );
+
+    document.body.classList.add(
+      "menu-open"
+    );
+
+    if (menuButton) {
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
+    }
+
+  }
+
+  function closeMenu() {
+
+    if (!menu) {
+      return;
+    }
+
+    menuOpen =
+      false;
+
+    menu.classList.remove(
+      "is-open"
+    );
+
+    document.body.classList.remove(
+      "menu-open"
+    );
+
+    if (menuButton) {
+
+      menuButton.setAttribute(
         "aria-expanded",
         "false"
       );
 
     }
 
-  });
+  }
 
+  function setupMenu() {
+
+    if (menuButton) {
+
+      menuButton.addEventListener(
+        "click",
+        () => {
+
+          if (menuOpen) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+
+        }
+      );
+
+    }
+
+    if (closeMenuButton) {
+
+      closeMenuButton.addEventListener(
+        "click",
+        closeMenu
+      );
+
+    }
+
+  }
 
   /* =======================================================
-     EMOTION CARDS
+     BACK BUTTON
      ======================================================= */
 
-  emotions.forEach(card => {
+  function setupBackButton() {
 
-    card.addEventListener("click", () => {
+    if (!backButton) {
+      return;
+    }
 
-      const target =
-        card.dataset.target ||
-        card.getAttribute("data-target");
+    backButton.addEventListener(
+      "click",
+      () => {
 
-      if (target) {
+        if (
+          document.referrer &&
+          document.referrer.includes(
+            window.location.hostname
+          )
+        ) {
 
-        const destination =
-          document.querySelector(target);
+          window.history.back();
 
-        if (destination) {
+        } else {
 
-          destination.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
+          startTransition(
+            CONFIG.homePage
+          );
 
         }
 
       }
-
-      card.classList.add("emotion-active");
-
-      setTimeout(() => {
-
-        card.classList.remove("emotion-active");
-
-      }, 700);
-
-    });
-
-  });
-
-
-  /* =======================================================
-     HORIZONTAL EMOTION TRACK
-     MOUSE WHEEL → HORIZONTAL SCROLL
-     ======================================================= */
-
-  const emotionTrack =
-    document.querySelector(".emotion-track");
-
-  if (emotionTrack) {
-
-    emotionTrack.addEventListener(
-      "wheel",
-      event => {
-
-        if (
-          Math.abs(event.deltaY) >
-          Math.abs(event.deltaX)
-        ) {
-
-          if (
-            emotionTrack.scrollWidth >
-            emotionTrack.clientWidth
-          ) {
-
-            event.preventDefault();
-
-            emotionTrack.scrollLeft +=
-              event.deltaY;
-
-          }
-
-        }
-
-      },
-      { passive: false }
     );
 
   }
 
+  /* =======================================================
+     KEYBOARD ESCAPE
+     ======================================================= */
+
+  document.addEventListener(
+    "keydown",
+    (event) => {
+
+      if (event.key !== "Escape") {
+        return;
+      }
+
+      closeExperience();
+      closeMenu();
+
+    }
+  );
+
+  /* =======================================================
+     PAGE VISIBILITY
+     ======================================================= */
+
+  document.addEventListener(
+    "visibilitychange",
+    () => {
+
+      if (
+        document.visibilityState ===
+        "visible"
+      ) {
+
+        page.classList.remove(
+          "page-hidden"
+        );
+
+      } else {
+
+        page.classList.add(
+          "page-hidden"
+        );
+
+      }
+
+    }
+  );
+
+  /* =======================================================
+     SMOOTH POINTER MOVEMENT
+     ======================================================= */
+
+  function setupPointerMotion() {
+
+    if (
+      window.matchMedia(
+        "(pointer: coarse)"
+      ).matches
+    ) {
+      return;
+    }
+
+    let pointerX = 0;
+    let pointerY = 0;
+
+    let targetX = 0;
+    let targetY = 0;
+
+    let animationFrame = null;
+
+    document.addEventListener(
+      "pointermove",
+      (event) => {
+
+        targetX =
+          (event.clientX /
+            window.innerWidth -
+            0.5) * 2;
+
+        targetY =
+          (event.clientY /
+            window.innerHeight -
+            0.5) * 2;
+
+      },
+      {
+        passive: true
+      }
+    );
+
+    function animate() {
+
+      pointerX +=
+        (targetX - pointerX) *
+        0.035;
+
+      pointerY +=
+        (targetY - pointerY) *
+        0.035;
+
+      document.documentElement.style.setProperty(
+        "--pointer-x",
+        pointerX.toFixed(4)
+      );
+
+      document.documentElement.style.setProperty(
+        "--pointer-y",
+        pointerY.toFixed(4)
+      );
+
+      animationFrame =
+        requestAnimationFrame(
+          animate
+        );
+
+    }
+
+    if (!animationFrame) {
+      animate();
+    }
+
+  }
 
   /* =======================================================
      CARD PARALLAX
      ======================================================= */
 
-  emotions.forEach(card => {
+  function setupCardParallax() {
 
-    const background =
-      card.querySelector(".emotion-bg");
+    if (
+      window.matchMedia(
+        "(pointer: coarse)"
+      ).matches
+    ) {
+      return;
+    }
 
-    if (!background) return;
+    cards.forEach((card) => {
 
-    card.addEventListener("pointermove", event => {
+      card.addEventListener(
+        "pointermove",
+        (event) => {
 
-      if (window.innerWidth < 901) return;
+          const rect =
+            card.getBoundingClientRect();
 
-      const rect =
-        card.getBoundingClientRect();
+          const x =
+            (
+              event.clientX -
+              rect.left
+            ) / rect.width;
 
-      const x =
-        (event.clientX - rect.left) /
-        rect.width -
-        0.5;
+          const y =
+            (
+              event.clientY -
+              rect.top
+            ) / rect.height;
 
-      const y =
-        (event.clientY - rect.top) /
-        rect.height -
-        0.5;
+          const rotateX =
+            (0.5 - y) * 5;
 
-      background.style.transform =
-        `scale(1.06)
-         translate3d(${x * 12}px, ${y * 12}px, 0)`;
+          const rotateY =
+            (x - 0.5) * 5;
 
-    });
+          card.style.setProperty(
+            "--card-rotate-x",
+            `${rotateX}deg`
+          );
 
-    card.addEventListener("pointerleave", () => {
-
-      background.style.transform =
-        "scale(1) translate3d(0,0,0)";
-
-    });
-
-  });
-
-
-  /* =======================================================
-     INTERSECTION REVEALS
-     ======================================================= */
-
-  const revealElements =
-    document.querySelectorAll(
-      ".hero-inner, .section-inner, .emotion, .journey-step, .founder-photo, .ai-orb"
-    );
-
-  if ("IntersectionObserver" in window) {
-
-    const observer =
-      new IntersectionObserver(
-        entries => {
-
-          entries.forEach(entry => {
-
-            if (entry.isIntersecting) {
-
-              entry.target.classList.add(
-                "is-visible"
-              );
-
-              observer.unobserve(
-                entry.target
-              );
-
-            }
-
-          });
+          card.style.setProperty(
+            "--card-rotate-y",
+            `${rotateY}deg`
+          );
 
         },
         {
-          threshold: 0.12,
-          rootMargin: "0px 0px -40px 0px"
+          passive: true
         }
       );
 
-    revealElements.forEach(element => {
+      card.addEventListener(
+        "pointerleave",
+        () => {
 
-      element.classList.add("reveal");
+          card.style.setProperty(
+            "--card-rotate-x",
+            "0deg"
+          );
 
-      observer.observe(element);
+          card.style.setProperty(
+            "--card-rotate-y",
+            "0deg"
+          );
 
-    });
-
-  } else {
-
-    revealElements.forEach(element => {
-
-      element.classList.add("is-visible");
+        }
+      );
 
     });
 
   }
 
-
   /* =======================================================
-     SMOOTH INTERNAL LINKS
+     SCROLL / WHEEL BEHAVIOUR
      ======================================================= */
 
-  document
-    .querySelectorAll('a[href^="#"]')
-    .forEach(link => {
+  function setupScrollExperience() {
 
-      link.addEventListener("click", event => {
+    let lastScroll =
+      0;
 
-        const href =
-          link.getAttribute("href");
+    window.addEventListener(
+      "scroll",
+      () => {
+
+        const current =
+          window.scrollY;
 
         if (
-          !href ||
-          href === "#" ||
-          href === "#!"
+          Math.abs(
+            current - lastScroll
+          ) < 2
         ) {
           return;
         }
 
-        const target =
-          document.querySelector(href);
+        lastScroll =
+          current;
 
-        if (!target) return;
+        document.documentElement.style.setProperty(
+          "--page-scroll",
+          `${current}px`
+        );
 
-        event.preventDefault();
+      },
+      {
+        passive: true
+      }
+    );
 
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-
-      });
-
-    });
-
+  }
 
   /* =======================================================
-     AI ORB — SUBTLE INTERACTION
+     RANDOM MICRO DETAIL
      ======================================================= */
 
-  const orb =
-    document.querySelector(".ai-orb");
+  function setDailyAtmosphere() {
 
-  if (orb) {
+    const now =
+      new Date();
 
-    orb.addEventListener("pointermove", event => {
+    const day =
+      Math.floor(
+        new Date(
+          now.getFullYear(),
+          now.getMonth(),
+          now.getDate()
+        ).getTime() /
+        86400000
+      );
 
-      if (window.innerWidth < 901) return;
+    const variation =
+      Math.abs(day) % 4;
 
-      const rect =
-        orb.getBoundingClientRect();
+    document.documentElement.style.setProperty(
+      "--daily-variation",
+      variation
+    );
 
-      const x =
-        (event.clientX - rect.left) /
-        rect.width -
-        0.5;
+    page.dataset.dayVariation =
+      variation;
 
-      const y =
-        (event.clientY - rect.top) /
-        rect.height -
-        0.5;
+  }
 
-      orb.style.transform =
-        `translate(${x * 8}px, ${y * 8}px)`;
+  /* =======================================================
+     ACTIVE NAVIGATION ITEM
+     ======================================================= */
 
-    });
+  function setActiveNavigation() {
 
-    orb.addEventListener("pointerleave", () => {
+    const currentPage =
+      window.location.pathname
+        .split("/")
+        .pop();
 
-      orb.style.transform =
-        "";
+    navLinks.forEach((link) => {
+
+      const target =
+        link.dataset.page;
+
+      if (
+        target === currentPage
+      ) {
+
+        link.classList.add(
+          "is-current"
+        );
+
+        link.setAttribute(
+          "aria-current",
+          "page"
+        );
+
+      } else {
+
+        link.classList.remove(
+          "is-current"
+        );
+
+        link.removeAttribute(
+          "aria-current"
+        );
+
+      }
 
     });
 
   }
 
-
   /* =======================================================
-     BUTTON MICRO INTERACTION
+     TOUCH FEEDBACK
      ======================================================= */
 
-  beginButtons.forEach(button => {
+  function setupTouchFeedback() {
 
-    button.addEventListener("pointerdown", () => {
+    cards.forEach((card) => {
 
-      button.style.transform =
-        "scale(.97)";
+      card.addEventListener(
+        "touchstart",
+        () => {
+
+          card.classList.add(
+            "is-touching"
+          );
+
+        },
+        {
+          passive: true
+        }
+      );
+
+      card.addEventListener(
+        "touchend",
+        () => {
+
+          window.setTimeout(
+            () => {
+
+              card.classList.remove(
+                "is-touching"
+              );
+
+            },
+            160
+          );
+
+        },
+        {
+          passive: true
+        }
+      );
 
     });
 
-    button.addEventListener("pointerup", () => {
-
-      button.style.transform =
-        "";
-
-    });
-
-    button.addEventListener("pointercancel", () => {
-
-      button.style.transform =
-        "";
-
-    });
-
-  });
-
+  }
 
   /* =======================================================
      PREVENT DOUBLE TAP ZOOM ON INTERACTIVE ELEMENTS
      ======================================================= */
 
-  document
-    .querySelectorAll(
-      "button, .emotion, .begin-button, .ai-button"
-    )
-    .forEach(element => {
+  function setupInteractionProtection() {
 
-      element.style.touchAction =
-        "manipulation";
+    const interactive =
+      [
+        ...cards,
+        ...beginButtons,
+        ...navLinks
+      ];
 
-    });
+    interactive.forEach(
+      (element) => {
 
+        element.addEventListener(
+          "dblclick",
+          (event) => {
+
+            event.preventDefault();
+
+          }
+        );
+
+      }
+    );
+
+  }
 
   /* =======================================================
-     PAGE READY
+     INITIAL PAGE REVEAL
      ======================================================= */
 
-  requestAnimationFrame(() => {
+  function revealPage() {
 
-    body.classList.add("page-ready");
+    page.classList.add(
+      "page-ready"
+    );
 
-  });
+    window.setTimeout(
+      () => {
 
-});
+        page.classList.add(
+          "page-visible"
+        );
+
+      },
+      40
+    );
+
+  }
+
+  /* =======================================================
+     RESTORE LAST EXPERIENCE
+     ======================================================= */
+
+  function restoreExperienceState() {
+
+    const previous =
+      sessionStorage.getItem(
+        CONFIG.storageKey
+      );
+
+    if (!previous) {
+      return;
+    }
+
+    const card =
+      cards.find(
+        item =>
+          item.dataset.emotion ===
+          previous
+      );
+
+    if (card) {
+
+      card.classList.add(
+        "previously-selected"
+      );
+
+    }
+
+  }
+
+  /* =======================================================
+     CLEAN SESSION WHEN LEAVING
+     ======================================================= */
+
+  window.addEventListener(
+    "pagehide",
+    () => {
+
+      document.body.classList.remove(
+        "experience-open"
+      );
+
+      document.body.classList.remove(
+        "menu-open"
+      );
+
+    }
+  );
+
+  /* =======================================================
+     GLOBAL API
+     ======================================================= */
+
+  window.AKSHPage1 = {
+
+    openExperience,
+
+    closeExperience,
+
+    openMenu,
+
+    closeMenu,
+
+    navigate: startTransition
+
+  };
+
+  /* =======================================================
+     INITIALISE
+     ======================================================= */
+
+  function init() {
+
+    prepareCards();
+
+    setupCardEvents();
+
+    setupNavigation();
+
+    setupBeginButtons();
+
+    setupMenu();
+
+    setupBackButton();
+
+    setupPointerMotion();
+
+    setupCardParallax();
+
+    setupScrollExperience();
+
+    setupTouchFeedback();
+
+    setupInteractionProtection();
+
+    setDailyAtmosphere();
+
+    setActiveNavigation();
+
+    restoreExperienceState();
+
+    revealPage();
+
+  }
+
+  /* =======================================================
+     START
+     ======================================================= */
+
+  if (
+    document.readyState ===
+    "loading"
+  ) {
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      init,
+      {
+        once: true
+      }
+    );
+
+  } else {
+
+    init();
+
+  }
+
+})();
