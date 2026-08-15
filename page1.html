@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -15,136 +17,96 @@
 
   <meta
     name="description"
-    content="AKSH — A space to understand yourself, feel heard, and begin again."
+    content="AKSH — A Safe Space For Every Mind."
   >
 
   <title>AKSH — Come As You Are</title>
 
   <!-- =====================================================
-       PAGE 1 CSS
+       PAGE 1 STYLES
        ===================================================== -->
-  <link rel="stylesheet" href="page1.css">
+
+  <link
+    rel="stylesheet"
+    href="page1.css"
+  >
+
 </head>
 
 
-<body class="morning">
+<body>
 
   <!-- =====================================================
-       AKSH WORLD
+       PAGE TRANSITION
        ===================================================== -->
 
-  <main id="aksh-world">
+  <div
+    id="page-transition"
+    aria-hidden="true"
+  ></div>
+
+
+  <!-- =====================================================
+       AKSH PAGE 01
+       ===================================================== -->
+
+  <main
+    id="aksh-page"
+    class="aksh-page"
+  >
 
 
     <!-- ===================================================
          ATMOSPHERE
          =================================================== -->
 
-    <div class="atmosphere" aria-hidden="true">
+    <div
+      class="atmosphere"
+      aria-hidden="true"
+    >
 
-      <div class="morning-sky"></div>
+      <div class="atmosphere-glow"></div>
 
-      <div class="afternoon-sky"></div>
+      <div class="atmosphere-orb one"></div>
 
-      <div class="evening-sky"></div>
+      <div class="atmosphere-orb two"></div>
 
-      <div class="night-sky">
+      <div class="atmosphere-orb three"></div>
 
-        <div class="stars">
-
-          <span class="star"></span>
-          <span class="star"></span>
-          <span class="star"></span>
-          <span class="star"></span>
-          <span class="star"></span>
-          <span class="star"></span>
-          <span class="star"></span>
-          <span class="star"></span>
-          <span class="star"></span>
-          <span class="star"></span>
-          <span class="star"></span>
-          <span class="star"></span>
-          <span class="star"></span>
-          <span class="star"></span>
-          <span class="star"></span>
-          <span class="star"></span>
-          <span class="star"></span>
-          <span class="star"></span>
-          <span class="star"></span>
-          <span class="star"></span>
-
-        </div>
-
-        <div class="shooting-star one"></div>
-        <div class="shooting-star two"></div>
-
-      </div>
-
-
-      <!-- Atmospheric light -->
-
-      <div class="light"></div>
-
-
-      <!-- Clouds -->
-
-      <div class="cloud one"></div>
-      <div class="cloud two"></div>
-      <div class="cloud three"></div>
-
-
-      <!-- Rain -->
-
-      <div class="rain"></div>
-      <div class="rain-soft"></div>
-
-
-      <!-- Rainbow -->
-
-      <div class="rainbow"></div>
-
-
-      <!-- Moon -->
-
-      <div class="moon"></div>
+      <div class="atmosphere-noise"></div>
 
     </div>
-
 
 
     <!-- ===================================================
          HEADER
          =================================================== -->
 
-    <header class="header">
+    <header class="site-header">
+
 
       <!-- BRAND -->
 
       <a
-        href="#arrival"
-        class="brand"
-        aria-label="AKSH Home"
+        href="index.html"
+        class="site-brand"
+        aria-label="Return to AKSH arrival"
       >
 
-        <!--
-          If you have an AKSH logo image,
-          replace this src with your logo path.
-        -->
-
         <img
-          src="assets/aksh-logo.png"
+          src="aksh-icon.PNG"
           alt="AKSH"
-          onerror="this.style.display='none'"
+          class="site-brand-icon"
         >
 
-        <span class="brand-copy">
+        <span class="site-brand-copy">
 
-          <span class="brand-name">
+          <span class="site-brand-name">
             AKSH
           </span>
 
-          <span class="brand-tagline">
-            COME AS YOU ARE
+          <span class="site-brand-tagline">
+            A SAFE SPACE FOR EVERY MIND
           </span>
 
         </span>
@@ -152,47 +114,71 @@
       </a>
 
 
-      <!-- DESKTOP NAVIGATION -->
+      <!-- DESKTOP NAV -->
 
       <nav
-        class="nav"
-        aria-label="Main navigation"
+        class="site-nav"
+        aria-label="AKSH navigation"
       >
 
-        <a href="#world">
+        <a
+          href="#feeling"
+          class="nav-link active"
+        >
           The World
         </a>
 
-        <a href="#mind">
+        <a
+          href="#mind"
+          class="nav-link"
+        >
           The Mind
         </a>
 
-        <a href="#with-you">
+        <a
+          href="#with-you"
+          class="nav-link"
+        >
           With You
         </a>
 
-        <a href="#meghana">
+        <a
+          href="page5.html"
+          class="nav-link"
+        >
           Meghana
         </a>
 
-        <a href="#journey">
+        <a
+          href="page6.html"
+          class="nav-link"
+        >
           Journey
         </a>
 
-        <a href="#stories">
+        <a
+          href="page7.html"
+          class="nav-link"
+        >
           Stories
         </a>
 
-        <a href="#journal">
+        <a
+          href="page8.html"
+          class="nav-link"
+        >
           Journal
         </a>
 
-        <a href="#ai">
+        <a
+          href="page9.html"
+          class="nav-link"
+        >
           AI
         </a>
 
         <a
-          href="#begin"
+          href="page9.html"
           class="nav-book"
         >
           Book
@@ -201,21 +187,18 @@
       </nav>
 
 
-      <!-- MOBILE MENU -->
+      <!-- MOBILE MENU BUTTON -->
 
       <button
-        class="menu-button"
         type="button"
+        class="menu-button"
         aria-label="Open navigation"
         aria-expanded="false"
+        aria-controls="mobile-menu"
       >
 
-        <span class="menu-lines">
-
-          <span></span>
-          <span></span>
-
-        </span>
+        <span></span>
+        <span></span>
 
       </button>
 
@@ -223,40 +206,153 @@
 
 
     <!-- ===================================================
-         MOBILE OVERLAY
+         MOBILE MENU
          =================================================== -->
 
-    <div
-      class="mobile-overlay"
+    <aside
+      id="mobile-menu"
+      class="mobile-menu"
       aria-hidden="true"
-    ></div>
+    >
 
+      <div class="mobile-menu-top">
+
+        <div class="mobile-menu-label">
+          AKSH
+        </div>
+
+        <button
+          type="button"
+          class="close-menu"
+          aria-label="Close navigation"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <nav
+        class="mobile-nav"
+        aria-label="Mobile navigation"
+      >
+
+        <a
+          href="#feeling"
+          data-mobile-link
+        >
+          <span>01</span>
+          The World
+        </a>
+
+        <a
+          href="#mind"
+          data-mobile-link
+        >
+          <span>02</span>
+          The Mind
+        </a>
+
+        <a
+          href="#with-you"
+          data-mobile-link
+        >
+          <span>03</span>
+          With You
+        </a>
+
+        <a
+          href="page5.html"
+          data-mobile-link
+        >
+          <span>04</span>
+          Meghana
+        </a>
+
+        <a
+          href="page6.html"
+          data-mobile-link
+        >
+          <span>05</span>
+          Journey
+        </a>
+
+        <a
+          href="page7.html"
+          data-mobile-link
+        >
+          <span>06</span>
+          Stories
+        </a>
+
+        <a
+          href="page8.html"
+          data-mobile-link
+        >
+          <span>07</span>
+          Journal
+        </a>
+
+        <a
+          href="page9.html"
+          data-mobile-link
+        >
+          <span>08</span>
+          AI
+        </a>
+
+        <a
+          href="page9.html"
+          class="mobile-book"
+          data-mobile-link
+        >
+          Begin / Book
+        </a>
+
+      </nav>
+
+
+      <div class="mobile-menu-footer">
+
+        <span>
+          A SAFE SPACE FOR EVERY MIND
+        </span>
+
+      </div>
+
+    </aside>
 
 
     <!-- ===================================================
-         00 — ARRIVAL / HERO
+         01 — AKSH / HERO
          =================================================== -->
 
     <section
-      id="arrival"
-      class="hero"
+      id="aksh-intro"
+      class="aksh-hero"
     >
 
-      <div class="hero-inner">
+      <div class="hero-content">
 
 
-        <div class="hero-kicker">
+        <div
+          class="hero-label"
+          data-reveal
+        >
 
-          <span class="hero-kicker-line"></span>
+          <span class="hero-label-line"></span>
 
           <span>
-            A SPACE FOR THE HUMAN MIND
+            01 / AKSH
           </span>
 
         </div>
 
 
-        <h1 class="hero-title">
+        <h1
+          class="hero-title"
+          data-reveal
+        >
 
           Come
           <br>
@@ -266,57 +362,40 @@
         </h1>
 
 
-        <p class="hero-description">
+        <p
+          class="hero-description"
+          data-reveal
+        >
 
-          You don't have to have the right words.
-          You don't have to understand everything yet.
-          You can simply arrive.
+          You don't have to arrive with
+          the right words.
+
+          <br>
+
+          You don't have to understand
+          everything yet.
+
+          <br>
+
+          You can simply be here.
 
         </p>
 
 
-        <div class="hero-actions">
+        <div
+          class="hero-scroll"
+          data-reveal
+        >
 
-          <a
-            href="#feeling"
-            class="begin-button"
-          >
+          <span>
+            Continue
+          </span>
 
-            <span>
-              Begin here
-            </span>
+          <span class="hero-scroll-line"></span>
 
-            <span
-              class="begin-arrow"
-              aria-hidden="true"
-            >
-              →
-            </span>
-
-          </a>
-
-
-          <a
-            href="#world"
-            class="explore-link"
-          >
-            Explore AKSH
-          </a>
-
-        </div>
-
-
-        <div class="hero-side">
-
-          <div class="hero-side-label">
-            AKSH / 01
-          </div>
-
-          <div class="hero-side-text">
-            A quieter place
-            <br>
-            to meet yourself.
-          </div>
+          <span>
+            ↓
+          </span>
 
         </div>
 
@@ -324,43 +403,51 @@
 
 
       <div
-        class="scroll-indicator"
+        class="hero-side-mark"
         aria-hidden="true"
       >
 
-        <span class="scroll-line"></span>
-
-        <span>
-          Scroll to enter
-        </span>
+        AKSH
+        <span>01</span>
 
       </div>
 
     </section>
 
 
-
     <!-- ===================================================
-         01 — THE WORLD
+         01 — HOW ARE YOU FEELING TODAY?
          =================================================== -->
 
     <section
-      id="world"
-      class="section feeling-section"
+      id="feeling"
+      class="feeling-section"
     >
 
-      <div class="section-inner">
+      <div class="feeling-container">
 
+
+        <!-- HEADER -->
 
         <div class="feeling-header">
 
-          <div class="feeling-header-copy">
 
-            <div class="section-label">
+          <div class="feeling-heading">
+
+            <div
+              class="section-label"
+              data-reveal
+            >
+
               01 / THE WORLD
+
             </div>
 
-            <h2 class="feeling-question">
+
+            <h2
+              class="feeling-title"
+              data-reveal
+            >
 
               How are you
               <br>
@@ -372,49 +459,67 @@
           </div>
 
 
-          <p class="feeling-note">
+          <div
+            class="feeling-intro"
+            data-reveal
+          >
 
-            There is no right place to begin.
-            Choose the one that feels closest
-            to where you are.
+            <p>
 
-          </p>
+              There is no right place
+              to begin.
+
+            </p>
+
+            <p>
+
+              Choose whatever feels
+              closest to where you are.
+
+            </p>
+
+          </div>
 
         </div>
 
 
-
-        <!-- =============================================
+        <!-- =================================================
              EMOTION PORTALS
-             ============================================= -->
+             ================================================= -->
 
         <div
           class="emotion-track"
+          data-horizontal-scroll
           aria-label="Choose how you are feeling"
         >
 
 
-          <!-- =========================================
-               ANXIOUS
-               ========================================= -->
+          <!-- ===============================================
+               01 — ANXIOUS
+               =============================================== -->
 
           <article
             class="emotion anxious"
+            data-emotion="anxious"
             tabindex="0"
             role="button"
             aria-label="I feel anxious"
           >
 
-            <div class="emotion-bg"></div>
+            <div
+              class="emotion-background"
+              aria-hidden="true"
+            ></div>
 
 
-            <!-- CINEMATIC ICON -->
-
-            <div class="emotion-icon">
+            <div
+              class="emotion-icon"
+              aria-hidden="true"
+            >
 
               <svg
                 viewBox="0 0 100 100"
-                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
               >
 
                 <circle
@@ -428,9 +533,11 @@
                 />
 
                 <path
-                  d="M30 50
-                     C36 32, 44 68, 50 50
-                     C56 32, 64 68, 70 50"
+                  d="
+                    M30 50
+                    C36 32 44 68 50 50
+                    C56 32 64 68 70 50
+                  "
                   fill="none"
                   stroke="currentColor"
                   stroke-width="1.4"
@@ -452,49 +559,77 @@
 
             <div class="emotion-content">
 
-              <div class="emotion-number">
-                01
+              <div class="emotion-top">
+
+                <span class="emotion-number">
+                  01
+                </span>
+
+                <span class="emotion-symbol">
+                  ∿
+                </span>
+
               </div>
 
-              <h3 class="emotion-title">
-                Anxious
-              </h3>
 
-              <p class="emotion-description">
-                When everything feels a little
-                too loud, too fast, or too much.
-              </p>
+              <div class="emotion-copy">
 
-              <span class="emotion-open">
-                Enter this space
-                <span>→</span>
-              </span>
+                <h3 class="emotion-title">
+                  Anxious
+                </h3>
+
+                <p class="emotion-description">
+                  When everything feels a
+                  little too loud, too fast,
+                  or too much.
+                </p>
+
+              </div>
+
+
+              <div class="emotion-enter">
+
+                <span>
+                  Enter this space
+                </span>
+
+                <span>
+                  →
+                </span>
+
+              </div>
 
             </div>
 
           </article>
 
 
-
-          <!-- =========================================
-               OVERWHELMED
-               ========================================= -->
+          <!-- ===============================================
+               02 — OVERWHELMED
+               =============================================== -->
 
           <article
             class="emotion overwhelmed"
+            data-emotion="overwhelmed"
             tabindex="0"
             role="button"
             aria-label="I feel overwhelmed"
           >
 
-            <div class="emotion-bg"></div>
+            <div
+              class="emotion-background"
+              aria-hidden="true"
+            ></div>
 
 
-            <div class="emotion-icon">
+            <div
+              class="emotion-icon"
+              aria-hidden="true"
+            >
 
               <svg
                 viewBox="0 0 100 100"
-                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
               >
 
                 <circle
@@ -508,9 +643,11 @@
                 />
 
                 <path
-                  d="M27 38
-                     C38 28, 47 45, 56 36
-                     C63 29, 69 35, 74 31"
+                  d="
+                    M27 38
+                    C38 28 47 45 56 36
+                    C63 29 69 35 74 31
+                  "
                   fill="none"
                   stroke="currentColor"
                   stroke-width="1.3"
@@ -518,9 +655,11 @@
                 />
 
                 <path
-                  d="M27 51
-                     C38 41, 47 58, 56 49
-                     C63 42, 69 48, 74 44"
+                  d="
+                    M27 51
+                    C38 41 47 58 56 49
+                    C63 42 69 48 74 44
+                  "
                   fill="none"
                   stroke="currentColor"
                   stroke-width="1.3"
@@ -529,9 +668,11 @@
                 />
 
                 <path
-                  d="M27 64
-                     C38 54, 47 71, 56 62
-                     C63 55, 69 61, 74 57"
+                  d="
+                    M27 64
+                    C38 54 47 71 56 62
+                    C63 55 69 61 74 57
+                  "
                   fill="none"
                   stroke="currentColor"
                   stroke-width="1.3"
@@ -546,49 +687,77 @@
 
             <div class="emotion-content">
 
-              <div class="emotion-number">
-                02
+              <div class="emotion-top">
+
+                <span class="emotion-number">
+                  02
+                </span>
+
+                <span class="emotion-symbol">
+                  ≋
+                </span>
+
               </div>
 
-              <h3 class="emotion-title">
-                Overwhelmed
-              </h3>
 
-              <p class="emotion-description">
-                When there is too much to carry
-                and nowhere quiet enough to put it down.
-              </p>
+              <div class="emotion-copy">
 
-              <span class="emotion-open">
-                Enter this space
-                <span>→</span>
-              </span>
+                <h3 class="emotion-title">
+                  Overwhelmed
+                </h3>
+
+                <p class="emotion-description">
+                  When there is too much
+                  to carry and nowhere quiet
+                  enough to put it down.
+                </p>
+
+              </div>
+
+
+              <div class="emotion-enter">
+
+                <span>
+                  Enter this space
+                </span>
+
+                <span>
+                  →
+                </span>
+
+              </div>
 
             </div>
 
           </article>
 
 
-
-          <!-- =========================================
-               NEED TO TALK
-               ========================================= -->
+          <!-- ===============================================
+               03 — NEED TO TALK
+               =============================================== -->
 
           <article
             class="emotion need-talk"
+            data-emotion="talk"
             tabindex="0"
             role="button"
             aria-label="I need to talk to someone"
           >
 
-            <div class="emotion-bg"></div>
+            <div
+              class="emotion-background"
+              aria-hidden="true"
+            ></div>
 
 
-            <div class="emotion-icon">
+            <div
+              class="emotion-icon"
+              aria-hidden="true"
+            >
 
               <svg
                 viewBox="0 0 100 100"
-                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
               >
 
                 <circle
@@ -602,9 +771,11 @@
                 />
 
                 <path
-                  d="M32 65
-                     L28 76
-                     L41 69"
+                  d="
+                    M32 65
+                    L28 76
+                    L41 69
+                  "
                   fill="none"
                   stroke="currentColor"
                   stroke-width="1"
@@ -613,9 +784,11 @@
                 />
 
                 <path
-                  d="M39 44
-                     C43 40, 47 40, 50 44
-                     C53 40, 57 40, 61 44"
+                  d="
+                    M39 44
+                    C43 40 47 40 50 44
+                    C53 40 57 40 61 44
+                  "
                   fill="none"
                   stroke="currentColor"
                   stroke-width="1.2"
@@ -650,49 +823,77 @@
 
             <div class="emotion-content">
 
-              <div class="emotion-number">
-                03
+              <div class="emotion-top">
+
+                <span class="emotion-number">
+                  03
+                </span>
+
+                <span class="emotion-symbol">
+                  ○
+                </span>
+
               </div>
 
-              <h3 class="emotion-title">
-                Need to talk
-              </h3>
 
-              <p class="emotion-description">
-                You don't need to solve it alone.
-                Sometimes being heard is where it begins.
-              </p>
+              <div class="emotion-copy">
 
-              <span class="emotion-open">
-                Find someone
-                <span>→</span>
-              </span>
+                <h3 class="emotion-title">
+                  Need to talk
+                </h3>
+
+                <p class="emotion-description">
+                  You don't need to solve
+                  it alone. Sometimes being
+                  heard is where it begins.
+                </p>
+
+              </div>
+
+
+              <div class="emotion-enter">
+
+                <span>
+                  Find someone
+                </span>
+
+                <span>
+                  →
+                </span>
+
+              </div>
 
             </div>
 
           </article>
 
 
-
-          <!-- =========================================
-               JUST EXPLORING
-               ========================================= -->
+          <!-- ===============================================
+               04 — JUST EXPLORING
+               =============================================== -->
 
           <article
             class="emotion exploring"
+            data-emotion="exploring"
             tabindex="0"
             role="button"
             aria-label="I am just exploring"
           >
 
-            <div class="emotion-bg"></div>
+            <div
+              class="emotion-background"
+              aria-hidden="true"
+            ></div>
 
 
-            <div class="emotion-icon">
+            <div
+              class="emotion-icon"
+              aria-hidden="true"
+            >
 
               <svg
                 viewBox="0 0 100 100"
-                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
               >
 
                 <circle
@@ -715,21 +916,25 @@
                 />
 
                 <path
-                  d="M50 16
-                     L54 30
-                     L50 37
-                     L46 30
-                     Z"
+                  d="
+                    M50 16
+                    L54 30
+                    L50 37
+                    L46 30
+                    Z
+                  "
                   fill="currentColor"
                   opacity=".65"
                 />
 
                 <path
-                  d="M84 50
-                     L70 54
-                     L63 50
-                     L70 46
-                     Z"
+                  d="
+                    M84 50
+                    L70 54
+                    L63 50
+                    L70 46
+                    Z
+                  "
                   fill="currentColor"
                   opacity=".45"
                 />
@@ -748,23 +953,45 @@
 
             <div class="emotion-content">
 
-              <div class="emotion-number">
-                04
+              <div class="emotion-top">
+
+                <span class="emotion-number">
+                  04
+                </span>
+
+                <span class="emotion-symbol">
+                  +
+                </span>
+
               </div>
 
-              <h3 class="emotion-title">
-                Just exploring
-              </h3>
 
-              <p class="emotion-description">
-                You are curious.
-                That's enough reason to be here.
-              </p>
+              <div class="emotion-copy">
 
-              <span class="emotion-open">
-                Explore AKSH
-                <span>→</span>
-              </span>
+                <h3 class="emotion-title">
+                  Just exploring
+                </h3>
+
+                <p class="emotion-description">
+                  You are curious.
+                  That's enough reason
+                  to be here.
+                </p>
+
+              </div>
+
+
+              <div class="emotion-enter">
+
+                <span>
+                  Explore AKSH
+                </span>
+
+                <span>
+                  →
+                </span>
+
+              </div>
 
             </div>
 
@@ -782,7 +1009,7 @@
         >
 
           <span>
-            Drag to explore
+            Swipe to explore
           </span>
 
           <span class="hint-line"></span>
@@ -793,10 +1020,10 @@
 
         </div>
 
+
       </div>
 
     </section>
-
 
 
     <!-- ===================================================
@@ -805,16 +1032,22 @@
 
     <section
       id="mind"
-      class="section"
+      class="preview-section mind-preview"
     >
 
-      <div class="section-inner">
+      <div class="preview-inner">
 
-        <div class="section-label">
+        <div
+          class="section-label"
+          data-reveal
+        >
           02 / THE MIND
         </div>
 
-        <h2 class="section-title">
+        <h2
+          class="preview-title"
+          data-reveal
+        >
 
           Understanding
           <br>
@@ -823,426 +1056,33 @@
 
         </h2>
 
-        <p class="section-intro">
-
-          Your mind is not something to fight.
-          It is something to understand.
-          AKSH creates space for curiosity,
-          reflection and meaningful change.
-
-        </p>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- ===================================================
-         03 — WITH YOU / AI
-         =================================================== -->
-
-    <section
-      id="with-you"
-      class="section ai-section"
-    >
-
-      <div class="section-inner ai-layout">
-
-
-        <div>
-
-          <div class="section-label">
-            03 / WITH YOU
-          </div>
-
-          <h2 class="ai-title">
-
-            Meet
-            <br>
-
-            <em>AKSH AI.</em>
-
-          </h2>
-
-          <p class="ai-description">
-
-            A quiet digital companion designed to
-            help you pause, reflect and find your
-            next step.
-
-            <br><br>
-
-            Clearly AI. Never a replacement for
-            a psychologist.
-
-          </p>
-
-          <a
-            href="#ai"
-            class="ai-button"
-          >
-            Enter AKSH AI →
-          </a>
-
-        </div>
-
-
-        <div
-          class="ai-orb"
-          aria-hidden="true"
+        <p
+          class="preview-copy"
+          data-reveal
         >
 
-          <div class="ai-orb-text">
+          Your mind is not something
+          to fight.
 
-            <span>
-              A space<br>
-              to begin.
-            </span>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- ===================================================
-         04 — JOURNEY
-         =================================================== -->
-
-    <section
-      id="journey"
-      class="section journey-section"
-    >
-
-      <div class="section-inner">
-
-        <div class="section-label">
-          04 / THE JOURNEY
-        </div>
-
-        <h2 class="section-title">
-
-          There is no
           <br>
 
-          <em>perfect path.</em>
-
-        </h2>
-
-        <p class="section-intro">
-
-          Every person arrives differently.
-          Your journey can move at your pace.
-
-        </p>
-
-
-        <div class="journey-line">
-
-
-          <div class="journey-step">
-
-            <div class="journey-dot"></div>
-
-            <div class="journey-number">
-              01
-            </div>
-
-            <div class="journey-name">
-              Arrive
-            </div>
-
-            <p class="journey-copy">
-              Begin exactly where you are.
-            </p>
-
-          </div>
-
-
-          <div class="journey-step">
-
-            <div class="journey-dot"></div>
-
-            <div class="journey-number">
-              02
-            </div>
-
-            <div class="journey-name">
-              Explore
-            </div>
-
-            <p class="journey-copy">
-              Notice what is happening within.
-            </p>
-
-          </div>
-
-
-          <div class="journey-step">
-
-            <div class="journey-dot"></div>
-
-            <div class="journey-number">
-              03
-            </div>
-
-            <div class="journey-name">
-              Understand
-            </div>
-
-            <p class="journey-copy">
-              Make sense of your experience.
-            </p>
-
-          </div>
-
-
-          <div class="journey-step">
-
-            <div class="journey-dot"></div>
-
-            <div class="journey-number">
-              04
-            </div>
-
-            <div class="journey-name">
-              Connect
-            </div>
-
-            <p class="journey-copy">
-              Find the support that fits you.
-            </p>
-
-          </div>
-
-
-          <div class="journey-step">
-
-            <div class="journey-dot"></div>
-
-            <div class="journey-number">
-              05
-            </div>
-
-            <div class="journey-name">
-              Begin
-            </div>
-
-            <p class="journey-copy">
-              Take the next step when you're ready.
-            </p>
-
-          </div>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- ===================================================
-         05 — MEGHANA
-         =================================================== -->
-
-    <section
-      id="meghana"
-      class="section founder-section"
-    >
-
-      <div class="section-inner founder-layout">
-
-
-        <!-- Founder image -->
-
-        <div>
-
-          <img
-            class="founder-photo"
-            src="assets/meghana-kaverappa.jpg"
-            alt="Meghana Kaverappa"
-            loading="lazy"
-          >
-
-        </div>
-
-
-        <!-- Founder copy -->
-
-        <div class="founder-copy">
-
-          <div class="section-label">
-            05 / THE PERSON BEHIND AKSH
-          </div>
-
-          <h2 class="founder-name">
-
-            Meghana
-            <br>
-
-            Kaverappa
-
-          </h2>
-
-          <div class="founder-role">
-            Founder & Chief Psychologist
-          </div>
-
-          <p class="founder-text">
-
-            AKSH begins with a simple belief:
-            people deserve a space where they can
-            arrive without pretending to have
-            everything figured out.
-
-          </p>
-
-          <a
-            href="#meghana"
-            class="founder-link"
-          >
-            Meet Meghana →
-          </a>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- ===================================================
-         06 — STORIES
-         =================================================== -->
-
-    <section
-      id="stories"
-      class="section"
-    >
-
-      <div class="section-inner">
-
-        <div class="section-label">
-          06 / STORIES
-        </div>
-
-        <h2 class="section-title">
-
-          You are not
-          <br>
-
-          <em>the only one.</em>
-
-        </h2>
-
-        <p class="section-intro">
-
-          Real experiences.
-          Human voices.
-          Stories that remind us that
-          none of us have to move through
-          life completely alone.
-
-        </p>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- ===================================================
-         07 — JOURNAL
-         =================================================== -->
-
-    <section
-      id="journal"
-      class="section"
-    >
-
-      <div class="section-inner">
-
-        <div class="section-label">
-          07 / JOURNAL
-        </div>
-
-        <h2 class="section-title">
-
-          Thoughts worth
-          <br>
-
-          <em>sitting with.</em>
-
-        </h2>
-
-        <p class="section-intro">
-
-          Reflections on the mind,
-          relationships, emotions,
-          growth and the small things
-          that shape how we live.
-
-        </p>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- ===================================================
-         08 — AKSH AI
-         =================================================== -->
-
-    <section
-      id="ai"
-      class="section ai-section"
-    >
-
-      <div class="section-inner">
-
-        <div class="section-label">
-          08 / AKSH AI
-        </div>
-
-        <h2 class="section-title">
-
-          Talk.
-          <br>
-
-          Listen.
-          <br>
-
-          <em>Reflect.</em>
-
-        </h2>
-
-        <p class="section-intro">
-
-          Meet Radha or Madhav —
-          AI companions created for
-          thoughtful conversations.
-
-          <br><br>
-
-          AKSH AI is clearly identified as AI
-          and is not a human psychologist.
+          It is something to understand.
 
         </p>
 
         <a
-          href="#begin"
-          class="ai-button"
+          href="page3.html"
+          class="preview-link"
+          data-page-link="page3.html"
+          data-reveal
         >
-          Meet AKSH AI →
+
+          Enter The Mind
+
+          <span>
+            →
+          </span>
+
         </a>
 
       </div>
@@ -1250,132 +1090,117 @@
     </section>
 
 
-
     <!-- ===================================================
-         09 — BEGIN
+         03 — WITH YOU
          =================================================== -->
 
     <section
-      id="begin"
-      class="section begin-section"
+      id="with-you"
+      class="preview-section with-you-preview"
     >
 
-      <div class="section-inner">
+      <div class="preview-inner">
 
-
-        <div class="section-label">
-          09 / BEGIN
+        <div
+          class="section-label"
+          data-reveal
+        >
+          03 / WITH YOU
         </div>
 
-
-        <h2 class="begin-title">
+        <h2
+          class="preview-title"
+          data-reveal
+        >
 
           You don't have
           <br>
 
-          to wait until
-          <br>
-
-          <em>everything is okay.</em>
+          <em>to do this alone.</em>
 
         </h2>
 
+        <p
+          class="preview-copy"
+          data-reveal
+        >
 
-        <p class="begin-copy">
-
-          You can begin with a conversation.
-          You can begin with curiosity.
-          You can simply begin.
+          Find the kind of support
+          that feels right for you.
 
         </p>
 
+        <a
+          href="page4.html"
+          class="preview-link"
+          data-page-link="page4.html"
+          data-reveal
+        >
 
-        <div class="begin-actions">
+          Explore With You
 
-          <a
-            href="#booking"
-            class="begin-primary"
-          >
-            Book a session
-          </a>
+          <span>
+            →
+          </span>
 
-          <a
-            href="#world"
-            class="begin-secondary"
-          >
-            Explore AKSH
-          </a>
-
-        </div>
+        </a>
 
       </div>
 
     </section>
-
-
-
-    <!-- ===================================================
-         BOOKING ANCHOR
-         =================================================== -->
-
-    <section
-      id="booking"
-      class="section"
-      style="min-height:40svh;"
-    >
-
-      <div class="section-inner">
-
-        <div class="section-label">
-          BEGIN
-        </div>
-
-        <h2 class="section-title">
-          Your next step
-          <br>
-          <em>starts here.</em>
-        </h2>
-
-      </div>
-
-    </section>
-
 
 
     <!-- ===================================================
          FOOTER
          =================================================== -->
 
-    <footer class="footer">
+    <footer class="site-footer">
 
       <div class="footer-brand">
-        AKSH
+
+        <img
+          src="aksh-icon.PNG"
+          alt="AKSH"
+          class="footer-icon"
+        >
+
+        <div>
+
+          <div class="footer-name">
+            AKSH
+          </div>
+
+          <div class="footer-tagline">
+            A SAFE SPACE FOR EVERY MIND
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-center">
+
+        <span>
+          COME AS YOU ARE.
+        </span>
+
       </div>
 
 
-      <div class="footer-right">
+      <a
+        href="page9.html"
+        class="footer-book"
+        data-page-link="page9.html"
+      >
 
-        <a href="#world">
-          The World
-        </a>
+        Begin
 
-        <a href="#mind">
-          The Mind
-        </a>
+        <span>
+          →
+        </span>
 
-        <a href="#meghana">
-          Meghana
-        </a>
-
-        <a href="#ai">
-          AI
-        </a>
-
-        <a href="#begin">
-          Book
-        </a>
-
-      </div>
+      </a>
 
     </footer>
 
@@ -1383,12 +1208,25 @@
   </main>
 
 
-
   <!-- =====================================================
-       PAGE 1 JAVASCRIPT
+       GLOBAL SHARED ENGINE
        ===================================================== -->
 
-  <script src="page1.js"></script>
+  <script
+    src="script.js"
+    defer
+  ></script>
+
+
+  <!-- =====================================================
+       PAGE 1 ENGINE
+       ===================================================== -->
+
+  <script
+    src="page1.js"
+    defer
+  ></script>
 
 </body>
+
 </html>
