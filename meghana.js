@@ -1,48 +1,111 @@
 /* =========================================================
    AKSH — MEGHANA
    meghana.js
+   PAGE 05
+   Founder & Chief Psychologist Experience
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    const body = document.body;
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
 
-    const nav = document.getElementById("meghana-nav");
-    const menuButton = document.getElementById("menu-button");
-    const mobileMenu = document.getElementById("mobile-menu");
-    const mobileClose = document.getElementById("mobile-close");
-    const year = document.getElementById("meghana-year");
+    const page =
+        document.getElementById("meghana-page");
+
+    const nav =
+        document.getElementById("meghana-nav");
+
+    const menuButton =
+        document.getElementById("menu-button");
+
+    const mobileMenu =
+        document.getElementById("mobile-menu");
+
+    const mobileClose =
+        document.getElementById("mobile-close");
+
+    const year =
+        document.getElementById("meghana-year");
+
+    const portrait =
+        document.querySelector(".meghana-portrait");
+
+    const portraitImage =
+        document.querySelector(".meghana-portrait img");
+
+    const revealElements =
+        document.querySelectorAll(
+            ".meghana-hero-content, " +
+            ".meghana-intro, " +
+            ".founder-story, " +
+            ".credentials-section, " +
+            ".experience-section, " +
+            ".approach-section, " +
+            ".meghana-quote, " +
+            ".meghana-final"
+        );
 
 
     /* =====================================================
-       YEAR
+       PAGE READY
+    ===================================================== */
+
+    requestAnimationFrame(() => {
+
+        document.documentElement.classList.add(
+            "meghana-ready"
+        );
+
+        if (page) {
+
+            page.classList.add(
+                "page-ready"
+            );
+
+        }
+
+    });
+
+
+    /* =====================================================
+       CURRENT YEAR
     ===================================================== */
 
     if (year) {
-        year.textContent = new Date().getFullYear();
+
+        year.textContent =
+            new Date().getFullYear();
+
     }
 
 
     /* =====================================================
-       NAVIGATION ON SCROLL
+       NAVIGATION SCROLL
     ===================================================== */
 
-    function updateNav() {
+    function updateNavigation() {
 
         if (!nav) return;
 
         if (window.scrollY > 40) {
+
             nav.classList.add("scrolled");
+
         } else {
+
             nav.classList.remove("scrolled");
+
         }
+
     }
 
-    updateNav();
+    updateNavigation();
 
     window.addEventListener(
         "scroll",
-        updateNav,
+        updateNavigation,
         { passive: true }
     );
 
@@ -62,14 +125,24 @@ document.addEventListener("DOMContentLoaded", () => {
             "false"
         );
 
-        body.classList.add("menu-open");
+        document.body.classList.add(
+            "menu-open"
+        );
 
         if (menuButton) {
+
             menuButton.setAttribute(
                 "aria-expanded",
                 "true"
             );
+
+            menuButton.setAttribute(
+                "aria-label",
+                "Close navigation"
+            );
+
         }
+
     }
 
 
@@ -84,14 +157,24 @@ document.addEventListener("DOMContentLoaded", () => {
             "true"
         );
 
-        body.classList.remove("menu-open");
+        document.body.classList.remove(
+            "menu-open"
+        );
 
         if (menuButton) {
+
             menuButton.setAttribute(
                 "aria-expanded",
                 "false"
             );
+
+            menuButton.setAttribute(
+                "aria-label",
+                "Open navigation"
+            );
+
         }
+
     }
 
 
@@ -99,7 +182,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
         menuButton.addEventListener(
             "click",
-            openMenu
+            () => {
+
+                const isOpen =
+                    mobileMenu &&
+                    mobileMenu.classList.contains(
+                        "open"
+                    );
+
+                if (isOpen) {
+
+                    closeMenu();
+
+                } else {
+
+                    openMenu();
+
+                }
+
+            }
         );
 
     }
@@ -121,10 +222,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (mobileMenu) {
 
-        const links =
-            mobileMenu.querySelectorAll("a");
+        const mobileLinks =
+            mobileMenu.querySelectorAll(
+                "a"
+            );
 
-        links.forEach((link) => {
+        mobileLinks.forEach((link) => {
 
             link.addEventListener(
                 "click",
@@ -132,11 +235,12 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
         });
+
     }
 
 
     /* =====================================================
-       ESCAPE TO CLOSE
+       ESCAPE KEY
     ===================================================== */
 
     document.addEventListener(
@@ -144,7 +248,9 @@ document.addEventListener("DOMContentLoaded", () => {
         (event) => {
 
             if (event.key === "Escape") {
+
                 closeMenu();
+
             }
 
         }
@@ -164,228 +270,276 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (
                     event.target === mobileMenu
                 ) {
+
                     closeMenu();
+
                 }
 
             }
         );
 
     }
+
+
+    /* =====================================================
+       SMOOTH INTERNAL LINKS
+    ===================================================== */
+
+    const internalLinks =
+        document.querySelectorAll(
+            'a[href^="#"]'
+        );
+
+    internalLinks.forEach((link) => {
+
+        link.addEventListener(
+            "click",
+            (event) => {
+
+                const targetId =
+                    link.getAttribute("href");
+
+                if (
+                    !targetId ||
+                    targetId === "#"
+                ) {
+
+                    return;
+
+                }
+
+                const target =
+                    document.querySelector(
+                        targetId
+                    );
+
+                if (!target) return;
+
+                event.preventDefault();
+
+                closeMenu();
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+        );
+
+    });
 
 
     /* =====================================================
        SCROLL REVEAL
     ===================================================== */
 
-    const revealElements =
-        document.querySelectorAll(
-            ".profile-column, " +
-            ".timeline-item, " +
-            ".responsibility-grid > div, " +
-            ".languages-list span"
-        );
-
-
     if (
         "IntersectionObserver" in window
     ) {
 
-        const observer =
+        const revealObserver =
             new IntersectionObserver(
-                (entries, observerInstance) => {
+                (entries, observer) => {
 
-                    entries.forEach((entry) => {
+                    entries.forEach(
+                        (entry) => {
 
-                        if (
-                            !entry.isIntersecting
-                        ) {
-                            return;
+                            if (
+                                !entry.isIntersecting
+                            ) {
+
+                                return;
+
+                            }
+
+                            entry.target.classList.add(
+                                "story-visible"
+                            );
+
+                            observer.unobserve(
+                                entry.target
+                            );
+
                         }
-
-                        entry.target.classList.add(
-                            "is-visible"
-                        );
-
-                        observerInstance.unobserve(
-                            entry.target
-                        );
-
-                    });
+                    );
 
                 },
                 {
-                    threshold: 0.12
+                    threshold: 0.10,
+                    rootMargin:
+                        "0px 0px -40px 0px"
                 }
             );
 
 
-        revealElements.forEach((element) => {
+        revealElements.forEach(
+            (element) => {
 
-            observer.observe(element);
+                revealObserver.observe(
+                    element
+                );
 
-        });
+            }
+        );
 
     } else {
 
-        revealElements.forEach((element) => {
+        revealElements.forEach(
+            (element) => {
 
-            element.classList.add(
-                "is-visible"
-            );
+                element.classList.add(
+                    "story-visible"
+                );
 
-        });
+            }
+        );
 
     }
 
 
     /* =====================================================
-       TIMELINE HOVER / TOUCH
-    ===================================================== */
+       PORTRAIT PARALLAX
+       ===================================================== */
 
-    const timelineItems =
-        document.querySelectorAll(
-            ".timeline-item"
+    let ticking = false;
+
+
+    function updatePortrait() {
+
+        if (
+            !portrait ||
+            window.innerWidth < 768
+        ) {
+
+            ticking = false;
+
+            return;
+
+        }
+
+
+        const rect =
+            portrait.getBoundingClientRect();
+
+        const windowHeight =
+            window.innerHeight;
+
+
+        const center =
+            rect.top +
+            rect.height / 2;
+
+
+        const distance =
+            center -
+            windowHeight / 2;
+
+
+        const movement =
+            distance * -0.025;
+
+
+        portrait.style.setProperty(
+            "--portrait-shift",
+            `${movement}px`
         );
 
 
-    timelineItems.forEach((item) => {
+        ticking = false;
 
-        item.addEventListener(
-            "click",
-            () => {
+    }
 
-                timelineItems.forEach(
-                    (otherItem) => {
 
-                        if (otherItem !== item) {
-                            otherItem.classList.remove(
-                                "timeline-active"
-                            );
-                        }
+    function requestPortraitUpdate() {
 
-                    }
-                );
+        if (ticking) return;
 
-                item.classList.toggle(
-                    "timeline-active"
-                );
+        ticking = true;
 
-            }
+        requestAnimationFrame(
+            updatePortrait
         );
 
-    });
+    }
+
+
+    if (portrait) {
+
+        window.addEventListener(
+            "scroll",
+            requestPortraitUpdate,
+            { passive: true }
+        );
+
+        window.addEventListener(
+            "resize",
+            requestPortraitUpdate
+        );
+
+        requestPortraitUpdate();
+
+    }
 
 
     /* =====================================================
-       PROFILE CARDS
+       IMAGE LOADING
     ===================================================== */
 
-    const profileCards =
-        document.querySelectorAll(
-            ".profile-column"
-        );
+    if (portraitImage) {
+
+        if (portraitImage.complete) {
+
+            portraitImage.classList.add(
+                "loaded"
+            );
+
+        } else {
+
+            portraitImage.addEventListener(
+                "load",
+                () => {
+
+                    portraitImage.classList.add(
+                        "loaded"
+                    );
+
+                }
+            );
+
+        }
 
 
-    profileCards.forEach((card) => {
-
-        card.addEventListener(
-            "mouseenter",
+        portraitImage.addEventListener(
+            "error",
             () => {
-                card.classList.add(
-                    "card-active"
+
+                portraitImage.classList.add(
+                    "image-error"
                 );
+
+                if (portrait) {
+
+                    portrait.classList.add(
+                        "image-error"
+                    );
+
+                }
+
             }
         );
 
-
-        card.addEventListener(
-            "mouseleave",
-            () => {
-                card.classList.remove(
-                    "card-active"
-                );
-            }
-        );
-
-    });
+    }
 
 
     /* =====================================================
-       RESPONSIBILITY CARDS
-    ===================================================== */
-
-    const responsibilityCards =
-        document.querySelectorAll(
-            ".responsibility-grid > div"
-        );
-
-
-    responsibilityCards.forEach((card) => {
-
-        card.addEventListener(
-            "mouseenter",
-            () => {
-                card.classList.add(
-                    "responsibility-active"
-                );
-            }
-        );
-
-
-        card.addEventListener(
-            "mouseleave",
-            () => {
-                card.classList.remove(
-                    "responsibility-active"
-                );
-            }
-        );
-
-    });
-
-
-    /* =====================================================
-       LANGUAGE INTERACTION
-    ===================================================== */
-
-    const languageItems =
-        document.querySelectorAll(
-            ".languages-list span"
-        );
-
-
-    languageItems.forEach((item) => {
-
-        item.addEventListener(
-            "click",
-            () => {
-
-                languageItems.forEach(
-                    (language) => {
-
-                        language.classList.remove(
-                            "language-selected"
-                        );
-
-                    }
-                );
-
-                item.classList.add(
-                    "language-selected"
-                );
-
-            }
-        );
-
-    });
-
-
-    /* =====================================================
-       IMAGE ERROR HANDLING
+       IMAGE FALLBACK — ALL PAGE IMAGES
     ===================================================== */
 
     const images =
-        document.querySelectorAll("img");
+        document.querySelectorAll(
+            "img"
+        );
 
 
     images.forEach((image) => {
@@ -405,46 +559,83 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       SMOOTH INTERNAL LINKS
+       ACTIVE NAVIGATION
     ===================================================== */
 
-    const internalLinks =
+    const desktopLinks =
         document.querySelectorAll(
-            'a[href^="#"]'
+            ".desktop-nav a"
         );
 
 
-    internalLinks.forEach((link) => {
+    desktopLinks.forEach((link) => {
+
+        const href =
+            link.getAttribute("href");
+
+
+        if (
+            href === "meghana.html"
+        ) {
+
+            link.classList.add(
+                "active"
+            );
+
+        }
+
+    });
+
+
+    /* =====================================================
+       NAVIGATION HOVER INTELLIGENCE
+    ===================================================== */
+
+    const navLinks =
+        document.querySelectorAll(
+            ".desktop-nav a"
+        );
+
+
+    navLinks.forEach((link) => {
 
         link.addEventListener(
-            "click",
-            (event) => {
+            "mouseenter",
+            () => {
 
-                const targetId =
-                    link.getAttribute("href");
+                navLinks.forEach(
+                    (otherLink) => {
 
-                if (
-                    !targetId ||
-                    targetId === "#"
-                ) {
-                    return;
-                }
+                        if (
+                            otherLink !== link
+                        ) {
 
-                const target =
-                    document.querySelector(
-                        targetId
-                    );
+                            otherLink.classList.add(
+                                "nav-dimmed"
+                            );
 
-                if (!target) {
-                    return;
-                }
+                        }
 
-                event.preventDefault();
+                    }
+                );
 
-                target.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
+            }
+        );
+
+
+        link.addEventListener(
+            "mouseleave",
+            () => {
+
+                navLinks.forEach(
+                    (otherLink) => {
+
+                        otherLink.classList.remove(
+                            "nav-dimmed"
+                        );
+
+                    }
+                );
 
             }
         );
@@ -453,15 +644,405 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       PAGE READY
-    ===================================================== */
+       EXPERIENCE ITEMS
+       ===================================================== */
 
-    window.setTimeout(() => {
-
-        document.documentElement.classList.add(
-            "meghana-ready"
+    const experienceItems =
+        document.querySelectorAll(
+            ".experience-item"
         );
 
-    }, 100);
+
+    experienceItems.forEach(
+        (item, index) => {
+
+            item.style.setProperty(
+                "--item-index",
+                index
+            );
+
+
+            item.addEventListener(
+                "mouseenter",
+                () => {
+
+                    item.classList.add(
+                        "is-hovered"
+                    );
+
+                }
+            );
+
+
+            item.addEventListener(
+                "mouseleave",
+                () => {
+
+                    item.classList.remove(
+                        "is-hovered"
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       APPROACH ITEMS
+    ===================================================== */
+
+    const approachItems =
+        document.querySelectorAll(
+            ".approach-item, " +
+            ".approach-value, " +
+            ".founder-value"
+        );
+
+
+    approachItems.forEach(
+        (item, index) => {
+
+            item.style.setProperty(
+                "--item-index",
+                index
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       STAT / CREDENTIAL COUNTERS
+       Only activates when matching numeric
+       data-target attributes exist.
+    ===================================================== */
+
+    const counters =
+        document.querySelectorAll(
+            "[data-target]"
+        );
+
+
+    function animateCounter(
+        element
+    ) {
+
+        const target =
+            Number(
+                element.dataset.target
+            );
+
+
+        if (
+            Number.isNaN(target)
+        ) {
+
+            return;
+
+        }
+
+
+        const duration =
+            Number(
+                element.dataset.duration
+            ) || 1200;
+
+
+        const startTime =
+            performance.now();
+
+
+        function update(
+            currentTime
+        ) {
+
+            const elapsed =
+                currentTime -
+                startTime;
+
+
+            const progress =
+                Math.min(
+                    elapsed / duration,
+                    1
+                );
+
+
+            const eased =
+                1 -
+                Math.pow(
+                    1 - progress,
+                    3
+                );
+
+
+            element.textContent =
+                Math.round(
+                    target * eased
+                );
+
+
+            if (progress < 1) {
+
+                requestAnimationFrame(
+                    update
+                );
+
+            } else {
+
+                element.textContent =
+                    target;
+
+            }
+
+        }
+
+
+        requestAnimationFrame(
+            update
+        );
+
+    }
+
+
+    if (
+        counters.length &&
+        "IntersectionObserver" in window
+    ) {
+
+        const counterObserver =
+            new IntersectionObserver(
+                (entries, observer) => {
+
+                    entries.forEach(
+                        (entry) => {
+
+                            if (
+                                !entry.isIntersecting
+                            ) {
+
+                                return;
+
+                            }
+
+                            animateCounter(
+                                entry.target
+                            );
+
+                            observer.unobserve(
+                                entry.target
+                            );
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: 0.5
+                }
+            );
+
+
+        counters.forEach(
+            (counter) => {
+
+                counterObserver.observe(
+                    counter
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       QUOTE REVEAL
+       ===================================================== */
+
+    const quote =
+        document.querySelector(
+            ".meghana-quote blockquote"
+        );
+
+
+    if (quote) {
+
+        quote.classList.add(
+            "quote-ready"
+        );
+
+    }
+
+
+    /* =====================================================
+       FINAL CTA HOVER
+       ===================================================== */
+
+    const finalButtons =
+        document.querySelectorAll(
+            ".primary-button, " +
+            ".secondary-button, " +
+            ".meghana-cta"
+        );
+
+
+    finalButtons.forEach(
+        (button) => {
+
+            button.addEventListener(
+                "mouseenter",
+                () => {
+
+                    button.classList.add(
+                        "cta-hover"
+                    );
+
+                }
+            );
+
+
+            button.addEventListener(
+                "mouseleave",
+                () => {
+
+                    button.classList.remove(
+                        "cta-hover"
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       REDUCED MOTION
+    ===================================================== */
+
+    const reducedMotion =
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        );
+
+
+    function handleReducedMotion() {
+
+        if (
+            reducedMotion.matches
+        ) {
+
+            document.documentElement.classList.add(
+                "reduced-motion"
+            );
+
+        } else {
+
+            document.documentElement.classList.remove(
+                "reduced-motion"
+            );
+
+        }
+
+    }
+
+
+    handleReducedMotion();
+
+
+    if (
+        reducedMotion.addEventListener
+    ) {
+
+        reducedMotion.addEventListener(
+            "change",
+            handleReducedMotion
+        );
+
+    }
+
+
+    /* =====================================================
+       PAGE VISIBILITY
+    ===================================================== */
+
+    document.addEventListener(
+        "visibilitychange",
+        () => {
+
+            if (
+                document.hidden
+            ) {
+
+                document.body.classList.add(
+                    "page-hidden"
+                );
+
+            } else {
+
+                document.body.classList.remove(
+                    "page-hidden"
+                );
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       INITIAL ACCESSIBILITY STATE
+    ===================================================== */
+
+    if (mobileMenu) {
+
+        mobileMenu.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+    }
+
+
+    if (menuButton) {
+
+        menuButton.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+    }
+
+
+    /* =====================================================
+       PAGE CLEANUP ON PAGE EXIT
+    ===================================================== */
+
+    window.addEventListener(
+        "pagehide",
+        () => {
+
+            document.body.classList.remove(
+                "menu-open"
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       FINAL READY STATE
+    ===================================================== */
+
+    setTimeout(() => {
+
+        document.documentElement.classList.add(
+            "meghana-interactive"
+        );
+
+    }, 50);
 
 });
