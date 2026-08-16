@@ -1,0 +1,285 @@
+/* =========================================================
+   AKSH — GLOBAL WEBSITE CONTROL
+   aksh-global.css
+
+   Global styling only.
+   Page-specific styling stays inside each page CSS file.
+   ========================================================= */
+
+
+/* =========================================================
+   GLOBAL PAGE FOUNDATION
+   ========================================================= */
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+
+body {
+    margin: 0;
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   PAGE TRANSITION
+   ========================================================= */
+
+html {
+    opacity: 1;
+    transition:
+        opacity 0.35s ease;
+}
+
+
+html.aksh-leaving {
+    opacity: 0;
+}
+
+
+html.aksh-ready {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+        transition: none;
+    }
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+}
+
+
+/* =========================================================
+   GLOBAL LINK BEHAVIOUR
+   ========================================================= */
+
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =========================================================
+   CURRENT NAVIGATION ITEM
+   ========================================================= */
+
+.aksh-current-page {
+    position: relative;
+}
+
+
+/*
+ * The indicator is intentionally subtle.
+ * Individual page CSS can override it.
+ */
+
+.aksh-current-page::after {
+    content: "";
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: -6px;
+
+    height: 1px;
+
+    transform: scaleX(1);
+    transform-origin: center;
+
+    opacity: 0.75;
+}
+
+
+/* =========================================================
+   IMAGE FALLBACK
+   ========================================================= */
+
+.aksh-image-error {
+    opacity: 0;
+}
+
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+.aksh-touch a,
+.aksh-touch button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =========================================================
+   POINTER DEVICES
+   ========================================================= */
+
+.aksh-pointer a,
+.aksh-pointer button {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   OFFLINE STATE
+   ========================================================= */
+
+/*
+ * We intentionally do not display an intrusive
+ * offline banner.
+ *
+ * This class exists so a future AKSH offline
+ * experience can be added without rewriting
+ * every page.
+ */
+
+html.aksh-offline {
+    --aksh-connection-state: offline;
+}
+
+
+/* =========================================================
+   TAB VISIBILITY
+   ========================================================= */
+
+html.aksh-tab-hidden {
+    /*
+     * Do not hide page content.
+     * This class exists for future pause/resume
+     * behaviour such as cinematic video or audio.
+     */
+}
+
+
+/* =========================================================
+   GLOBAL FOCUS
+   ========================================================= */
+
+:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+}
+
+
+/*
+ * Mouse/touch users should not receive
+ * unnecessary focus outlines.
+ */
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+
+/* =========================================================
+   BUTTON SAFETY
+   ========================================================= */
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+
+/* =========================================================
+   MEDIA SAFETY
+   ========================================================= */
+
+img,
+video {
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   PREVENT HORIZONTAL OVERFLOW
+   ========================================================= */
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+::selection {
+    background: currentColor;
+    color: Canvas;
+}
+
+
+/* =========================================================
+   MOBILE VIEWPORT SAFETY
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    body {
+        min-width: 0;
+    }
+
+}
+
+
+/* =========================================================
+   GLOBAL TOP BUTTON
+   Any element with [data-aksh-top]
+   ========================================================= */
+
+[data-aksh-top] {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =========================================================
+   GLOBAL ACCESSIBILITY
+   ========================================================= */
+
+[aria-hidden="true"] {
+    /*
+     * Do not force display:none here.
+     * Individual components may need their own
+     * transition system.
+     */
+}
+
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+
+@media print {
+
+    html {
+        opacity: 1 !important;
+    }
+
+    [data-aksh-top],
+    nav,
+    .mobile-menu {
+        display: none !important;
+    }
+
+}
