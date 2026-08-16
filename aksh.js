@@ -1,627 +1,703 @@
 /* =========================================================
-   AKSH — PAGE 01 JAVASCRIPT
-   HOW ARE YOU FEELING TODAY?
+   AKSH — PAGE 01
+   aksh.js
+   MASTER JAVASCRIPT
    ========================================================= */
 
 (() => {
   "use strict";
 
-  /* =========================================================
-     CONFIG
-     ========================================================= */
 
-  const CONFIG = {
-    home: "index.html",
-    booking: "page9.html",
-    transitionTime: 650,
-    storageKey: "aksh-selected-emotion"
-  };
-
-  /* =========================================================
+  /* =======================================================
      DOM
-     ========================================================= */
+     ======================================================= */
 
-  const page = document.querySelector(".page");
+  const page = document.getElementById("aksh-world");
+  const nav = document.getElementById("aksh-nav");
 
-  const cards = Array.from(
-    document.querySelectorAll(".emotion-card")
-  );
+  const menuButton =
+    document.getElementById("aksh-menu-button");
 
-  const buttons = Array.from(
-    document.querySelectorAll(".emotion-button")
-  );
+  const mobileMenu =
+    document.getElementById("aksh-mobile-menu");
 
-  const brand = document.querySelector(".brand");
+  const menuClose =
+    document.getElementById("aksh-menu-close");
 
-  /* =========================================================
-     EMOTION DATA
-     ========================================================= */
+  const emotionCards =
+    document.querySelectorAll(".emotion-card");
 
-  const emotionData = {
-    anxious: {
-      title: "ANXIOUS",
-      icon: "◌",
-      message: "You don't have to figure everything out at once.",
-      destination: CONFIG.booking
-    },
+  const revealElements =
+    document.querySelectorAll(
+      ".aksh-introduction, .aksh-pillars, .aksh-explore, .aksh-final, .pillar-card, .explore-card"
+    );
 
-    overwhelmed: {
-      title: "OVERWHELMED",
-      icon: "⌁",
-      message: "You are allowed to pause.",
-      destination: CONFIG.booking
-    },
 
-    talk: {
-      title: "NEED TO TALK",
-      icon: "○",
-      message: "You don't need the perfect words.",
-      destination: CONFIG.booking
-    },
+  /* =======================================================
+     SAFETY CHECK
+     ======================================================= */
 
-    exploring: {
-      title: "JUST EXPLORING",
-      icon: "✦",
-      message: "Take your time. Explore AKSH at your own pace.",
-      destination: null
-    }
-  };
-
-  /* =========================================================
-     STATE
-     ========================================================= */
-
-  let activeCard = null;
-  let isTransitioning = false;
-
-  /* =========================================================
-     TRANSITION LAYER
-     ========================================================= */
-
-  const transition = document.createElement("div");
-
-  transition.id = "aksh-page-transition";
-
-  transition.style.cssText = `
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-    background: #050b09;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity ${CONFIG.transitionTime}ms
-      cubic-bezier(.16,1,.3,1);
-  `;
-
-  document.body.appendChild(transition);
-
-  /* =========================================================
-     NAVIGATION
-     ========================================================= */
-
-  function navigate(destination) {
-
-    if (!destination || isTransitioning) {
-      return;
-    }
-
-    isTransitioning = true;
-
-    transition.style.pointerEvents = "auto";
-    transition.style.opacity = "1";
-
-    window.setTimeout(() => {
-      window.location.href = destination;
-    }, CONFIG.transitionTime);
+  if (!page) {
+    console.warn("AKSH: page root not found.");
+    return;
   }
 
-  /* =========================================================
-     SELECT CARD
-     ========================================================= */
 
-  function selectCard(card) {
+  /* =======================================================
+     TIME OF DAY
+     ======================================================= */
 
-    if (!card) {
-      return;
+  function updateTimeOfDay() {
+
+    const hour = new Date().getHours();
+
+    page.classList.remove(
+      "time-morning",
+      "time-afternoon",
+      "time-evening",
+      "time-night"
+    );
+
+
+    /*
+      05:00 — 11:59
+      Morning
+
+      12:00 — 16:59
+      Afternoon
+
+      17:00 — 20:59
+      Evening
+
+      21:00 — 04:59
+      Night
+    */
+
+    if (hour >= 5 && hour < 12) {
+
+      page.classList.add("time-morning");
+
+    } else if (hour >= 12 && hour < 17) {
+
+      page.classList.add("time-afternoon");
+
+    } else if (hour >= 17 && hour < 21) {
+
+      page.classList.add("time-evening");
+
+    } else {
+
+      page.classList.add("time-night");
+
     }
 
-    const emotion =
-      card.dataset.emotion;
+  }
 
-    if (!emotion) {
-      return;
+  updateTimeOfDay();
+
+  /*
+    Check periodically so the atmosphere changes
+    automatically even if the visitor keeps the page open.
+  */
+
+  setInterval(updateTimeOfDay, 60 * 1000);
+
+
+  /* =======================================================
+     STARS
+     ======================================================= */
+
+  const starsContainer =
+    document.getElementById("stars");
+
+  if (starsContainer) {
+
+    const starCount =
+      window.innerWidth < 600 ? 45 : 90;
+
+    const fragment =
+      document.createDocumentFragment();
+
+    for (let i = 0; i < starCount; i++) {
+
+      const star =
+        document.createElement("span");
+
+      star.className = "star";
+
+      star.style.left =
+        `${Math.random() * 100}%`;
+
+      star.style.top =
+        `${Math.random() * 75}%`;
+
+      star.style.animationDelay =
+        `${Math.random() * 3}s`;
+
+      star.style.animationDuration =
+        `${2 + Math.random() * 3}s`;
+
+      fragment.appendChild(star);
     }
 
-    /* Remove active state from every card */
+    starsContainer.appendChild(fragment);
+  }
 
-    cards.forEach((item) => {
-      item.classList.remove("active");
-      item.setAttribute(
-        "aria-expanded",
-        "false"
-      );
-    });
 
-    /* Activate selected card */
+  /* =======================================================
+     NAVIGATION SCROLL STATE
+     ======================================================= */
 
-    card.classList.add("active");
+  function updateNavigation() {
 
-    card.setAttribute(
+    if (!nav) return;
+
+    if (window.scrollY > 30) {
+
+      nav.classList.add("scrolled");
+
+    } else {
+
+      nav.classList.remove("scrolled");
+
+    }
+
+  }
+
+  updateNavigation();
+
+  window.addEventListener(
+    "scroll",
+    updateNavigation,
+    { passive: true }
+  );
+
+
+  /* =======================================================
+     MOBILE MENU
+     ======================================================= */
+
+  function openMenu() {
+
+    if (!mobileMenu || !menuButton) return;
+
+    mobileMenu.classList.add("open");
+
+    menuButton.classList.add("active");
+
+    menuButton.setAttribute(
       "aria-expanded",
       "true"
     );
 
-    activeCard = card;
-
-    /* Remember selection */
-
-    try {
-      sessionStorage.setItem(
-        CONFIG.storageKey,
-        emotion
-      );
-    } catch (error) {
-      /* Storage may be unavailable */
-    }
-
-    /* Update subtle page state */
-
-    if (page) {
-
-      page.dataset.emotion =
-        emotion;
-
-      page.classList.remove(
-        "emotion-anxious",
-        "emotion-overwhelmed",
-        "emotion-talk",
-        "emotion-exploring"
-      );
-
-      page.classList.add(
-        `emotion-${emotion}`
-      );
-    }
-  }
-
-  /* =========================================================
-     OPEN EMOTION EXPERIENCE
-     ========================================================= */
-
-  function openEmotion(card) {
-
-    if (!card) {
-      return;
-    }
-
-    const emotion =
-      card.dataset.emotion;
-
-    const data =
-      emotionData[emotion];
-
-    if (!data) {
-      return;
-    }
-
-    /*
-      First tap:
-      reveal / activate card.
-
-      Second tap:
-      continue into its experience.
-    */
-
-    if (activeCard !== card) {
-
-      selectCard(card);
-
-      return;
-    }
-
-    /*
-      EXPLORING stays inside Page 1.
-      Scroll toward the next section when available.
-    */
-
-    if (emotion === "exploring") {
-
-      const feelingArea =
-        document.querySelector(
-          ".feeling-area"
-        );
-
-      if (feelingArea) {
-
-        feelingArea.scrollIntoView({
-          behavior: "smooth",
-          block: "center"
-        });
-
-      }
-
-      return;
-    }
-
-    /*
-      Other emotions continue
-      toward booking / next experience.
-    */
-
-    navigate(
-      data.destination
+    mobileMenu.setAttribute(
+      "aria-hidden",
+      "false"
     );
+
+    document.body.classList.add("menu-open");
+
   }
 
-  /* =========================================================
-     CARD EVENTS
-     ========================================================= */
 
-  cards.forEach((card) => {
+  function closeMenu() {
 
-    const button =
-      card.querySelector(
-        ".emotion-button"
-      );
+    if (!mobileMenu || !menuButton) return;
 
-    if (!button) {
-      return;
-    }
+    mobileMenu.classList.remove("open");
 
-    button.setAttribute(
+    menuButton.classList.remove("active");
+
+    menuButton.setAttribute(
       "aria-expanded",
       "false"
     );
 
-    button.addEventListener(
-      "click",
-      (event) => {
-
-        event.preventDefault();
-        event.stopPropagation();
-
-        openEmotion(card);
-
-      }
+    mobileMenu.setAttribute(
+      "aria-hidden",
+      "true"
     );
 
-  });
+    document.body.classList.remove("menu-open");
 
-  /* =========================================================
-     KEYBOARD SUPPORT
-     ========================================================= */
+  }
 
-  cards.forEach((card) => {
 
-    card.addEventListener(
-      "keydown",
-      (event) => {
+  if (menuButton) {
+
+    menuButton.addEventListener(
+      "click",
+      () => {
 
         if (
-          event.key === "Enter" ||
-          event.key === " "
+          mobileMenu &&
+          mobileMenu.classList.contains("open")
         ) {
 
-          event.preventDefault();
+          closeMenu();
 
-          openEmotion(card);
+        } else {
+
+          openMenu();
+
         }
 
       }
     );
 
+  }
+
+
+  if (menuClose) {
+
+    menuClose.addEventListener(
+      "click",
+      closeMenu
+    );
+
+  }
+
+
+  /* =======================================================
+     CLOSE MOBILE MENU WHEN LINK IS SELECTED
+     ======================================================= */
+
+  const mobileLinks =
+    document.querySelectorAll(
+      ".mobile-navigation a"
+    );
+
+  mobileLinks.forEach((link) => {
+
+    link.addEventListener(
+      "click",
+      closeMenu
+    );
+
   });
 
-  /* =========================================================
-     ESCAPE = CLOSE ACTIVE CARD
-     ========================================================= */
+
+  /* =======================================================
+     ESCAPE KEY
+     ======================================================= */
 
   document.addEventListener(
     "keydown",
     (event) => {
 
-      if (event.key !== "Escape") {
-        return;
-      }
+      if (event.key === "Escape") {
 
-      cards.forEach((card) => {
-        card.classList.remove("active");
+        closeMenu();
 
-        card.setAttribute(
-          "aria-expanded",
-          "false"
-        );
-      });
-
-      activeCard = null;
-
-      if (page) {
-        page.classList.remove(
-          "emotion-anxious",
-          "emotion-overwhelmed",
-          "emotion-talk",
-          "emotion-exploring"
-        );
       }
 
     }
   );
 
-  /* =========================================================
-     BRAND / HOME
-     ========================================================= */
 
-  if (brand) {
+  /* =======================================================
+     EMOTION CARDS
+     ======================================================= */
 
-    brand.addEventListener(
+  const emotionMessages = {
+
+    anxious: {
+      title: "Take a breath.",
+      text:
+        "You don't have to solve everything right now. Start with one quiet moment."
+    },
+
+    overwhelmed: {
+      title: "One thing at a time.",
+      text:
+        "You can slow down. You can pause. You don't have to carry everything at once."
+    },
+
+    talk: {
+      title: "You can talk.",
+      text:
+        "Being heard can be a meaningful beginning. You don't need the perfect words."
+    },
+
+    exploring: {
+      title: "Take your time.",
+      text:
+        "There is no pressure to begin anywhere specific. Explore AKSH at your own pace."
+    }
+
+  };
+
+
+  emotionCards.forEach((card) => {
+
+    const button =
+      card.querySelector(".emotion-button");
+
+    if (!button) return;
+
+
+    button.addEventListener(
       "click",
-      (event) => {
+      () => {
+
+        const emotion =
+          card.dataset.emotion;
+
+        const wasActive =
+          card.classList.contains("active");
+
 
         /*
-          If already on Page 1,
-          don't reload unnecessarily.
+          Close every card first.
         */
 
-        if (
-          window.location.pathname
-            .endsWith("page1.html")
-        ) {
+        emotionCards.forEach((otherCard) => {
+
+          otherCard.classList.remove("active");
+
+          const otherButton =
+            otherCard.querySelector(
+              ".emotion-button"
+            );
+
+          if (otherButton) {
+
+            otherButton.setAttribute(
+              "aria-expanded",
+              "false"
+            );
+
+          }
+
+          const oldPanel =
+            otherCard.querySelector(
+              ".emotion-response"
+            );
+
+          if (oldPanel) {
+
+            oldPanel.remove();
+
+          }
+
+        });
+
+
+        /*
+          If the visitor tapped the same card
+          again, simply close it.
+        */
+
+        if (wasActive) {
+
           return;
+
         }
 
-        event.preventDefault();
 
-        navigate(
-          CONFIG.home
+        card.classList.add("active");
+
+        button.setAttribute(
+          "aria-expanded",
+          "true"
         );
 
+
+        /*
+          Create the response panel.
+        */
+
+        const response =
+          emotionMessages[emotion];
+
+        if (!response) return;
+
+
+        const panel =
+          document.createElement("div");
+
+        panel.className =
+          "emotion-response";
+
+
+        panel.innerHTML = `
+          <strong>${response.title}</strong>
+          <p>${response.text}</p>
+          <a href="begin.html">
+            CONTINUE →
+          </a>
+        `;
+
+
+        card.appendChild(panel);
+
+        requestAnimationFrame(() => {
+
+          panel.classList.add("visible");
+
+        });
+
       }
-    );
-
-  }
-
-  /* =========================================================
-     TOUCH FEEDBACK
-     ========================================================= */
-
-  cards.forEach((card) => {
-
-    card.addEventListener(
-      "pointerdown",
-      () => {
-
-        card.style.transform =
-          "translateY(-2px) scale(.995)";
-
-      },
-      { passive: true }
-    );
-
-    card.addEventListener(
-      "pointerup",
-      () => {
-
-        card.style.transform = "";
-
-      },
-      { passive: true }
-    );
-
-    card.addEventListener(
-      "pointercancel",
-      () => {
-
-        card.style.transform = "";
-
-      },
-      { passive: true }
     );
 
   });
 
-  /* =========================================================
-     POINTER ATMOSPHERE
-     ========================================================= */
 
-  let pointerX = 0;
-  let pointerY = 0;
+  /* =======================================================
+     EMOTION RESPONSE STYLES
+     ======================================================= */
 
-  function updatePointer(
-    clientX,
-    clientY
-  ) {
+  const emotionResponseStyles =
+    document.createElement("style");
 
-    pointerX =
-      (clientX /
-        window.innerWidth) -
-      0.5;
+  emotionResponseStyles.textContent = `
 
-    pointerY =
-      (clientY /
-        window.innerHeight) -
-      0.5;
+    .emotion-response {
+      position: relative;
 
-    if (page) {
+      max-height: 0;
+      overflow: hidden;
 
-      page.style.setProperty(
-        "--pointer-x",
-        pointerX.toFixed(3)
-      );
+      opacity: 0;
 
-      page.style.setProperty(
-        "--pointer-y",
-        pointerY.toFixed(3)
-      );
+      padding:
+        0 27px;
 
+      border-top:
+        1px solid rgba(247,245,239,.08);
+
+      transition:
+        max-height .6s cubic-bezier(.16,1,.3,1),
+        opacity .4s ease,
+        padding .6s cubic-bezier(.16,1,.3,1);
     }
 
-  }
+    .emotion-response.visible {
+      max-height: 220px;
 
-  window.addEventListener(
-    "pointermove",
-    (event) => {
+      opacity: 1;
 
-      updatePointer(
-        event.clientX,
-        event.clientY
-      );
+      padding:
+        24px 27px 28px;
+    }
 
-    },
-    { passive: true }
+    .emotion-response strong {
+      display: block;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size: 23px;
+
+      font-weight: 400;
+
+      line-height: 1;
+    }
+
+    .emotion-response p {
+      max-width: 300px;
+
+      margin-top: 12px;
+
+      font-size: 10px;
+
+      line-height: 1.7;
+
+      color:
+        rgba(247,245,239,.6);
+    }
+
+    .emotion-response a {
+      display: inline-flex;
+
+      margin-top: 18px;
+
+      font-size: 7px;
+
+      letter-spacing: .2em;
+
+      color:
+        rgba(247,245,239,.9);
+    }
+
+  `;
+
+  document.head.appendChild(
+    emotionResponseStyles
   );
 
-  /* =========================================================
-     RESTORE LAST SELECTION
-     ========================================================= */
 
-  function restoreSelection() {
+  /* =======================================================
+     SCROLL REVEAL
+     ======================================================= */
 
-    let previous = null;
+  revealElements.forEach((element) => {
 
-    try {
+    element.classList.add("reveal");
 
-      previous =
-        sessionStorage.getItem(
-          CONFIG.storageKey
-        );
+  });
 
-    } catch (error) {
-      previous = null;
-    }
 
-    if (!previous) {
-      return;
-    }
+  if (
+    "IntersectionObserver" in window
+  ) {
 
-    const card =
-      cards.find(
-        (item) =>
-          item.dataset.emotion ===
-          previous
+    const revealObserver =
+      new IntersectionObserver(
+        (entries, observer) => {
+
+          entries.forEach((entry) => {
+
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+            entry.target.classList.add(
+              "visible"
+            );
+
+            observer.unobserve(
+              entry.target
+            );
+
+          });
+
+        },
+        {
+          threshold: 0.12,
+          rootMargin: "0px 0px -50px 0px"
+        }
       );
 
-    /*
-      Do not automatically open it.
-      Just give it a subtle remembered state.
-    */
 
-    if (card) {
+    revealElements.forEach((element) => {
 
-      card.classList.add(
-        "previously-viewed"
+      revealObserver.observe(element);
+
+    });
+
+  } else {
+
+    revealElements.forEach((element) => {
+
+      element.classList.add("visible");
+
+    });
+
+  }
+
+
+  /* =======================================================
+     STAGGER CARD REVEALS
+     ======================================================= */
+
+  const staggerGroups = [
+    ".pillar-card",
+    ".explore-card"
+  ];
+
+
+  staggerGroups.forEach((selector) => {
+
+    const elements =
+      document.querySelectorAll(selector);
+
+    elements.forEach((element, index) => {
+
+      element.style.transitionDelay =
+        `${index * 70}ms`;
+
+    });
+
+  });
+
+
+  /* =======================================================
+     SMOOTH INTERNAL LINKS
+     ======================================================= */
+
+  document
+    .querySelectorAll('a[href^="#"]')
+    .forEach((link) => {
+
+      link.addEventListener(
+        "click",
+        (event) => {
+
+          const targetID =
+            link.getAttribute("href");
+
+          if (
+            !targetID ||
+            targetID === "#"
+          ) {
+            return;
+          }
+
+          const target =
+            document.querySelector(
+              targetID
+            );
+
+          if (!target) {
+            return;
+          }
+
+          event.preventDefault();
+
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+
+        }
       );
 
+    });
+
+
+  /* =======================================================
+     PREVENT DOUBLE-TAP ZOOM ON CTA AREAS
+     ======================================================= */
+
+  document
+    .querySelectorAll(
+      ".emotion-button, .final-cta, .aksh-book-button"
+    )
+    .forEach((button) => {
+
+      button.addEventListener(
+        "touchstart",
+        () => {},
+        { passive: true }
+      );
+
+    });
+
+
+  /* =======================================================
+     PAGE LOAD
+     ======================================================= */
+
+  window.addEventListener(
+    "load",
+    () => {
+
+      page.classList.add("loaded");
+
+      updateTimeOfDay();
+
+      updateNavigation();
+
     }
+  );
 
-  }
 
-  /* =========================================================
-     PAGE REVEAL
-     ========================================================= */
-
-  function revealPage() {
-
-    if (!page) {
-      return;
-    }
-
-    page.classList.add(
-      "page-ready"
-    );
-
-    window.requestAnimationFrame(
-      () => {
-
-        page.classList.add(
-          "page-visible"
-        );
-
-      }
-    );
-
-  }
-
-  /* =========================================================
-     MOBILE TOUCH DRAG SUPPORT
-     ========================================================= */
-
-  const track =
-    document.querySelector(
-      ".emotion-track"
-    );
-
-  if (track) {
-
-    let startX = 0;
-    let startScroll = 0;
-    let dragging = false;
-
-    track.addEventListener(
-      "touchstart",
-      (event) => {
-
-        if (
-          event.touches.length !== 1
-        ) {
-          return;
-        }
-
-        startX =
-          event.touches[0].clientX;
-
-        startScroll =
-          track.scrollLeft;
-
-        dragging = true;
-
-      },
-      { passive: true }
-    );
-
-    track.addEventListener(
-      "touchmove",
-      (event) => {
-
-        if (!dragging) {
-          return;
-        }
-
-        const currentX =
-          event.touches[0].clientX;
-
-        const difference =
-          startX - currentX;
-
-        if (
-          track.scrollWidth >
-          track.clientWidth
-        ) {
-
-          track.scrollLeft =
-            startScroll +
-            difference;
-
-        }
-
-      },
-      { passive: true }
-    );
-
-    track.addEventListener(
-      "touchend",
-      () => {
-
-        dragging = false;
-
-      },
-      { passive: true }
-    );
-
-  }
-
-  /* =========================================================
+  /* =======================================================
      RESIZE
-     ========================================================= */
+     ======================================================= */
 
   let resizeTimer;
 
@@ -629,119 +705,26 @@
     "resize",
     () => {
 
-      window.clearTimeout(
-        resizeTimer
-      );
+      clearTimeout(resizeTimer);
 
       resizeTimer =
-        window.setTimeout(
-          () => {
+        setTimeout(() => {
 
-            if (page) {
+          updateTimeOfDay();
 
-              page.style.setProperty(
-                "--viewport-width",
-                `${window.innerWidth}px`
-              );
-
-              page.style.setProperty(
-                "--viewport-height",
-                `${window.innerHeight}px`
-              );
-
-            }
-
-          },
-          100
-        );
+        }, 150);
 
     },
     { passive: true }
   );
 
-  /* =========================================================
-     VISIBILITY
-     ========================================================= */
 
-  document.addEventListener(
-    "visibilitychange",
-    () => {
+  /* =======================================================
+     DEBUG
+     ======================================================= */
 
-      if (!page) {
-        return;
-      }
-
-      if (
-        document.visibilityState ===
-        "hidden"
-      ) {
-
-        page.classList.add(
-          "page-hidden"
-        );
-
-      } else {
-
-        page.classList.remove(
-          "page-hidden"
-        );
-
-      }
-
-    }
+  console.log(
+    "AKSH — Page 01 initialized."
   );
-
-  /* =========================================================
-     GLOBAL AKSH API
-     ========================================================= */
-
-  window.AKSHPage1 = {
-
-    selectEmotion:
-      selectCard,
-
-    openEmotion,
-
-    navigate,
-
-    getActiveEmotion:
-      () => {
-
-        return activeCard
-          ? activeCard.dataset.emotion
-          : null;
-
-      }
-
-  };
-
-  /* =========================================================
-     INITIALISE
-     ========================================================= */
-
-  function init() {
-
-    restoreSelection();
-
-    revealPage();
-
-  }
-
-  if (
-    document.readyState ===
-    "loading"
-  ) {
-
-    document.addEventListener(
-      "DOMContentLoaded",
-      init,
-      { once: true }
-    );
-
-  } else {
-
-    init();
-
-  }
 
 })();
