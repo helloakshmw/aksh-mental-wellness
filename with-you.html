@@ -7,17 +7,17 @@
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="WITH YOU — AKSH Mental Wellness. Professional psychological support with empathy, confidentiality and care."
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     >
 
     <meta
         name="theme-color"
         content="#07101c"
+    >
+
+    <meta
+        name="description"
+        content="WITH YOU — AKSH Mental Wellness. Professional psychological support, counselling and mental wellness services."
     >
 
     <title>WITH YOU — AKSH</title>
@@ -32,7 +32,10 @@
 
 <body>
 
-<div class="with-you-page">
+<div
+    class="with-you-page"
+    id="with-you-page"
+>
 
 
     <!-- ==================================================
@@ -47,6 +50,7 @@
         <a
             href="aksh.html"
             class="with-you-logo"
+            aria-label="AKSH Home"
         >
 
             <img
@@ -54,12 +58,17 @@
                 alt="AKSH"
             >
 
-            <span>AKSH</span>
+            <span>
+                AKSH
+            </span>
 
         </a>
 
 
-        <nav class="desktop-nav">
+        <nav
+            class="desktop-nav"
+            aria-label="Main navigation"
+        >
 
             <a href="world.html">
                 THE WORLD
@@ -108,11 +117,12 @@
 
 
         <button
+            type="button"
             class="menu-button"
             id="menu-button"
-            type="button"
             aria-label="Open navigation"
             aria-expanded="false"
+            aria-controls="mobile-menu"
         >
 
             <span></span>
@@ -128,15 +138,16 @@
          MOBILE MENU
     ================================================== -->
 
-    <div
+    <aside
         class="mobile-menu"
         id="mobile-menu"
+        aria-hidden="true"
     >
 
         <button
+            type="button"
             class="mobile-close"
             id="mobile-close"
-            type="button"
             aria-label="Close navigation"
         >
             ×
@@ -145,20 +156,26 @@
 
         <div class="mobile-menu-content">
 
+
             <div class="mobile-menu-logo">
                 AKSH
             </div>
 
 
-            <nav>
+            <nav aria-label="Mobile navigation">
+
+                <a href="aksh.html">
+                    <span>01</span>
+                    AKSH
+                </a>
 
                 <a href="world.html">
-                    <span>01</span>
+                    <span>02</span>
                     THE WORLD
                 </a>
 
                 <a href="mind.html">
-                    <span>02</span>
+                    <span>03</span>
                     THE MIND
                 </a>
 
@@ -166,45 +183,50 @@
                     href="with-you.html"
                     class="active"
                 >
-                    <span>03</span>
+                    <span>04</span>
                     WITH YOU
                 </a>
 
                 <a href="meghana.html">
-                    <span>04</span>
+                    <span>05</span>
                     MEGHANA
                 </a>
 
                 <a href="journey.html">
-                    <span>05</span>
+                    <span>06</span>
                     JOURNEY
                 </a>
 
                 <a href="stories.html">
-                    <span>06</span>
+                    <span>07</span>
                     STORIES
                 </a>
 
                 <a href="journal.html">
-                    <span>07</span>
+                    <span>08</span>
                     JOURNAL
                 </a>
 
                 <a href="ai.html">
-                    <span>08</span>
+                    <span>09</span>
                     AKSH AI
                 </a>
 
                 <a href="begin.html">
-                    <span>09</span>
+                    <span>10</span>
                     BEGIN
                 </a>
 
             </nav>
 
+
+            <div class="mobile-menu-footer">
+                A SAFE SPACE FOR EVERY MIND
+            </div>
+
         </div>
 
-    </div>
+    </aside>
 
 
 
@@ -224,15 +246,14 @@
             <div class="hero-content">
 
                 <p class="eyebrow">
-                    03 / WITH YOU
+                    04 / WITH YOU
                 </p>
 
 
                 <h1>
 
-                    You don't
-                    have to
-                    carry it
+                    You don't have
+                    to carry it
                     <em>alone.</em>
 
                 </h1>
@@ -240,36 +261,25 @@
 
                 <p class="hero-description">
 
-                    Sometimes support begins with
-                    simply having somewhere safe to
-                    speak, be heard and be understood.
+                    Whatever brought you here,
+                    you deserve a space where you
+                    can pause, speak openly and
+                    feel genuinely supported.
 
                 </p>
 
 
-                <a
-                    href="begin.html"
-                    class="hero-button"
-                >
+                <div class="hero-scroll">
 
-                    BEGIN WITH AKSH
+                    <span>
+                        EXPLORE SUPPORT
+                    </span>
 
-                    <span>→</span>
+                    <span class="hero-arrow">
+                        ↓
+                    </span>
 
-                </a>
-
-            </div>
-
-
-            <div class="hero-note">
-
-                <span>
-                    A SAFE SPACE
-                </span>
-
-                <span>
-                    FOR EVERY MIND
-                </span>
+                </div>
 
             </div>
 
@@ -278,7 +288,7 @@
 
 
         <!-- ==================================================
-             INTRO
+             INTRODUCTION
         ================================================== -->
 
         <section class="support-intro">
@@ -291,14 +301,14 @@
             <div class="intro-content">
 
                 <p class="eyebrow">
-                    SUPPORT, NOT JUDGEMENT
+                    SUPPORT THAT MEETS YOU WHERE YOU ARE
                 </p>
 
 
                 <h2>
 
                     There is no
-                    right way to
+                    single way to
                     <em>feel.</em>
 
                 </h2>
@@ -306,22 +316,19 @@
 
                 <p class="large-copy">
 
-                    AKSH provides professional
-                    psychological support designed
-                    around the individual.
+                    Every person arrives with
+                    a different story, different
+                    circumstances and different needs.
 
                 </p>
 
 
                 <p class="normal-copy">
 
-                    Our approach is grounded in empathy,
-                    confidentiality, respect and growth.
-                    Whether you are navigating stress,
-                    relationships, emotional challenges,
-                    personal growth or questions about
-                    your wellbeing, support can begin
-                    with a conversation.
+                    AKSH provides professional
+                    psychological support with empathy,
+                    confidentiality, respect and a focus
+                    on meaningful growth.
 
                 </p>
 
@@ -332,7 +339,7 @@
 
 
         <!-- ==================================================
-             SUPPORT AREAS
+             SUPPORT PATHWAYS
         ================================================== -->
 
         <section class="support-section">
@@ -340,26 +347,23 @@
             <div class="section-heading">
 
                 <p class="eyebrow">
-                    HOW AKSH CAN SUPPORT YOU
+                    FIND YOUR SPACE
                 </p>
 
 
                 <h2>
 
-                    Different
-                    people.
-                    Different
-                    journeys.
+                    Support for
+                    the moments
+                    that matter.
 
                 </h2>
 
 
                 <p class="section-description">
 
-                    AKSH's planned services include
-                    individual counselling, child and
-                    adolescent support, relationship
-                    support and mental wellness education.
+                    You can begin with whatever feels
+                    closest to what you are experiencing.
 
                 </p>
 
@@ -377,29 +381,31 @@
 
 
                     <p class="card-label">
-                        INDIVIDUAL
+                        FOR YOU
                     </p>
 
 
                     <h3>
-                        Individual
-                        Counselling
+                        INDIVIDUAL
+                        COUNSELLING
                     </h3>
 
 
                     <p>
 
-                        Personalized psychological support
-                        for concerns including stress,
-                        anxiety, emotional resilience,
-                        personal growth and other
-                        individual experiences.
+                        A private space to explore
+                        personal challenges, emotions,
+                        stress, relationships, confidence,
+                        resilience and personal growth.
 
                     </p>
 
 
-                    <a href="begin.html">
-                        EXPLORE
+                    <a
+                        href="begin.html"
+                        class="card-link"
+                    >
+                        BEGIN
                         <span>→</span>
                     </a>
 
@@ -415,29 +421,32 @@
 
 
                     <p class="card-label">
-                        YOUNG MINDS
+                        FOR YOUNG MINDS
                     </p>
 
 
                     <h3>
-                        Child &
-                        Adolescent
-                        Support
+                        CHILD &
+                        ADOLESCENT
+                        SUPPORT
                     </h3>
 
 
                     <p>
 
-                        Support around developmental
-                        dynamics, behavioural wellbeing,
-                        academic pressure and emotional
-                        growth.
+                        Support around emotional,
+                        behavioural, developmental,
+                        academic and psychosocial
+                        experiences.
 
                     </p>
 
 
-                    <a href="begin.html">
-                        EXPLORE
+                    <a
+                        href="begin.html"
+                        class="card-link"
+                    >
+                        BEGIN
                         <span>→</span>
                     </a>
 
@@ -453,27 +462,31 @@
 
 
                     <p class="card-label">
-                        CONNECTION
+                        FOR RELATIONSHIPS
                     </p>
 
 
                     <h3>
-                        Relationship
-                        Support
+                        RELATIONSHIP &
+                        COUPLES SUPPORT
                     </h3>
 
 
                     <p>
 
-                        Guidance around communication,
-                        conflict resolution, interpersonal
-                        harmony and relationship concerns.
+                        A space to understand
+                        communication, connection,
+                        conflict, boundaries and
+                        relationships.
 
                     </p>
 
 
-                    <a href="begin.html">
-                        EXPLORE
+                    <a
+                        href="begin.html"
+                        class="card-link"
+                    >
+                        BEGIN
                         <span>→</span>
                     </a>
 
@@ -489,26 +502,112 @@
 
 
                     <p class="card-label">
-                        WELLNESS
+                        FOR EVERYDAY LIFE
                     </p>
 
 
                     <h3>
-                        Mental Wellness
-                        Education
+                        STRESS &
+                        EMOTIONAL
+                        WELLNESS
                     </h3>
 
 
                     <p>
 
-                        Psychoeducation, wellness
-                        toolkits, preventative workshops
-                        and self-care frameworks.
+                        Support for navigating
+                        emotional pressure, stress,
+                        uncertainty and everyday
+                        challenges.
 
                     </p>
 
 
-                    <a href="journal.html">
+                    <a
+                        href="begin.html"
+                        class="card-link"
+                    >
+                        BEGIN
+                        <span>→</span>
+                    </a>
+
+                </article>
+
+
+
+                <article class="support-card">
+
+                    <span class="card-number">
+                        05
+                    </span>
+
+
+                    <p class="card-label">
+                        FOR YOUR FUTURE
+                    </p>
+
+
+                    <h3>
+                        CAREER &
+                        ACADEMIC
+                        COUNSELLING
+                    </h3>
+
+
+                    <p>
+
+                        Support while navigating
+                        academic decisions, career
+                        choices and future direction.
+
+                    </p>
+
+
+                    <a
+                        href="begin.html"
+                        class="card-link"
+                    >
+                        BEGIN
+                        <span>→</span>
+                    </a>
+
+                </article>
+
+
+
+                <article class="support-card">
+
+                    <span class="card-number">
+                        06
+                    </span>
+
+
+                    <p class="card-label">
+                        FOR COMMUNITIES
+                    </p>
+
+
+                    <h3>
+                        WORKSHOPS &
+                        MENTAL WELLNESS
+                        EDUCATION
+                    </h3>
+
+
+                    <p>
+
+                        Psychoeducation, awareness
+                        programs and mental wellness
+                        workshops for schools,
+                        communities and workplaces.
+
+                    </p>
+
+
+                    <a
+                        href="begin.html"
+                        class="card-link"
+                    >
                         EXPLORE
                         <span>→</span>
                     </a>
@@ -523,12 +622,12 @@
 
 
         <!-- ==================================================
-             EXPERIENCE
+             WHAT A SESSION CAN FEEL LIKE
         ================================================== -->
 
-        <section class="experience-section">
+        <section class="session-section">
 
-            <div class="experience-content">
+            <div class="session-intro">
 
                 <p class="eyebrow">
                     THE EXPERIENCE
@@ -538,26 +637,26 @@
                 <h2>
 
                     A conversation
-                    can be the
-                    <em>beginning.</em>
+                    can begin
+                    <em>simply.</em>
 
                 </h2>
 
 
                 <p>
 
-                    AKSH is designed to make reaching
-                    out feel simple, private and human.
+                    You do not need a perfect explanation
+                    before reaching out.
 
                 </p>
 
             </div>
 
 
-            <div class="experience-steps">
+            <div class="session-steps">
 
 
-                <div class="experience-step">
+                <div class="session-step">
 
                     <span>
                         01
@@ -565,13 +664,13 @@
 
                     <div>
 
-                        <strong>
-                            REACH OUT
-                        </strong>
+                        <h3>
+                            ARRIVE
+                        </h3>
 
                         <p>
-                            Start with a conversation
-                            about what brings you here.
+                            Begin with what feels
+                            comfortable to share.
                         </p>
 
                     </div>
@@ -580,7 +679,7 @@
 
 
 
-                <div class="experience-step">
+                <div class="session-step">
 
                     <span>
                         02
@@ -588,13 +687,14 @@
 
                     <div>
 
-                        <strong>
-                            BE HEARD
-                        </strong>
+                        <h3>
+                            TALK
+                        </h3>
 
                         <p>
-                            Share at your own pace,
-                            in a respectful environment.
+                            Explore what has been
+                            happening with space
+                            and without judgement.
                         </p>
 
                     </div>
@@ -603,7 +703,7 @@
 
 
 
-                <div class="experience-step">
+                <div class="session-step">
 
                     <span>
                         03
@@ -611,13 +711,14 @@
 
                     <div>
 
-                        <strong>
+                        <h3>
                             UNDERSTAND
-                        </strong>
+                        </h3>
 
                         <p>
-                            Explore your experiences
-                            with professional guidance.
+                            Build a clearer understanding
+                            of your thoughts, emotions,
+                            patterns and needs.
                         </p>
 
                     </div>
@@ -626,7 +727,7 @@
 
 
 
-                <div class="experience-step">
+                <div class="session-step">
 
                     <span>
                         04
@@ -634,16 +735,132 @@
 
                     <div>
 
-                        <strong>
-                            GROW
-                        </strong>
+                        <h3>
+                            MOVE FORWARD
+                        </h3>
 
                         <p>
                             Work towards meaningful
-                            change and personal growth.
+                            steps that support your
+                            wellbeing and growth.
                         </p>
 
                     </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             PROFESSIONAL + HUMAN
+        ================================================== -->
+
+        <section class="human-section">
+
+            <div class="human-content">
+
+                <p class="eyebrow">
+                    THE AKSH DIFFERENCE
+                </p>
+
+
+                <h2>
+
+                    Professional care.
+                    <br>
+                    Human connection.
+
+                </h2>
+
+
+                <p>
+
+                    AKSH is built around professional
+                    psychological support while keeping
+                    the experience warm, respectful
+                    and deeply human.
+
+                </p>
+
+            </div>
+
+
+            <div class="human-values">
+
+
+                <div class="human-value">
+
+                    <span>
+                        01
+                    </span>
+
+                    <strong>
+                        EMPATHY
+                    </strong>
+
+                    <p>
+                        Your experience deserves
+                        to be heard with care.
+                    </p>
+
+                </div>
+
+
+                <div class="human-value">
+
+                    <span>
+                        02
+                    </span>
+
+                    <strong>
+                        CONFIDENTIALITY
+                    </strong>
+
+                    <p>
+                        Privacy is fundamental
+                        to a trusting space.
+                    </p>
+
+                </div>
+
+
+                <div class="human-value">
+
+                    <span>
+                        03
+                    </span>
+
+                    <strong>
+                        RESPECT
+                    </strong>
+
+                    <p>
+                        Your experiences are
+                        approached without judgement.
+                    </p>
+
+                </div>
+
+
+                <div class="human-value">
+
+                    <span>
+                        04
+                    </span>
+
+                    <strong>
+                        GROWTH
+                    </strong>
+
+                    <p>
+                        Support can create room
+                        for awareness and change.
+                    </p>
 
                 </div>
 
@@ -660,27 +877,37 @@
 
         <section class="access-section">
 
-            <div class="access-heading">
+            <div class="access-content">
 
                 <p class="eyebrow">
-                    ACCESS
+                    HOW YOU CAN BEGIN
                 </p>
 
 
                 <h2>
 
-                    Support that
-                    meets you
+                    Support can
+                    meet you
                     <em>where you are.</em>
 
                 </h2>
 
+
+                <p>
+
+                    AKSH is beginning as a founder-led
+                    professional practice with online
+                    and appointment-based sessions.
+
+                </p>
+
             </div>
 
 
-            <div class="access-content">
+            <div class="access-options">
 
-                <div class="access-item">
+
+                <div class="access-option">
 
                     <span>
                         01
@@ -691,17 +918,15 @@
                     </h3>
 
                     <p>
-
-                        Online consultations form part
-                        of AKSH's initial professional
-                        practice model.
-
+                        Connect through an online
+                        consultation from a space
+                        where you feel comfortable.
                     </p>
 
                 </div>
 
 
-                <div class="access-item">
+                <div class="access-option">
 
                     <span>
                         02
@@ -712,35 +937,32 @@
                     </h3>
 
                     <p>
-
-                        Sessions are planned around
-                        scheduled appointments and
-                        professional availability.
-
+                        Explore available appointment
+                        options and find a time that
+                        works for you.
                     </p>
 
                 </div>
 
 
-                <div class="access-item">
+                <div class="access-option">
 
                     <span>
                         03
                     </span>
 
                     <h3>
-                        CONFIDENTIAL
+                        WORKSHOPS
                     </h3>
 
                     <p>
-
-                        Confidentiality and ethical
-                        professional care are central
-                        to the AKSH experience.
-
+                        Discover mental wellness
+                        education and awareness
+                        programs as they become available.
                     </p>
 
                 </div>
+
 
             </div>
 
@@ -749,100 +971,47 @@
 
 
         <!-- ==================================================
-             TRUST
+             NOT SURE
         ================================================== -->
 
-        <section class="trust-section">
+        <section class="not-sure-section">
 
-            <div class="section-number">
-                02
-            </div>
-
-
-            <div class="trust-content">
+            <div class="not-sure-content">
 
                 <p class="eyebrow">
-                    WHAT MATTERS HERE
+                    NOT SURE WHERE TO START?
                 </p>
 
 
                 <h2>
 
-                    Professional
-                    care with a
-                    <em>human heart.</em>
+                    That's
+                    <em>okay.</em>
 
                 </h2>
 
 
-                <div class="trust-values">
+                <p>
+
+                    You do not need to know exactly
+                    what kind of support you need
+                    before reaching out.
+
+                </p>
 
 
-                    <div>
+                <a
+                    href="begin.html"
+                    class="primary-button"
+                >
 
-                        <span>01</span>
+                    LET'S BEGIN
 
-                        <strong>
-                            EMPATHY
-                        </strong>
+                    <span>
+                        →
+                    </span>
 
-                        <p>
-                            Meeting people with
-                            understanding and compassion.
-                        </p>
-
-                    </div>
-
-
-                    <div>
-
-                        <span>02</span>
-
-                        <strong>
-                            CONFIDENTIALITY
-                        </strong>
-
-                        <p>
-                            Respecting privacy and
-                            professional boundaries.
-                        </p>
-
-                    </div>
-
-
-                    <div>
-
-                        <span>03</span>
-
-                        <strong>
-                            RESPECT
-                        </strong>
-
-                        <p>
-                            Every person's experience
-                            deserves to be heard.
-                        </p>
-
-                    </div>
-
-
-                    <div>
-
-                        <span>04</span>
-
-                        <strong>
-                            GROWTH
-                        </strong>
-
-                        <p>
-                            Supporting meaningful
-                            personal development.
-                        </p>
-
-                    </div>
-
-
-                </div>
+                </a>
 
             </div>
 
@@ -857,23 +1026,21 @@
         <section class="with-you-final">
 
             <p class="eyebrow">
-                WHEN YOU'RE READY
+                WHEN YOU ARE READY
             </p>
 
 
             <h2>
 
-                Start with
-                <em>one conversation.</em>
+                You can take
+                the first step
+                <em>here.</em>
 
             </h2>
 
 
             <p>
-
-                You don't need to know exactly
-                what to say.
-
+                No perfect words required.
             </p>
 
 
@@ -884,9 +1051,11 @@
                     class="primary-button"
                 >
 
-                    BEGIN
+                    BEGIN YOUR JOURNEY
 
-                    <span>→</span>
+                    <span>
+                        →
+                    </span>
 
                 </a>
 
@@ -913,6 +1082,7 @@
     ================================================== -->
 
     <footer class="with-you-footer">
+
 
         <div class="footer-logo">
 
@@ -943,6 +1113,10 @@
                 THE MIND
             </a>
 
+            <a href="meghana.html">
+                MEGHANA
+            </a>
+
             <a href="journal.html">
                 JOURNAL
             </a>
@@ -960,12 +1134,18 @@
             AKSH MENTAL WELLNESS
         </p>
 
+
     </footer>
+
 
 </div>
 
 
-<script src="with-you.js"></script>
+<script
+    src="with-you.js"
+    defer
+></script>
 
 </body>
+
 </html>
