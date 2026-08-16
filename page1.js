@@ -1,1258 +1,380 @@
 /* =========================================================
    AKSH — PAGE 01 JAVASCRIPT
-   THE WORLD
-   A SAFE SPACE FOR EVERY MIND
+   HOW ARE YOU FEELING TODAY?
    ========================================================= */
 
 (() => {
   "use strict";
 
   /* =========================================================
-     CONFIGURATION
+     CONFIG
      ========================================================= */
 
   const CONFIG = {
-    homePage: "index.html",
-
-    pages: {
-      world: "page1.html",
-      mind: "page3.html",
-      withYou: "page4.html",
-      meghana: "page5.html",
-      journey: "page6.html",
-      stories: "page7.html",
-      journal: "page8.html",
-      ai: "page8.html",
-      begin: "page9.html"
-    },
-
-    transitionDuration: 650,
-
-    storageKey: "aksh-page1-emotion"
+    home: "index.html",
+    booking: "page9.html",
+    transitionTime: 650,
+    storageKey: "aksh-selected-emotion"
   };
 
   /* =========================================================
-     EXPERIENCE DATA
+     DOM
      ========================================================= */
 
-  const experiences = {
+  const page = document.querySelector(".page");
+
+  const cards = Array.from(
+    document.querySelectorAll(".emotion-card")
+  );
+
+  const buttons = Array.from(
+    document.querySelectorAll(".emotion-button")
+  );
+
+  const brand = document.querySelector(".brand");
+
+  /* =========================================================
+     EMOTION DATA
+     ========================================================= */
+
+  const emotionData = {
     anxious: {
       title: "ANXIOUS",
-
       icon: "◌",
-
-      eyebrow:
-        "WHEN YOUR MIND WON'T SLOW DOWN",
-
-      message:
-        "You don't have to figure everything out at once.",
-
-      description:
-        "Sometimes the first step is simply creating a little space to breathe, understand what you're feeling, and feel supported.",
-
-      action:
-        "I WANT TO FEEL CALMER",
-
-      destination:
-        "page9.html"
+      message: "You don't have to figure everything out at once.",
+      destination: CONFIG.booking
     },
 
     overwhelmed: {
       title: "OVERWHELMED",
-
-      icon: "≈",
-
-      eyebrow:
-        "WHEN EVERYTHING FEELS LIKE TOO MUCH",
-
-      message:
-        "You are allowed to pause.",
-
-      description:
-        "You don't have to carry everything at the same time. AKSH is a space to slow down, organise what you're feeling, and find your next step.",
-
-      action:
-        "I NEED SOME SPACE",
-
-      destination:
-        "page9.html"
+      icon: "⌁",
+      message: "You are allowed to pause.",
+      destination: CONFIG.booking
     },
 
     talk: {
-      title:
-        "NEED TO TALK TO SOMEONE",
-
+      title: "NEED TO TALK",
       icon: "○",
-
-      eyebrow:
-        "WHEN YOU JUST WANT TO BE HEARD",
-
-      message:
-        "You don't need the perfect words.",
-
-      description:
-        "AKSH is built around empathy, confidentiality, and professional psychological support — a place where you can speak without judgment.",
-
-      action:
-        "I WANT TO TALK",
-
-      destination:
-        "page9.html"
+      message: "You don't need the perfect words.",
+      destination: CONFIG.booking
     },
 
     exploring: {
       title: "JUST EXPLORING",
-
       icon: "✦",
-
-      eyebrow:
-        "THERE IS NO RIGHT WAY TO BEGIN",
-
-      message:
-        "Take your time. Explore at your own pace.",
-
-      description:
-        "Discover AKSH, understand your mind, meet the people behind the space, and find what feels right for you.",
-
-      action:
-        "EXPLORE AKSH",
-
-      destination:
-        "page2.html"
+      message: "Take your time. Explore AKSH at your own pace.",
+      destination: null
     }
   };
-
-  /* =========================================================
-     DOM HELPERS
-     ========================================================= */
-
-  const $ = (
-    selector,
-    parent = document
-  ) => parent.querySelector(selector);
-
-  const $$ = (
-    selector,
-    parent = document
-  ) => Array.from(
-    parent.querySelectorAll(selector)
-  );
-
-  /* =========================================================
-     ELEMENTS
-     ========================================================= */
-
-  const page =
-    document.body;
-
-  const transition =
-    $("#page-transition");
-
-  /*
-    Supports the current HTML:
-    .emotion
-
-    Also supports the alternative
-    .emotion-card selector.
-  */
-
-  const cards =
-    $$(".emotion, .emotion-card");
-
-  const navLinks =
-    $$("[data-page]");
-
-  const menuButton =
-    $("#menu-button") ||
-    $(".menu-button") ||
-    $("#page1-menu") ||
-    $(".page1-menu");
-
-  const menu =
-    $("#mobile-menu") ||
-    $(".mobile-overlay") ||
-    $(".page1-mobile-menu");
-
-  const closeMenuButton =
-    $("#close-menu");
-
-  const beginButtons =
-    $$("[data-begin]");
-
-  const backButton =
-    $("[data-back]");
 
   /* =========================================================
      STATE
      ========================================================= */
 
-  let currentExperience = null;
-
+  let activeCard = null;
   let isTransitioning = false;
 
-  let menuOpen = false;
-
   /* =========================================================
-     TRANSITION
+     TRANSITION LAYER
      ========================================================= */
 
-  function startTransition(
-    destination
-  ) {
+  const transition = document.createElement("div");
 
-    if (
-      !destination ||
-      isTransitioning
-    ) {
+  transition.id = "aksh-page-transition";
+
+  transition.style.cssText = `
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: #050b09;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity ${CONFIG.transitionTime}ms
+      cubic-bezier(.16,1,.3,1);
+  `;
+
+  document.body.appendChild(transition);
+
+  /* =========================================================
+     NAVIGATION
+     ========================================================= */
+
+  function navigate(destination) {
+
+    if (!destination || isTransitioning) {
       return;
     }
 
     isTransitioning = true;
 
-    if (transition) {
+    transition.style.pointerEvents = "auto";
+    transition.style.opacity = "1";
 
-      transition.classList.add(
-        "active"
-      );
-
-    }
-
-    document.documentElement.classList.add(
-      "aksh-is-transitioning"
-    );
-
-    window.setTimeout(
-      () => {
-
-        window.location.href =
-          destination;
-
-      },
-      CONFIG.transitionDuration
-    );
+    window.setTimeout(() => {
+      window.location.href = destination;
+    }, CONFIG.transitionTime);
   }
 
   /* =========================================================
-     BACKGROUND STATE
+     SELECT CARD
      ========================================================= */
 
-  function changeBackground(
-    className
-  ) {
+  function selectCard(card) {
 
-    const possibleClasses = [
-      "state-anxious",
-      "state-overwhelmed",
-      "state-talk",
-      "state-exploring"
-    ];
+    if (!card) {
+      return;
+    }
 
-    possibleClasses.forEach(
-      (name) => {
+    const emotion =
+      card.dataset.emotion;
 
-        page.classList.remove(
-          name
-        );
+    if (!emotion) {
+      return;
+    }
 
-      }
+    /* Remove active state from every card */
+
+    cards.forEach((item) => {
+      item.classList.remove("active");
+      item.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+    });
+
+    /* Activate selected card */
+
+    card.classList.add("active");
+
+    card.setAttribute(
+      "aria-expanded",
+      "true"
     );
 
-    if (className) {
+    activeCard = card;
+
+    /* Remember selection */
+
+    try {
+      sessionStorage.setItem(
+        CONFIG.storageKey,
+        emotion
+      );
+    } catch (error) {
+      /* Storage may be unavailable */
+    }
+
+    /* Update subtle page state */
+
+    if (page) {
+
+      page.dataset.emotion =
+        emotion;
+
+      page.classList.remove(
+        "emotion-anxious",
+        "emotion-overwhelmed",
+        "emotion-talk",
+        "emotion-exploring"
+      );
 
       page.classList.add(
-        className
+        `emotion-${emotion}`
       );
-
     }
   }
 
   /* =========================================================
-     DETECT CARD TYPE
+     OPEN EMOTION EXPERIENCE
      ========================================================= */
 
-  function detectCardType(
-    card
-  ) {
+  function openEmotion(card) {
 
-    const explicit =
-      card.dataset.emotion ||
-      card.dataset.type ||
-      "";
-
-    const value =
-      explicit
-        .toLowerCase()
-        .replace(/\s+/g, "-");
-
-    if (
-      value === "anxious"
-    ) {
-
-      return "anxious";
-
+    if (!card) {
+      return;
     }
 
-    if (
-      value === "overwhelmed"
-    ) {
+    const emotion =
+      card.dataset.emotion;
 
-      return "overwhelmed";
+    const data =
+      emotionData[emotion];
 
-    }
-
-    if (
-      value === "talk" ||
-      value === "need-to-talk" ||
-      value ===
-        "need-to-talk-to-someone"
-    ) {
-
-      return "talk";
-
-    }
-
-    if (
-      value === "exploring" ||
-      value === "just-exploring"
-    ) {
-
-      return "exploring";
-
+    if (!data) {
+      return;
     }
 
     /*
-      Fallback:
-      Read the actual visible card text.
+      First tap:
+      reveal / activate card.
+
+      Second tap:
+      continue into its experience.
     */
 
-    const text =
-      card.textContent
-        .toLowerCase()
-        .replace(/\s+/g, " ")
-        .trim();
+    if (activeCard !== card) {
 
-    if (
-      text.includes("anxious")
-    ) {
+      selectCard(card);
 
-      return "anxious";
-
-    }
-
-    if (
-      text.includes("overwhelmed")
-    ) {
-
-      return "overwhelmed";
-
-    }
-
-    if (
-      text.includes("need to talk") ||
-      text.includes("talk to someone")
-    ) {
-
-      return "talk";
-
-    }
-
-    if (
-      text.includes("exploring") ||
-      text.includes("explore")
-    ) {
-
-      return "exploring";
-
-    }
-
-    return null;
-  }
-
-  /* =========================================================
-     PREPARE CARDS
-     ========================================================= */
-
-  function prepareCards() {
-
-    cards.forEach(
-      (card, index) => {
-
-        const type =
-          detectCardType(card);
-
-        if (!type) {
-          return;
-        }
-
-        card.dataset.emotion =
-          type;
-
-        card.setAttribute(
-          "role",
-          "button"
-        );
-
-        card.setAttribute(
-          "tabindex",
-          "0"
-        );
-
-        card.setAttribute(
-          "aria-label",
-          experiences[type].title
-        );
-
-        card.style.setProperty(
-          "--emotion-index",
-          index
-        );
-
-        /*
-          Do NOT replace the existing
-          SVG icons in page1.html.
-        */
-
-      }
-    );
-  }
-
-  /* =========================================================
-     ACTIVATE CARD
-     ========================================================= */
-
-  function activateCard(
-    card
-  ) {
-
-    cards.forEach(
-      (item) => {
-
-        item.classList.remove(
-          "is-active"
-        );
-
-      }
-    );
-
-    card.classList.add(
-      "is-active"
-    );
-
-    const type =
-      card.dataset.emotion;
-
-    if (type) {
-
-      currentExperience =
-        type;
-
-      changeBackground(
-        `state-${type}`
-      );
-
-    }
-
-  }
-
-  /* =========================================================
-     MOBILE CARD BEHAVIOUR
-     ========================================================= */
-
-  function activateMobileCard(
-    card
-  ) {
-
-    if (
-      !window.matchMedia(
-        "(max-width: 600px)"
-      ).matches
-    ) {
-
-      return false;
-
-    }
-
-    const alreadyActive =
-      card.classList.contains(
-        "active"
-      );
-
-    cards.forEach(
-      (item) => {
-
-        item.classList.remove(
-          "active"
-        );
-
-      }
-    );
-
-    if (!alreadyActive) {
-
-      card.classList.add(
-        "active"
-      );
-
-      card.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "center"
-      });
-
-    }
-
-    return !alreadyActive;
-  }
-
-  /* =========================================================
-     OPEN EXPERIENCE
-     ========================================================= */
-
-  function openExperience(
-    type
-  ) {
-
-    const experience =
-      experiences[type];
-
-    if (!experience) {
       return;
     }
 
-    currentExperience =
-      type;
+    /*
+      EXPLORING stays inside Page 1.
+      Scroll toward the next section when available.
+    */
 
-    sessionStorage.setItem(
-      CONFIG.storageKey,
-      type
-    );
+    if (emotion === "exploring") {
 
-    const card =
-      cards.find(
-        (item) =>
-          item.dataset.emotion ===
-          type
-      );
-
-    if (card) {
-
-      activateCard(card);
-
-    }
-
-    showExperienceOverlay(
-      experience
-    );
-
-  }
-
-  /* =========================================================
-     EXPERIENCE OVERLAY
-     ========================================================= */
-
-  function showExperienceOverlay(
-    experience
-  ) {
-
-    let overlay =
-      $("#experience-overlay");
-
-    if (!overlay) {
-
-      overlay =
-        document.createElement(
-          "div"
+      const feelingArea =
+        document.querySelector(
+          ".feeling-area"
         );
 
-      overlay.id =
-        "experience-overlay";
+      if (feelingArea) {
 
-      overlay.className =
-        "experience-overlay";
-
-      document.body.appendChild(
-        overlay
-      );
-
-    }
-
-    overlay.innerHTML = `
-      <div
-        class="experience-backdrop"
-        data-close-experience
-      ></div>
-
-      <section
-        class="experience-panel"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="experience-title"
-      >
-
-        <button
-          class="experience-close"
-          type="button"
-          aria-label="Close"
-          data-close-experience
-        >
-          ×
-        </button>
-
-        <div class="experience-symbol">
-          ${experience.icon}
-        </div>
-
-        <div class="experience-eyebrow">
-          ${experience.eyebrow}
-        </div>
-
-        <h2
-          id="experience-title"
-          class="experience-title"
-        >
-          ${experience.title}
-        </h2>
-
-        <p class="experience-message">
-          ${experience.message}
-        </p>
-
-        <p class="experience-description">
-          ${experience.description}
-        </p>
-
-        <button
-          class="experience-action"
-          type="button"
-          data-experience-action
-        >
-          ${experience.action}
-          <span>→</span>
-        </button>
-
-      </section>
-    `;
-
-    requestAnimationFrame(
-      () => {
-
-        overlay.classList.add(
-          "is-visible"
-        );
+        feelingArea.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
 
       }
-    );
 
-    $$(
-      "[data-close-experience]",
-      overlay
-    ).forEach(
-      (element) => {
-
-        element.addEventListener(
-          "click",
-          closeExperience
-        );
-
-      }
-    );
-
-    const action =
-      $(
-        "[data-experience-action]",
-        overlay
-      );
-
-    if (action) {
-
-      action.addEventListener(
-        "click",
-        () => {
-
-          startTransition(
-            experience.destination
-          );
-
-        }
-      );
-
-    }
-
-    document.body.classList.add(
-      "experience-open"
-    );
-
-  }
-
-  /* =========================================================
-     CLOSE EXPERIENCE
-     ========================================================= */
-
-  function closeExperience() {
-
-    const overlay =
-      $("#experience-overlay");
-
-    if (!overlay) {
       return;
     }
 
-    overlay.classList.remove(
-      "is-visible"
+    /*
+      Other emotions continue
+      toward booking / next experience.
+    */
+
+    navigate(
+      data.destination
     );
-
-    document.body.classList.remove(
-      "experience-open"
-    );
-
-    window.setTimeout(
-      () => {
-
-        if (overlay) {
-          overlay.remove();
-        }
-
-      },
-      450
-    );
-
   }
 
   /* =========================================================
      CARD EVENTS
      ========================================================= */
 
-  function setupCardEvents() {
+  cards.forEach((card) => {
 
-    cards.forEach(
-      (card) => {
+    const button =
+      card.querySelector(
+        ".emotion-button"
+      );
 
-        const type =
-          detectCardType(card);
-
-        if (!type) {
-          return;
-        }
-
-        /*
-          Desktop hover
-        */
-
-        card.addEventListener(
-          "mouseenter",
-          () => {
-
-            activateCard(card);
-
-          }
-        );
-
-        /*
-          Keyboard focus
-        */
-
-        card.addEventListener(
-          "focus",
-          () => {
-
-            activateCard(card);
-
-          }
-        );
-
-        /*
-          Click / tap
-        */
-
-        card.addEventListener(
-          "click",
-          (event) => {
-
-            /*
-              On mobile:
-              first tap expands the small
-              card instead of immediately
-              opening the experience.
-            */
-
-            if (
-              window.matchMedia(
-                "(max-width: 600px)"
-              ).matches
-            ) {
-
-              const expanded =
-                activateMobileCard(
-                  card
-                );
-
-              if (expanded) {
-
-                event.preventDefault();
-
-                activateCard(
-                  card
-                );
-
-                return;
-
-              }
-
-            }
-
-            openExperience(
-              type
-            );
-
-          }
-        );
-
-        /*
-          Keyboard activation
-        */
-
-        card.addEventListener(
-          "keydown",
-          (event) => {
-
-            if (
-              event.key === "Enter" ||
-              event.key === " "
-            ) {
-
-              event.preventDefault();
-
-              openExperience(
-                type
-              );
-
-            }
-
-          }
-        );
-
-      }
-    );
-
-  }
-
-  /* =========================================================
-     NAVIGATION
-     ========================================================= */
-
-  function setupNavigation() {
-
-    navLinks.forEach(
-      (link) => {
-
-        link.addEventListener(
-          "click",
-          (event) => {
-
-            const destination =
-              link.dataset.page;
-
-            /*
-              Normal anchor links such as
-              #world should continue working.
-            */
-
-            if (!destination) {
-              return;
-            }
-
-            event.preventDefault();
-
-            closeMenu();
-
-            startTransition(
-              destination
-            );
-
-          }
-        );
-
-      }
-    );
-
-  }
-
-  /* =========================================================
-     BEGIN BUTTONS
-     ========================================================= */
-
-  function setupBeginButtons() {
-
-    beginButtons.forEach(
-      (button) => {
-
-        button.addEventListener(
-          "click",
-          (event) => {
-
-            const destination =
-              button.dataset.begin ||
-              CONFIG.pages.begin;
-
-            if (!destination) {
-              return;
-            }
-
-            event.preventDefault();
-
-            startTransition(
-              destination
-            );
-
-          }
-        );
-
-      }
-    );
-
-  }
-
-  /* =========================================================
-     MOBILE MENU
-     ========================================================= */
-
-  function openMenu() {
-
-    if (!menu) {
+    if (!button) {
       return;
     }
 
-    menuOpen =
-      true;
-
-    menu.classList.add(
-      "is-open"
+    button.setAttribute(
+      "aria-expanded",
+      "false"
     );
 
-    menu.classList.add(
-      "active"
+    button.addEventListener(
+      "click",
+      (event) => {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        openEmotion(card);
+
+      }
     );
 
-    document.body.classList.add(
-      "menu-open"
-    );
-
-    if (menuButton) {
-
-      menuButton.setAttribute(
-        "aria-expanded",
-        "true"
-      );
-
-    }
-
-  }
-
-  function closeMenu() {
-
-    if (!menu) {
-      return;
-    }
-
-    menuOpen =
-      false;
-
-    menu.classList.remove(
-      "is-open"
-    );
-
-    menu.classList.remove(
-      "active"
-    );
-
-    document.body.classList.remove(
-      "menu-open"
-    );
-
-    if (menuButton) {
-
-      menuButton.setAttribute(
-        "aria-expanded",
-        "false"
-      );
-
-    }
-
-  }
-
-  function setupMenu() {
-
-    if (menuButton) {
-
-      menuButton.addEventListener(
-        "click",
-        () => {
-
-          if (menuOpen) {
-
-            closeMenu();
-
-          } else {
-
-            openMenu();
-
-          }
-
-        }
-      );
-
-    }
-
-    if (closeMenuButton) {
-
-      closeMenuButton.addEventListener(
-        "click",
-        closeMenu
-      );
-
-    }
-
-  }
+  });
 
   /* =========================================================
-     ESCAPE KEY
+     KEYBOARD SUPPORT
      ========================================================= */
 
-  function setupKeyboard() {
+  cards.forEach((card) => {
 
-    document.addEventListener(
+    card.addEventListener(
       "keydown",
       (event) => {
 
         if (
-          event.key === "Escape"
+          event.key === "Enter" ||
+          event.key === " "
         ) {
 
-          closeExperience();
+          event.preventDefault();
 
-          closeMenu();
-
-          cards.forEach(
-            (card) => {
-
-              card.classList.remove(
-                "active"
-              );
-
-            }
-          );
-
+          openEmotion(card);
         }
 
       }
     );
 
-  }
+  });
 
   /* =========================================================
-     POINTER MOTION
+     ESCAPE = CLOSE ACTIVE CARD
      ========================================================= */
 
-  function setupPointerMotion() {
+  document.addEventListener(
+    "keydown",
+    (event) => {
 
-    if (
-      window.matchMedia(
-        "(pointer: coarse)"
-      ).matches
-    ) {
+      if (event.key !== "Escape") {
+        return;
+      }
 
-      return;
+      cards.forEach((card) => {
+        card.classList.remove("active");
+
+        card.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+      });
+
+      activeCard = null;
+
+      if (page) {
+        page.classList.remove(
+          "emotion-anxious",
+          "emotion-overwhelmed",
+          "emotion-talk",
+          "emotion-exploring"
+        );
+      }
 
     }
+  );
 
-    let pointerX = 0;
-    let pointerY = 0;
+  /* =========================================================
+     BRAND / HOME
+     ========================================================= */
 
-    let targetX = 0;
-    let targetY = 0;
+  if (brand) {
 
-    document.addEventListener(
-      "pointermove",
+    brand.addEventListener(
+      "click",
       (event) => {
 
-        targetX =
-          (
-            event.clientX /
-            window.innerWidth -
-            0.5
-          ) * 2;
+        /*
+          If already on Page 1,
+          don't reload unnecessarily.
+        */
 
-        targetY =
-          (
-            event.clientY /
-            window.innerHeight -
-            0.5
-          ) * 2;
-
-      },
-      {
-        passive: true
-      }
-    );
-
-    function animate() {
-
-      pointerX +=
-        (
-          targetX -
-          pointerX
-        ) * 0.035;
-
-      pointerY +=
-        (
-          targetY -
-          pointerY
-        ) * 0.035;
-
-      document.documentElement.style.setProperty(
-        "--pointer-x",
-        pointerX.toFixed(4)
-      );
-
-      document.documentElement.style.setProperty(
-        "--pointer-y",
-        pointerY.toFixed(4)
-      );
-
-      requestAnimationFrame(
-        animate
-      );
-
-    }
-
-    animate();
-
-  }
-
-  /* =========================================================
-     DESKTOP CARD PARALLAX
-     ========================================================= */
-
-  function setupCardParallax() {
-
-    if (
-      window.matchMedia(
-        "(pointer: coarse)"
-      ).matches
-    ) {
-
-      return;
-
-    }
-
-    cards.forEach(
-      (card) => {
-
-        card.addEventListener(
-          "pointermove",
-          (event) => {
-
-            const rect =
-              card.getBoundingClientRect();
-
-            if (
-              rect.width === 0 ||
-              rect.height === 0
-            ) {
-              return;
-            }
-
-            const x =
-              (
-                event.clientX -
-                rect.left
-              ) / rect.width;
-
-            const y =
-              (
-                event.clientY -
-                rect.top
-              ) / rect.height;
-
-            const rotateX =
-              (0.5 - y) * 4;
-
-            const rotateY =
-              (x - 0.5) * 4;
-
-            card.style.setProperty(
-              "--card-rotate-x",
-              `${rotateX}deg`
-            );
-
-            card.style.setProperty(
-              "--card-rotate-y",
-              `${rotateY}deg`
-            );
-
-          },
-          {
-            passive: true
-          }
-        );
-
-        card.addEventListener(
-          "pointerleave",
-          () => {
-
-            card.style.setProperty(
-              "--card-rotate-x",
-              "0deg"
-            );
-
-            card.style.setProperty(
-              "--card-rotate-y",
-              "0deg"
-            );
-
-          }
-        );
-
-      }
-    );
-
-  }
-
-  /* =========================================================
-     SCROLL STATE
-     ========================================================= */
-
-  function setupScroll() {
-
-    let ticking =
-      false;
-
-    window.addEventListener(
-      "scroll",
-      () => {
-
-        if (ticking) {
+        if (
+          window.location.pathname
+            .endsWith("page1.html")
+        ) {
           return;
         }
 
-        ticking = true;
+        event.preventDefault();
 
-        requestAnimationFrame(
-          () => {
-
-            document.documentElement.style.setProperty(
-              "--page-scroll",
-              `${window.scrollY}px`
-            );
-
-            ticking = false;
-
-          }
+        navigate(
+          CONFIG.home
         );
 
-      },
-      {
-        passive: true
       }
     );
 
@@ -1262,125 +384,110 @@
      TOUCH FEEDBACK
      ========================================================= */
 
-  function setupTouchFeedback() {
+  cards.forEach((card) => {
 
-    cards.forEach(
-      (card) => {
+    card.addEventListener(
+      "pointerdown",
+      () => {
 
-        card.addEventListener(
-          "touchstart",
-          () => {
+        card.style.transform =
+          "translateY(-2px) scale(.995)";
 
-            card.classList.add(
-              "is-touching"
-            );
-
-          },
-          {
-            passive: true
-          }
-        );
-
-        card.addEventListener(
-          "touchend",
-          () => {
-
-            window.setTimeout(
-              () => {
-
-                card.classList.remove(
-                  "is-touching"
-                );
-
-              },
-              160
-            );
-
-          },
-          {
-            passive: true
-          }
-        );
-
-      }
+      },
+      { passive: true }
     );
+
+    card.addEventListener(
+      "pointerup",
+      () => {
+
+        card.style.transform = "";
+
+      },
+      { passive: true }
+    );
+
+    card.addEventListener(
+      "pointercancel",
+      () => {
+
+        card.style.transform = "";
+
+      },
+      { passive: true }
+    );
+
+  });
+
+  /* =========================================================
+     POINTER ATMOSPHERE
+     ========================================================= */
+
+  let pointerX = 0;
+  let pointerY = 0;
+
+  function updatePointer(
+    clientX,
+    clientY
+  ) {
+
+    pointerX =
+      (clientX /
+        window.innerWidth) -
+      0.5;
+
+    pointerY =
+      (clientY /
+        window.innerHeight) -
+      0.5;
+
+    if (page) {
+
+      page.style.setProperty(
+        "--pointer-x",
+        pointerX.toFixed(3)
+      );
+
+      page.style.setProperty(
+        "--pointer-y",
+        pointerY.toFixed(3)
+      );
+
+    }
 
   }
 
+  window.addEventListener(
+    "pointermove",
+    (event) => {
+
+      updatePointer(
+        event.clientX,
+        event.clientY
+      );
+
+    },
+    { passive: true }
+  );
+
   /* =========================================================
-     DOUBLE TAP PROTECTION
+     RESTORE LAST SELECTION
      ========================================================= */
 
-  function setupInteractionProtection() {
+  function restoreSelection() {
 
-    const interactive = [
-      ...cards,
-      ...beginButtons,
-      ...navLinks
-    ];
+    let previous = null;
 
-    interactive.forEach(
-      (element) => {
+    try {
 
-        element.addEventListener(
-          "dblclick",
-          (event) => {
-
-            event.preventDefault();
-
-          }
+      previous =
+        sessionStorage.getItem(
+          CONFIG.storageKey
         );
 
-      }
-    );
-
-  }
-
-  /* =========================================================
-     DAILY MICRO VARIATION
-     ========================================================= */
-
-  function setDailyAtmosphere() {
-
-    const now =
-      new Date();
-
-    const start =
-      new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate()
-      );
-
-    const day =
-      Math.floor(
-        start.getTime() /
-        86400000
-      );
-
-    const variation =
-      Math.abs(day) % 4;
-
-    document.documentElement.style.setProperty(
-      "--daily-variation",
-      variation
-    );
-
-    page.dataset.dayVariation =
-      variation;
-
-  }
-
-  /* =========================================================
-     RESTORE LAST CARD
-     ========================================================= */
-
-  function restoreExperienceState() {
-
-    const previous =
-      sessionStorage.getItem(
-        CONFIG.storageKey
-      );
+    } catch (error) {
+      previous = null;
+    }
 
     if (!previous) {
       return;
@@ -1393,83 +500,18 @@
           previous
       );
 
+    /*
+      Do not automatically open it.
+      Just give it a subtle remembered state.
+    */
+
     if (card) {
 
       card.classList.add(
-        "previously-selected"
+        "previously-viewed"
       );
 
     }
-
-  }
-
-  /* =========================================================
-     PAGE VISIBILITY
-     ========================================================= */
-
-  function setupVisibility() {
-
-    document.addEventListener(
-      "visibilitychange",
-      () => {
-
-        if (
-          document.visibilityState ===
-          "visible"
-        ) {
-
-          page.classList.remove(
-            "page-hidden"
-          );
-
-        } else {
-
-          page.classList.add(
-            "page-hidden"
-          );
-
-        }
-
-      }
-    );
-
-  }
-
-  /* =========================================================
-     BACK BUTTON
-     ========================================================= */
-
-  function setupBackButton() {
-
-    if (!backButton) {
-      return;
-    }
-
-    backButton.addEventListener(
-      "click",
-      (event) => {
-
-        event.preventDefault();
-
-        if (
-          document.referrer &&
-          document.referrer.includes(
-            window.location.hostname
-          )
-        ) {
-
-          window.history.back();
-
-        } else {
-
-          startTransition(
-            CONFIG.homePage
-          );
-
-        }
-
-      }
-    );
 
   }
 
@@ -1479,11 +521,15 @@
 
   function revealPage() {
 
+    if (!page) {
+      return;
+    }
+
     page.classList.add(
       "page-ready"
     );
 
-    requestAnimationFrame(
+    window.requestAnimationFrame(
       () => {
 
         page.classList.add(
@@ -1496,21 +542,176 @@
   }
 
   /* =========================================================
-     GLOBAL API
+     MOBILE TOUCH DRAG SUPPORT
+     ========================================================= */
+
+  const track =
+    document.querySelector(
+      ".emotion-track"
+    );
+
+  if (track) {
+
+    let startX = 0;
+    let startScroll = 0;
+    let dragging = false;
+
+    track.addEventListener(
+      "touchstart",
+      (event) => {
+
+        if (
+          event.touches.length !== 1
+        ) {
+          return;
+        }
+
+        startX =
+          event.touches[0].clientX;
+
+        startScroll =
+          track.scrollLeft;
+
+        dragging = true;
+
+      },
+      { passive: true }
+    );
+
+    track.addEventListener(
+      "touchmove",
+      (event) => {
+
+        if (!dragging) {
+          return;
+        }
+
+        const currentX =
+          event.touches[0].clientX;
+
+        const difference =
+          startX - currentX;
+
+        if (
+          track.scrollWidth >
+          track.clientWidth
+        ) {
+
+          track.scrollLeft =
+            startScroll +
+            difference;
+
+        }
+
+      },
+      { passive: true }
+    );
+
+    track.addEventListener(
+      "touchend",
+      () => {
+
+        dragging = false;
+
+      },
+      { passive: true }
+    );
+
+  }
+
+  /* =========================================================
+     RESIZE
+     ========================================================= */
+
+  let resizeTimer;
+
+  window.addEventListener(
+    "resize",
+    () => {
+
+      window.clearTimeout(
+        resizeTimer
+      );
+
+      resizeTimer =
+        window.setTimeout(
+          () => {
+
+            if (page) {
+
+              page.style.setProperty(
+                "--viewport-width",
+                `${window.innerWidth}px`
+              );
+
+              page.style.setProperty(
+                "--viewport-height",
+                `${window.innerHeight}px`
+              );
+
+            }
+
+          },
+          100
+        );
+
+    },
+    { passive: true }
+  );
+
+  /* =========================================================
+     VISIBILITY
+     ========================================================= */
+
+  document.addEventListener(
+    "visibilitychange",
+    () => {
+
+      if (!page) {
+        return;
+      }
+
+      if (
+        document.visibilityState ===
+        "hidden"
+      ) {
+
+        page.classList.add(
+          "page-hidden"
+        );
+
+      } else {
+
+        page.classList.remove(
+          "page-hidden"
+        );
+
+      }
+
+    }
+  );
+
+  /* =========================================================
+     GLOBAL AKSH API
      ========================================================= */
 
   window.AKSHPage1 = {
 
-    openExperience,
+    selectEmotion:
+      selectCard,
 
-    closeExperience,
+    openEmotion,
 
-    openMenu,
+    navigate,
 
-    closeMenu,
+    getActiveEmotion:
+      () => {
 
-    navigate:
-      startTransition
+        return activeCard
+          ? activeCard.dataset.emotion
+          : null;
+
+      }
 
   };
 
@@ -1520,43 +721,11 @@
 
   function init() {
 
-    prepareCards();
-
-    setupCardEvents();
-
-    setupNavigation();
-
-    setupBeginButtons();
-
-    setupMenu();
-
-    setupKeyboard();
-
-    setupBackButton();
-
-    setupPointerMotion();
-
-    setupCardParallax();
-
-    setupScroll();
-
-    setupTouchFeedback();
-
-    setupInteractionProtection();
-
-    setDailyAtmosphere();
-
-    restoreExperienceState();
-
-    setupVisibility();
+    restoreSelection();
 
     revealPage();
 
   }
-
-  /* =========================================================
-     START
-     ========================================================= */
 
   if (
     document.readyState ===
@@ -1566,9 +735,7 @@
     document.addEventListener(
       "DOMContentLoaded",
       init,
-      {
-        once: true
-      }
+      { once: true }
     );
 
   } else {
