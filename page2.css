@@ -1,0 +1,1162 @@
+/* =========================================================
+   AKSH — 02 THE WORLD
+   page2.css
+   ========================================================= */
+
+:root {
+  --bg: #0b0b0d;
+  --bg-soft: #111114;
+  --text: #f4f1eb;
+  --text-soft: rgba(244, 241, 235, 0.68);
+  --text-muted: rgba(244, 241, 235, 0.42);
+  --line: rgba(244, 241, 235, 0.14);
+  --line-strong: rgba(244, 241, 235, 0.28);
+  --glass: rgba(255, 255, 255, 0.055);
+  --accent: #d8c6a0;
+}
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+}
+
+body {
+  width: 100%;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.world-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(216, 198, 160, 0.055),
+      transparent 32%
+    ),
+    var(--bg);
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.world-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 78px;
+
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+
+  padding:
+    max(16px, env(safe-area-inset-top))
+    clamp(20px, 5vw, 64px)
+    0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(11, 11, 13, 0.88),
+      rgba(11, 11, 13, 0)
+    );
+
+  pointer-events: none;
+}
+
+.world-header > * {
+  pointer-events: auto;
+}
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.world-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+}
+
+.world-brand-icon {
+  width: 31px;
+  height: 31px;
+  object-fit: contain;
+  filter:
+    drop-shadow(
+      0 8px 22px rgba(0, 0, 0, 0.35)
+    );
+}
+
+.world-brand-name {
+  font-family:
+    "Times New Roman",
+    Georgia,
+    serif;
+
+  font-size: 15px;
+  letter-spacing: 0.28em;
+}
+
+/* =========================================================
+   SECTION NUMBER
+   ========================================================= */
+
+.world-section-number {
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--text-muted);
+}
+
+/* =========================================================
+   BOOK
+   ========================================================= */
+
+.world-book {
+  justify-self: end;
+
+  padding: 10px 16px;
+
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+
+  font-size: 8px;
+  letter-spacing: 0.22em;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.world-book:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(244, 241, 235, 0.45);
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.world-hero {
+  position: relative;
+
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding:
+    140px
+    clamp(24px, 8vw, 120px)
+    100px;
+
+  isolation: isolate;
+}
+
+.world-hero::before {
+  content: "";
+
+  position: absolute;
+  z-index: -1;
+
+  width: 600px;
+  height: 600px;
+
+  left: 50%;
+  top: 45%;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(216, 198, 160, 0.075),
+      transparent 68%
+    );
+
+  filter: blur(30px);
+}
+
+.world-hero-number {
+  margin-bottom: 24px;
+
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: var(--accent);
+}
+
+.world-title {
+  max-width: 1000px;
+
+  font-family:
+    "Times New Roman",
+    Georgia,
+    serif;
+
+  font-weight: 400;
+
+  font-size:
+    clamp(70px, 15vw, 190px);
+
+  line-height: 0.82;
+  letter-spacing: -0.065em;
+
+  color: var(--text);
+}
+
+.world-intro {
+  max-width: 570px;
+
+  margin-top: 44px;
+
+  font-family:
+    "Times New Roman",
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(25px, 3.2vw, 48px);
+
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+
+  color: rgba(244, 241, 235, 0.91);
+}
+
+.world-description {
+  max-width: 480px;
+
+  margin-top: 22px;
+
+  font-size:
+    clamp(12px, 1.2vw, 15px);
+
+  line-height: 1.8;
+  color: var(--text-soft);
+}
+
+.world-scroll {
+  position: absolute;
+
+  bottom: 42px;
+  left: clamp(24px, 8vw, 120px);
+
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  font-size: 8px;
+  letter-spacing: 0.25em;
+
+  color: var(--text-muted);
+}
+
+.world-scroll-line {
+  width: 48px;
+  height: 1px;
+  background: var(--line-strong);
+}
+
+/* =========================================================
+   LABEL
+   ========================================================= */
+
+.world-label {
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   INTRODUCTION
+   ========================================================= */
+
+.world-introduction {
+  position: relative;
+
+  padding:
+    150px
+    clamp(24px, 9vw, 140px);
+
+  border-top: 1px solid var(--line);
+
+  display: grid;
+  grid-template-columns: 0.6fr 1.4fr;
+  gap: 8vw;
+}
+
+.world-introduction-content {
+  max-width: 760px;
+}
+
+.world-introduction h2 {
+  font-family:
+    "Times New Roman",
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(42px, 6vw, 82px);
+
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.world-introduction h2 em {
+  color: var(--accent);
+  font-weight: 400;
+}
+
+.world-introduction p {
+  max-width: 620px;
+
+  margin-top: 35px;
+
+  font-size:
+    clamp(13px, 1.25vw, 16px);
+
+  line-height: 1.9;
+  color: var(--text-soft);
+}
+
+/* =========================================================
+   SUPPORT
+   ========================================================= */
+
+.world-support {
+  padding:
+    130px
+    clamp(20px, 7vw, 110px)
+    150px;
+
+  border-top: 1px solid var(--line);
+}
+
+.world-support-heading {
+  margin-top: 35px;
+  margin-bottom: 70px;
+}
+
+.world-support-heading h2 {
+  max-width: 720px;
+
+  font-family:
+    "Times New Roman",
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(42px, 6vw, 82px);
+
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.world-support-heading h2 span {
+  color: var(--accent);
+}
+
+/* =========================================================
+   GRID
+   ========================================================= */
+
+.world-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.world-card {
+  position: relative;
+
+  min-height: 370px;
+
+  padding: 34px;
+
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.012)
+    );
+
+  transition:
+    background 0.45s ease,
+    transform 0.45s ease;
+}
+
+.world-card:hover {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.085),
+      rgba(255, 255, 255, 0.018)
+    );
+
+  transform: translateY(-4px);
+}
+
+.world-card-number {
+  position: absolute;
+
+  top: 28px;
+  right: 28px;
+
+  font-size: 8px;
+  letter-spacing: 0.2em;
+
+  color: var(--text-muted);
+}
+
+.world-card-icon {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 55px;
+
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+
+  font-family:
+    "Times New Roman",
+    Georgia,
+    serif;
+
+  font-size: 20px;
+
+  color: var(--accent);
+}
+
+.world-card h3 {
+  max-width: 220px;
+
+  font-size: 12px;
+  line-height: 1.35;
+
+  letter-spacing: 0.12em;
+  font-weight: 500;
+}
+
+.world-card p {
+  max-width: 310px;
+
+  margin-top: 20px;
+
+  font-size: 11px;
+  line-height: 1.8;
+
+  color: var(--text-soft);
+}
+
+.world-card-link {
+  position: absolute;
+
+  left: 34px;
+  bottom: 30px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  font-size: 8px;
+  letter-spacing: 0.22em;
+
+  color: var(--text-muted);
+
+  transition:
+    color 0.3s ease,
+    gap 0.3s ease;
+}
+
+.world-card-link:hover {
+  color: var(--text);
+  gap: 17px;
+}
+
+.world-card-link span {
+  font-size: 15px;
+  line-height: 0.5;
+}
+
+/* =========================================================
+   ACCESS
+   ========================================================= */
+
+.world-access {
+  padding:
+    150px
+    clamp(24px, 9vw, 140px);
+
+  border-top: 1px solid var(--line);
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10vw;
+}
+
+.world-access-copy {
+  max-width: 600px;
+}
+
+.world-access-copy h2 {
+  margin-top: 35px;
+
+  font-family:
+    "Times New Roman",
+    Georgia,
+    serif;
+
+  font-weight: 400;
+
+  font-size:
+    clamp(43px, 6vw, 80px);
+
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.world-access-copy h2 em {
+  color: var(--accent);
+  font-weight: 400;
+}
+
+.world-access-copy p {
+  margin-top: 32px;
+
+  max-width: 510px;
+
+  font-size: 13px;
+  line-height: 1.9;
+
+  color: var(--text-soft);
+}
+
+.world-access-options {
+  display: flex;
+  flex-direction: column;
+
+  border-top: 1px solid var(--line);
+}
+
+.access-option {
+  padding: 32px 0;
+
+  border-bottom: 1px solid var(--line);
+
+  display: grid;
+
+  grid-template-columns: 50px 1fr;
+  column-gap: 20px;
+}
+
+.access-number {
+  grid-row: span 2;
+
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+}
+
+.access-option h3 {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  font-weight: 500;
+}
+
+.access-option p {
+  margin-top: 10px;
+
+  font-size: 11px;
+  line-height: 1.7;
+
+  color: var(--text-soft);
+}
+
+/* =========================================================
+   PURPOSE
+   ========================================================= */
+
+.world-purpose {
+  min-height: 75vh;
+
+  padding:
+    140px
+    24px;
+
+  border-top: 1px solid var(--line);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(216, 198, 160, 0.07),
+      transparent 48%
+    );
+}
+
+.world-purpose-number {
+  font-family:
+    "Times New Roman",
+    Georgia,
+    serif;
+
+  font-size: 11px;
+  letter-spacing: 0.4em;
+
+  color: var(--accent);
+}
+
+.world-purpose blockquote {
+  max-width: 900px;
+
+  margin-top: 45px;
+
+  font-family:
+    "Times New Roman",
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(31px, 5vw, 70px);
+
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+
+  font-weight: 400;
+}
+
+.world-purpose-tagline {
+  margin-top: 50px;
+
+  font-size: 8px;
+  letter-spacing: 0.3em;
+
+  color: var(--text-muted);
+}
+
+/* =========================================================
+   NEXT
+   ========================================================= */
+
+.world-next {
+  min-height: 80vh;
+
+  padding:
+    130px
+    clamp(24px, 8vw, 120px);
+
+  border-top: 1px solid var(--line);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.world-next h2 {
+  margin-top: 30px;
+
+  font-family:
+    "Times New Roman",
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(60px, 12vw, 150px);
+
+  font-weight: 400;
+  line-height: 0.85;
+  letter-spacing: -0.06em;
+}
+
+.world-next p {
+  margin-top: 28px;
+
+  font-family:
+    "Times New Roman",
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(20px, 2.5vw, 34px);
+
+  color: var(--text-soft);
+}
+
+.world-next-button {
+  width: fit-content;
+
+  margin-top: 45px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+
+  padding: 15px 22px;
+
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+
+  font-size: 8px;
+  letter-spacing: 0.22em;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease,
+    gap 0.3s ease;
+}
+
+.world-next-button:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-3px);
+  gap: 25px;
+}
+
+.world-next-button span {
+  font-size: 17px;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.world-footer {
+  min-height: 100px;
+
+  padding:
+    25px
+    clamp(20px, 5vw, 60px);
+
+  border-top: 1px solid var(--line);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  font-size: 7px;
+  letter-spacing: 0.2em;
+
+  color: var(--text-muted);
+}
+
+/* =========================================================
+   FLOATING BOOK
+   ========================================================= */
+
+.floating-book {
+  position: fixed;
+
+  right: clamp(18px, 3vw, 35px);
+  bottom: max(18px, env(safe-area-inset-bottom));
+
+  z-index: 90;
+
+  width: 56px;
+  height: 56px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+
+  background:
+    rgba(15, 15, 17, 0.82);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 15px 45px rgba(0, 0, 0, 0.3);
+
+  font-size: 7px;
+  letter-spacing: 0.15em;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.floating-book:hover {
+  transform: scale(1.07);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .world-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .world-introduction {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .world-access {
+    grid-template-columns: 1fr;
+    gap: 70px;
+  }
+
+  .world-card {
+    min-height: 350px;
+  }
+
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .world-header {
+    height: 68px;
+
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .world-brand-icon {
+    width: 27px;
+    height: 27px;
+  }
+
+  .world-brand-name {
+    font-size: 13px;
+  }
+
+  .world-section-number {
+    font-size: 7px;
+  }
+
+  .world-book {
+    padding: 9px 13px;
+    font-size: 7px;
+  }
+
+  .world-hero {
+    min-height: 100svh;
+
+    padding:
+      120px
+      20px
+      90px;
+  }
+
+  .world-hero-number {
+    font-size: 7px;
+    margin-bottom: 20px;
+  }
+
+  .world-title {
+    font-size:
+      clamp(58px, 18vw, 100px);
+  }
+
+  .world-intro {
+    margin-top: 35px;
+
+    font-size:
+      clamp(25px, 8vw, 38px);
+  }
+
+  .world-description {
+    margin-top: 18px;
+
+    font-size: 11px;
+    line-height: 1.75;
+  }
+
+  .world-scroll {
+    left: 20px;
+    bottom: 28px;
+  }
+
+  .world-introduction {
+    padding:
+      90px
+      20px;
+  }
+
+  .world-introduction h2 {
+    font-size:
+      clamp(39px, 11vw, 58px);
+  }
+
+  .world-introduction p {
+    margin-top: 25px;
+    font-size: 12px;
+    line-height: 1.8;
+  }
+
+  .world-support {
+    padding:
+      90px
+      16px
+      100px;
+  }
+
+  .world-support-heading {
+    margin-top: 28px;
+    margin-bottom: 45px;
+  }
+
+  .world-support-heading h2 {
+    font-size:
+      clamp(39px, 11vw, 58px);
+  }
+
+  .world-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .world-card {
+    min-height: 330px;
+    padding: 27px;
+  }
+
+  .world-card-icon {
+    margin-bottom: 48px;
+  }
+
+  .world-card h3 {
+    font-size: 11px;
+  }
+
+  .world-card p {
+    font-size: 10px;
+    line-height: 1.75;
+  }
+
+  .world-card-link {
+    left: 27px;
+    bottom: 25px;
+  }
+
+  .world-access {
+    padding:
+      95px
+      20px;
+  }
+
+  .world-access-copy h2 {
+    font-size:
+      clamp(39px, 11vw, 58px);
+  }
+
+  .world-access-copy p {
+    font-size: 11px;
+  }
+
+  .world-purpose {
+    min-height: 75svh;
+    padding: 100px 20px;
+  }
+
+  .world-purpose blockquote {
+    font-size:
+      clamp(28px, 8vw, 44px);
+  }
+
+  .world-purpose-tagline {
+    font-size: 7px;
+  }
+
+  .world-next {
+    min-height: 70svh;
+    padding:
+      100px
+      20px;
+  }
+
+  .world-next h2 {
+    font-size:
+      clamp(57px, 17vw, 90px);
+  }
+
+  .world-next p {
+    font-size: 20px;
+  }
+
+  .world-footer {
+    min-height: 120px;
+
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    gap: 13px;
+  }
+
+  .floating-book {
+    width: 50px;
+    height: 50px;
+  }
+
+}
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .world-brand-name {
+    font-size: 12px;
+  }
+
+  .world-section-number {
+    display: none;
+  }
+
+  .world-title {
+    font-size: 55px;
+  }
+
+  .world-card {
+    min-height: 320px;
+  }
+
+  .world-purpose blockquote {
+    font-size: 27px;
+  }
+
+}
+
+/* =========================================================
+   LANDSCAPE MOBILE
+   ========================================================= */
+
+@media (
+  max-height: 500px
+) and (
+  orientation: landscape
+) {
+
+  .world-hero {
+    min-height: 700px;
+  }
+
+  .world-header {
+    height: 55px;
+  }
+
+  .world-title {
+    font-size: 60px;
+  }
+
+  .world-intro {
+    font-size: 23px;
+    max-width: 500px;
+  }
+
+  .world-description {
+    max-width: 500px;
+  }
+
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+
+}
