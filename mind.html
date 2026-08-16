@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="THE MIND — AKSH Mental Wellness. Understanding thoughts, emotions, behaviour and wellbeing."
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     >
 
     <meta
@@ -19,7 +15,25 @@
         content="#07101c"
     >
 
+    <meta
+        name="description"
+        content="THE MIND — AKSH Mental Wellness. Understanding thoughts, emotions, behaviour and wellbeing."
+    >
+
     <title>THE MIND — AKSH</title>
+
+    <!-- =====================================================
+         AKSH GLOBAL SYSTEM
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="aksh-global.css"
+    >
+
+    <!-- =====================================================
+         PAGE 03 — THE MIND
+         ===================================================== -->
 
     <link
         rel="stylesheet"
@@ -31,12 +45,15 @@
 
 <body>
 
-<div class="mind-page" id="mind-page">
+<div
+    class="mind-page"
+    id="mind-page"
+>
 
 
-    <!-- ==================================================
+    <!-- =====================================================
          NAVIGATION
-    ================================================== -->
+         ===================================================== -->
 
     <header
         class="mind-nav"
@@ -46,6 +63,7 @@
         <a
             href="aksh.html"
             class="mind-logo"
+            aria-label="AKSH Home"
         >
 
             <img
@@ -53,12 +71,19 @@
                 alt="AKSH"
             >
 
-            <span>AKSH</span>
+            <span>
+                AKSH
+            </span>
 
         </a>
 
 
-        <nav class="desktop-nav">
+        <!-- DESKTOP NAVIGATION -->
+
+        <nav
+            class="desktop-nav"
+            aria-label="Main navigation"
+        >
 
             <a href="world.html">
                 THE WORLD
@@ -67,6 +92,7 @@
             <a
                 href="mind.html"
                 class="active"
+                aria-current="page"
             >
                 THE MIND
             </a>
@@ -98,6 +124,8 @@
         </nav>
 
 
+        <!-- BOOK -->
+
         <a
             href="begin.html"
             class="book-button"
@@ -106,12 +134,15 @@
         </a>
 
 
+        <!-- MOBILE MENU BUTTON -->
+
         <button
             class="menu-button"
             id="menu-button"
             type="button"
             aria-label="Open navigation"
             aria-expanded="false"
+            aria-controls="mobile-menu"
         >
 
             <span></span>
@@ -123,13 +154,14 @@
 
 
 
-    <!-- ==================================================
+    <!-- =====================================================
          MOBILE MENU
-    ================================================== -->
+         ===================================================== -->
 
-    <div
+    <aside
         class="mobile-menu"
         id="mobile-menu"
+        aria-hidden="true"
     >
 
         <button
@@ -149,53 +181,61 @@
             </div>
 
 
-            <nav>
+            <nav
+                aria-label="Mobile navigation"
+            >
+
+                <a href="aksh.html">
+                    <span>01</span>
+                    AKSH
+                </a>
 
                 <a href="world.html">
-                    <span>01</span>
+                    <span>02</span>
                     THE WORLD
                 </a>
 
                 <a
                     href="mind.html"
                     class="active"
+                    aria-current="page"
                 >
-                    <span>02</span>
+                    <span>03</span>
                     THE MIND
                 </a>
 
                 <a href="with-you.html">
-                    <span>03</span>
+                    <span>04</span>
                     WITH YOU
                 </a>
 
                 <a href="meghana.html">
-                    <span>04</span>
+                    <span>05</span>
                     MEGHANA
                 </a>
 
                 <a href="journey.html">
-                    <span>05</span>
+                    <span>06</span>
                     JOURNEY
                 </a>
 
                 <a href="stories.html">
-                    <span>06</span>
+                    <span>07</span>
                     STORIES
                 </a>
 
                 <a href="journal.html">
-                    <span>07</span>
+                    <span>08</span>
                     JOURNAL
                 </a>
 
                 <a href="ai.html">
-                    <span>08</span>
+                    <span>09</span>
                     AKSH AI
                 </a>
 
                 <a href="begin.html">
-                    <span>09</span>
+                    <span>10</span>
                     BEGIN
                 </a>
 
@@ -203,27 +243,39 @@
 
         </div>
 
-    </div>
+
+        <div class="mobile-menu-footer">
+
+            <span>
+                A SAFE SPACE FOR EVERY MIND
+            </span>
+
+        </div>
+
+    </aside>
 
 
 
-    <!-- ==================================================
-         MAIN
-    ================================================== -->
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
 
     <main>
 
 
-        <!-- ==================================================
+        <!-- =================================================
              HERO
-        ================================================== -->
+             ================================================= -->
 
-        <section class="mind-hero">
+        <section
+            class="mind-hero"
+            id="mind-hero"
+        >
 
             <div class="hero-content">
 
                 <p class="eyebrow">
-                    02 / THE MIND
+                    03 / THE MIND
                 </p>
 
 
@@ -258,7 +310,10 @@
                         EXPLORE
                     </span>
 
-                    <span class="hero-arrow">
+                    <span
+                        class="hero-arrow"
+                        aria-hidden="true"
+                    >
                         ↓
                     </span>
 
@@ -270,11 +325,14 @@
 
 
 
-        <!-- ==================================================
+        <!-- =================================================
              INTRODUCTION
-        ================================================== -->
+             ================================================= -->
 
-        <section class="mind-intro">
+        <section
+            class="mind-intro"
+            id="understanding"
+        >
 
             <div class="section-number">
                 01
@@ -325,11 +383,14 @@
 
 
 
-        <!-- ==================================================
-             THOUGHTS / EMOTIONS / BEHAVIOUR
-        ================================================== -->
+        <!-- =================================================
+             THE INNER WORLD
+             ================================================= -->
 
-        <section class="mind-elements">
+        <section
+            class="mind-elements"
+            id="inner-world"
+        >
 
             <div class="section-heading">
 
@@ -365,9 +426,11 @@
 
 
                     <h3>
+
                         What is
                         your mind
                         telling you?
+
                     </h3>
 
 
@@ -396,8 +459,10 @@
 
 
                     <h3>
+
                         What are
                         you feeling?
+
                     </h3>
 
 
@@ -427,8 +492,10 @@
 
 
                     <h3>
+
                         What do
                         you do next?
+
                     </h3>
 
 
@@ -449,11 +516,14 @@
 
 
 
-        <!-- ==================================================
+        <!-- =================================================
              EVERYDAY EXPERIENCES
-        ================================================== -->
+             ================================================= -->
 
-        <section class="experiences-section">
+        <section
+            class="experiences-section"
+            id="experiences"
+        >
 
             <div class="section-heading">
 
@@ -509,7 +579,10 @@
                     </div>
 
 
-                    <span class="experience-arrow">
+                    <span
+                        class="experience-arrow"
+                        aria-hidden="true"
+                    >
                         →
                     </span>
 
@@ -541,7 +614,10 @@
                     </div>
 
 
-                    <span class="experience-arrow">
+                    <span
+                        class="experience-arrow"
+                        aria-hidden="true"
+                    >
                         →
                     </span>
 
@@ -573,7 +649,10 @@
                     </div>
 
 
-                    <span class="experience-arrow">
+                    <span
+                        class="experience-arrow"
+                        aria-hidden="true"
+                    >
                         →
                     </span>
 
@@ -605,7 +684,10 @@
                     </div>
 
 
-                    <span class="experience-arrow">
+                    <span
+                        class="experience-arrow"
+                        aria-hidden="true"
+                    >
                         →
                     </span>
 
@@ -637,7 +719,10 @@
                     </div>
 
 
-                    <span class="experience-arrow">
+                    <span
+                        class="experience-arrow"
+                        aria-hidden="true"
+                    >
                         →
                     </span>
 
@@ -650,11 +735,14 @@
 
 
 
-        <!-- ==================================================
+        <!-- =================================================
              MYTHS
-        ================================================== -->
+             ================================================= -->
 
-        <section class="myths-section">
+        <section
+            class="myths-section"
+            id="myths"
+        >
 
             <div class="myths-intro">
 
@@ -700,9 +788,11 @@
                         </small>
 
                         <h3>
+
                             You have to be
                             struggling badly
                             before asking for help.
+
                         </h3>
 
                     </div>
@@ -724,9 +814,11 @@
                         </small>
 
                         <h3>
+
                             Talking about
                             emotions makes
                             you weak.
+
                         </h3>
 
                     </div>
@@ -748,9 +840,11 @@
                         </small>
 
                         <h3>
+
                             Mental wellness
                             is only about
                             mental illness.
+
                         </h3>
 
                     </div>
@@ -764,11 +858,14 @@
 
 
 
-        <!-- ==================================================
+        <!-- =================================================
              EDUCATION
-        ================================================== -->
+             ================================================= -->
 
-        <section class="education-section">
+        <section
+            class="education-section"
+            id="education"
+        >
 
             <div class="education-content">
 
@@ -805,7 +902,7 @@
 
                     EXPLORE THE JOURNAL
 
-                    <span>
+                    <span aria-hidden="true">
                         →
                     </span>
 
@@ -815,6 +912,7 @@
 
 
             <div class="education-side">
+
 
                 <div class="education-point">
 
@@ -832,6 +930,7 @@
                     </p>
 
                 </div>
+
 
 
                 <div class="education-point">
@@ -852,6 +951,7 @@
                 </div>
 
 
+
                 <div class="education-point">
 
                     <span>
@@ -869,17 +969,21 @@
 
                 </div>
 
+
             </div>
 
         </section>
 
 
 
-        <!-- ==================================================
+        <!-- =================================================
              AKSH APPROACH
-        ================================================== -->
+             ================================================= -->
 
-        <section class="approach-section">
+        <section
+            class="approach-section"
+            id="approach"
+        >
 
             <div class="section-number">
                 02
@@ -927,6 +1031,7 @@
                     </div>
 
 
+
                     <div>
 
                         <span>
@@ -940,6 +1045,7 @@
                     </div>
 
 
+
                     <div>
 
                         <span>
@@ -951,6 +1057,7 @@
                         </strong>
 
                     </div>
+
 
 
                     <div>
@@ -974,11 +1081,14 @@
 
 
 
-        <!-- ==================================================
+        <!-- =================================================
              FINAL CTA
-        ================================================== -->
+             ================================================= -->
 
-        <section class="mind-final">
+        <section
+            class="mind-final"
+            id="begin"
+        >
 
             <p class="eyebrow">
                 YOUR MIND MATTERS
@@ -1012,7 +1122,7 @@
 
                     FIND SUPPORT
 
-                    <span>
+                    <span aria-hidden="true">
                         →
                     </span>
 
@@ -1032,13 +1142,14 @@
 
         </section>
 
+
     </main>
 
 
 
-    <!-- ==================================================
+    <!-- =====================================================
          FOOTER
-    ================================================== -->
+         ===================================================== -->
 
     <footer class="mind-footer">
 
@@ -1084,9 +1195,11 @@
 
 
         <p>
+
             ©
             <span id="mind-year"></span>
             AKSH MENTAL WELLNESS
+
         </p>
 
 
@@ -1096,7 +1209,26 @@
 </div>
 
 
-<script src="mind.js"></script>
+<!-- =====================================================
+     GLOBAL JAVASCRIPT
+     ===================================================== -->
+
+<script
+    src="aksh-global.js"
+    defer
+></script>
+
+
+<!-- =====================================================
+     PAGE JAVASCRIPT
+     ===================================================== -->
+
+<script
+    src="mind.js"
+    defer
+></script>
+
 
 </body>
+
 </html>
