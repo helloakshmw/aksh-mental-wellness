@@ -1,1048 +1,1153 @@
-/* =========================================================
-   AKSH — MEGHANA
-   meghana.js
-   PAGE 05
-   Founder & Chief Psychologist Experience
-   ========================================================= */
+<!DOCTYPE html>
+<html lang="en">
 
-document.addEventListener("DOMContentLoaded", () => {
+<head>
 
-    /* =====================================================
-       ELEMENTS
-    ===================================================== */
+    <meta charset="UTF-8">
 
-    const page =
-        document.getElementById("meghana-page");
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
 
-    const nav =
-        document.getElementById("meghana-nav");
+    <meta
+        name="theme-color"
+        content="#090712"
+    >
 
-    const menuButton =
-        document.getElementById("menu-button");
+    <meta
+        name="description"
+        content="Meet Meghana Kaverappa — Founder, CEO & Chief Psychologist of AKSH Mental Wellness."
+    >
 
-    const mobileMenu =
-        document.getElementById("mobile-menu");
+    <title>
+        MEGHANA — AKSH
+    </title>
 
-    const mobileClose =
-        document.getElementById("mobile-close");
+    <link
+        rel="stylesheet"
+        href="meghana.css"
+    >
 
-    const year =
-        document.getElementById("meghana-year");
+</head>
 
-    const portrait =
-        document.querySelector(".meghana-portrait");
 
-    const portraitImage =
-        document.querySelector(".meghana-portrait img");
+<body>
 
-    const revealElements =
-        document.querySelectorAll(
-            ".meghana-hero-content, " +
-            ".meghana-intro, " +
-            ".founder-story, " +
-            ".credentials-section, " +
-            ".experience-section, " +
-            ".approach-section, " +
-            ".meghana-quote, " +
-            ".meghana-final"
-        );
+<div
+    class="meghana-page"
+    id="meghana-page"
+>
 
 
-    /* =====================================================
-       PAGE READY
-    ===================================================== */
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
 
-    requestAnimationFrame(() => {
+    <header
+        class="meghana-nav"
+        id="meghana-nav"
+    >
 
-        document.documentElement.classList.add(
-            "meghana-ready"
-        );
+        <a
+            href="aksh.html"
+            class="meghana-logo"
+            aria-label="AKSH Home"
+        >
 
-        if (page) {
+            <img
+                src="aksh-icon.PNG"
+                alt="AKSH"
+            >
 
-            page.classList.add(
-                "page-ready"
-            );
+            <span>
+                AKSH
+            </span>
 
-        }
+        </a>
 
-    });
 
+        <nav
+            class="desktop-nav"
+            aria-label="Main navigation"
+        >
 
-    /* =====================================================
-       CURRENT YEAR
-    ===================================================== */
+            <a href="world.html">
+                THE WORLD
+            </a>
 
-    if (year) {
+            <a href="mind.html">
+                THE MIND
+            </a>
 
-        year.textContent =
-            new Date().getFullYear();
+            <a href="with-you.html">
+                WITH YOU
+            </a>
 
-    }
+            <a
+                href="meghana.html"
+                class="active"
+            >
+                MEGHANA
+            </a>
 
+            <a href="journey.html">
+                JOURNEY
+            </a>
 
-    /* =====================================================
-       NAVIGATION SCROLL
-    ===================================================== */
+            <a href="stories.html">
+                STORIES
+            </a>
 
-    function updateNavigation() {
+            <a href="journal.html">
+                JOURNAL
+            </a>
 
-        if (!nav) return;
+            <a href="ai.html">
+                AI
+            </a>
 
-        if (window.scrollY > 40) {
+        </nav>
 
-            nav.classList.add("scrolled");
 
-        } else {
+        <a
+            href="begin.html"
+            class="book-button"
+        >
+            BOOK
+        </a>
 
-            nav.classList.remove("scrolled");
 
-        }
+        <button
+            type="button"
+            class="menu-button"
+            id="menu-button"
+            aria-label="Open navigation"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+        >
 
-    }
+            <span></span>
+            <span></span>
 
-    updateNavigation();
+        </button>
 
-    window.addEventListener(
-        "scroll",
-        updateNavigation,
-        { passive: true }
-    );
+    </header>
 
 
-    /* =====================================================
-       MOBILE MENU
-    ===================================================== */
 
-    function openMenu() {
+    <!-- =====================================================
+         MOBILE MENU
+    ====================================================== -->
 
-        if (!mobileMenu) return;
+    <aside
+        class="mobile-menu"
+        id="mobile-menu"
+        aria-hidden="true"
+    >
 
-        mobileMenu.classList.add("open");
+        <button
+            type="button"
+            class="mobile-close"
+            id="mobile-close"
+            aria-label="Close navigation"
+        >
+            ×
+        </button>
 
-        mobileMenu.setAttribute(
-            "aria-hidden",
-            "false"
-        );
 
-        document.body.classList.add(
-            "menu-open"
-        );
+        <div class="mobile-menu-content">
 
-        if (menuButton) {
 
-            menuButton.setAttribute(
-                "aria-expanded",
-                "true"
-            );
+            <div class="mobile-menu-logo">
+                AKSH
+            </div>
 
-            menuButton.setAttribute(
-                "aria-label",
-                "Close navigation"
-            );
 
-        }
+            <nav aria-label="Mobile navigation">
 
-    }
+                <a href="world.html">
+                    <span>01</span>
+                    THE WORLD
+                </a>
 
+                <a href="mind.html">
+                    <span>02</span>
+                    THE MIND
+                </a>
 
-    function closeMenu() {
+                <a href="with-you.html">
+                    <span>03</span>
+                    WITH YOU
+                </a>
 
-        if (!mobileMenu) return;
+                <a
+                    href="meghana.html"
+                    class="active"
+                >
+                    <span>04</span>
+                    MEGHANA
+                </a>
 
-        mobileMenu.classList.remove("open");
+                <a href="journey.html">
+                    <span>05</span>
+                    JOURNEY
+                </a>
 
-        mobileMenu.setAttribute(
-            "aria-hidden",
-            "true"
-        );
+                <a href="stories.html">
+                    <span>06</span>
+                    STORIES
+                </a>
 
-        document.body.classList.remove(
-            "menu-open"
-        );
+                <a href="journal.html">
+                    <span>07</span>
+                    JOURNAL
+                </a>
 
-        if (menuButton) {
+                <a href="ai.html">
+                    <span>08</span>
+                    AKSH AI
+                </a>
 
-            menuButton.setAttribute(
-                "aria-expanded",
-                "false"
-            );
+                <a href="begin.html">
+                    <span>09</span>
+                    BEGIN
+                </a>
 
-            menuButton.setAttribute(
-                "aria-label",
-                "Open navigation"
-            );
+            </nav>
 
-        }
 
-    }
+            <div class="mobile-menu-footer">
 
+                A SAFE SPACE FOR EVERY MIND
 
-    if (menuButton) {
+            </div>
 
-        menuButton.addEventListener(
-            "click",
-            () => {
+        </div>
 
-                const isOpen =
-                    mobileMenu &&
-                    mobileMenu.classList.contains(
-                        "open"
-                    );
+    </aside>
 
-                if (isOpen) {
 
-                    closeMenu();
 
-                } else {
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
 
-                    openMenu();
+    <main>
 
-                }
 
-            }
-        );
+        <!-- =================================================
+             HERO
+        ================================================== -->
 
-    }
+        <section
+            class="meghana-hero"
+            id="hero"
+        >
 
+            <div class="hero-background">
 
-    if (mobileClose) {
+                <div class="hero-glow"></div>
 
-        mobileClose.addEventListener(
-            "click",
-            closeMenu
-        );
+                <div class="hero-grain"></div>
 
-    }
+            </div>
 
 
-    /* =====================================================
-       MOBILE MENU LINKS
-    ===================================================== */
+            <div class="hero-content">
 
-    if (mobileMenu) {
 
-        const mobileLinks =
-            mobileMenu.querySelectorAll(
-                "a"
-            );
+                <div class="hero-copy">
 
-        mobileLinks.forEach((link) => {
+                    <p class="eyebrow">
+                        05 / MEGHANA KAVERAPPA
+                    </p>
 
-            link.addEventListener(
-                "click",
-                closeMenu
-            );
 
-        });
+                    <h1>
 
-    }
+                        The person
+                        behind
+                        <em>AKSH.</em>
 
+                    </h1>
 
-    /* =====================================================
-       ESCAPE KEY
-    ===================================================== */
 
-    document.addEventListener(
-        "keydown",
-        (event) => {
+                    <p class="hero-description">
 
-            if (event.key === "Escape") {
+                        Founder, CEO & Chief Psychologist.
 
-                closeMenu();
+                        <br><br>
 
-            }
+                        Creating a space where people
+                        can speak honestly, feel understood
+                        and move forward with support.
 
-        }
-    );
+                    </p>
 
 
-    /* =====================================================
-       CLICK OUTSIDE MOBILE MENU
-    ===================================================== */
+                    <div class="hero-scroll">
 
-    if (mobileMenu) {
+                        <span>
+                            MEET MEGHANA
+                        </span>
 
-        mobileMenu.addEventListener(
-            "click",
-            (event) => {
+                        <span class="hero-arrow">
+                            ↓
+                        </span>
 
-                if (
-                    event.target === mobileMenu
-                ) {
+                    </div>
 
-                    closeMenu();
+                </div>
 
-                }
 
-            }
-        );
 
-    }
+                <div class="hero-portrait">
 
+                    <div class="portrait-frame">
 
-    /* =====================================================
-       SMOOTH INTERNAL LINKS
-    ===================================================== */
+                        <img
+                            src="meghana.kaverappa.jpg"
+                            alt="Meghana Kaverappa — Founder, CEO & Chief Psychologist of AKSH Mental Wellness"
+                            loading="eager"
+                        >
 
-    const internalLinks =
-        document.querySelectorAll(
-            'a[href^="#"]'
-        );
+                    </div>
 
-    internalLinks.forEach((link) => {
 
-        link.addEventListener(
-            "click",
-            (event) => {
+                    <div class="portrait-caption">
 
-                const targetId =
-                    link.getAttribute("href");
+                        <span>
+                            MEGHANA KAVERAPPA
+                        </span>
 
-                if (
-                    !targetId ||
-                    targetId === "#"
-                ) {
+                        <small>
+                            FOUNDER · CEO · CHIEF PSYCHOLOGIST
+                        </small>
 
-                    return;
+                    </div>
 
-                }
+                </div>
 
-                const target =
-                    document.querySelector(
-                        targetId
-                    );
+            </div>
 
-                if (!target) return;
+        </section>
 
-                event.preventDefault();
 
-                closeMenu();
 
-                target.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
+        <!-- =================================================
+             INTRODUCTION
+        ================================================== -->
 
-            }
-        );
+        <section
+            class="meghana-intro"
+            id="about-meghana"
+        >
 
-    });
+            <div class="section-number">
+                01
+            </div>
 
 
-    /* =====================================================
-       SCROLL REVEAL
-    ===================================================== */
+            <div class="intro-content">
 
-    if (
-        "IntersectionObserver" in window
-    ) {
+                <p class="eyebrow">
+                    A PERSON BEFORE A PROFESSIONAL
+                </p>
 
-        const revealObserver =
-            new IntersectionObserver(
-                (entries, observer) => {
 
-                    entries.forEach(
-                        (entry) => {
+                <h2>
 
-                            if (
-                                !entry.isIntersecting
-                            ) {
+                    Psychology,
+                    but always
+                    <em>human.</em>
 
-                                return;
+                </h2>
 
-                            }
 
-                            entry.target.classList.add(
-                                "story-visible"
-                            );
+                <p class="large-copy">
 
-                            observer.unobserve(
-                                entry.target
-                            );
+                    Meghana's work is grounded in the belief
+                    that psychological support begins with
+                    listening.
 
-                        }
-                    );
+                </p>
 
-                },
-                {
-                    threshold: 0.10,
-                    rootMargin:
-                        "0px 0px -40px 0px"
-                }
-            );
 
+                <p class="normal-copy">
 
-        revealElements.forEach(
-            (element) => {
+                    Her approach brings together professional
+                    psychological knowledge, empathy,
+                    confidentiality and an understanding of
+                    the everyday experiences that shape how
+                    people think, feel and live.
 
-                revealObserver.observe(
-                    element
-                );
+                    <br><br>
 
-            }
-        );
+                    AKSH was created from that belief —
+                    that everyone deserves a space where
+                    they can speak without fear of judgement.
 
-    } else {
+                </p>
 
-        revealElements.forEach(
-            (element) => {
+            </div>
 
-                element.classList.add(
-                    "story-visible"
-                );
+        </section>
 
-            }
-        );
 
-    }
 
+        <!-- =================================================
+             PROFESSIONAL JOURNEY
+        ================================================== -->
 
-    /* =====================================================
-       PORTRAIT PARALLAX
-       ===================================================== */
+        <section
+            class="meghana-journey"
+            id="professional-journey"
+        >
 
-    let ticking = false;
+            <div class="section-heading">
 
+                <p class="eyebrow">
+                    THE PROFESSIONAL JOURNEY
+                </p>
 
-    function updatePortrait() {
 
-        if (
-            !portrait ||
-            window.innerWidth < 768
-        ) {
+                <h2>
 
-            ticking = false;
+                    Built through
+                    <em>experience.</em>
 
-            return;
+                </h2>
 
-        }
 
+                <p class="section-description">
 
-        const rect =
-            portrait.getBoundingClientRect();
+                    Meghana's professional journey has
+                    included psychology education,
+                    counselling, adolescent support,
+                    clinical exposure and student
+                    development.
 
-        const windowHeight =
-            window.innerHeight;
+                </p>
 
+            </div>
 
-        const center =
-            rect.top +
-            rect.height / 2;
 
 
-        const distance =
-            center -
-            windowHeight / 2;
+            <div class="timeline">
 
 
-        const movement =
-            distance * -0.025;
+                <article class="timeline-item">
 
+                    <div class="timeline-number">
+                        01
+                    </div>
 
-        portrait.style.setProperty(
-            "--portrait-shift",
-            `${movement}px`
-        );
 
+                    <div class="timeline-content">
 
-        ticking = false;
+                        <span>
+                            2025 — PRESENT
+                        </span>
 
-    }
+                        <h3>
+                            PGT PSYCHOLOGY
+                        </h3>
 
+                        <p>
+                            New Horizon Gurukul
+                        </p>
 
-    function requestPortraitUpdate() {
+                        <small>
 
-        if (ticking) return;
+                            Psychology education for
+                            secondary and senior secondary
+                            students, with a focus on
+                            conceptual understanding,
+                            critical thinking and real-life
+                            application.
 
-        ticking = true;
+                        </small>
 
-        requestAnimationFrame(
-            updatePortrait
-        );
+                    </div>
 
-    }
+                </article>
 
 
-    if (portrait) {
 
-        window.addEventListener(
-            "scroll",
-            requestPortraitUpdate,
-            { passive: true }
-        );
+                <article class="timeline-item">
 
-        window.addEventListener(
-            "resize",
-            requestPortraitUpdate
-        );
+                    <div class="timeline-number">
+                        02
+                    </div>
 
-        requestPortraitUpdate();
 
-    }
+                    <div class="timeline-content">
 
+                        <span>
+                            2023 — 2025
+                        </span>
 
-    /* =====================================================
-       IMAGE LOADING
-    ===================================================== */
+                        <h3>
+                            SCHOOL COUNSELLOR
+                        </h3>
 
-    if (portraitImage) {
+                        <p>
+                            The Cambridge International School
+                        </p>
 
-        if (portraitImage.complete) {
+                        <small>
 
-            portraitImage.classList.add(
-                "loaded"
-            );
+                            Individual and group counselling
+                            for adolescents, academic stress,
+                            emotional regulation, behavioural
+                            concerns and psychosocial wellbeing.
 
-        } else {
+                        </small>
 
-            portraitImage.addEventListener(
-                "load",
-                () => {
+                    </div>
 
-                    portraitImage.classList.add(
-                        "loaded"
-                    );
+                </article>
 
-                }
-            );
 
-        }
 
+                <article class="timeline-item">
 
-        portraitImage.addEventListener(
-            "error",
-            () => {
+                    <div class="timeline-number">
+                        03
+                    </div>
 
-                portraitImage.classList.add(
-                    "image-error"
-                );
 
-                if (portrait) {
+                    <div class="timeline-content">
 
-                    portrait.classList.add(
-                        "image-error"
-                    );
+                        <span>
+                            2022
+                        </span>
 
-                }
+                        <h3>
+                            CLINICAL PSYCHOLOGY TRAINEE
+                        </h3>
 
-            }
-        );
+                        <p>
+                            Bangalore Neuro Centre
+                        </p>
 
-    }
+                        <small>
 
+                            Clinical exposure across diverse
+                            age groups, including psychological
+                            assessment, behavioural observation,
+                            case discussions and therapeutic
+                            interventions under supervision.
 
-    /* =====================================================
-       IMAGE FALLBACK — ALL PAGE IMAGES
-    ===================================================== */
+                        </small>
 
-    const images =
-        document.querySelectorAll(
-            "img"
-        );
+                    </div>
 
+                </article>
 
-    images.forEach((image) => {
 
-        image.addEventListener(
-            "error",
-            () => {
 
-                image.classList.add(
-                    "image-error"
-                );
+                <article class="timeline-item">
 
-            }
-        );
+                    <div class="timeline-number">
+                        04
+                    </div>
 
-    });
 
+                    <div class="timeline-content">
 
-    /* =====================================================
-       ACTIVE NAVIGATION
-    ===================================================== */
+                        <span>
+                            2019 — 2020
+                        </span>
 
-    const desktopLinks =
-        document.querySelectorAll(
-            ".desktop-nav a"
-        );
+                        <h3>
+                            EARLY CLINICAL & REHABILITATION EXPERIENCE
+                        </h3>
 
+                        <p>
+                            Manasa Psychoneurotic Hospital ·
+                            Gerizim Rehabilitation Trust
+                        </p>
 
-    desktopLinks.forEach((link) => {
+                        <small>
 
-        const href =
-            link.getAttribute("href");
+                            Experience involving case history
+                            documentation, intake interviews,
+                            counselling exposure, rehabilitation
+                            support, adaptive behaviour and
+                            caregiver communication.
 
+                        </small>
 
-        if (
-            href === "meghana.html"
-        ) {
+                    </div>
 
-            link.classList.add(
-                "active"
-            );
+                </article>
 
-        }
 
-    });
+            </div>
 
+        </section>
 
-    /* =====================================================
-       NAVIGATION HOVER INTELLIGENCE
-    ===================================================== */
 
-    const navLinks =
-        document.querySelectorAll(
-            ".desktop-nav a"
-        );
 
+        <!-- =================================================
+             EDUCATION
+        ================================================== -->
 
-    navLinks.forEach((link) => {
+        <section
+            class="education-section"
+            id="education"
+        >
 
-        link.addEventListener(
-            "mouseenter",
-            () => {
+            <div class="education-image">
 
-                navLinks.forEach(
-                    (otherLink) => {
+                <div class="education-image-inner">
 
-                        if (
-                            otherLink !== link
-                        ) {
+                    <span>
+                        PSYCHOLOGY
+                    </span>
 
-                            otherLink.classList.add(
-                                "nav-dimmed"
-                            );
+                    <strong>
+                        01
+                    </strong>
 
-                        }
+                </div>
 
-                    }
-                );
+            </div>
 
-            }
-        );
 
+            <div class="education-content">
 
-        link.addEventListener(
-            "mouseleave",
-            () => {
+                <p class="eyebrow">
+                    EDUCATION
+                </p>
 
-                navLinks.forEach(
-                    (otherLink) => {
 
-                        otherLink.classList.remove(
-                            "nav-dimmed"
-                        );
+                <h2>
 
-                    }
-                );
+                    Knowledge
+                    creates
+                    <em>understanding.</em>
 
-            }
-        );
+                </h2>
 
-    });
 
+                <div class="education-list">
 
-    /* =====================================================
-       EXPERIENCE ITEMS
-       ===================================================== */
 
-    const experienceItems =
-        document.querySelectorAll(
-            ".experience-item"
-        );
+                    <article>
 
+                        <span>
+                            01
+                        </span>
 
-    experienceItems.forEach(
-        (item, index) => {
+                        <div>
 
-            item.style.setProperty(
-                "--item-index",
-                index
-            );
+                            <h3>
+                                M.Sc. CLINICAL PSYCHOLOGY
+                            </h3>
 
+                            <p>
+                                Jain (Deemed to be) University
+                            </p>
 
-            item.addEventListener(
-                "mouseenter",
-                () => {
+                            <small>
+                                Completed 2023
+                            </small>
 
-                    item.classList.add(
-                        "is-hovered"
-                    );
+                        </div>
 
-                }
-            );
+                    </article>
 
 
-            item.addEventListener(
-                "mouseleave",
-                () => {
 
-                    item.classList.remove(
-                        "is-hovered"
-                    );
+                    <article>
 
-                }
-            );
+                        <span>
+                            02
+                        </span>
 
-        }
-    );
+                        <div>
 
+                            <h3>
+                                B.A. PSYCHOLOGY,
+                                SOCIOLOGY & ENGLISH
+                            </h3>
 
-    /* =====================================================
-       APPROACH ITEMS
-    ===================================================== */
+                            <p>
+                                Christ (Deemed to be) University
+                            </p>
 
-    const approachItems =
-        document.querySelectorAll(
-            ".approach-item, " +
-            ".approach-value, " +
-            ".founder-value"
-        );
+                            <small>
+                                Completed 2021
+                            </small>
 
+                        </div>
 
-    approachItems.forEach(
-        (item, index) => {
+                    </article>
 
-            item.style.setProperty(
-                "--item-index",
-                index
-            );
 
-        }
-    );
 
+                    <article>
 
-    /* =====================================================
-       STAT / CREDENTIAL COUNTERS
-       Only activates when matching numeric
-       data-target attributes exist.
-    ===================================================== */
+                        <span>
+                            03
+                        </span>
 
-    const counters =
-        document.querySelectorAll(
-            "[data-target]"
-        );
+                        <div>
 
+                            <h3>
+                                PRE-UNIVERSITY EDUCATION
+                            </h3>
 
-    function animateCounter(
-        element
-    ) {
+                            <p>
+                                Christ PU College
+                            </p>
 
-        const target =
-            Number(
-                element.dataset.target
-            );
+                            <small>
+                                Completed 2019
+                            </small>
 
+                        </div>
 
-        if (
-            Number.isNaN(target)
-        ) {
+                    </article>
 
-            return;
+                </div>
 
-        }
+            </div>
 
+        </section>
 
-        const duration =
-            Number(
-                element.dataset.duration
-            ) || 1200;
 
 
-        const startTime =
-            performance.now();
+        <!-- =================================================
+             AREAS OF EXPERIENCE
+        ================================================== -->
 
+        <section
+            class="expertise-section"
+            id="expertise"
+        >
 
-        function update(
-            currentTime
-        ) {
+            <div class="section-heading">
 
-            const elapsed =
-                currentTime -
-                startTime;
+                <p class="eyebrow">
+                    AREAS OF EXPERIENCE
+                </p>
 
 
-            const progress =
-                Math.min(
-                    elapsed / duration,
-                    1
-                );
+                <h2>
 
+                    Different people.
+                    Different stories.
+                    <em>One human approach.</em>
 
-            const eased =
-                1 -
-                Math.pow(
-                    1 - progress,
-                    3
-                );
+                </h2>
 
+            </div>
 
-            element.textContent =
-                Math.round(
-                    target * eased
-                );
 
+            <div class="expertise-grid">
 
-            if (progress < 1) {
 
-                requestAnimationFrame(
-                    update
-                );
+                <article>
 
-            } else {
+                    <span>
+                        01
+                    </span>
 
-                element.textContent =
-                    target;
+                    <h3>
+                        ADOLESCENT
+                        WELLBEING
+                    </h3>
 
-            }
+                    <p>
 
-        }
+                        Supporting young people through
+                        academic pressure, emotional
+                        regulation, behavioural concerns
+                        and psychosocial experiences.
 
+                    </p>
 
-        requestAnimationFrame(
-            update
-        );
+                </article>
 
-    }
 
 
-    if (
-        counters.length &&
-        "IntersectionObserver" in window
-    ) {
+                <article>
 
-        const counterObserver =
-            new IntersectionObserver(
-                (entries, observer) => {
+                    <span>
+                        02
+                    </span>
 
-                    entries.forEach(
-                        (entry) => {
+                    <h3>
+                        EMOTIONAL
+                        WELLNESS
+                    </h3>
 
-                            if (
-                                !entry.isIntersecting
-                            ) {
+                    <p>
 
-                                return;
+                        Creating space to understand
+                        emotions, stress, personal
+                        experiences and everyday
+                        psychological wellbeing.
 
-                            }
+                    </p>
 
-                            animateCounter(
-                                entry.target
-                            );
+                </article>
 
-                            observer.unobserve(
-                                entry.target
-                            );
 
-                        }
-                    );
 
-                },
-                {
-                    threshold: 0.5
-                }
-            );
+                <article>
 
+                    <span>
+                        03
+                    </span>
 
-        counters.forEach(
-            (counter) => {
+                    <h3>
+                        COUNSELLING
+                        SUPPORT
+                    </h3>
 
-                counterObserver.observe(
-                    counter
-                );
+                    <p>
 
-            }
-        );
+                        A confidential and compassionate
+                        environment for individuals seeking
+                        professional psychological support.
 
-    }
+                    </p>
 
+                </article>
 
-    /* =====================================================
-       QUOTE REVEAL
-       ===================================================== */
 
-    const quote =
-        document.querySelector(
-            ".meghana-quote blockquote"
-        );
 
+                <article>
 
-    if (quote) {
+                    <span>
+                        04
+                    </span>
 
-        quote.classList.add(
-            "quote-ready"
-        );
+                    <h3>
+                        CAREER &
+                        ACADEMIC GUIDANCE
+                    </h3>
 
-    }
+                    <p>
 
+                        Helping individuals understand
+                        academic choices, career direction
+                        and the psychological experiences
+                        connected to them.
 
-    /* =====================================================
-       FINAL CTA HOVER
-       ===================================================== */
+                    </p>
 
-    const finalButtons =
-        document.querySelectorAll(
-            ".primary-button, " +
-            ".secondary-button, " +
-            ".meghana-cta"
-        );
+                </article>
 
 
-    finalButtons.forEach(
-        (button) => {
 
-            button.addEventListener(
-                "mouseenter",
-                () => {
+                <article>
 
-                    button.classList.add(
-                        "cta-hover"
-                    );
+                    <span>
+                        05
+                    </span>
 
-                }
-            );
+                    <h3>
+                        PSYCHOLOGICAL
+                        EDUCATION
+                    </h3>
 
+                    <p>
 
-            button.addEventListener(
-                "mouseleave",
-                () => {
+                        Making psychological concepts
+                        easier to understand through
+                        education and real-life examples.
 
-                    button.classList.remove(
-                        "cta-hover"
-                    );
+                    </p>
 
-                }
-            );
+                </article>
 
-        }
-    );
 
 
-    /* =====================================================
-       REDUCED MOTION
-    ===================================================== */
+                <article>
 
-    const reducedMotion =
-        window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        );
+                    <span>
+                        06
+                    </span>
 
+                    <h3>
+                        STUDENT
+                        DEVELOPMENT
+                    </h3>
 
-    function handleReducedMotion() {
+                    <p>
 
-        if (
-            reducedMotion.matches
-        ) {
+                        Supporting learning, confidence,
+                        communication, mentoring and
+                        holistic student development.
 
-            document.documentElement.classList.add(
-                "reduced-motion"
-            );
+                    </p>
 
-        } else {
+                </article>
 
-            document.documentElement.classList.remove(
-                "reduced-motion"
-            );
 
-        }
+            </div>
 
-    }
+        </section>
 
 
-    handleReducedMotion();
 
+        <!-- =================================================
+             PHILOSOPHY
+        ================================================== -->
 
-    if (
-        reducedMotion.addEventListener
-    ) {
+        <section
+            class="philosophy-section"
+            id="philosophy"
+        >
 
-        reducedMotion.addEventListener(
-            "change",
-            handleReducedMotion
-        );
+            <div class="philosophy-content">
 
-    }
+                <p class="eyebrow">
+                    HER PHILOSOPHY
+                </p>
 
 
-    /* =====================================================
-       PAGE VISIBILITY
-    ===================================================== */
+                <blockquote>
 
-    document.addEventListener(
-        "visibilitychange",
-        () => {
+                    “Every person deserves a space
+                    where they can speak without fear,
+                    heal without judgment, and grow
+                    with support.”
 
-            if (
-                document.hidden
-            ) {
+                </blockquote>
 
-                document.body.classList.add(
-                    "page-hidden"
-                );
 
-            } else {
+                <p class="philosophy-copy">
 
-                document.body.classList.remove(
-                    "page-hidden"
-                );
+                    This belief is at the heart of AKSH.
 
-            }
+                    <br><br>
 
-        }
-    );
+                    Not a place that tells people how
+                    they should feel.
 
+                    <br><br>
 
-    /* =====================================================
-       INITIAL ACCESSIBILITY STATE
-    ===================================================== */
+                    A place that listens first.
 
-    if (mobileMenu) {
+                </p>
 
-        mobileMenu.setAttribute(
-            "aria-hidden",
-            "true"
-        );
+            </div>
 
-    }
+        </section>
 
 
-    if (menuButton) {
 
-        menuButton.setAttribute(
-            "aria-expanded",
-            "false"
-        );
+        <!-- =================================================
+             WHY AKSH
+        ================================================== -->
 
-    }
+        <section
+            class="why-aksh-section"
+            id="why-aksh"
+        >
 
+            <div class="section-number">
+                02
+            </div>
 
-    /* =====================================================
-       PAGE CLEANUP ON PAGE EXIT
-    ===================================================== */
 
-    window.addEventListener(
-        "pagehide",
-        () => {
+            <div class="why-aksh-content">
 
-            document.body.classList.remove(
-                "menu-open"
-            );
+                <p class="eyebrow">
+                    WHY AKSH
+                </p>
 
-        }
-    );
 
+                <h2>
 
-    /* =====================================================
-       FINAL READY STATE
-    ===================================================== */
+                    A vision that
+                    became a
+                    <em>space.</em>
 
-    setTimeout(() => {
+                </h2>
 
-        document.documentElement.classList.add(
-            "meghana-interactive"
-        );
 
-    }, 50);
+                <p class="large-copy">
 
-});
+                    AKSH is more than a counselling
+                    service.
+
+                </p>
+
+
+                <p class="normal-copy">
+
+                    It is being built as a long-term
+                    mental wellness ecosystem — bringing
+                    together professional support,
+                    psychological education, workshops,
+                    digital accessibility and meaningful
+                    human connection.
+
+                </p>
+
+
+                <a
+                    href="world.html"
+                    class="text-link"
+                >
+
+                    DISCOVER AKSH
+
+                    <span>
+                        →
+                    </span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             FINAL CTA
+        ================================================== -->
+
+        <section
+            class="meghana-final"
+            id="begin"
+        >
+
+            <p class="eyebrow">
+                WHEN YOU ARE READY
+            </p>
+
+
+            <h2>
+
+                You don't have
+                to find the
+                <em>perfect words.</em>
+
+            </h2>
+
+
+            <p>
+
+                You can simply
+                begin.
+
+            </p>
+
+
+            <div class="final-buttons">
+
+                <a
+                    href="begin.html"
+                    class="primary-button"
+                >
+
+                    BEGIN YOUR JOURNEY
+
+                    <span>
+                        →
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="journal.html"
+                    class="secondary-button"
+                >
+
+                    EXPLORE THE JOURNAL
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="meghana-footer">
+
+
+        <div class="footer-logo">
+
+            <img
+                src="aksh-icon.PNG"
+                alt="AKSH"
+            >
+
+            <span>
+                AKSH
+            </span>
+
+        </div>
+
+
+        <p>
+            A SAFE SPACE FOR EVERY MIND
+        </p>
+
+
+        <div class="footer-links">
+
+            <a href="world.html">
+                THE WORLD
+            </a>
+
+            <a href="mind.html">
+                THE MIND
+            </a>
+
+            <a href="journey.html">
+                JOURNEY
+            </a>
+
+            <a href="journal.html">
+                JOURNAL
+            </a>
+
+            <a href="begin.html">
+                BEGIN
+            </a>
+
+        </div>
+
+
+        <p>
+
+            ©
+            <span id="meghana-year"></span>
+            AKSH MENTAL WELLNESS
+
+        </p>
+
+
+    </footer>
+
+
+</div>
+
+
+<script
+    src="meghana.js"
+    defer
+></script>
+
+</body>
+
+</html>
