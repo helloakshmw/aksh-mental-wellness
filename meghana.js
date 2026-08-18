@@ -1,1153 +1,752 @@
-<!DOCTYPE html>
-<html lang="en">
+/* =========================================================
+   AKSH — MEGHANA
+   meghana.js
+   ========================================================= */
 
-<head>
+document.addEventListener("DOMContentLoaded", () => {
 
-    <meta charset="UTF-8">
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    >
+    const nav =
+        document.getElementById("meghana-nav");
 
-    <meta
-        name="theme-color"
-        content="#090712"
-    >
+    const menuButton =
+        document.getElementById("menu-button");
 
-    <meta
-        name="description"
-        content="Meet Meghana Kaverappa — Founder, CEO & Chief Psychologist of AKSH Mental Wellness."
-    >
+    const mobileMenu =
+        document.getElementById("mobile-menu");
 
-    <title>
-        MEGHANA — AKSH
-    </title>
+    const mobileClose =
+        document.getElementById("mobile-close");
 
-    <link
-        rel="stylesheet"
-        href="meghana.css"
-    >
+    const year =
+        document.getElementById("meghana-year");
 
-</head>
 
+    /* =====================================================
+       YEAR
+    ===================================================== */
 
-<body>
+    if (year) {
 
-<div
-    class="meghana-page"
-    id="meghana-page"
->
+        year.textContent =
+            new Date().getFullYear();
 
+    }
 
-    <!-- =====================================================
-         NAVIGATION
-    ====================================================== -->
 
-    <header
-        class="meghana-nav"
-        id="meghana-nav"
-    >
+    /* =====================================================
+       NAVIGATION SCROLL
+    ===================================================== */
 
-        <a
-            href="aksh.html"
-            class="meghana-logo"
-            aria-label="AKSH Home"
-        >
+    function updateNavigation() {
 
-            <img
-                src="aksh-icon.PNG"
-                alt="AKSH"
-            >
+        if (!nav) return;
 
-            <span>
-                AKSH
-            </span>
+        if (window.scrollY > 40) {
 
-        </a>
+            nav.classList.add("scrolled");
 
+        } else {
 
-        <nav
-            class="desktop-nav"
-            aria-label="Main navigation"
-        >
+            nav.classList.remove("scrolled");
 
-            <a href="world.html">
-                THE WORLD
-            </a>
+        }
 
-            <a href="mind.html">
-                THE MIND
-            </a>
+    }
 
-            <a href="with-you.html">
-                WITH YOU
-            </a>
 
-            <a
-                href="meghana.html"
-                class="active"
-            >
-                MEGHANA
-            </a>
+    updateNavigation();
 
-            <a href="journey.html">
-                JOURNEY
-            </a>
 
-            <a href="stories.html">
-                STORIES
-            </a>
+    window.addEventListener(
+        "scroll",
+        updateNavigation,
+        { passive: true }
+    );
 
-            <a href="journal.html">
-                JOURNAL
-            </a>
 
-            <a href="ai.html">
-                AI
-            </a>
+    /* =====================================================
+       MOBILE MENU
+    ===================================================== */
 
-        </nav>
+    function openMenu() {
 
+        if (!mobileMenu) return;
 
-        <a
-            href="begin.html"
-            class="book-button"
-        >
-            BOOK
-        </a>
+        mobileMenu.classList.add("open");
 
+        mobileMenu.setAttribute(
+            "aria-hidden",
+            "false"
+        );
 
-        <button
-            type="button"
-            class="menu-button"
-            id="menu-button"
-            aria-label="Open navigation"
-            aria-expanded="false"
-            aria-controls="mobile-menu"
-        >
+        document.body.classList.add(
+            "menu-open"
+        );
 
-            <span></span>
-            <span></span>
 
-        </button>
+        if (menuButton) {
 
-    </header>
+            menuButton.setAttribute(
+                "aria-expanded",
+                "true"
+            );
 
+            menuButton.setAttribute(
+                "aria-label",
+                "Close navigation"
+            );
 
+        }
 
-    <!-- =====================================================
-         MOBILE MENU
-    ====================================================== -->
+    }
 
-    <aside
-        class="mobile-menu"
-        id="mobile-menu"
-        aria-hidden="true"
-    >
 
-        <button
-            type="button"
-            class="mobile-close"
-            id="mobile-close"
-            aria-label="Close navigation"
-        >
-            ×
-        </button>
+    function closeMenu() {
 
+        if (!mobileMenu) return;
 
-        <div class="mobile-menu-content">
+        mobileMenu.classList.remove("open");
 
+        mobileMenu.setAttribute(
+            "aria-hidden",
+            "true"
+        );
 
-            <div class="mobile-menu-logo">
-                AKSH
-            </div>
+        document.body.classList.remove(
+            "menu-open"
+        );
 
 
-            <nav aria-label="Mobile navigation">
+        if (menuButton) {
 
-                <a href="world.html">
-                    <span>01</span>
-                    THE WORLD
-                </a>
+            menuButton.setAttribute(
+                "aria-expanded",
+                "false"
+            );
 
-                <a href="mind.html">
-                    <span>02</span>
-                    THE MIND
-                </a>
+            menuButton.setAttribute(
+                "aria-label",
+                "Open navigation"
+            );
 
-                <a href="with-you.html">
-                    <span>03</span>
-                    WITH YOU
-                </a>
+        }
 
-                <a
-                    href="meghana.html"
-                    class="active"
-                >
-                    <span>04</span>
-                    MEGHANA
-                </a>
+    }
 
-                <a href="journey.html">
-                    <span>05</span>
-                    JOURNEY
-                </a>
 
-                <a href="stories.html">
-                    <span>06</span>
-                    STORIES
-                </a>
+    if (menuButton) {
 
-                <a href="journal.html">
-                    <span>07</span>
-                    JOURNAL
-                </a>
+        menuButton.addEventListener(
+            "click",
+            () => {
 
-                <a href="ai.html">
-                    <span>08</span>
-                    AKSH AI
-                </a>
+                const isOpen =
+                    mobileMenu &&
+                    mobileMenu.classList.contains("open");
 
-                <a href="begin.html">
-                    <span>09</span>
-                    BEGIN
-                </a>
+                if (isOpen) {
 
-            </nav>
+                    closeMenu();
 
+                } else {
 
-            <div class="mobile-menu-footer">
+                    openMenu();
 
-                A SAFE SPACE FOR EVERY MIND
+                }
 
-            </div>
+            }
+        );
 
-        </div>
+    }
 
-    </aside>
 
+    if (mobileClose) {
 
+        mobileClose.addEventListener(
+            "click",
+            closeMenu
+        );
 
-    <!-- =====================================================
-         MAIN
-    ====================================================== -->
+    }
 
-    <main>
 
+    /* =====================================================
+       MOBILE NAVIGATION LINKS
+    ===================================================== */
 
-        <!-- =================================================
-             HERO
-        ================================================== -->
+    if (mobileMenu) {
 
-        <section
-            class="meghana-hero"
-            id="hero"
-        >
+        const mobileLinks =
+            mobileMenu.querySelectorAll("a");
 
-            <div class="hero-background">
 
-                <div class="hero-glow"></div>
+        mobileLinks.forEach((link) => {
 
-                <div class="hero-grain"></div>
+            link.addEventListener(
+                "click",
+                closeMenu
+            );
 
-            </div>
+        });
 
+    }
 
-            <div class="hero-content">
 
+    /* =====================================================
+       ESCAPE KEY
+    ===================================================== */
 
-                <div class="hero-copy">
+    document.addEventListener(
+        "keydown",
+        (event) => {
 
-                    <p class="eyebrow">
-                        05 / MEGHANA KAVERAPPA
-                    </p>
+            if (event.key === "Escape") {
 
+                closeMenu();
 
-                    <h1>
+            }
 
-                        The person
-                        behind
-                        <em>AKSH.</em>
+        }
+    );
 
-                    </h1>
 
+    /* =====================================================
+       CLICK OUTSIDE MOBILE MENU
+    ===================================================== */
 
-                    <p class="hero-description">
+    if (mobileMenu) {
 
-                        Founder, CEO & Chief Psychologist.
+        mobileMenu.addEventListener(
+            "click",
+            (event) => {
 
-                        <br><br>
+                if (
+                    event.target === mobileMenu
+                ) {
 
-                        Creating a space where people
-                        can speak honestly, feel understood
-                        and move forward with support.
+                    closeMenu();
 
-                    </p>
+                }
 
+            }
+        );
 
-                    <div class="hero-scroll">
+    }
 
-                        <span>
-                            MEET MEGHANA
-                        </span>
 
-                        <span class="hero-arrow">
-                            ↓
-                        </span>
+    /* =====================================================
+       HERO IMAGE LOAD
+    ===================================================== */
 
-                    </div>
+    const portrait =
+        document.querySelector(
+            ".hero-portrait img"
+        );
 
-                </div>
 
+    if (portrait) {
 
+        portrait.addEventListener(
+            "load",
+            () => {
 
-                <div class="hero-portrait">
+                portrait.classList.add(
+                    "loaded"
+                );
 
-                    <div class="portrait-frame">
+            }
+        );
 
-                        <img
-                            src="meghana.kaverappa.jpg"
-                            alt="Meghana Kaverappa — Founder, CEO & Chief Psychologist of AKSH Mental Wellness"
-                            loading="eager"
-                        >
 
-                    </div>
+        if (portrait.complete) {
 
+            portrait.classList.add(
+                "loaded"
+            );
 
-                    <div class="portrait-caption">
+        }
 
-                        <span>
-                            MEGHANA KAVERAPPA
-                        </span>
 
-                        <small>
-                            FOUNDER · CEO · CHIEF PSYCHOLOGIST
-                        </small>
+        portrait.addEventListener(
+            "error",
+            () => {
 
-                    </div>
+                portrait.classList.add(
+                    "image-error"
+                );
 
-                </div>
+            }
+        );
 
-            </div>
+    }
 
-        </section>
 
+    /* =====================================================
+       SCROLL REVEAL
+    ===================================================== */
 
+    const revealElements =
+        document.querySelectorAll(
+            ".meghana-intro, " +
+            ".meghana-journey, " +
+            ".education-section, " +
+            ".expertise-section, " +
+            ".philosophy-section, " +
+            ".why-aksh-section, " +
+            ".meghana-final"
+        );
 
-        <!-- =================================================
-             INTRODUCTION
-        ================================================== -->
 
-        <section
-            class="meghana-intro"
-            id="about-meghana"
-        >
+    if (
+        "IntersectionObserver" in window
+    ) {
 
-            <div class="section-number">
-                01
-            </div>
+        const revealObserver =
+            new IntersectionObserver(
+                (entries, observer) => {
 
+                    entries.forEach(
+                        (entry) => {
 
-            <div class="intro-content">
+                            if (
+                                !entry.isIntersecting
+                            ) {
 
-                <p class="eyebrow">
-                    A PERSON BEFORE A PROFESSIONAL
-                </p>
+                                return;
 
+                            }
 
-                <h2>
 
-                    Psychology,
-                    but always
-                    <em>human.</em>
+                            entry.target.classList.add(
+                                "story-visible"
+                            );
 
-                </h2>
 
+                            observer.unobserve(
+                                entry.target
+                            );
 
-                <p class="large-copy">
+                        }
+                    );
 
-                    Meghana's work is grounded in the belief
-                    that psychological support begins with
-                    listening.
+                },
+                {
+                    threshold: 0.08,
+                    rootMargin: "0px 0px -40px 0px"
+                }
+            );
 
-                </p>
 
+        revealElements.forEach(
+            (element) => {
 
-                <p class="normal-copy">
+                revealObserver.observe(
+                    element
+                );
 
-                    Her approach brings together professional
-                    psychological knowledge, empathy,
-                    confidentiality and an understanding of
-                    the everyday experiences that shape how
-                    people think, feel and live.
+            }
+        );
 
-                    <br><br>
+    } else {
 
-                    AKSH was created from that belief —
-                    that everyone deserves a space where
-                    they can speak without fear of judgement.
+        revealElements.forEach(
+            (element) => {
 
-                </p>
+                element.classList.add(
+                    "story-visible"
+                );
 
-            </div>
+            }
+        );
 
-        </section>
+    }
 
 
+    /* =====================================================
+       TIMELINE REVEAL
+    ===================================================== */
 
-        <!-- =================================================
-             PROFESSIONAL JOURNEY
-        ================================================== -->
+    const timelineItems =
+        document.querySelectorAll(
+            ".timeline-item"
+        );
 
-        <section
-            class="meghana-journey"
-            id="professional-journey"
-        >
 
-            <div class="section-heading">
+    if (
+        "IntersectionObserver" in window
+    ) {
 
-                <p class="eyebrow">
-                    THE PROFESSIONAL JOURNEY
-                </p>
+        const timelineObserver =
+            new IntersectionObserver(
+                (entries, observer) => {
 
+                    entries.forEach(
+                        (entry) => {
 
-                <h2>
+                            if (
+                                !entry.isIntersecting
+                            ) {
 
-                    Built through
-                    <em>experience.</em>
+                                return;
 
-                </h2>
+                            }
 
 
-                <p class="section-description">
+                            entry.target.classList.add(
+                                "timeline-visible"
+                            );
 
-                    Meghana's professional journey has
-                    included psychology education,
-                    counselling, adolescent support,
-                    clinical exposure and student
-                    development.
 
-                </p>
+                            observer.unobserve(
+                                entry.target
+                            );
 
-            </div>
+                        }
+                    );
 
+                },
+                {
+                    threshold: 0.12
+                }
+            );
 
 
-            <div class="timeline">
+        timelineItems.forEach(
+            (item) => {
 
+                timelineObserver.observe(
+                    item
+                );
 
-                <article class="timeline-item">
+            }
+        );
 
-                    <div class="timeline-number">
-                        01
-                    </div>
+    } else {
 
+        timelineItems.forEach(
+            (item) => {
 
-                    <div class="timeline-content">
+                item.classList.add(
+                    "timeline-visible"
+                );
 
-                        <span>
-                            2025 — PRESENT
-                        </span>
+            }
+        );
 
-                        <h3>
-                            PGT PSYCHOLOGY
-                        </h3>
+    }
 
-                        <p>
-                            New Horizon Gurukul
-                        </p>
 
-                        <small>
+    /* =====================================================
+       EXPERTISE CARDS
+    ===================================================== */
 
-                            Psychology education for
-                            secondary and senior secondary
-                            students, with a focus on
-                            conceptual understanding,
-                            critical thinking and real-life
-                            application.
+    const expertiseCards =
+        document.querySelectorAll(
+            ".expertise-grid article"
+        );
 
-                        </small>
 
-                    </div>
+    expertiseCards.forEach(
+        (card, index) => {
 
-                </article>
+            card.style.setProperty(
+                "--reveal-delay",
+                `${index * 80}ms`
+            );
 
+        }
+    );
 
 
-                <article class="timeline-item">
+    /* =====================================================
+       EDUCATION ITEMS
+    ===================================================== */
 
-                    <div class="timeline-number">
-                        02
-                    </div>
+    const educationItems =
+        document.querySelectorAll(
+            ".education-list article"
+        );
 
 
-                    <div class="timeline-content">
+    educationItems.forEach(
+        (item, index) => {
 
-                        <span>
-                            2023 — 2025
-                        </span>
+            item.style.setProperty(
+                "--reveal-delay",
+                `${index * 100}ms`
+            );
 
-                        <h3>
-                            SCHOOL COUNSELLOR
-                        </h3>
+        }
+    );
 
-                        <p>
-                            The Cambridge International School
-                        </p>
 
-                        <small>
+    /* =====================================================
+       SMOOTH INTERNAL LINKS
+    ===================================================== */
 
-                            Individual and group counselling
-                            for adolescents, academic stress,
-                            emotional regulation, behavioural
-                            concerns and psychosocial wellbeing.
+    const internalLinks =
+        document.querySelectorAll(
+            'a[href^="#"]'
+        );
 
-                        </small>
 
-                    </div>
+    internalLinks.forEach(
+        (link) => {
 
-                </article>
+            link.addEventListener(
+                "click",
+                (event) => {
 
+                    const targetId =
+                        link.getAttribute("href");
 
 
-                <article class="timeline-item">
+                    if (
+                        !targetId ||
+                        targetId === "#"
+                    ) {
 
-                    <div class="timeline-number">
-                        03
-                    </div>
+                        return;
 
+                    }
 
-                    <div class="timeline-content">
 
-                        <span>
-                            2022
-                        </span>
+                    const target =
+                        document.querySelector(
+                            targetId
+                        );
 
-                        <h3>
-                            CLINICAL PSYCHOLOGY TRAINEE
-                        </h3>
 
-                        <p>
-                            Bangalore Neuro Centre
-                        </p>
+                    if (!target) {
 
-                        <small>
+                        return;
 
-                            Clinical exposure across diverse
-                            age groups, including psychological
-                            assessment, behavioural observation,
-                            case discussions and therapeutic
-                            interventions under supervision.
+                    }
 
-                        </small>
 
-                    </div>
+                    event.preventDefault();
 
-                </article>
 
+                    closeMenu();
 
 
-                <article class="timeline-item">
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
 
-                    <div class="timeline-number">
-                        04
-                    </div>
+                }
+            );
 
+        }
+    );
 
-                    <div class="timeline-content">
 
-                        <span>
-                            2019 — 2020
-                        </span>
+    /* =====================================================
+       HERO SCROLL
+    ===================================================== */
 
-                        <h3>
-                            EARLY CLINICAL & REHABILITATION EXPERIENCE
-                        </h3>
+    const heroScroll =
+        document.querySelector(
+            ".hero-scroll"
+        );
 
-                        <p>
-                            Manasa Psychoneurotic Hospital ·
-                            Gerizim Rehabilitation Trust
-                        </p>
 
-                        <small>
+    const introSection =
+        document.getElementById(
+            "about-meghana"
+        );
 
-                            Experience involving case history
-                            documentation, intake interviews,
-                            counselling exposure, rehabilitation
-                            support, adaptive behaviour and
-                            caregiver communication.
 
-                        </small>
+    if (
+        heroScroll &&
+        introSection
+    ) {
 
-                    </div>
+        heroScroll.addEventListener(
+            "click",
+            () => {
 
-                </article>
+                introSection.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
 
+            }
+        );
 
-            </div>
 
-        </section>
+        heroScroll.style.cursor =
+            "pointer";
 
+    }
 
 
-        <!-- =================================================
-             EDUCATION
-        ================================================== -->
+    /* =====================================================
+       PARALLAX PORTRAIT
+    ===================================================== */
 
-        <section
-            class="education-section"
-            id="education"
-        >
+    const heroPortrait =
+        document.querySelector(
+            ".hero-portrait"
+        );
 
-            <div class="education-image">
 
-                <div class="education-image-inner">
+    let ticking = false;
 
-                    <span>
-                        PSYCHOLOGY
-                    </span>
 
-                    <strong>
-                        01
-                    </strong>
+    function updateParallax() {
 
-                </div>
+        if (
+            !heroPortrait ||
+            window.innerWidth < 768
+        ) {
 
-            </div>
+            ticking = false;
 
+            return;
 
-            <div class="education-content">
+        }
 
-                <p class="eyebrow">
-                    EDUCATION
-                </p>
 
+        const scrollY =
+            window.scrollY;
 
-                <h2>
 
-                    Knowledge
-                    creates
-                    <em>understanding.</em>
+        const amount =
+            Math.min(
+                scrollY * 0.08,
+                35
+            );
 
-                </h2>
 
+        heroPortrait.style.transform =
+            `translate3d(0, ${amount}px, 0)`;
 
-                <div class="education-list">
 
+        ticking = false;
 
-                    <article>
+    }
 
-                        <span>
-                            01
-                        </span>
 
-                        <div>
+    window.addEventListener(
+        "scroll",
+        () => {
 
-                            <h3>
-                                M.Sc. CLINICAL PSYCHOLOGY
-                            </h3>
+            if (!ticking) {
 
-                            <p>
-                                Jain (Deemed to be) University
-                            </p>
+                window.requestAnimationFrame(
+                    updateParallax
+                );
 
-                            <small>
-                                Completed 2023
-                            </small>
+                ticking = true;
 
-                        </div>
+            }
 
-                    </article>
+        },
+        { passive: true }
+    );
 
 
+    /* =====================================================
+       ACTIVE NAVIGATION
+    ===================================================== */
 
-                    <article>
+    const navLinks =
+        document.querySelectorAll(
+            ".desktop-nav a"
+        );
 
-                        <span>
-                            02
-                        </span>
 
-                        <div>
+    navLinks.forEach(
+        (link) => {
 
-                            <h3>
-                                B.A. PSYCHOLOGY,
-                                SOCIOLOGY & ENGLISH
-                            </h3>
+            const href =
+                link.getAttribute("href");
 
-                            <p>
-                                Christ (Deemed to be) University
-                            </p>
 
-                            <small>
-                                Completed 2021
-                            </small>
+            if (
+                href === "meghana.html"
+            ) {
 
-                        </div>
+                link.classList.add(
+                    "active"
+                );
 
-                    </article>
+            }
 
+        }
+    );
 
 
-                    <article>
+    /* =====================================================
+       IMAGE FALLBACK
+    ===================================================== */
 
-                        <span>
-                            03
-                        </span>
+    const images =
+        document.querySelectorAll(
+            "img"
+        );
 
-                        <div>
 
-                            <h3>
-                                PRE-UNIVERSITY EDUCATION
-                            </h3>
+    images.forEach(
+        (image) => {
 
-                            <p>
-                                Christ PU College
-                            </p>
+            image.addEventListener(
+                "error",
+                () => {
 
-                            <small>
-                                Completed 2019
-                            </small>
+                    image.classList.add(
+                        "image-error"
+                    );
 
-                        </div>
+                }
+            );
 
-                    </article>
+        }
+    );
 
-                </div>
 
-            </div>
+    /* =====================================================
+       PAGE READY
+    ===================================================== */
 
-        </section>
+    requestAnimationFrame(
+        () => {
 
+            document.documentElement.classList.add(
+                "meghana-ready"
+            );
 
+        }
+    );
 
-        <!-- =================================================
-             AREAS OF EXPERIENCE
-        ================================================== -->
 
-        <section
-            class="expertise-section"
-            id="expertise"
-        >
+    /* =====================================================
+       INITIAL ACCESSIBILITY STATE
+    ===================================================== */
 
-            <div class="section-heading">
+    if (mobileMenu) {
 
-                <p class="eyebrow">
-                    AREAS OF EXPERIENCE
-                </p>
+        mobileMenu.setAttribute(
+            "aria-hidden",
+            "true"
+        );
 
+    }
 
-                <h2>
 
-                    Different people.
-                    Different stories.
-                    <em>One human approach.</em>
+    if (menuButton) {
 
-                </h2>
+        menuButton.setAttribute(
+            "aria-expanded",
+            "false"
+        );
 
-            </div>
+    }
 
-
-            <div class="expertise-grid">
-
-
-                <article>
-
-                    <span>
-                        01
-                    </span>
-
-                    <h3>
-                        ADOLESCENT
-                        WELLBEING
-                    </h3>
-
-                    <p>
-
-                        Supporting young people through
-                        academic pressure, emotional
-                        regulation, behavioural concerns
-                        and psychosocial experiences.
-
-                    </p>
-
-                </article>
-
-
-
-                <article>
-
-                    <span>
-                        02
-                    </span>
-
-                    <h3>
-                        EMOTIONAL
-                        WELLNESS
-                    </h3>
-
-                    <p>
-
-                        Creating space to understand
-                        emotions, stress, personal
-                        experiences and everyday
-                        psychological wellbeing.
-
-                    </p>
-
-                </article>
-
-
-
-                <article>
-
-                    <span>
-                        03
-                    </span>
-
-                    <h3>
-                        COUNSELLING
-                        SUPPORT
-                    </h3>
-
-                    <p>
-
-                        A confidential and compassionate
-                        environment for individuals seeking
-                        professional psychological support.
-
-                    </p>
-
-                </article>
-
-
-
-                <article>
-
-                    <span>
-                        04
-                    </span>
-
-                    <h3>
-                        CAREER &
-                        ACADEMIC GUIDANCE
-                    </h3>
-
-                    <p>
-
-                        Helping individuals understand
-                        academic choices, career direction
-                        and the psychological experiences
-                        connected to them.
-
-                    </p>
-
-                </article>
-
-
-
-                <article>
-
-                    <span>
-                        05
-                    </span>
-
-                    <h3>
-                        PSYCHOLOGICAL
-                        EDUCATION
-                    </h3>
-
-                    <p>
-
-                        Making psychological concepts
-                        easier to understand through
-                        education and real-life examples.
-
-                    </p>
-
-                </article>
-
-
-
-                <article>
-
-                    <span>
-                        06
-                    </span>
-
-                    <h3>
-                        STUDENT
-                        DEVELOPMENT
-                    </h3>
-
-                    <p>
-
-                        Supporting learning, confidence,
-                        communication, mentoring and
-                        holistic student development.
-
-                    </p>
-
-                </article>
-
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =================================================
-             PHILOSOPHY
-        ================================================== -->
-
-        <section
-            class="philosophy-section"
-            id="philosophy"
-        >
-
-            <div class="philosophy-content">
-
-                <p class="eyebrow">
-                    HER PHILOSOPHY
-                </p>
-
-
-                <blockquote>
-
-                    “Every person deserves a space
-                    where they can speak without fear,
-                    heal without judgment, and grow
-                    with support.”
-
-                </blockquote>
-
-
-                <p class="philosophy-copy">
-
-                    This belief is at the heart of AKSH.
-
-                    <br><br>
-
-                    Not a place that tells people how
-                    they should feel.
-
-                    <br><br>
-
-                    A place that listens first.
-
-                </p>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =================================================
-             WHY AKSH
-        ================================================== -->
-
-        <section
-            class="why-aksh-section"
-            id="why-aksh"
-        >
-
-            <div class="section-number">
-                02
-            </div>
-
-
-            <div class="why-aksh-content">
-
-                <p class="eyebrow">
-                    WHY AKSH
-                </p>
-
-
-                <h2>
-
-                    A vision that
-                    became a
-                    <em>space.</em>
-
-                </h2>
-
-
-                <p class="large-copy">
-
-                    AKSH is more than a counselling
-                    service.
-
-                </p>
-
-
-                <p class="normal-copy">
-
-                    It is being built as a long-term
-                    mental wellness ecosystem — bringing
-                    together professional support,
-                    psychological education, workshops,
-                    digital accessibility and meaningful
-                    human connection.
-
-                </p>
-
-
-                <a
-                    href="world.html"
-                    class="text-link"
-                >
-
-                    DISCOVER AKSH
-
-                    <span>
-                        →
-                    </span>
-
-                </a>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =================================================
-             FINAL CTA
-        ================================================== -->
-
-        <section
-            class="meghana-final"
-            id="begin"
-        >
-
-            <p class="eyebrow">
-                WHEN YOU ARE READY
-            </p>
-
-
-            <h2>
-
-                You don't have
-                to find the
-                <em>perfect words.</em>
-
-            </h2>
-
-
-            <p>
-
-                You can simply
-                begin.
-
-            </p>
-
-
-            <div class="final-buttons">
-
-                <a
-                    href="begin.html"
-                    class="primary-button"
-                >
-
-                    BEGIN YOUR JOURNEY
-
-                    <span>
-                        →
-                    </span>
-
-                </a>
-
-
-                <a
-                    href="journal.html"
-                    class="secondary-button"
-                >
-
-                    EXPLORE THE JOURNAL
-
-                </a>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
-
-    <footer class="meghana-footer">
-
-
-        <div class="footer-logo">
-
-            <img
-                src="aksh-icon.PNG"
-                alt="AKSH"
-            >
-
-            <span>
-                AKSH
-            </span>
-
-        </div>
-
-
-        <p>
-            A SAFE SPACE FOR EVERY MIND
-        </p>
-
-
-        <div class="footer-links">
-
-            <a href="world.html">
-                THE WORLD
-            </a>
-
-            <a href="mind.html">
-                THE MIND
-            </a>
-
-            <a href="journey.html">
-                JOURNEY
-            </a>
-
-            <a href="journal.html">
-                JOURNAL
-            </a>
-
-            <a href="begin.html">
-                BEGIN
-            </a>
-
-        </div>
-
-
-        <p>
-
-            ©
-            <span id="meghana-year"></span>
-            AKSH MENTAL WELLNESS
-
-        </p>
-
-
-    </footer>
-
-
-</div>
-
-
-<script
-    src="meghana.js"
-    defer
-></script>
-
-</body>
-
-</html>
+});
