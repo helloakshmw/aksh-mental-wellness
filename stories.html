@@ -7,12 +7,17 @@
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta
+        name="theme-color"
+        content="#07101c"
     >
 
     <meta
         name="description"
-        content="Stories from the AKSH journey — anonymous reflections, shared with consent."
+        content="STORIES — Real experiences, reflections and moments shared with care by AKSH Mental Wellness."
     >
 
     <title>STORIES — AKSH</title>
@@ -27,12 +32,15 @@
 
 <body>
 
-<div class="stories-page">
+<div
+    class="stories-page"
+    id="stories-page"
+>
 
 
-    <!-- ==================================================
+    <!-- =====================================================
          NAVIGATION
-    ================================================== -->
+    ====================================================== -->
 
     <header
         class="stories-nav"
@@ -42,6 +50,7 @@
         <a
             href="aksh.html"
             class="stories-logo"
+            aria-label="AKSH Home"
         >
 
             <img
@@ -49,12 +58,19 @@
                 alt="AKSH"
             >
 
-            <span>AKSH</span>
+            <span>
+                AKSH
+            </span>
 
         </a>
 
 
-        <nav class="desktop-nav">
+        <!-- DESKTOP NAVIGATION -->
+
+        <nav
+            class="desktop-nav"
+            aria-label="Main navigation"
+        >
 
             <a href="world.html">
                 THE WORLD
@@ -94,6 +110,8 @@
         </nav>
 
 
+        <!-- BOOK -->
+
         <a
             href="begin.html"
             class="book-button"
@@ -102,12 +120,15 @@
         </a>
 
 
+        <!-- MOBILE MENU BUTTON -->
+
         <button
+            type="button"
             class="menu-button"
             id="menu-button"
-            type="button"
             aria-label="Open navigation"
             aria-expanded="false"
+            aria-controls="mobile-menu"
         >
 
             <span></span>
@@ -119,20 +140,20 @@
 
 
 
-    <!-- ==================================================
+    <!-- =====================================================
          MOBILE MENU
-    ================================================== -->
+    ====================================================== -->
 
-    <div
+    <aside
         class="mobile-menu"
         id="mobile-menu"
         aria-hidden="true"
     >
 
         <button
+            type="button"
             class="mobile-close"
             id="mobile-close"
-            type="button"
             aria-label="Close navigation"
         >
             ×
@@ -146,7 +167,9 @@
             </div>
 
 
-            <nav>
+            <nav
+                aria-label="Mobile navigation"
+            >
 
                 <a href="world.html">
                     <span>01</span>
@@ -200,23 +223,37 @@
 
         </div>
 
-    </div>
+
+        <div class="mobile-menu-footer">
+
+            A SAFE SPACE FOR EVERY MIND
+
+        </div>
+
+    </aside>
 
 
 
-    <!-- ==================================================
-         HERO
-    ================================================== -->
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
 
     <main>
 
 
-        <section class="stories-hero">
+        <!-- =================================================
+             HERO
+        ================================================= -->
 
-            <div class="stories-hero-copy">
+        <section
+            class="stories-hero"
+            id="stories-hero"
+        >
+
+            <div class="hero-content">
 
                 <p class="eyebrow">
-                    06 / STORIES
+                    07 / STORIES
                 </p>
 
 
@@ -229,30 +266,27 @@
                 </h1>
 
 
-                <p class="hero-text">
+                <p class="hero-description">
 
-                    Some stories are shared in words.
-                    Some are simply felt.
-                    And some begin to change the
-                    moment someone finally feels safe
-                    enough to speak.
+                    Some stories are spoken.
+                    Some are still finding words.
+                    Some are simply waiting
+                    to be understood.
 
                 </p>
 
-            </div>
 
+                <div class="hero-scroll">
 
-            <div class="hero-note">
+                    <span>
+                        EXPLORE STORIES
+                    </span>
 
-                <span>
-                    AKSH
-                </span>
+                    <span class="hero-arrow">
+                        ↓
+                    </span>
 
-                <div></div>
-
-                <span>
-                    REAL VOICES / REAL JOURNEYS
-                </span>
+                </div>
 
             </div>
 
@@ -260,11 +294,14 @@
 
 
 
-        <!-- ==================================================
-             INTRO
-        ================================================== -->
+        <!-- =================================================
+             INTRODUCTION
+        ================================================= -->
 
-        <section class="stories-intro">
+        <section
+            class="stories-intro"
+            id="stories-intro"
+        >
 
             <div class="section-number">
                 01
@@ -274,33 +311,36 @@
             <div class="intro-content">
 
                 <p class="eyebrow">
-                    A SPACE FOR REFLECTION
+                    WHY STORIES MATTER
                 </p>
 
 
                 <h2>
 
-                    Not stories of
-                    perfection.
-                    <em>Stories of becoming.</em>
+                    Sometimes
+                    knowing you're
+                    not alone
+                    <em>matters.</em>
 
                 </h2>
 
 
-                <p class="intro-large">
+                <p class="large-copy">
 
-                    Mental wellness does not follow
-                    one straight line.
+                    Stories can create recognition,
+                    connection and a little more
+                    room for understanding.
 
                 </p>
 
 
-                <p class="intro-small">
+                <p class="normal-copy">
 
-                    Every person's experience is
-                    different. These stories are intended
-                    to reflect that truth — with dignity,
-                    privacy and respect.
+                    The experiences shared here are
+                    presented with care. They are not
+                    clinical case studies and they are
+                    not a substitute for professional
+                    psychological support.
 
                 </p>
 
@@ -310,89 +350,69 @@
 
 
 
-        <!-- ==================================================
-             ETHICAL NOTE
-        ================================================== -->
+        <!-- =================================================
+             FEATURED STORY
+        ================================================= -->
 
-        <section class="privacy-section">
+        <section
+            class="featured-story"
+            id="featured-story"
+        >
 
-            <div class="privacy-copy">
+            <div class="featured-label">
+
+                <span>
+                    FEATURED
+                </span>
+
+                <span>
+                    01
+                </span>
+
+            </div>
+
+
+            <div class="featured-content">
 
                 <p class="eyebrow">
-                    BEFORE YOU READ
+                    A QUIET REALISATION
                 </p>
 
 
                 <h2>
 
-                    Privacy comes
-                    <em>first.</em>
+                    “I thought
+                    asking for help
+                    meant something
+                    was wrong with
+                    <em>me.</em>”
 
                 </h2>
 
 
                 <p>
 
-                    Mental health is deeply personal.
-                    AKSH does not share identifying
-                    information about clients.
+                    Sometimes the first change is
+                    not having all the answers.
+                    It is allowing yourself to say,
+                    “I think I need some support.”
 
                 </p>
 
-            </div>
 
+                <button
+                    type="button"
+                    class="story-button"
+                    data-story="featured"
+                >
 
-            <div class="privacy-points">
+                    READ STORY
 
+                    <span>
+                        →
+                    </span>
 
-                <div>
-
-                    <span>01</span>
-
-                    <h3>
-                        ANONYMOUS
-                    </h3>
-
-                    <p>
-                        Personal identifying details
-                        are not presented.
-                    </p>
-
-                </div>
-
-
-                <div>
-
-                    <span>02</span>
-
-                    <h3>
-                        CONSENTED
-                    </h3>
-
-                    <p>
-                        Stories and feedback are shared
-                        only with appropriate consent.
-                    </p>
-
-                </div>
-
-
-                <div>
-
-                    <span>03</span>
-
-                    <h3>
-                        RESPECTFUL
-                    </h3>
-
-                    <p>
-                        Experiences are presented
-                        without sensationalising
-                        someone's struggle.
-                    </p>
-
-                </div>
-
+                </button>
 
             </div>
 
@@ -400,35 +420,29 @@
 
 
 
-        <!-- ==================================================
-             STORY PLACEHOLDERS
-        ================================================== -->
+        <!-- =================================================
+             STORY COLLECTION
+        ================================================= -->
 
-        <section class="stories-library">
+        <section
+            class="story-collection"
+            id="story-collection"
+        >
 
-            <div class="library-heading">
+            <div class="section-heading">
 
                 <p class="eyebrow">
-                    REFLECTIONS
+                    STORIES FROM DIFFERENT MOMENTS
                 </p>
 
 
                 <h2>
 
-                    Stories will
-                    live here.
+                    Different lives.
+                    Different journeys.
+                    <em>Human experiences.</em>
 
                 </h2>
-
-
-                <p>
-
-                    As AKSH grows, this space can become
-                    a collection of anonymous, consented
-                    reflections from people who choose
-                    to share their experience.
-
-                </p>
 
             </div>
 
@@ -436,131 +450,339 @@
             <div class="story-grid">
 
 
-                <article class="story-card">
+                <!-- STORY 01 -->
+
+                <article
+                    class="story-card"
+                    data-story="starting"
+                    tabindex="0"
+                >
 
                     <div class="story-card-top">
 
                         <span>
-                            STORY 01
+                            01
                         </span>
 
                         <span>
-                            ANONYMOUS
+                            BEGINNING
                         </span>
 
                     </div>
 
 
-                    <div class="story-placeholder">
+                    <div class="story-card-content">
 
-                        <span>
-                            YOUR STORY
-                        </span>
+                        <h3>
+
+                            “I didn't know
+                            where to start.”
+
+                        </h3>
+
 
                         <p>
-                            A future reflection,
-                            shared with consent.
+
+                            Beginning a conversation
+                            when you don't have the
+                            perfect words.
+
                         </p>
 
                     </div>
+
+
+                    <button
+                        type="button"
+                        class="story-open"
+                        data-story="starting"
+                        aria-label="Read story about beginning"
+                    >
+                        →
+                    </button>
 
                 </article>
 
 
 
-                <article class="story-card">
+                <!-- STORY 02 -->
+
+                <article
+                    class="story-card"
+                    data-story="overthinking"
+                    tabindex="0"
+                >
 
                     <div class="story-card-top">
 
                         <span>
-                            STORY 02
+                            02
                         </span>
 
                         <span>
-                            ANONYMOUS
+                            THE MIND
                         </span>
 
                     </div>
 
 
-                    <div class="story-placeholder">
+                    <div class="story-card-content">
 
-                        <span>
-                            YOUR STORY
-                        </span>
+                        <h3>
+
+                            “My mind
+                            never seemed
+                            to switch off.”
+
+                        </h3>
+
 
                         <p>
-                            A future reflection,
-                            shared with consent.
+
+                            Learning to notice thoughts
+                            without becoming completely
+                            consumed by them.
+
                         </p>
 
                     </div>
+
+
+                    <button
+                        type="button"
+                        class="story-open"
+                        data-story="overthinking"
+                        aria-label="Read story about overthinking"
+                    >
+                        →
+                    </button>
 
                 </article>
 
 
 
-                <article class="story-card">
+                <!-- STORY 03 -->
+
+                <article
+                    class="story-card"
+                    data-story="boundaries"
+                    tabindex="0"
+                >
 
                     <div class="story-card-top">
 
                         <span>
-                            STORY 03
+                            03
                         </span>
 
                         <span>
-                            ANONYMOUS
+                            RELATIONSHIPS
                         </span>
 
                     </div>
 
 
-                    <div class="story-placeholder">
+                    <div class="story-card-content">
 
-                        <span>
-                            YOUR STORY
-                        </span>
+                        <h3>
+
+                            “I realised
+                            saying no
+                            was allowed.”
+
+                        </h3>
+
 
                         <p>
-                            A future reflection,
-                            shared with consent.
+
+                            Understanding boundaries
+                            and the difference between
+                            connection and losing yourself.
+
                         </p>
 
                     </div>
+
+
+                    <button
+                        type="button"
+                        class="story-open"
+                        data-story="boundaries"
+                        aria-label="Read story about boundaries"
+                    >
+                        →
+                    </button>
 
                 </article>
 
 
 
-                <article class="story-card">
+                <!-- STORY 04 -->
+
+                <article
+                    class="story-card"
+                    data-story="young-mind"
+                    tabindex="0"
+                >
 
                     <div class="story-card-top">
 
                         <span>
-                            STORY 04
+                            04
                         </span>
 
                         <span>
-                            ANONYMOUS
+                            YOUNG MINDS
                         </span>
 
                     </div>
 
 
-                    <div class="story-placeholder">
+                    <div class="story-card-content">
 
-                        <span>
-                            YOUR STORY
-                        </span>
+                        <h3>
+
+                            “Everyone
+                            seemed ahead
+                            of me.”
+
+                        </h3>
+
 
                         <p>
-                            A future reflection,
-                            shared with consent.
+
+                            When comparison, expectations
+                            and uncertainty begin to affect
+                            how a young person sees themselves.
+
                         </p>
 
                     </div>
 
+
+                    <button
+                        type="button"
+                        class="story-open"
+                        data-story="young-mind"
+                        aria-label="Read story about young minds"
+                    >
+                        →
+                    </button>
+
                 </article>
+
+
+
+                <!-- STORY 05 -->
+
+                <article
+                    class="story-card"
+                    data-story="rest"
+                    tabindex="0"
+                >
+
+                    <div class="story-card-top">
+
+                        <span>
+                            05
+                        </span>
+
+                        <span>
+                            SELF
+                        </span>
+
+                    </div>
+
+
+                    <div class="story-card-content">
+
+                        <h3>
+
+                            “I was tired
+                            of pretending
+                            I wasn't tired.”
+
+                        </h3>
+
+
+                        <p>
+
+                            Discovering that rest can be
+                            part of moving forward rather
+                            than something to feel guilty about.
+
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="story-open"
+                        data-story="rest"
+                        aria-label="Read story about rest"
+                    >
+                        →
+                    </button>
+
+                </article>
+
+
+
+                <!-- STORY 06 -->
+
+                <article
+                    class="story-card"
+                    data-story="support"
+                    tabindex="0"
+                >
+
+                    <div class="story-card-top">
+
+                        <span>
+                            06
+                        </span>
+
+                        <span>
+                            CONNECTION
+                        </span>
+
+                    </div>
+
+
+                    <div class="story-card-content">
+
+                        <h3>
+
+                            “Being heard
+                            changed the
+                            conversation.”
+
+                        </h3>
+
+
+                        <p>
+
+                            Sometimes support begins
+                            simply by having somewhere
+                            safe to speak.
+
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="story-open"
+                        data-story="support"
+                        aria-label="Read story about connection"
+                    >
+                        →
+                    </button>
+
+                </article>
+
 
             </div>
 
@@ -568,129 +790,48 @@
 
 
 
-        <!-- ==================================================
-             QUOTE
-        ================================================== -->
+        <!-- =================================================
+             IMPORTANT NOTE
+        ================================================= -->
 
-        <section class="story-quote">
+        <section
+            class="stories-note"
+            id="stories-note"
+        >
 
-            <div class="quote-mark">
-                “
-            </div>
-
-
-            <blockquote>
-
-                You don't have to tell
-                your whole story
-                all at once.
-
-            </blockquote>
-
-
-            <p>
-                Sometimes being heard is
-                where the story begins.
-            </p>
-
-        </section>
-
-
-
-        <!-- ==================================================
-             WHAT STORIES CAN EXPLORE
-        ================================================== -->
-
-        <section class="story-themes">
-
-            <div class="themes-heading">
+            <div class="note-content">
 
                 <p class="eyebrow">
-                    EVERY JOURNEY IS DIFFERENT
+                    A NOTE ABOUT THESE STORIES
                 </p>
 
 
                 <h2>
 
-                    Different
-                    experiences.
-                    <em>One safe space.</em>
+                    Shared with
+                    <em>care.</em>
 
                 </h2>
 
-            </div>
+
+                <p>
+
+                    Stories shared through AKSH are
+                    handled with respect for privacy,
+                    dignity and consent.
+
+                </p>
 
 
-            <div class="themes-grid">
+                <p>
 
+                    Any identifying details are
+                    protected or changed where
+                    appropriate. Stories are never
+                    presented as a replacement for
+                    individual professional support.
 
-                <div>
-
-                    <span>01</span>
-
-                    <h3>
-                        FINDING BALANCE
-                    </h3>
-
-                    <p>
-                        Understanding stress,
-                        emotions and everyday
-                        overwhelm.
-                    </p>
-
-                </div>
-
-
-                <div>
-
-                    <span>02</span>
-
-                    <h3>
-                        RELATIONSHIPS
-                    </h3>
-
-                    <p>
-                        Learning to communicate,
-                        understand and connect
-                        differently.
-                    </p>
-
-                </div>
-
-
-                <div>
-
-                    <span>03</span>
-
-                    <h3>
-                        GROWING THROUGH CHANGE
-                    </h3>
-
-                    <p>
-                        Navigating transitions,
-                        uncertainty and personal
-                        growth.
-                    </p>
-
-                </div>
-
-
-                <div>
-
-                    <span>04</span>
-
-                    <h3>
-                        UNDERSTANDING YOURSELF
-                    </h3>
-
-                    <p>
-                        Developing greater awareness
-                        of thoughts, emotions and
-                        patterns.
-                    </p>
-
-                </div>
-
+                </p>
 
             </div>
 
@@ -698,11 +839,82 @@
 
 
 
-        <!-- ==================================================
-             FINAL CTA
-        ================================================== -->
+        <!-- =================================================
+             YOU ARE NOT ALONE
+        ================================================= -->
 
-        <section class="stories-final">
+        <section
+            class="stories-reassurance"
+            id="stories-reassurance"
+        >
+
+            <div class="reassurance-content">
+
+                <p class="eyebrow">
+                    IF SOMETHING HERE FEELS FAMILIAR
+                </p>
+
+
+                <h2>
+
+                    You do not have
+                    to carry everything
+                    <em>alone.</em>
+
+                </h2>
+
+
+                <p>
+
+                    You can take your time.
+                    You can explore.
+                    And when you are ready,
+                    you can talk to someone.
+
+                </p>
+
+
+                <div class="reassurance-buttons">
+
+                    <a
+                        href="with-you.html"
+                        class="primary-button"
+                    >
+
+                        FIND SUPPORT
+
+                        <span>
+                            →
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="begin.html"
+                        class="secondary-button"
+                    >
+
+                        BEGIN YOUR JOURNEY
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             FINAL CTA
+        ================================================= -->
+
+        <section
+            class="stories-final"
+            id="stories-final"
+        >
 
             <p class="eyebrow">
                 YOUR STORY MATTERS
@@ -711,40 +923,30 @@
 
             <h2>
 
-                You can begin
-                <em>without having
-                the words.</em>
+                There is no
+                perfect way
+                to <em>begin.</em>
 
             </h2>
 
 
             <p>
-
-                You only need to take
-                the first step.
-
+                Just begin where you are.
             </p>
 
 
-            <div class="final-actions">
+            <a
+                href="begin.html"
+                class="final-cta"
+            >
 
-                <a
-                    href="begin.html"
-                    class="primary-button"
-                >
-                    BEGIN WITH AKSH
-                    <span>→</span>
-                </a>
+                BEGIN YOUR JOURNEY
 
+                <span>
+                    →
+                </span>
 
-                <a
-                    href="journey.html"
-                    class="secondary-button"
-                >
-                    EXPLORE THE JOURNEY
-                </a>
-
-            </div>
+            </a>
 
         </section>
 
@@ -752,9 +954,9 @@
 
 
 
-    <!-- ==================================================
+    <!-- =====================================================
          FOOTER
-    ================================================== -->
+    ====================================================== -->
 
     <footer class="stories-footer">
 
@@ -780,44 +982,124 @@
         <div class="footer-links">
 
             <a href="world.html">
-                WORLD
+                THE WORLD
             </a>
 
             <a href="mind.html">
-                MIND
-            </a>
-
-            <a href="with-you.html">
-                WITH YOU
+                THE MIND
             </a>
 
             <a href="meghana.html">
                 MEGHANA
             </a>
 
-            <a href="journey.html">
-                JOURNEY
-            </a>
-
             <a href="journal.html">
                 JOURNAL
+            </a>
+
+            <a href="begin.html">
+                BEGIN
             </a>
 
         </div>
 
 
         <p>
+
             ©
             <span id="stories-year"></span>
             AKSH MENTAL WELLNESS
+
         </p>
 
     </footer>
 
+
+
 </div>
 
 
-<script src="stories.js"></script>
+<!-- =====================================================
+     STORY READER
+====================================================== -->
+
+<div
+    class="story-reader"
+    id="story-reader"
+    aria-hidden="true"
+>
+
+    <div class="story-reader-inner">
+
+        <button
+            type="button"
+            class="reader-close"
+            id="reader-close"
+            aria-label="Close story"
+        >
+            ×
+        </button>
+
+
+        <div class="reader-meta">
+
+            <span>
+                AKSH STORIES
+            </span>
+
+            <span id="reader-number">
+                01
+            </span>
+
+        </div>
+
+
+        <div class="reader-content">
+
+            <p
+                class="eyebrow"
+                id="reader-category"
+            >
+                STORY
+            </p>
+
+
+            <h2 id="reader-title">
+                Story
+            </h2>
+
+
+            <div
+                class="reader-body"
+                id="reader-body"
+            ></div>
+
+        </div>
+
+
+        <a
+            href="begin.html"
+            class="reader-cta"
+        >
+
+            WHEN YOU ARE READY
+
+            <span>
+                BEGIN YOUR JOURNEY →
+            </span>
+
+        </a>
+
+    </div>
+
+</div>
+
+
+
+<script
+    src="stories.js"
+    defer
+></script>
 
 </body>
 
