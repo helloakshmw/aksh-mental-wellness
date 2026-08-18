@@ -1,12 +1,16 @@
 /* =========================================================
-   AKSH — THE MIND
-   mind.js
+   AKSH — MEGHANA
+   meghana.js
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    const body = document.body;
-    const nav = document.getElementById("mind-nav");
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
+
+    const nav =
+        document.getElementById("meghana-nav");
 
     const menuButton =
         document.getElementById("menu-button");
@@ -18,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("mobile-close");
 
     const year =
-        document.getElementById("mind-year");
+        document.getElementById("meghana-year");
 
 
     /* =====================================================
@@ -26,7 +30,10 @@ document.addEventListener("DOMContentLoaded", () => {
     ===================================================== */
 
     if (year) {
-        year.textContent = new Date().getFullYear();
+
+        year.textContent =
+            new Date().getFullYear();
+
     }
 
 
@@ -34,22 +41,29 @@ document.addEventListener("DOMContentLoaded", () => {
        NAVIGATION SCROLL
     ===================================================== */
 
-    function updateNav() {
+    function updateNavigation() {
 
         if (!nav) return;
 
         if (window.scrollY > 40) {
+
             nav.classList.add("scrolled");
+
         } else {
+
             nav.classList.remove("scrolled");
+
         }
+
     }
 
-    updateNav();
+
+    updateNavigation();
+
 
     window.addEventListener(
         "scroll",
-        updateNav,
+        updateNavigation,
         { passive: true }
     );
 
@@ -64,19 +78,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
         mobileMenu.classList.add("open");
 
-        body.classList.add("menu-open");
-
-        if (menuButton) {
-            menuButton.setAttribute(
-                "aria-expanded",
-                "true"
-            );
-        }
-
         mobileMenu.setAttribute(
             "aria-hidden",
             "false"
         );
+
+        document.body.classList.add(
+            "menu-open"
+        );
+
+
+        if (menuButton) {
+
+            menuButton.setAttribute(
+                "aria-expanded",
+                "true"
+            );
+
+            menuButton.setAttribute(
+                "aria-label",
+                "Close navigation"
+            );
+
+        }
+
     }
 
 
@@ -86,19 +111,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
         mobileMenu.classList.remove("open");
 
-        body.classList.remove("menu-open");
-
-        if (menuButton) {
-            menuButton.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-        }
-
         mobileMenu.setAttribute(
             "aria-hidden",
             "true"
         );
+
+        document.body.classList.remove(
+            "menu-open"
+        );
+
+
+        if (menuButton) {
+
+            menuButton.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            menuButton.setAttribute(
+                "aria-label",
+                "Open navigation"
+            );
+
+        }
+
     }
 
 
@@ -106,7 +142,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
         menuButton.addEventListener(
             "click",
-            openMenu
+            () => {
+
+                const isOpen =
+                    mobileMenu &&
+                    mobileMenu.classList.contains("open");
+
+                if (isOpen) {
+
+                    closeMenu();
+
+                } else {
+
+                    openMenu();
+
+                }
+
+            }
         );
 
     }
@@ -123,15 +175,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       MOBILE MENU LINKS
+       MOBILE NAVIGATION LINKS
     ===================================================== */
 
     if (mobileMenu) {
 
-        const links =
+        const mobileLinks =
             mobileMenu.querySelectorAll("a");
 
-        links.forEach((link) => {
+
+        mobileLinks.forEach((link) => {
 
             link.addEventListener(
                 "click",
@@ -152,7 +205,9 @@ document.addEventListener("DOMContentLoaded", () => {
         (event) => {
 
             if (event.key === "Escape") {
+
                 closeMenu();
+
             }
 
         }
@@ -160,7 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       CLICK OUTSIDE
+       CLICK OUTSIDE MOBILE MENU
     ===================================================== */
 
     if (mobileMenu) {
@@ -169,14 +224,264 @@ document.addEventListener("DOMContentLoaded", () => {
             "click",
             (event) => {
 
-                if (event.target === mobileMenu) {
+                if (
+                    event.target === mobileMenu
+                ) {
+
                     closeMenu();
+
                 }
 
             }
         );
 
     }
+
+
+    /* =====================================================
+       HERO IMAGE LOAD
+    ===================================================== */
+
+    const portrait =
+        document.querySelector(
+            ".hero-portrait img"
+        );
+
+
+    if (portrait) {
+
+        portrait.addEventListener(
+            "load",
+            () => {
+
+                portrait.classList.add(
+                    "loaded"
+                );
+
+            }
+        );
+
+
+        if (portrait.complete) {
+
+            portrait.classList.add(
+                "loaded"
+            );
+
+        }
+
+
+        portrait.addEventListener(
+            "error",
+            () => {
+
+                portrait.classList.add(
+                    "image-error"
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       SCROLL REVEAL
+    ===================================================== */
+
+    const revealElements =
+        document.querySelectorAll(
+            ".meghana-intro, " +
+            ".meghana-journey, " +
+            ".education-section, " +
+            ".expertise-section, " +
+            ".philosophy-section, " +
+            ".why-aksh-section, " +
+            ".meghana-final"
+        );
+
+
+    if (
+        "IntersectionObserver" in window
+    ) {
+
+        const revealObserver =
+            new IntersectionObserver(
+                (entries, observer) => {
+
+                    entries.forEach(
+                        (entry) => {
+
+                            if (
+                                !entry.isIntersecting
+                            ) {
+
+                                return;
+
+                            }
+
+
+                            entry.target.classList.add(
+                                "story-visible"
+                            );
+
+
+                            observer.unobserve(
+                                entry.target
+                            );
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: 0.08,
+                    rootMargin: "0px 0px -40px 0px"
+                }
+            );
+
+
+        revealElements.forEach(
+            (element) => {
+
+                revealObserver.observe(
+                    element
+                );
+
+            }
+        );
+
+    } else {
+
+        revealElements.forEach(
+            (element) => {
+
+                element.classList.add(
+                    "story-visible"
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       TIMELINE REVEAL
+    ===================================================== */
+
+    const timelineItems =
+        document.querySelectorAll(
+            ".timeline-item"
+        );
+
+
+    if (
+        "IntersectionObserver" in window
+    ) {
+
+        const timelineObserver =
+            new IntersectionObserver(
+                (entries, observer) => {
+
+                    entries.forEach(
+                        (entry) => {
+
+                            if (
+                                !entry.isIntersecting
+                            ) {
+
+                                return;
+
+                            }
+
+
+                            entry.target.classList.add(
+                                "timeline-visible"
+                            );
+
+
+                            observer.unobserve(
+                                entry.target
+                            );
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+
+        timelineItems.forEach(
+            (item) => {
+
+                timelineObserver.observe(
+                    item
+                );
+
+            }
+        );
+
+    } else {
+
+        timelineItems.forEach(
+            (item) => {
+
+                item.classList.add(
+                    "timeline-visible"
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       EXPERTISE CARDS
+    ===================================================== */
+
+    const expertiseCards =
+        document.querySelectorAll(
+            ".expertise-grid article"
+        );
+
+
+    expertiseCards.forEach(
+        (card, index) => {
+
+            card.style.setProperty(
+                "--reveal-delay",
+                `${index * 80}ms`
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       EDUCATION ITEMS
+    ===================================================== */
+
+    const educationItems =
+        document.querySelectorAll(
+            ".education-list article"
+        );
+
+
+    educationItems.forEach(
+        (item, index) => {
+
+            item.style.setProperty(
+                "--reveal-delay",
+                `${index * 100}ms`
+            );
+
+        }
+    );
 
 
     /* =====================================================
@@ -188,32 +493,85 @@ document.addEventListener("DOMContentLoaded", () => {
             'a[href^="#"]'
         );
 
-    internalLinks.forEach((link) => {
 
-        link.addEventListener(
+    internalLinks.forEach(
+        (link) => {
+
+            link.addEventListener(
+                "click",
+                (event) => {
+
+                    const targetId =
+                        link.getAttribute("href");
+
+
+                    if (
+                        !targetId ||
+                        targetId === "#"
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    const target =
+                        document.querySelector(
+                            targetId
+                        );
+
+
+                    if (!target) {
+
+                        return;
+
+                    }
+
+
+                    event.preventDefault();
+
+
+                    closeMenu();
+
+
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+                }
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       HERO SCROLL
+    ===================================================== */
+
+    const heroScroll =
+        document.querySelector(
+            ".hero-scroll"
+        );
+
+
+    const introSection =
+        document.getElementById(
+            "about-meghana"
+        );
+
+
+    if (
+        heroScroll &&
+        introSection
+    ) {
+
+        heroScroll.addEventListener(
             "click",
-            (event) => {
+            () => {
 
-                const targetId =
-                    link.getAttribute("href");
-
-                if (
-                    !targetId ||
-                    targetId === "#"
-                ) {
-                    return;
-                }
-
-                const target =
-                    document.querySelector(targetId);
-
-                if (!target) {
-                    return;
-                }
-
-                event.preventDefault();
-
-                target.scrollIntoView({
+                introSection.scrollIntoView({
                     behavior: "smooth",
                     block: "start"
                 });
@@ -221,203 +579,57 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         );
 
-    });
 
-
-    /* =====================================================
-       REVEAL ELEMENTS
-    ===================================================== */
-
-    const revealElements =
-        document.querySelectorAll(
-            ".mind-card, " +
-            ".experience-item, " +
-            ".myth-row, " +
-            ".education-point, " +
-            ".approach-values > div"
-        );
-
-
-    if (
-        "IntersectionObserver" in window &&
-        revealElements.length
-    ) {
-
-        const observer =
-            new IntersectionObserver(
-                (entries, observerInstance) => {
-
-                    entries.forEach((entry) => {
-
-                        if (!entry.isIntersecting) {
-                            return;
-                        }
-
-                        entry.target.classList.add(
-                            "is-visible"
-                        );
-
-                        observerInstance.unobserve(
-                            entry.target
-                        );
-
-                    });
-
-                },
-                {
-                    threshold: 0.12
-                }
-            );
-
-
-        revealElements.forEach((element) => {
-
-            element.classList.add(
-                "reveal-element"
-            );
-
-            observer.observe(element);
-
-        });
-
-    } else {
-
-        revealElements.forEach((element) => {
-
-            element.classList.add(
-                "is-visible"
-            );
-
-        });
+        heroScroll.style.cursor =
+            "pointer";
 
     }
 
 
     /* =====================================================
-       EXPERIENCE HOVER
+       PARALLAX PORTRAIT
     ===================================================== */
 
-    const experienceItems =
-        document.querySelectorAll(
-            ".experience-item"
-        );
-
-
-    experienceItems.forEach((item) => {
-
-        item.addEventListener(
-            "mouseenter",
-            () => {
-
-                experienceItems.forEach(
-                    (otherItem) => {
-
-                        if (otherItem !== item) {
-
-                            otherItem.classList.add(
-                                "dimmed"
-                            );
-
-                        }
-
-                    }
-                );
-
-            }
-        );
-
-
-        item.addEventListener(
-            "mouseleave",
-            () => {
-
-                experienceItems.forEach(
-                    (otherItem) => {
-
-                        otherItem.classList.remove(
-                            "dimmed"
-                        );
-
-                    }
-                );
-
-            }
-        );
-
-    });
-
-
-    /* =====================================================
-       MIND CARDS
-    ===================================================== */
-
-    const mindCards =
-        document.querySelectorAll(
-            ".mind-card"
-        );
-
-
-    mindCards.forEach((card) => {
-
-        card.addEventListener(
-            "mouseenter",
-            () => {
-
-                card.classList.add(
-                    "card-active"
-                );
-
-            }
-        );
-
-
-        card.addEventListener(
-            "mouseleave",
-            () => {
-
-                card.classList.remove(
-                    "card-active"
-                );
-
-            }
-        );
-
-    });
-
-
-    /* =====================================================
-       SUBTLE HERO MOVEMENT
-    ===================================================== */
-
-    const heroContent =
+    const heroPortrait =
         document.querySelector(
-            ".hero-content"
+            ".hero-portrait"
         );
+
 
     let ticking = false;
 
 
-    function heroParallax() {
-
-        if (!heroContent) {
-            ticking = false;
-            return;
-        }
-
-        const scroll =
-            window.scrollY;
+    function updateParallax() {
 
         if (
-            scroll >= 0 &&
-            scroll < window.innerHeight
+            !heroPortrait ||
+            window.innerWidth < 768
         ) {
 
-            heroContent.style.transform =
-                `translateY(${scroll * 0.06}px)`;
+            ticking = false;
+
+            return;
 
         }
 
+
+        const scrollY =
+            window.scrollY;
+
+
+        const amount =
+            Math.min(
+                scrollY * 0.08,
+                35
+            );
+
+
+        heroPortrait.style.transform =
+            `translate3d(0, ${amount}px, 0)`;
+
+
         ticking = false;
+
     }
 
 
@@ -428,7 +640,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!ticking) {
 
                 window.requestAnimationFrame(
-                    heroParallax
+                    updateParallax
                 );
 
                 ticking = true;
@@ -441,39 +653,100 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       IMAGE ERROR HANDLING
+       ACTIVE NAVIGATION
     ===================================================== */
 
-    const images =
-        document.querySelectorAll("img");
+    const navLinks =
+        document.querySelectorAll(
+            ".desktop-nav a"
+        );
 
 
-    images.forEach((image) => {
+    navLinks.forEach(
+        (link) => {
 
-        image.addEventListener(
-            "error",
-            () => {
+            const href =
+                link.getAttribute("href");
 
-                image.classList.add(
-                    "image-missing"
+
+            if (
+                href === "meghana.html"
+            ) {
+
+                link.classList.add(
+                    "active"
                 );
 
             }
+
+        }
+    );
+
+
+    /* =====================================================
+       IMAGE FALLBACK
+    ===================================================== */
+
+    const images =
+        document.querySelectorAll(
+            "img"
         );
 
-    });
+
+    images.forEach(
+        (image) => {
+
+            image.addEventListener(
+                "error",
+                () => {
+
+                    image.classList.add(
+                        "image-error"
+                    );
+
+                }
+            );
+
+        }
+    );
 
 
     /* =====================================================
        PAGE READY
     ===================================================== */
 
-    window.setTimeout(() => {
+    requestAnimationFrame(
+        () => {
 
-        document.documentElement.classList.add(
-            "mind-ready"
+            document.documentElement.classList.add(
+                "meghana-ready"
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       INITIAL ACCESSIBILITY STATE
+    ===================================================== */
+
+    if (mobileMenu) {
+
+        mobileMenu.setAttribute(
+            "aria-hidden",
+            "true"
         );
 
-    }, 100);
+    }
+
+
+    if (menuButton) {
+
+        menuButton.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+    }
 
 });
